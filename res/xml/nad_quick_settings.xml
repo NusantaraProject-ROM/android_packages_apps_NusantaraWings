@@ -24,6 +24,12 @@
         android:summary="@string/qs_date_summary"
         android:defaultValue="true" />
 
+    <com.nusantara.support.preferences.SecureSettingSwitchPreference
+        android:key="quick_settings_vibrate"
+        android:title="@string/quick_settings_vibrate_title"
+        android:summary="@string/quick_settings_vibrate_summary"
+        android:defaultValue="false"/>
+
     <PreferenceCategory
         android:key="qs_footer"
         android:title="@string/qs_footer_title" >
