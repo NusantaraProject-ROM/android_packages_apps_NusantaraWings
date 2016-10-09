@@ -51,4 +51,10 @@
         android:title="@string/battery_show_percent_estimate_title"
         android:summary="@string/battery_show_percent_estimate_summary"
         android:defaultValue="false"/>
+
+    <Preference
+        android:key="battery_bar_category"
+        android:title="@string/battery_bar_title"
+        android:summary="@string/battery_bar_summary"
+        android:fragment="com.nusantara.wings.fragments.statusbar.BatteryBar" />
 </PreferenceScreen>
