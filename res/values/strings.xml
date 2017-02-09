@@ -311,4 +311,8 @@
     <!-- Notification Vibration -->
     <string name="vibrate_on_notifications_title">Vibrate for notifications</string>
     <string name="vibrate_on_notifications_summary">Toogle for disable vibrate notification</string>
+
+    <!-- QS footer icons -->
+    <string name="qs_running_services_title">Running Services Icon</string>
+    <string name="qs_running_services_summary">Enable the running services icon in the footer</string>
 </resources>

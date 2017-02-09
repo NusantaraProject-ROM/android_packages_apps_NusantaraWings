@@ -36,6 +36,12 @@
         android:summary="%s"
         android:defaultValue="0" />
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="qs_running_services_toggle"
+        android:title="@string/qs_running_services_title"
+        android:summary="@string/qs_running_services_summary"
+        android:defaultValue="false" />
+
     <PreferenceCategory
         android:key="qs_datausage_category"
         android:title="@string/qs_datausage_title">
