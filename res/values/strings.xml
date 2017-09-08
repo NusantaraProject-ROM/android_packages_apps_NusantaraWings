@@ -213,6 +213,9 @@
     <string name="statusbar_items_title">Tuner statusbar icons</string>
     <string name="statusbar_items_summary">Toggle the visibility of icons in statusbar</string>
 
+    <!-- Lockscreen icons -->
+    <string name="lockscreen_tuner_title">Lockscreen shortcuts</string>
+
     <!-- Battery Styles -->
     <string name="battery_percent_title">Status bar battery percentage</string>
     <string name="status_bar_battery_style_title">Battery style</string>
