@@ -18,6 +18,11 @@
             xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
             android:title="@string/battery_options_title" >
 
+     <Preference
+         android:key="battery_charging_light"
+         android:fragment="com.nusantara.wings.fragments.statusbar.BatteryLightSettings"
+         android:title="@string/battery_light_settings" />
+
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="do_left_battery_text"
         android:title="@string/left_battery_text_title"

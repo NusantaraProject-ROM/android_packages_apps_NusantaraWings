@@ -56,6 +56,9 @@ public class BatteryOptions extends SettingsPreferenceFragment
     //private static final int BATTERY_PERCENT_SHOW_INSIDE = 1;
     //private static final int BATTERY_PERCENT_SHOW_OUTSIDE = 2;
 
+    private PreferenceCategory mLedsCategory;
+    private Preference mChargingLeds;
+
     private ListPreference mBatteryPercent;
     private ListPreference mBatteryStyle;
     private SystemSettingSwitchPreference mLeftBatteryText;
@@ -90,6 +93,17 @@ public class BatteryOptions extends SettingsPreferenceFragment
         mBatteryPercent.setOnPreferenceChangeListener(this);
         mBatteryPercent.setEnabled(
                 batterystyle != BATTERY_STYLE_TEXT && batterystyle != BATTERY_STYLE_HIDDEN);
+
+        mLedsCategory = (PreferenceCategory) findPreference("light_category");
+        mChargingLeds = (Preference) findPreference("battery_charging_light");
+        if (mChargingLeds != null
+                && !getResources().getBoolean(
+                        com.android.internal.R.bool.config_intrusiveBatteryLed)) {
+            mLedsCategory.removePreference(mChargingLeds);
+        }
+          if (mChargingLeds == null) {
+            prefSet.removePreference(mLedsCategory);
+        }
     }
 
     @Override
