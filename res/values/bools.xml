@@ -20,7 +20,7 @@
     <bool name="has_lockscreen_items">false</bool>
 
     <!-- Whether to display fingerprint category -->
-    <bool name="has_fingerprint_prefs">false</bool>
+    <bool name="has_fingerprint_prefs">true</bool>
 
     <!-- Whether to display buttons category -->
     <bool name="has_buttons">true</bool>
