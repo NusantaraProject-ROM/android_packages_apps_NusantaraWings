@@ -59,6 +59,7 @@
     <string name="powermenu_summary">Customize the power menu</string>
     <string name="notifications_title">Notifications</string>
     <string name="notifications_summary">Customize the notifications</string>
+    <string name="sb_icon_category">Statusbar icon</string>
 
     <!-- Lockscreen -->
     <string name="fingerprint_prefs_title">Fingerprint prefs</string>
@@ -283,4 +284,8 @@
     <!-- Call strength icons in QS -->
     <string name="show_qs_call_strength_icon_title">Show call strength icon(s)</string>
     <string name="show_qs_call_strength_icon_summary">Show call strength icons in QuickSettings panel when available</string>
+
+    <!-- 4G icon -->
+    <string name="show_fourg_icon_title">4G icon</string>
+    <string name="show_fourg_icon_summary">Display 4G icon in signal icon instead LTE</string>
 </resources>
