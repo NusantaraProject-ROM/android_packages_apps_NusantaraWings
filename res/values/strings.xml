@@ -898,4 +898,8 @@
     <string name="stock_statusbar_in_hide_summary">Use default statusbar height in Hide</string>
     <string name="cutout_main">Display cutout settings</string>
     <string name="cutout_main_summary">They really cut corners with this one</string>
+
+    <!-- Toast app icon -->
+    <string name="toast_icon_title">Toast app icon</string>
+    <string name="toast_icon_summary">Display the app\'s icon corresponding with the toast</string>
 </resources>
