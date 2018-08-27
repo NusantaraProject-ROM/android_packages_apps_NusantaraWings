@@ -39,6 +39,14 @@
         settings:units="dp"
         android:defaultValue="0"/>
 
+    <com.nusantara.support.preferences.SystemSettingListPreference
+        android:key="screen_off_animation"
+        android:title="@string/screen_off_animation_title"
+        android:entries="@array/screen_off_animation_entries"
+        android:entryValues="@array/screen_off_animation_values"
+        android:summary="%s"
+        android:defaultValue="0" />
+
     <PreferenceCategory
         android:key="gestures_category"
         android:title="@string/gesture_cat_title" >

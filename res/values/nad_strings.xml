@@ -424,4 +424,10 @@
     <!-- Statusbar paddings -->
     <string name="statusbar_left_padding">Left padding statusbar</string>
     <string name="statusbar_right_padding">Right padding statusbar</string>
+
+    <!-- Screen off animation -->
+    <string name="default_string">Default</string>
+    <string name="screen_off_animation_title">Screen off animation</string>
+    <string name="screen_off_animation_crt">CRT</string>
+    <string name="screen_off_animation_scale">Scale</string>
 </resources>
