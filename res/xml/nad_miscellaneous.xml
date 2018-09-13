@@ -27,6 +27,13 @@
         android:key="gestures_category"
         android:title="@string/gesture_cat_title" >
 
+        <com.nusantara.support.preferences.SystemSettingListPreference
+            android:key="screenshot_type"
+            android:entries="@array/screenshot_type_entries"
+            android:entryValues="@array/screenshot_type_values"
+            android:title="@string/screenshot_type_title"
+            android:defaultValue="0" />
+
         <com.nusantara.support.preferences.SystemSettingSwitchPreference
             android:key="three_finger_gesture"
             android:title="@string/three_finger_screenshot_title"
