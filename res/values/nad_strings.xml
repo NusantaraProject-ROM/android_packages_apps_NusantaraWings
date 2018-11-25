@@ -526,4 +526,8 @@
     <string name="battery_estimate_summary">Display estimated remaining battery life when available</string>
     <string name="battery_show_percent_estimate_title">Battery percent &amp; estimate</string>
     <string name="battery_show_percent_estimate_summary">Enable battery percent &amp; estimate together</string>
+
+    <!-- Data disabled icon -->
+    <string name="data_disabled_icon_title">Show data disabled icon</string>
+    <string name="data_disabled_icon_summary">Display the cross sign next to signal bar when data is disabled</string>
 </resources>
