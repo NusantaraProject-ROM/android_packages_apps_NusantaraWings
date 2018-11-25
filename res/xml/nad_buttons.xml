@@ -24,6 +24,12 @@
         android:entries="@array/double_tap_power_flashlight_entries"
         android:entryValues="@array/double_tap_power_flashlight_values" />
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="notification_guts_kill_app_button" 
+        android:title="@string/notification_guts_kill_app_button_title" 
+        android:summary="@string/notification_guts_kill_app_button_summary"
+        android:defaultValue="false" />
+
     <com.nusantara.support.preferences.SystemSettingListPreference
         android:key="systemui_plugin_volume"
         android:title="@string/volume_panel"
