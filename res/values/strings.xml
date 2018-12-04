@@ -469,4 +469,6 @@
     <string name="brightness_slider_top">Top</string>
     <string name="brightness_icon_title">Auto brightness icon</string>
     <string name="brightness_icon_summary">Show toggle for adaptive brightness near the slider</string>
+    <string name="brightness_buttons_title">Brightness control buttons</string>
+    <string name="brightness_buttons_summary">Show buttons beside the brightness slider to adjust brightness</string>
 </resources>
