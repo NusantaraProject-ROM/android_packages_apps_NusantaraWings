@@ -376,4 +376,8 @@
     <string name="show_carrier_keyguard">Lockscreen</string>
     <string name="show_carrier_statusbar">Status bar</string>
     <string name="show_carrier_enabled">Both</string>
+
+    <!-- Nusantara logo -->
+    <string name="nusantara_logo_title">Nusantara logo</string>
+    <string name="nusantara_logo_summary">Enable nusantara logo</string>
 </resources>
