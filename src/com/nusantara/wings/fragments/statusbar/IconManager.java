@@ -44,6 +44,10 @@ import java.util.List;
 public class IconManager extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
+    private static final String KEY_STATUS_BAR_LOGO = "status_bar_logo";
+
+    private SwitchPreference mShowNadLogo;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +55,22 @@ public class IconManager extends SettingsPreferenceFragment
 
         final PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
+
+	    mShowNadLogo = (SwitchPreference) findPreference(KEY_STATUS_BAR_LOGO);
+        mShowNadLogo.setChecked((Settings.System.getInt(getContentResolver(),
+             Settings.System.STATUS_BAR_LOGO, 0) == 1));
+        mShowNadLogo.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final ContentResolver resolver = getActivity().getContentResolver();
+        if  (preference == mShowNadLogo) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.STATUS_BAR_LOGO, value ? 1 : 0);
+            return true;
+        }
         return false;
     }
 
