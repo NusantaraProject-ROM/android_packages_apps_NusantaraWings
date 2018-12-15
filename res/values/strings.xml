@@ -914,4 +914,11 @@
     <string name="display_cutout_force_fullscreen_summary">Force apps to ignore notch space</string>
     <string name="display_cutout_force_fullscreen_restart_app">Please restart the application to apply the changes</string>
     <string name="cutout_force_fullscreen_no_apps">No apps</string>
+
+    <!-- Rounded corners -->
+    <string name="corners_category">Corners</string>
+    <string name="corner_radius">Rounded corner radius</string>
+    <string name="content_padding">Corner content padding</string>
+    <string name="corner_fwvals">Use framework values</string>
+    <string name="corner_fwvals_summary">Useful if the device actually has rounded corners</string>
 </resources>
