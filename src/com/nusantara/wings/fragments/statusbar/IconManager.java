@@ -23,6 +23,7 @@ import android.os.UserHandle;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
@@ -39,7 +40,6 @@ import com.android.settingslib.search.SearchIndexable;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class IconManager extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
@@ -47,6 +47,7 @@ public class IconManager extends SettingsPreferenceFragment
     private static final String KEY_STATUS_BAR_LOGO = "status_bar_logo";
 
     private SwitchPreference mShowNadLogo;
+    private ListPreference mLogoStyle;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,14 @@ public class IconManager extends SettingsPreferenceFragment
         mShowNadLogo.setChecked((Settings.System.getInt(getContentResolver(),
              Settings.System.STATUS_BAR_LOGO, 0) == 1));
         mShowNadLogo.setOnPreferenceChangeListener(this);
+
+        mLogoStyle = (ListPreference) findPreference("status_bar_logo_style");
+        int logoStyle = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.STATUS_BAR_LOGO_STYLE,
+                0, UserHandle.USER_CURRENT);
+        mLogoStyle.setValue(String.valueOf(logoStyle));
+        mLogoStyle.setSummary(mLogoStyle.getEntry());
+        mLogoStyle.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -69,6 +78,14 @@ public class IconManager extends SettingsPreferenceFragment
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.STATUS_BAR_LOGO, value ? 1 : 0);
+            return true;
+        } else if (preference.equals(mLogoStyle)) {
+            int logoStyle = Integer.parseInt(((String) newValue).toString());
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.STATUS_BAR_LOGO_STYLE, logoStyle, UserHandle.USER_CURRENT);
+            int index = mLogoStyle.findIndexOfValue((String) newValue);
+            mLogoStyle.setSummary(
+                    mLogoStyle.getEntries()[index]);
             return true;
         }
         return false;

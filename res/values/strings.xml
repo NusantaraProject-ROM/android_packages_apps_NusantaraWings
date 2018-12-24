@@ -380,6 +380,7 @@
     <!-- Nusantara logo -->
     <string name="nusantara_logo_title">Nusantara logo</string>
     <string name="nusantara_logo_summary">Enable nusantara logo</string>
+    <string name="status_bar_logo_style_title">Custom logo</string>
 
     <!-- QS header image -->
     <string name="status_bar_custom_header_title">Header image</string>
