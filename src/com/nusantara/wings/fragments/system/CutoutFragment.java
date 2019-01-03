@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2019 The Dirty Unicorns Project
+ * Copyright (C) 2018 The Potato Open Sauce Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package com.nusantara.wings.fragments.system;
 
+
 import android.content.Context;
 import android.content.ContentResolver;
 import android.content.res.Resources;
@@ -25,6 +26,7 @@ import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 
 import androidx.preference.Preference;
+import androidx.preference.ListPreference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 
@@ -38,51 +40,46 @@ import com.android.settingslib.search.SearchIndexable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nusantara.support.preferences.SystemSettingMasterSwitchPreference;
-
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
-public class Miscellaneous extends SettingsPreferenceFragment
+public class CutoutFragment extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-
-    private static final String GAMING_MODE_ENABLED = "gaming_mode_enabled";
-    private static final String PREF_KEY_CUTOUT = "cutout_settings";
-
-    private SystemSettingMasterSwitchPreference mGamingMode;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.nad_miscellaneous);
-
-        final PreferenceScreen prefScreen = getPreferenceScreen();
-        final ContentResolver resolver = getActivity().getContentResolver();
-
-        mGamingMode = (SystemSettingMasterSwitchPreference) findPreference(GAMING_MODE_ENABLED);
-        mGamingMode.setChecked((Settings.System.getInt(resolver,
-                Settings.System.GAMING_MODE_ENABLED, 0) == 1));
-        mGamingMode.setOnPreferenceChangeListener(this);
-
-        Preference mCutoutPref = (Preference) findPreference(PREF_KEY_CUTOUT);
-        if (!hasPhysicalDisplayCutout(getContext()))
-            getPreferenceScreen().removePreference(mCutoutPref);
-    }
+    private static final String KEY_DISPLAY_CUTOUT_STYLE = "display_cutout_style";
+    private ListPreference mCutoutStyle;
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        final ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mGamingMode) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(resolver,
-                    Settings.System.GAMING_MODE_ENABLED, value ? 1 : 0);
-            return true;
+        if (preference == mCutoutStyle) {
+            String value = (String) newValue;
+            Settings.System.putInt(getContentResolver(), Settings.System.DISPLAY_CUTOUT_MODE, Integer.valueOf(value));
+            int valueIndex = mCutoutStyle.findIndexOfValue(value);
+            mCutoutStyle.setValueIndex(valueIndex >= 0 ? valueIndex : 0);
+            mCutoutStyle.setSummary(mCutoutStyle.getEntries()[valueIndex]);
         }
         return false;
     }
 
-    private static boolean hasPhysicalDisplayCutout(Context context) {
-        return context.getResources().getBoolean(
-                com.android.internal.R.bool.config_physicalDisplayCutout);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.cutout);
+        mCutoutStyle = (ListPreference) findPreference(KEY_DISPLAY_CUTOUT_STYLE);
+        int cutoutStyle = Settings.System.getInt(getContentResolver(),
+                Settings.System.DISPLAY_CUTOUT_MODE, 0);
+        int valueIndex = mCutoutStyle.findIndexOfValue(String.valueOf(cutoutStyle));
+        mCutoutStyle.setValueIndex(valueIndex >= 0 ? valueIndex : 0);
+        mCutoutStyle.setSummary(mCutoutStyle.getEntry());
+        mCutoutStyle.setOnPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 
     @Override
@@ -99,7 +96,7 @@ public class Miscellaneous extends SettingsPreferenceFragment
                             new ArrayList<SearchIndexableResource>();
 
                     SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.nad_miscellaneous;
+                    sir.xmlResId = R.xml.cutout;
                     result.add(sir);
                     return result;
                 }

@@ -25,6 +25,12 @@
         android:summary="@string/gaming_mode_summary"
         android:defaultValue="false" />
 
+    <Preference
+        android:key="cutout_settings"
+        android:title="@string/cutout_main"
+        android:summary="@string/cutout_main_summary"
+        android:fragment="com.nusantara.wings.fragments.system.CutoutFragment"/>
+
     <com.nusantara.support.preferences.GlobalSettingSwitchPreference
         android:key="allow_signature_fake"
         android:title="@string/allow_signature_fake"
