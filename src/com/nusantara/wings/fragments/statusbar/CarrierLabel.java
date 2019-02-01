@@ -24,6 +24,7 @@ import android.content.ContentResolver;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.text.InputFilter;
 import android.text.Spannable;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -113,7 +114,9 @@ public class CarrierLabel extends SettingsPreferenceFragment
 
             // Set an EditText view to get user input
             final EditText input = new EditText(getActivity());
+            int maxLength = 10;
             input.setText(TextUtils.isEmpty(mCustomCarrierLabelText) ? "" : mCustomCarrierLabelText);
+            input.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
             input.setSelection(input.getText().length());
             alert.setView(input);
             alert.setPositiveButton(getString(android.R.string.ok),
