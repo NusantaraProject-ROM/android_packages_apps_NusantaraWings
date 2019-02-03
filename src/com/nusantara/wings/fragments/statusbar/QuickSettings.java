@@ -35,18 +35,21 @@ import com.android.settings.search.BaseSearchIndexProvider;
 
 import com.nusantara.support.preferences.CustomSeekBarPreference;
 import com.nusantara.support.preferences.SystemSettingEditTextPreference;
+import com.nusantara.support.preferences.SystemSettingMasterSwitchPreference;
 
 @SearchIndexable
 public class QuickSettings extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String FOOTER_TEXT_STRING = "footer_text_string";
+    private static final String STATUS_BAR_CUSTOM_HEADER = "status_bar_custom_header";
 
     private CustomSeekBarPreference mQsRowsPort;
     private CustomSeekBarPreference mQsRowsLand;
     private CustomSeekBarPreference mQsColumnsPort;
     private CustomSeekBarPreference mQsColumnsLand;
     private SystemSettingEditTextPreference mFooterString;
+    private SystemSettingMasterSwitchPreference mCustomHeader;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,12 @@ public class QuickSettings extends SettingsPreferenceFragment
             Settings.System.putString(getActivity().getContentResolver(),
                     Settings.System.FOOTER_TEXT_STRING, "#Nusantara Project");
         }
+
+        mCustomHeader = (SystemSettingMasterSwitchPreference) findPreference(STATUS_BAR_CUSTOM_HEADER);
+        int qsHeader = Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_CUSTOM_HEADER, 0);
+        mCustomHeader.setChecked(qsHeader != 0);
+        mCustomHeader.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -118,13 +127,18 @@ public class QuickSettings extends SettingsPreferenceFragment
         } else if (preference == mFooterString) {
             String value = (String) newValue;
             if (value != "" && value != null)
-                Settings.System.putString(getActivity().getContentResolver(),
+                Settings.System.putString(resolver,
                         Settings.System.FOOTER_TEXT_STRING, value);
             else {
                 mFooterString.setText("#Nusantara Project");
                 Settings.System.putString(resolver,
                         Settings.System.FOOTER_TEXT_STRING, "#Nusantara Project");
             }
+            return true;
+        } else if (preference == mCustomHeader) {
+            boolean header = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.STATUS_BAR_CUSTOM_HEADER, header ? 1 : 0);
             return true;
         }
         return false;
