@@ -180,20 +180,18 @@ public class NavigationOptions extends SettingsPreferenceFragment
         mSwapHardwareKeys = (SystemSettingSwitchPreference) findPreference(KEY_SWAP_NAVIGATION_KEYS);
 
         mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
-        if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.twobutton")
-                || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural")
-                || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_nopill")
+        if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural")
                 || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_wide_back")
                 || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_extra_wide_back")
-                || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_extra_wide_back_nopill")
-                || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_narrow_back")
-                || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_narrow_back_nopill")
-                || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_wide_back_nopill")) {
+                || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_narrow_back")) {
             prefSet.removePreference(mLayoutSettings);
         }
 
         mNavigationArrowKeys = (SystemSettingSwitchPreference) findPreference(KEY_NAVIGATION_BAR_ARROWS);
-        if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_nopill")) {
+        if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural")
+                || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_wide_back")
+                || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_extra_wide_back")
+                || Utils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_narrow_back")) {
             prefSet.removePreference(mNavigationArrowKeys);
         }
 
