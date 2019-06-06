@@ -547,4 +547,8 @@
     <string name="lockscreen_charge_temp_unit_title">Temperature unit</string>
     <string name="lockscreen_charge_temp_unit_farhenheit">Fahrenheit</string>
     <string name="lockscreen_charge_temp_unit_celsius">Celsius</string>
+
+    <!-- Charging animation -->
+    <string name="charging_animation_title">Charging animation</string>
+    <string name="charging_animation_summary">Display an animation when the device is plugged in</string>
 </resources>
