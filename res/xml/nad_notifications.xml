@@ -18,6 +18,13 @@
             xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
             android:title="@string/notifications_title" >
 
+    <com.nusantara.support.preferences.GlobalSettingMasterSwitchPreference
+        android:key="heads_up_notifications_enabled"
+        android:fragment="com.nusantara.wings.fragments.system.HeadsUpOptions"
+        android:title="@string/heads_up_notifications"
+        android:summary="@string/heads_up_notifications_summary"
+        android:defaultValue="true" />
+
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="vibrate_on_notifications"
         android:title="@string/vibrate_on_notifications_title"

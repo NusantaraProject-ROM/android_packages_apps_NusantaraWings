@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
+import com.nusantara.support.preferences.GlobalSettingMasterSwitchPreference;
 
 import com.nusantara.wings.UtilsNad;
 
@@ -48,7 +49,9 @@ public class Notifications extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String NOTIFICATION_HEADER = "notification_headers";
+    private static final String HEADS_UP_NOTIFICATIONS_ENABLED = "heads_up_notifications_enabled";
 
+    private GlobalSettingMasterSwitchPreference mHeadsUpEnabled;
     private SystemSettingSwitchPreference mNotificationHeader;
 
     @Override
@@ -62,6 +65,12 @@ public class Notifications extends SettingsPreferenceFragment
         mNotificationHeader.setChecked((Settings.System.getInt(resolver,
                 Settings.System.NOTIFICATION_HEADERS, 1) == 1));
         mNotificationHeader.setOnPreferenceChangeListener(this);
+
+        mHeadsUpEnabled = (GlobalSettingMasterSwitchPreference) findPreference(HEADS_UP_NOTIFICATIONS_ENABLED);
+        mHeadsUpEnabled.setOnPreferenceChangeListener(this);
+        int headsUpEnabled = Settings.Global.getInt(getContentResolver(),
+                HEADS_UP_NOTIFICATIONS_ENABLED, 1);
+        mHeadsUpEnabled.setChecked(headsUpEnabled != 0);
     }
 
     @Override
@@ -72,6 +81,11 @@ public class Notifications extends SettingsPreferenceFragment
             Settings.System.putInt(resolver,
                     Settings.System.NOTIFICATION_HEADERS, value ? 0 : 1);
             UtilsNad.showSystemUiRestartDialog(getContext());
+            return true;
+        } else if (preference == mHeadsUpEnabled) {
+            boolean value = (Boolean) newValue;
+            Settings.Global.putInt(getContentResolver(),
+                    HEADS_UP_NOTIFICATIONS_ENABLED, value ? 1 : 0);
             return true;
         }
         return false;
