@@ -485,4 +485,14 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+
+    <!-- QS Brightness Slider position -->
+    <string-array name="brightness_slider_entries" translatable="false">
+        <item>@string/brightness_slider_hide</item>
+        <item>@string/brightness_slider_top</item>
+    </string-array>
+    <string-array name="brightness_slider_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
 </resources>

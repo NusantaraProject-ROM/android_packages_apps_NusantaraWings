@@ -150,4 +150,22 @@
             settings:units="" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="brightness_slider"
+        android:title="@string/qs_brightness_title">
+
+        <com.nusantara.support.preferences.SecureSettingListPreference
+            android:key="qs_show_brightness_slider"
+            android:title="@string/brightness_slider_title"
+            android:entries="@array/brightness_slider_entries"
+            android:entryValues="@array/brightness_slider_values"
+            android:defaultValue="1" />
+
+        <com.nusantara.support.preferences.SecureSettingSwitchPreference
+            android:key="qs_show_auto_brightness"
+            android:title="@string/brightness_icon_title"
+            android:summary="@string/brightness_icon_summary"
+            android:defaultValue="true" />
+    </PreferenceCategory>
 </PreferenceScreen>

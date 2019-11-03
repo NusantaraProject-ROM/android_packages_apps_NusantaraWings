@@ -461,4 +461,12 @@
     <string name="clock_date_right">Right of time</string>
     <string name="clock_date_left">Left of time</string>
     <string name="clock_date_position">Date position</string>
+
+    <!-- Quick settings brightness -->
+    <string name="qs_brightness_title">Brightness slider</string>
+    <string name="brightness_slider_title">Brightness slider position</string>
+    <string name="brightness_slider_hide">Hidden</string>
+    <string name="brightness_slider_top">Top</string>
+    <string name="brightness_icon_title">Auto brightness icon</string>
+    <string name="brightness_icon_summary">Show toggle for adaptive brightness near the slider</string>
 </resources>
