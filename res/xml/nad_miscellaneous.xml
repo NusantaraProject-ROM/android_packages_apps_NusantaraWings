@@ -18,6 +18,13 @@
             xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
             android:title="@string/miscellaneous_title" >
 
+    <com.nusantara.support.preferences.SystemSettingMasterSwitchPreference
+        android:key="gaming_mode_enabled"
+        android:fragment="com.nusantara.wings.fragments.system.GamingMode"
+        android:title="@string/gaming_mode_title"
+        android:summary="@string/gaming_mode_summary"
+        android:defaultValue="false" />
+
     <PreferenceCategory
         android:key="gestures_category"
         android:title="@string/gesture_cat_title" >
