@@ -30,6 +30,12 @@
         android:summary="@string/notification_guts_kill_app_button_summary"
         android:defaultValue="false" />
 
+    <Preference
+        android:key="volume_steps"
+        android:title="@string/volume_steps_title"
+        android:summary="@string/volume_steps_summary"
+        android:fragment="com.nusantara.wings.fragments.hardware.VolumeSteps" />
+
     <com.nusantara.support.preferences.SystemSettingListPreference
         android:key="systemui_plugin_volume"
         android:title="@string/volume_panel"
