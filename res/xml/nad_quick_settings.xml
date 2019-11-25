@@ -43,6 +43,14 @@
         android:summary="@string/status_bar_custom_header_summary"
         android:defaultValue="false" />
 
+    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+        android:key="qs_panel_bg_alpha"
+        android:title="@string/qs_panel_alpha_title"
+        android:max="255"
+        settings:min="100"
+        settings:interval="5"
+        android:defaultValue="255" />
+
     <PreferenceCategory
         android:key="qs_datausage_category"
         android:title="@string/qs_datausage_title">
