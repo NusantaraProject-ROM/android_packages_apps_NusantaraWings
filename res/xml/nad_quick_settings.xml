@@ -59,6 +59,12 @@
         android:title="@string/qs_footer_title" >
 
         <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="footer_text_show"
+            android:title="@string/qs_footer_text_title"
+            android:summary="@string/qs_footer_text_summary"
+            android:defaultValue="false"/>
+
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
             android:key="qs_footer_show_settings"
             android:title="@string/qs_footer_settings_title"
             android:summary="@string/qs_footer_settings_summary"
