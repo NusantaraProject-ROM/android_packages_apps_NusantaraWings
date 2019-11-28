@@ -222,4 +222,9 @@
     <string name="qs_footer_edit_summary">Display the tile edit icon in quick settings footer</string>
     <string name="qs_footer_running_services_title">Running services icon</string>
     <string name="qs_footer_running_services_summary">Display Running services icon quick settings footer</string>
+    <!-- QS Footer Text -->
+    <string name="qs_footer_text_title">QS footer text</string>
+    <string name="qs_footer_text_summary">Display text at bottom of QS Footer</string>
+    <string name="qs_footer_text_string_title">Customize footer text</string>
+    <string name="qs_footer_text_string_summary">Set to empty for default</string> 
 </resources>

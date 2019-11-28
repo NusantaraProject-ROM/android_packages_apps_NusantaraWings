@@ -45,16 +45,44 @@ import java.util.List;
 public class QuickSettings extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
+    private static final String QS_FOOTER_TEXT_STRING = "qs_footer_text_string";
+
+    private SystemSettingEditTextPreference mFooterString;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.nad_quick_settings);
         final ContentResolver resolver = getActivity().getContentResolver();
+
+        mFooterString = (SystemSettingEditTextPreference) findPreference(QS_FOOTER_TEXT_STRING);
+        mFooterString.setOnPreferenceChangeListener(this);
+        String footerString = Settings.System.getString(getContentResolver(),
+                QS_FOOTER_TEXT_STRING);
+        if (footerString != null && footerString != "")
+            mFooterString.setText(footerString);
+        else {
+            mFooterString.setText("#Nusantara Project");
+            Settings.System.putString(resolver,
+                    Settings.System.QS_FOOTER_TEXT_STRING, "#Nusantara Project");
+        }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mFooterString) {
+            String value = (String) newValue;
+            if (value != "" && value != null)
+                Settings.System.putString(resolver,
+                        Settings.System.QS_FOOTER_TEXT_STRING, value);
+            else {
+                mFooterString.setText("#Nusantara Project");
+                Settings.System.putString(resolver,
+                        Settings.System.QS_FOOTER_TEXT_STRING, "#Nusantara Project");
+            }
+            return true;
+        }
         return false;
     }
 
