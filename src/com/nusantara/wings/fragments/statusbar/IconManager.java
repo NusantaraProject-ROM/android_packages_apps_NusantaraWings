@@ -45,9 +45,13 @@ public class IconManager extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String KEY_STATUS_BAR_LOGO = "status_bar_logo";
+    private static final String KEY_USE_OLD_MOBILETYPE = "use_old_mobiletype";
 
     private SwitchPreference mShowNadLogo;
+    private SwitchPreference mUseOldMobileType;
     private ListPreference mLogoStyle;
+
+    private boolean mConfigUseOldMobileType;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,13 @@ public class IconManager extends SettingsPreferenceFragment
         mLogoStyle.setValue(String.valueOf(logoStyle));
         mLogoStyle.setSummary(mLogoStyle.getEntry());
         mLogoStyle.setOnPreferenceChangeListener(this);
+
+        mConfigUseOldMobileType = getResources().getBoolean(com.android.internal.R.bool.config_useOldMobileIcons);
+        int useOldMobileIcons = (!mConfigUseOldMobileType ? 1 : 0);
+        mUseOldMobileType = (SwitchPreference) findPreference(KEY_USE_OLD_MOBILETYPE);
+        mUseOldMobileType.setChecked((Settings.System.getInt(resolver,
+                Settings.System.USE_OLD_MOBILETYPE, useOldMobileIcons) == 1));
+        mUseOldMobileType.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -86,6 +97,11 @@ public class IconManager extends SettingsPreferenceFragment
             int index = mLogoStyle.findIndexOfValue((String) newValue);
             mLogoStyle.setSummary(
                     mLogoStyle.getEntries()[index]);
+            return true;
+        } else if (preference == mUseOldMobileType) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.USE_OLD_MOBILETYPE, value ? 1 : 0);
             return true;
         }
         return false;
