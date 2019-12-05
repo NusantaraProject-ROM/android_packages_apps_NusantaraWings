@@ -19,6 +19,23 @@
             android:title="@string/quicksettings_title" >
 
     <PreferenceCategory
+        android:key="qs_footer"
+        android:title="@string/qs_footer_title" >
+
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="qs_footer_show_services"
+            android:title="@string/qs_footer_running_services_title"
+            android:summary="@string/qs_footer_running_services_summary"
+            android:defaultValue="false" />
+
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="qs_footer_show_edit"
+            android:title="@string/qs_footer_edit_title"
+            android:summary="@string/qs_footer_edit_summary"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory
         android:key="quick_settings_brighness_category"
         android:title="@string/qs_brightness_slider_category">
 
