@@ -313,6 +313,13 @@
     <string name="vibrate_on_notifications_summary">Toogle for disable vibrate notification</string>
 
     <!-- QS footer icons -->
-    <string name="qs_running_services_title">Running Services Icon</string>
-    <string name="qs_running_services_summary">Enable the running services icon in the footer</string>
+    <string name="qs_footer_title">QS Footer</string>
+    <string name="qs_footer_settings_title">Settings icon</string>
+    <string name="qs_footer_settings_summary">Display Settings icon in quick settings footer</string>
+    <string name="qs_footer_user_title">User switcher icon</string>
+    <string name="qs_footer_user_summary">Display Multi-user switcher icon in quick settings footer</string>
+    <string name="qs_footer_edit_title">Edit icon</string>
+    <string name="qs_footer_edit_summary">Display the tile edit icon in quick settings footer</string>
+    <string name="qs_footer_running_services_title">Running services icon</string>
+    <string name="qs_footer_running_services_summary">Display Running services icon quick settings footer</string>
 </resources>

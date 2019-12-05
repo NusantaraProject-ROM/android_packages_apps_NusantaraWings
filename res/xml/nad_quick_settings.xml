@@ -36,12 +36,6 @@
         android:summary="%s"
         android:defaultValue="0" />
 
-    <com.nusantara.support.preferences.SystemSettingSwitchPreference
-        android:key="qs_running_services_toggle"
-        android:title="@string/qs_running_services_title"
-        android:summary="@string/qs_running_services_summary"
-        android:defaultValue="false" />
-
     <PreferenceCategory
         android:key="qs_datausage_category"
         android:title="@string/qs_datausage_title">
@@ -58,6 +52,35 @@
             android:title="@string/qs_data_usage_location_title"
             android:summary="@string/qs_data_usage_location_summary"
             android:defaultValue="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="qs_footer"
+        android:title="@string/qs_footer_title" >
+
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="qs_footer_show_settings"
+            android:title="@string/qs_footer_settings_title"
+            android:summary="@string/qs_footer_settings_summary"
+            android:defaultValue="true" />
+
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="qs_footer_show_services"
+            android:title="@string/qs_footer_running_services_title"
+            android:summary="@string/qs_footer_running_services_summary"
+            android:defaultValue="false" />
+
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="qs_footer_show_user"
+            android:title="@string/qs_footer_user_title"
+            android:summary="@string/qs_footer_user_summary"
+            android:defaultValue="true" />
+
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="qs_footer_show_edit"
+            android:title="@string/qs_footer_edit_title"
+            android:summary="@string/qs_footer_edit_summary"
+            android:defaultValue="true" />
     </PreferenceCategory>
 
     <PreferenceCategory
