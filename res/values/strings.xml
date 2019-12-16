@@ -90,4 +90,8 @@
     <string name="qs_rows_landscape_title">Rows (landscape)</string>
     <string name="qs_columns_portrait_title">Columns (portrait)</string>
     <string name="qs_columns_landscape_title">Columns (landscape)</string>
+
+    <!-- QS visibility -->
+    <string name="qs_tile_title_visibility_title">Tiles title</string>
+    <string name="qs_tile_title_visibility_summary">Show the titles underneath QS tiles</string>
 </resources>
