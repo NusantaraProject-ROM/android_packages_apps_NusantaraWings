@@ -28,6 +28,12 @@
         android:defaultValue="1" />
 
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="gaming_mode_notifications_feedback"
+        android:title="@string/gaming_mode_notifications_feedback_title"
+        android:summary="@string/gaming_mode_notifications_feedback_summary"
+        android:defaultValue="true" />
+
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="gaming_mode_hw_keys_toggle"
         android:title="@string/gaming_mode_hardware_keys_title"
         android:summary="@string/gaming_mode_hardware_keys_summary"
