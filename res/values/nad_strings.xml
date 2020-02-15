@@ -145,4 +145,7 @@
     <string name="hw_keys_swap_title">Swap hardware buttons</string>
     <string name="hw_keys_swap_summary">Swap the order of recents and back buttons</string>
 
+    <!-- Statusbar Tuner -->
+    <string name="statusbar_items_title">Tuner Statusbar icons</string>
+    <string name="statusbar_items_summary">Toggle the visibility of icons in statusbar</string>
 </resources>
