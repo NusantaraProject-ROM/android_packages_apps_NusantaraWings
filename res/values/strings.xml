@@ -157,4 +157,8 @@
     <string name="qs_tint_off">Disable</string>
     <string name="qs_tint_random">Random color</string>
     <string name="qs_tint_accent">Accent color</string>
+
+    <!-- Statusbar Tuner -->
+    <string name="statusbar_items_title">Tuner Statusbar icons</string>
+    <string name="statusbar_items_summary">Toggle the visibility of icons in statusbar</string>
 </resources>
