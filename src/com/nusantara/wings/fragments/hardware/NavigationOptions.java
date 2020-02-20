@@ -27,6 +27,7 @@ import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.internal.util.nad.NadUtils;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -37,6 +38,8 @@ import com.android.settings.search.BaseSearchIndexProvider;
 public class NavigationOptions extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
+    private static final String KEY_LAYOUT_SETTINGS = "layout_settings";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,10 @@ public class NavigationOptions extends SettingsPreferenceFragment
 
         final PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
-        
+        Preference mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
+        if (!NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.threebutton")) {
+            prefSet.removePreference(mLayoutSettings);
+        }
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
