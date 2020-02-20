@@ -102,4 +102,8 @@
     <!-- Three-fingers-swipe to screenshot -->
     <string name="three_finger_gesture">Swipe to screenshot</string>
     <string name="three_finger_gesture_summary">Swipe three fingers to take screenshot</string>
+
+    <!-- Navigation bar -->
+    <string name="navigation_bar_title">Navigation bar toogle</string>
+    <string name="navigation_bar_summary">Enable on-screen navigation keys</string>
 </resources>
