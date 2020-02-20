@@ -35,14 +35,19 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.search.BaseSearchIndexProvider;
 
+import com.nusantara.support.preferences.SystemSettingSwitchPreference;
+
 @SearchIndexable
 public class NavigationOptions extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String KEY_NAVIGATION_BAR_ENABLED = "force_show_navbar";
     private static final String KEY_LAYOUT_SETTINGS = "layout_settings";
+    private static final String KEY_NAVIGATION_BAR_ARROWS = "navigation_bar_menu_arrow_keys";
 
+    private Preference mLayoutSettings;
     private SwitchPreference mNavigationBar;
+    private SystemSettingSwitchPreference mNavigationArrows;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,9 +68,14 @@ public class NavigationOptions extends SettingsPreferenceFragment
                 defaultToNavigationBar ? 1 : 0) == 1));
         mNavigationBar.setOnPreferenceChangeListener(this);
 
-        Preference mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
+        mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
         if (!NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.threebutton")) {
             prefSet.removePreference(mLayoutSettings);
+        }
+
+        mNavigationArrows = (SystemSettingSwitchPreference) findPreference(KEY_NAVIGATION_BAR_ARROWS);
+        if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_nopill")) {
+            prefSet.removePreference(mNavigationArrows);
         }
     }
 
