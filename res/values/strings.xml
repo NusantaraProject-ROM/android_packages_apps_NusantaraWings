@@ -245,4 +245,8 @@
     <string name="theme_navbar_picker_nexus">Nexus</string>
     <string name="theme_navbar_picker_old">Old</string>
     <string name="theme_navbar_picker_sammy">Samsung</string>
+
+    <!-- Navigation bar -->
+    <string name="navigation_bar_title">On-screen navigation bar</string>
+    <string name="navigation_bar_summary">Enable on-screen navigation keys</string>
 </resources>
