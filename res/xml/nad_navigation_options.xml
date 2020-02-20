@@ -30,6 +30,15 @@
         android:fragment="com.android.settings.gestures.SystemNavigationGestureSettings"
         settings:controller="com.android.settings.gestures.SystemNavigationPreferenceController" />
 
+    <Preference
+        android:key="layout_settings"
+        android:title="@string/navigation_bar_layout_title"
+        android:summary="@string/navigation_bar_layout_summary">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.android.systemui"
+            android:targetClass="com.android.systemui.tuner.NavbarActivity" />
+    </Preference>
+
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="swap_navigation_keys"
         android:title="@string/hw_keys_swap_title"

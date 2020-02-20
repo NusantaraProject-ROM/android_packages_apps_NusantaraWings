@@ -148,4 +148,8 @@
     <!-- Statusbar Tuner -->
     <string name="statusbar_items_title">Tuner Statusbar icons</string>
     <string name="statusbar_items_summary">Toggle the visibility of icons in statusbar</string>
+
+    <!-- Navigation bar -->
+    <string name="navigation_bar_layout_title">Layout</string>
+    <string name="navigation_bar_layout_summary">Customize the layout of the navigation bar</string>
 </resources>
