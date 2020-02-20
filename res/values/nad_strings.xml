@@ -106,6 +106,8 @@
     <!-- Navigation bar -->
     <string name="navigation_bar_title">Navigation bar toogle</string>
     <string name="navigation_bar_summary">Enable on-screen navigation keys</string>
+    <string name="navigation_bar_arrow_keys_title">Show arrow keys while typing</string>
+    <string name="navigation_bar_arrow_keys_summary">Display left and right cursor buttons in navigation bar while typing</string>
     <string name="home_key_title">Home button</string>
     <string name="back_key_title">Back button</string>
     <string name="menu_key_title">Menu button</string>

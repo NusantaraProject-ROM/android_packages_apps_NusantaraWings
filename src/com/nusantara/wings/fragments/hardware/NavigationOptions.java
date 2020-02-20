@@ -54,6 +54,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private static final String KEY_SWAP_NAVIGATION_KEYS = "swap_navigation_keys";
     private static final String KEY_GESTURE_SYSTEM = "gesture_system_navigation";
     private static final String KEY_LAYOUT_SETTINGS = "layout_settings";
+    private static final String KEY_NAVIGATION_BAR_ARROWS = "navigation_bar_menu_arrow_keys";
 
     private static final String KEY_BACK_LONG_PRESS_ACTION = "back_key_long_press";
     private static final String KEY_BACK_LONG_PRESS_CUSTOM_APP = "back_key_long_press_custom_app";
@@ -103,6 +104,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
 
     private SwitchPreference mNavigationBar;
     private SystemSettingSwitchPreference mSwapHardwareKeys;
+    private SystemSettingSwitchPreference mNavigationArrowKeys;
 
     private PreferenceCategory homeCategory;
     private PreferenceCategory backCategory;
@@ -188,6 +190,8 @@ public class NavigationOptions extends SettingsPreferenceFragment
         if (NadUtils.isGestureNavbar()) {
             prefSet.removePreference(mLayoutSettings);
         }
+
+        mNavigationArrowKeys = (SystemSettingSwitchPreference) findPreference(KEY_NAVIGATION_BAR_ARROWS);
 
         mNavigationBar = (SwitchPreference) findPreference(KEY_NAVIGATION_BAR_ENABLED);
         mNavigationBar.setChecked(isNavbarVisible());
@@ -491,6 +495,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
                 assistCategory.setEnabled(true);
                 appSwitchCategory.setEnabled(true);
                 cameraCategory.setEnabled(true);
+                mNavigationArrowKeys.setEnabled(true);
         } else {
             if (isNavbarVisible()) {
                 homeCategory.setEnabled(true);
@@ -499,6 +504,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
                 assistCategory.setEnabled(true);
                 appSwitchCategory.setEnabled(true);
                 cameraCategory.setEnabled(true);
+                mNavigationArrowKeys.setEnabled(true);
             } else {
                 homeCategory.setEnabled(true);
                 backCategory.setEnabled(true);
@@ -506,6 +512,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
                 assistCategory.setEnabled(true);
                 appSwitchCategory.setEnabled(true);
                 cameraCategory.setEnabled(true);
+                mNavigationArrowKeys.setEnabled(false);
             }
         }
 
