@@ -149,4 +149,8 @@
     <string name="network_traffic_upload">Upload</string>
     <string name="network_traffic_autohide_threshold_title">Auto-hide threshold</string>
     <string name="network_traffic_refresh_interval_title">Refresh interval</string>
+
+    <!-- QS themes -->
+    <string name="qs_bg_use_new_tint">QS Tint</string>
+    <string name="qs_bg_use_new_tint_summary">Enable QS tiles tint style</string>
 </resources>
