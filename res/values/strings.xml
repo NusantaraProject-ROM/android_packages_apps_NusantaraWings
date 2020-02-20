@@ -95,6 +95,10 @@
     <string name="qs_tile_title_visibility_title">Tiles title</string>
     <string name="qs_tile_title_visibility_summary">Show the titles underneath QS tiles</string>
 
+    <!-- Navigation bar -->
+    <string name="navigation_bar_layout_title">Layout</string>
+    <string name="navigation_bar_layout_summary">Customize the layout of the navigation bar</string>
+
     <!-- Themes -->
     <string name="theme_type_title">System theme</string>
     <string name="theme_type_summary">Select theme</string>
