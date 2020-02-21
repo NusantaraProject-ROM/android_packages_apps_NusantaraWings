@@ -54,6 +54,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private static final String KEY_LAYOUT_SETTINGS = "layout_settings";
     private static final String KEY_NAVIGATION_BAR_ARROWS = "navigation_bar_menu_arrow_keys";
     private static final String KEY_SWAP_KEYS = "swap_navigation_keys";
+    private static final String KEY_GESTURE_SYSTEM = "gesture_system_navigation";
 
     private static final String KEY_BACK_LONG_PRESS_ACTION = "back_key_long_press";
     private static final String KEY_BACK_LONG_PRESS_CUSTOM_APP = "back_key_long_press_custom_app";
@@ -133,6 +134,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private Preference mRightSwipeAppSelection;
     private Preference mLeftVerticalSwipeAppSelection;
     private Preference mRightVerticalSwipeAppSelection;
+    private Preference mGestureSystemNavigation;
 
     private SwitchPreference mNavigationBar;
     private SystemSettingSwitchPreference mNavigationArrowKeys;
@@ -224,6 +226,8 @@ public class NavigationOptions extends SettingsPreferenceFragment
         if (NadUtils.isGestureNavbar()) {
             prefSet.removePreference(mLayoutSettings);
         }
+
+        mGestureSystemNavigation = (Preference) findPreference(KEY_GESTURE_SYSTEM);
 
         mSwapKeys = (SystemSettingSwitchPreference) findPreference(KEY_SWAP_KEYS);
         mNavigationArrowKeys = (SystemSettingSwitchPreference) findPreference(KEY_NAVIGATION_BAR_ARROWS);
@@ -716,6 +720,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
         }
 
         if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.threebutton")) {
+            mGestureSystemNavigation.setSummary(getString(R.string.legacy_navigation_title));
             mTimeout.setVisible(false);
             mExtendedSwipe.setVisible(false);
             leftSwipeCategory.setVisible(false);
@@ -723,6 +728,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
             leftVerticalSwipeCategory.setVisible(false);
             rightVerticalSwipeCategory.setVisible(false);
         } else if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.twobutton")) {
+            mGestureSystemNavigation.setSummary(getString(R.string.swipe_up_to_switch_apps_title));
             mTimeout.setVisible(false);
             mExtendedSwipe.setVisible(false);
             leftSwipeCategory.setVisible(false);
@@ -730,6 +736,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
             leftVerticalSwipeCategory.setVisible(false);
             rightVerticalSwipeCategory.setVisible(false);
         } else if (NadUtils.isGestureNavbar()) {
+            mGestureSystemNavigation.setSummary(getString(R.string.edge_to_edge_navigation_title));
             mTimeout.setVisible(true);
             mExtendedSwipe.setVisible(true);
             leftSwipeCategory.setVisible(true);
