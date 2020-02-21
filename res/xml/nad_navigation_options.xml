@@ -23,4 +23,10 @@
         android:title="@string/navigation_bar_title"
         android:summary="@string/navigation_bar_summary" />
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="swap_navigation_keys"
+        android:title="@string/hw_keys_swap_title"
+        android:summary="@string/hw_keys_swap_summary"
+        android:defaultValue="false" />
+
 </PreferenceScreen>
