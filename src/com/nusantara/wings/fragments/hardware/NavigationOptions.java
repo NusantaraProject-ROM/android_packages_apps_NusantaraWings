@@ -52,6 +52,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
 
     private static final String KEY_NAVIGATION_BAR_ENABLED = "force_show_navbar";
     private static final String KEY_SWAP_NAVIGATION_KEYS = "swap_navigation_keys";
+    private static final String KEY_GESTURE_SYSTEM = "gesture_system_navigation";
 
     private static final String KEY_BACK_LONG_PRESS_ACTION = "back_key_long_press";
     private static final String KEY_BACK_LONG_PRESS_CUSTOM_APP = "back_key_long_press_custom_app";
@@ -115,6 +116,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private Preference mBackDoubleTapCustomApp;
     private Preference mHomeLongPressCustomApp;
     private Preference mHomeDoubleTapCustomApp;
+    private Preference mGestureSystemNavigation;
 
     private int deviceKeys;
 
@@ -175,6 +177,8 @@ public class NavigationOptions extends SettingsPreferenceFragment
         mHomeDoubleTapCustomApp = (Preference) findPreference(KEY_HOME_DOUBLE_TAP_CUSTOM_APP);
         mAppSwitchLongPressCustomApp = (Preference) findPreference(KEY_APP_SWITCH_LONG_PRESS_CUSTOM_APP);
         mAppSwitchDoubleTapCustomApp = (Preference) findPreference(KEY_APP_SWITCH_DOUBLE_TAP_CUSTOM_APP);
+
+        mGestureSystemNavigation = (Preference) findPreference(KEY_GESTURE_SYSTEM);
 
         mSwapHardwareKeys = (SystemSettingSwitchPreference) findPreference(KEY_SWAP_NAVIGATION_KEYS);
 
@@ -464,7 +468,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     }
 
     private boolean isNavbarVisible() {
-        boolean defaultToNavigationBar = Utils.deviceSupportNavigationBar(getActivity());
+        boolean defaultToNavigationBar = NadUtils.deviceSupportNavigationBar(getActivity());
         return Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.FORCE_SHOW_NAVBAR, defaultToNavigationBar ? 1 : 0) == 1;
     }
@@ -474,21 +478,12 @@ public class NavigationOptions extends SettingsPreferenceFragment
                 com.android.internal.R.integer.config_deviceHardwareKeys);
 
         if (deviceKeys == 0) {
-            if (isNavbarVisible()) {
                 homeCategory.setEnabled(true);
                 backCategory.setEnabled(true);
                 menuCategory.setEnabled(true);
                 assistCategory.setEnabled(true);
                 appSwitchCategory.setEnabled(true);
                 cameraCategory.setEnabled(true);
-            } else {
-                homeCategory.setEnabled(false);
-                backCategory.setEnabled(false);
-                menuCategory.setEnabled(false);
-                assistCategory.setEnabled(false);
-                appSwitchCategory.setEnabled(false);
-                cameraCategory.setEnabled(false);
-            }
         } else {
             if (isNavbarVisible()) {
                 homeCategory.setEnabled(true);
@@ -530,6 +525,14 @@ public class NavigationOptions extends SettingsPreferenceFragment
             assistCategory.setVisible(false);
             appSwitchCategory.setVisible(false);
             cameraCategory.setVisible(false);
+        }
+
+        if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.threebutton")) {
+            mGestureSystemNavigation.setSummary(getString(R.string.legacy_navigation_title));
+        } else if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.twobutton")) {
+            mGestureSystemNavigation.setSummary(getString(R.string.swipe_up_to_switch_apps_title));
+        } else if (NadUtils.isGestureNavbar()) {
+            mGestureSystemNavigation.setSummary(getString(R.string.edge_to_edge_navigation_title));
         }
     }
 

@@ -23,6 +23,13 @@
         android:title="@string/navigation_bar_title"
         android:summary="@string/navigation_bar_summary" />
 
+    <Preference
+        android:key="gesture_system_navigation"
+        android:title="@string/system_navigation_title"
+        android:dependency="force_show_navbar"
+        android:fragment="com.android.settings.gestures.SystemNavigationGestureSettings"
+        settings:controller="com.android.settings.gestures.SystemNavigationPreferenceController" />
+
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="swap_navigation_keys"
         android:title="@string/hw_keys_swap_title"
