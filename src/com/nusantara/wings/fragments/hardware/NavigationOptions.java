@@ -50,11 +50,17 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private static final String KEY_SWAP_NAVIGATION_KEYS = "swap_navigation_keys";
 
     private static final String KEY_BACK_LONG_PRESS_ACTION = "back_key_long_press";
+    private static final String KEY_BACK_LONG_PRESS_CUSTOM_APP = "back_key_long_press_custom_app";
     private static final String KEY_BACK_DOUBLE_TAP_ACTION = "back_key_double_tap";
+    private static final String KEY_BACK_DOUBLE_TAP_CUSTOM_APP = "back_key_double_tap_custom_app";
     private static final String KEY_HOME_LONG_PRESS_ACTION = "home_key_long_press";
+    private static final String KEY_HOME_LONG_PRESS_CUSTOM_APP = "home_key_long_press_custom_app";
     private static final String KEY_HOME_DOUBLE_TAP_ACTION = "home_key_double_tap";
+    private static final String KEY_HOME_DOUBLE_TAP_CUSTOM_APP = "home_key_double_tap_custom_app";
     private static final String KEY_APP_SWITCH_LONG_PRESS = "app_switch_key_long_press";
+    private static final String KEY_APP_SWITCH_LONG_PRESS_CUSTOM_APP = "app_switch_key_long_press_custom_app";
     private static final String KEY_APP_SWITCH_DOUBLE_TAP = "app_switch_key_double_tap";
+    private static final String KEY_APP_SWITCH_DOUBLE_TAP_CUSTOM_APP = "app_switch_key_double_tap_custom_app";
     private static final String KEY_MENU_LONG_PRESS_ACTION = "menu_key_long_press";
     private static final String KEY_MENU_DOUBLE_TAP_ACTION = "menu_key_double_tap";
     private static final String KEY_CAMERA_LONG_PRESS_ACTION = "camera_key_long_press";
@@ -88,8 +94,16 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private ListPreference mCameraDoubleTap;
     private ListPreference mAssistLongPress;
     private ListPreference mAssistDoubleTap;
+
+    private Preference mAppSwitchLongPressCustomApp;
+    private Preference mAppSwitchDoubleTapCustomApp;
+    private Preference mBackLongPressCustomApp;
+    private Preference mBackDoubleTapCustomApp;
+    private Preference mHomeLongPressCustomApp;
+    private Preference mHomeDoubleTapCustomApp;
     private Preference mLayoutSettings;
     private Preference mButtonBrightness;
+
     private SwitchPreference mNavigationBar;
     private SystemSettingSwitchPreference mNavigationArrowKeys;
     private SystemSettingSwitchPreference mSwapHardwareKeys;
@@ -155,6 +169,13 @@ public class NavigationOptions extends SettingsPreferenceFragment
         assistCategory = (PreferenceCategory) findPreference(KEY_CATEGORY_ASSIST);
         appSwitchCategory = (PreferenceCategory) findPreference(KEY_CATEGORY_APP_SWITCH);
         cameraCategory = (PreferenceCategory) findPreference(KEY_CATEGORY_CAMERA);
+
+        mBackLongPressCustomApp = (Preference) findPreference(KEY_BACK_LONG_PRESS_CUSTOM_APP);
+        mBackDoubleTapCustomApp = (Preference) findPreference(KEY_BACK_DOUBLE_TAP_CUSTOM_APP);
+        mHomeLongPressCustomApp = (Preference) findPreference(KEY_HOME_LONG_PRESS_CUSTOM_APP);
+        mHomeDoubleTapCustomApp = (Preference) findPreference(KEY_HOME_DOUBLE_TAP_CUSTOM_APP);
+        mAppSwitchLongPressCustomApp = (Preference) findPreference(KEY_APP_SWITCH_LONG_PRESS_CUSTOM_APP);
+        mAppSwitchDoubleTapCustomApp = (Preference) findPreference(KEY_APP_SWITCH_DOUBLE_TAP_CUSTOM_APP);
 
         mSwapHardwareKeys = (SystemSettingSwitchPreference) findPreference(KEY_SWAP_NAVIGATION_KEYS);
 
@@ -290,6 +311,20 @@ public class NavigationOptions extends SettingsPreferenceFragment
         mHandler = new Handler();
         updateBacklight();
         navbarCheck();
+        customAppCheck();
+
+        mBackLongPressCustomApp.setEnabled(mBackLongPress.getEntryValues()
+                [backlongpress].equals("16"));
+        mBackDoubleTapCustomApp.setEnabled(mBackDoubleTap.getEntryValues()
+                [backdoubletap].equals("16"));
+        mHomeLongPressCustomApp.setEnabled(mHomeLongPress.getEntryValues()
+                [homelongpress].equals("16"));
+        mHomeDoubleTapCustomApp.setEnabled(mHomeDoubleTap.getEntryValues()
+                [homedoubletap].equals("16"));
+        mAppSwitchLongPressCustomApp.setEnabled(mAppSwitchLongPress.getEntryValues()
+                [appswitchlongpress].equals("16"));
+        mAppSwitchDoubleTapCustomApp.setEnabled(mAppSwitchDoubleTap.getEntryValues()
+                [appswitchdoubletap].equals("16"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -319,6 +354,9 @@ public class NavigationOptions extends SettingsPreferenceFragment
             int index = mBackLongPress.findIndexOfValue((String) objValue);
             mBackLongPress.setSummary(
                     mBackLongPress.getEntries()[index]);
+            customAppCheck();
+            mBackLongPressCustomApp.setEnabled(mBackLongPress.getEntryValues()
+                    [index].equals("16"));
             return true;
         } else if (preference == mBackDoubleTap) {
             int value = Integer.parseInt((String) objValue);
@@ -328,6 +366,8 @@ public class NavigationOptions extends SettingsPreferenceFragment
             int index = mBackDoubleTap.findIndexOfValue((String) objValue);
             mBackDoubleTap.setSummary(
                     mBackDoubleTap.getEntries()[index]);
+            mBackDoubleTapCustomApp.setEnabled(mBackDoubleTap.getEntryValues()
+                    [index].equals("16"));
             return true;
         } else if (preference == mHomeLongPress) {
             int value = Integer.parseInt((String) objValue);
@@ -337,6 +377,8 @@ public class NavigationOptions extends SettingsPreferenceFragment
             int index = mHomeLongPress.findIndexOfValue((String) objValue);
             mHomeLongPress.setSummary(
                     mHomeLongPress.getEntries()[index]);
+            mHomeLongPressCustomApp.setEnabled(mHomeLongPress.getEntryValues()
+                    [index].equals("16"));
             return true;
         } else if (preference == mHomeDoubleTap) {
             int value = Integer.parseInt((String) objValue);
@@ -346,6 +388,8 @@ public class NavigationOptions extends SettingsPreferenceFragment
             int index = mHomeDoubleTap.findIndexOfValue((String) objValue);
             mHomeDoubleTap.setSummary(
                     mHomeDoubleTap.getEntries()[index]);
+            mHomeDoubleTapCustomApp.setEnabled(mHomeDoubleTap.getEntryValues()
+                    [index].equals("16"));
             return true;
         } else if (preference == mAppSwitchLongPress) {
             int value = Integer.parseInt((String) objValue);
@@ -355,6 +399,8 @@ public class NavigationOptions extends SettingsPreferenceFragment
             int index = mAppSwitchLongPress.findIndexOfValue((String) objValue);
             mAppSwitchLongPress.setSummary(
                     mAppSwitchLongPress.getEntries()[index]);
+            mAppSwitchLongPressCustomApp.setEnabled(mAppSwitchLongPress.getEntryValues()
+                    [index].equals("16"));
             return true;
         } else if (preference == mAppSwitchDoubleTap) {
             int value = Integer.parseInt((String) objValue);
@@ -364,6 +410,8 @@ public class NavigationOptions extends SettingsPreferenceFragment
             int index = mAppSwitchDoubleTap.findIndexOfValue((String) objValue);
             mAppSwitchDoubleTap.setSummary(
                     mAppSwitchDoubleTap.getEntries()[index]);
+            mAppSwitchDoubleTapCustomApp.setEnabled(mAppSwitchDoubleTap.getEntryValues()
+                    [index].equals("16"));
             return true;
         } else if (preference == mMenuLongPress) {
             int value = Integer.parseInt((String) objValue);
@@ -482,11 +530,27 @@ public class NavigationOptions extends SettingsPreferenceFragment
         }
     }
 
+    private void customAppCheck() {
+        mBackLongPressCustomApp.setSummary(Settings.System.getString(getActivity().getContentResolver(),
+                String.valueOf(Settings.System.KEY_BACK_LONG_PRESS_CUSTOM_APP_FR_NAME)));
+        mBackDoubleTapCustomApp.setSummary(Settings.System.getString(getActivity().getContentResolver(),
+                String.valueOf(Settings.System.KEY_BACK_DOUBLE_TAP_CUSTOM_APP_FR_NAME)));
+        mHomeLongPressCustomApp.setSummary(Settings.System.getString(getActivity().getContentResolver(),
+                String.valueOf(Settings.System.KEY_HOME_LONG_PRESS_CUSTOM_APP_FR_NAME)));
+        mHomeDoubleTapCustomApp.setSummary(Settings.System.getString(getActivity().getContentResolver(),
+                String.valueOf(Settings.System.KEY_HOME_DOUBLE_TAP_CUSTOM_APP_FR_NAME)));
+        mAppSwitchLongPressCustomApp.setSummary(Settings.System.getString(getActivity().getContentResolver(),
+                String.valueOf(Settings.System.KEY_APP_SWITCH_LONG_PRESS_CUSTOM_APP_FR_NAME)));
+        mAppSwitchDoubleTapCustomApp.setSummary(Settings.System.getString(getActivity().getContentResolver(),
+                String.valueOf(Settings.System.KEY_APP_SWITCH_DOUBLE_TAP_CUSTOM_APP_FR_NAME)));
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         navbarCheck();
         updateBacklight();
+        customAppCheck();
     }
 
     @Override
@@ -494,6 +558,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
         super.onPause();
         navbarCheck();
         updateBacklight();
+        customAppCheck();
     }
 
     @Override
