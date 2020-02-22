@@ -46,6 +46,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private static final String KEY_NAVIGATION_BAR_ENABLED = "force_show_navbar";
     private static final String KEY_LAYOUT_SETTINGS = "layout_settings";
     private static final String KEY_NAVIGATION_BAR_ARROWS = "navigation_bar_menu_arrow_keys";
+    private static final String KEY_BUTTON_BRIGHTNESS = "button_brightness";
     private static final String KEY_SWAP_NAVIGATION_KEYS = "swap_navigation_keys";
 
     private static final String KEY_BACK_LONG_PRESS_ACTION = "back_key_long_press";
@@ -88,6 +89,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private ListPreference mAssistLongPress;
     private ListPreference mAssistDoubleTap;
     private Preference mLayoutSettings;
+    private Preference mButtonBrightness;
     private PreferenceCategory mHomeCategory;
     private PreferenceCategory mBackCategory;
     private PreferenceCategory mMenuCategory;
@@ -179,6 +181,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
         }
 
         mSwapHardwareKeys = (SystemSettingSwitchPreference) findPreference(KEY_SWAP_NAVIGATION_KEYS);
+        mButtonBrightness = (Preference) findPreference(KEY_BUTTON_BRIGHTNESS);
 
         mHomeCategory = (PreferenceCategory) prefSet.findPreference(KEY_CATEGORY_HOME);
         mBackCategory = (PreferenceCategory) prefSet.findPreference(KEY_CATEGORY_BACK);
