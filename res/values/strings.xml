@@ -771,7 +771,8 @@
     <string name="battery_bar">Battery bar location</string>
     <string name="battery_bar_no_navbar">Battery bar location</string>
     <string name="battery_bar_location_hide">Hide</string>
-    <string name="battery_bar_location_statusbar">Statusbar</string>
+    <string name="battery_bar_statusbar_top">Statusbar Top</string>
+    <string name="battery_bar_statusbar_bot">Statusbar bottom</string>
     <string name="battery_bar_location_top_navbar">Top of navbar</string>
     <string name="battery_bar_location_bottom_navbar">Bottom of navbar</string>
     <string name="battery_bar_color">Battery bar color</string>
