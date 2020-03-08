@@ -18,17 +18,18 @@
             xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
             android:title="@string/lockscreen_items_title" >
 
+    <com.nusantara.support.preferences.SystemSettingListPreference
+        android:key="lockscreen_charging_animation_style"
+        android:title="@string/lockscreen_charging_animation_title"
+        android:entries="@array/lockscreen_charging_animation_entries"
+        android:entryValues="@array/lockscreen_charging_animation_values"
+        android:defaultValue="1" />
+
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="lockscreen_battery_info"
         android:title="@string/lockscreen_battery_info_title"
         android:summary="@string/lockscreen_battery_info_summary"
         android:defaultValue="false" />
-
-    <com.nusantara.support.preferences.SystemSettingSwitchPreference
-        android:key="lockscreen_charging_animation"
-        android:title="@string/lockscreen_charging_animation_title"
-        android:summary="@string/lockscreen_charging_animation_summary"
-        android:defaultValue="true" />
 
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="lockscreen_status_bar"
