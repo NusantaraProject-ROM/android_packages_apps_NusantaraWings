@@ -128,8 +128,6 @@ public class NavigationOptions extends SettingsPreferenceFragment
 
         final PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
-        boolean defaultToNavigationBar = getResources().getBoolean(
-                com.android.internal.R.bool.config_showNavigationBar);
 
         deviceKeys = getResources().getInteger(
                 com.android.internal.R.integer.config_deviceHardwareKeys);
@@ -198,9 +196,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
         mButtonBrightness = (Preference) findPreference(KEY_BUTTON_BRIGHTNESS);
 
         mNavigationBar = (SwitchPreference) findPreference(KEY_NAVIGATION_BAR_ENABLED);
-        mNavigationBar.setChecked((Settings.System.getInt(getContentResolver(),
-                Settings.System.FORCE_SHOW_NAVBAR,
-                defaultToNavigationBar ? 1 : 0) == 1));
+        mNavigationBar.setChecked(isNavbarVisible());
         mNavigationBar.setOnPreferenceChangeListener(this);
 
         mBackLongPress = (ListPreference) findPreference(KEY_BACK_LONG_PRESS_ACTION);
@@ -470,11 +466,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     }
 
     private void updateBacklight() {
-        boolean defaultToNavigationBar = getResources().getBoolean(
-                com.android.internal.R.bool.config_showNavigationBar);
-        boolean navigationBar = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.FORCE_SHOW_NAVBAR, defaultToNavigationBar ? 1 : 0) == 1;
-        if (navigationBar) {
+        if (isNavbarVisible()) {
             mButtonBrightness.setEnabled(false);
             mSwapHardwareKeys.setEnabled(false);
         } else {
@@ -483,14 +475,18 @@ public class NavigationOptions extends SettingsPreferenceFragment
         }
     }
 
+    private boolean isNavbarVisible() {
+        boolean defaultToNavigationBar = Utils.deviceSupportNavigationBar(getActivity());
+        return Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.FORCE_SHOW_NAVBAR, defaultToNavigationBar ? 1 : 0) == 1;
+    }
+
     private void navbarCheck() {
-        boolean navigationBar = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.FORCE_SHOW_NAVBAR, 1) == 1;
         deviceKeys = getResources().getInteger(
                 com.android.internal.R.integer.config_deviceHardwareKeys);
 
         if (deviceKeys == 0) {
-            if (navigationBar) {
+            if (isNavbarVisible()) {
                 homeCategory.setEnabled(true);
                 backCategory.setEnabled(true);
                 menuCategory.setEnabled(true);
@@ -508,7 +504,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
                 mNavigationArrowKeys.setEnabled(false);
             }
         } else {
-            if (navigationBar) {
+            if (isNavbarVisible()) {
                 homeCategory.setEnabled(true);
                 backCategory.setEnabled(true);
                 menuCategory.setEnabled(true);
