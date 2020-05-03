@@ -169,6 +169,9 @@ public class Themes extends SettingsPreferenceFragment
         }
         mAccentColor.setNewPreviewColor(intColor);
         mAccentColor.setOnPreferenceChangeListener(this);
+        if (hexColor.equals("#ff1a73e8"))
+            mAccentColor.setCustomColorPreview(getContext().getResources()
+                    .getColor(R.color.nusantara_wings_category_icon_tint));
     }
 
     @Override
