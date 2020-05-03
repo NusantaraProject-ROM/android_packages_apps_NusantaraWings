@@ -162,8 +162,10 @@ public class Themes extends SettingsPreferenceFragment
         String hexColor = String.format("#%08x", (0xff1a73e8 & intColor));
         if (hexColor.equals("#ff1a73e8")) {
             mAccentColor.setSummary(R.string.accent_color_default);
+            mAccentPicker.setEnabled(true);
         } else {
             mAccentColor.setSummary(hexColor);
+            mAccentPicker.setEnabled(false);
         }
         mAccentColor.setNewPreviewColor(intColor);
         mAccentColor.setOnPreferenceChangeListener(this);
@@ -312,8 +314,10 @@ public class Themes extends SettingsPreferenceFragment
                     Integer.valueOf(String.valueOf(newValue)));
             if (hex.equals("#ff1a73e8")) {
                 mAccentColor.setSummary(R.string.accent_color_default);
+                mAccentPicker.setEnabled(true);
             } else {
                 mAccentColor.setSummary(hex);
+                mAccentPicker.setEnabled(false);
             }
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putIntForUser(mContext.getContentResolver(),
