@@ -19,10 +19,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-     <com.nusantara.support.preferences.SystemSettingSwitchPreference
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="network_traffic_state"
         android:title="@string/network_traffic_state_title"
         android:defaultValue="false" />
+
+    <com.nusantara.support.preferences.SystemSettingListPreference
+        android:key="network_traffic_location"
+        android:title="@string/network_traffic_location_title"
+        android:entries="@array/network_traffic_location_entries"
+        android:entryValues="@array/network_traffic_location_values"
+        android:defaultValue="0"
+        android:dependency="network_traffic_state" />
 
      <com.nusantara.support.preferences.CustomSeekBarPreference
         android:key="network_traffic_autohide_threshold"
@@ -32,11 +40,12 @@
         android:defaultValue="0"
         settings:units="KB/s" />
 
-    <com.nusantara.support.preferences.SystemSettingListPreference
-        android:key="network_traffic_location"
-        android:title="@string/network_traffic_location_title"
-        android:entries="@array/network_traffic_location_entries"
-        android:entryValues="@array/network_traffic_location_values"
-        android:defaultValue="0"
+    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+        android:key="network_traffic_refresh_interval"
+        android:title="@string/network_traffic_refresh_interval_title"
+        android:max="10"
+        settings:min="1"
+        android:defaultValue="1"
+        settings:units="sec"
         android:dependency="network_traffic_state" />
 </PreferenceScreen>
