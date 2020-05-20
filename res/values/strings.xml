@@ -152,5 +152,7 @@
 
     <!-- QS themes -->
     <string name="qs_bg_use_new_tint">QS Tint</string>
-    <string name="qs_bg_use_new_tint_summary">Enable QS tiles tint style</string>
+    <string name="qs_tint_off">Disable</string>
+    <string name="qs_tint_random">Random color</string>
+    <string name="qs_tint_accent">Accent color</string>
 </resources>
