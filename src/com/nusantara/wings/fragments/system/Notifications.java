@@ -45,6 +45,7 @@ import com.nusantara.support.preferences.GlobalSettingMasterSwitchPreference;
 import com.nusantara.support.preferences.SystemSettingMasterSwitchPreference;
 
 import com.nusantara.wings.UtilsNad;
+import com.android.internal.util.nad.NadUtils; 
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class Notifications extends SettingsPreferenceFragment
@@ -54,11 +55,13 @@ public class Notifications extends SettingsPreferenceFragment
     private static final String CENTER_NOTIFICATION_HEADER = "center_notification_headers";
     private static final String HEADS_UP_NOTIFICATIONS_ENABLED = "heads_up_notifications_enabled";
     private static final String NOTIFICATION_PULSE = "pulse_ambient_light";
+    private static final String STATUS_BAR_SHOW_TICKER = "status_bar_show_ticker";
 
     private GlobalSettingMasterSwitchPreference mHeadsUpEnabled;
     private SystemSettingSwitchPreference mNotificationHeader;
     private SystemSettingSwitchPreference mCenterNotificationHeader;
     private SystemSettingMasterSwitchPreference mEdgeLightEnabled;
+    private SystemSettingMasterSwitchPreference mTickerEnabled;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,6 +91,16 @@ public class Notifications extends SettingsPreferenceFragment
         int edgeLightEnabled = Settings.System.getInt(getContentResolver(),
                 NOTIFICATION_PULSE, 0);
         mEdgeLightEnabled.setChecked(edgeLightEnabled != 0);
+
+        mTickerEnabled = (SystemSettingMasterSwitchPreference) findPreference(STATUS_BAR_SHOW_TICKER);
+        mTickerEnabled.setOnPreferenceChangeListener(this);
+        int tickerEnabled = Settings.System.getInt(getContentResolver(),
+                STATUS_BAR_SHOW_TICKER, 0);
+        mTickerEnabled.setChecked(tickerEnabled != 0);
+
+        if (NadUtils.hasNotch(getActivity())) {
+            mTickerEnabled.setVisible(false);
+        }
     }
 
     @Override
@@ -114,6 +127,11 @@ public class Notifications extends SettingsPreferenceFragment
             boolean value = (Boolean) newValue;
             Settings.System.putInt(getContentResolver(),
                     NOTIFICATION_PULSE, value ? 1 : 0);
+            return true;
+        } else if (preference == mTickerEnabled) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(getContentResolver(),
+                    STATUS_BAR_SHOW_TICKER, value ? 1 : 0);
             return true;
         }
         return false;
