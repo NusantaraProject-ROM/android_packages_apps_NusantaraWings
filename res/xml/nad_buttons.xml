@@ -18,6 +18,13 @@
             xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
             android:title="@string/buttons_title" >
 
+    <com.nusantara.support.preferences.SystemSettingListPreference
+        android:key="systemui_plugin_volume"
+        android:title="@string/volume_panel"
+        android:entries="@array/volume_panel_entries"
+        android:entryValues="@array/volume_panel_values"
+        android:defaultValue="@string/volume_panel_aosp_val" />
+
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="audio_panel_view_position"
         android:title="@string/volume_panel_on_left_title"
