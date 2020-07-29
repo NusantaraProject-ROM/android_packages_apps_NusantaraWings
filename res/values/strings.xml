@@ -339,6 +339,8 @@
     <string name="qs_footer_edit_summary">Display the tile edit icon in quick settings footer</string>
     <string name="qs_footer_running_services_title">Running services icon</string>
     <string name="qs_footer_running_services_summary">Display Running services icon quick settings footer</string>
+    <string name="qs_show_drag_handle_title">Drag handle</string>
+    <string name="qs_show_drag_handle_summary">Show QS footer handle</string>
 
     <!-- Three-fingers-swipe to screenshot -->
     <string name="three_finger_gesture">Swipe to screenshot</string>
