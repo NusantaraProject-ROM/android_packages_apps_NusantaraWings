@@ -78,6 +78,6 @@
             android:entries="@array/screenshot_type_entries"
             android:entryValues="@array/screenshot_type_values"
             android:title="@string/screenshot_type_title"
-            android:defaultValue="0" />
+            android:defaultValue="2" />
     </PreferenceCategory>
 </PreferenceScreen>
