@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2017 The Dirty Unicorns Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation_view_constraint"/>
+
+    <com.nusantara.wings.bottomnav.BubbleNavigationConstraintView
+        android:id="@+id/bottom_navigation_view_constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0.0dp"
+        android:background="?android:colorPrimary"
+        app:nad_mode="spread"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp">
+
+        <com.nusantara.wings.bottomnav.BubbleToggleView
+            android:id="@+id/system"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:nad_active="true"
+            app:nad_padding="14dp"
+            app:nad_titlePadding="4dp"
+            app:nad_colorActive="@color/green_active"
+            app:nad_colorInactive="@color/green_inactive"
+            app:nad_icon="@drawable/bottomnav_system"
+            app:nad_shape="@drawable/transition_background_drawable_system"
+            app:nad_title="@string/bottom_nav_system_title" />
+
+        <com.nusantara.wings.bottomnav.BubbleToggleView
+            android:id="@+id/lockscreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:nad_padding="14dp"
+            app:nad_titlePadding="4dp"
+            app:nad_colorActive="@color/red_active"
+            app:nad_colorInactive="@color/red_inactive"
+            app:nad_icon="@drawable/bottomnav_lockscreen"
+            app:nad_shape="@drawable/transition_background_drawable_lockscreen"
+            app:nad_title="@string/bottom_nav_lockscreen_title" />
+
+        <com.nusantara.wings.bottomnav.BubbleToggleView
+            android:id="@+id/statusbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:nad_padding="14dp"
+            app:nad_titlePadding="4dp"
+            app:nad_colorActive="@color/blue_active"
+            app:nad_colorInactive="@color/blue_inactive"
+            app:nad_icon="@drawable/bottomnav_statusbar"
+            app:nad_shape="@drawable/transition_background_drawable_statusbar"
+            app:nad_title="@string/bottom_nav_statusbar_title" />
+
+        <com.nusantara.wings.bottomnav.BubbleToggleView
+            android:id="@+id/hardware"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:nad_padding="14dp"
+            app:nad_titlePadding="4dp"
+            app:nad_colorActive="@color/amber_active"
+            app:nad_colorInactive="@color/amber_inactive"
+            app:nad_icon="@drawable/bottomnav_hardware"
+            app:nad_shape="@drawable/transition_background_drawable_hardware"
+            app:nad_title="@string/bottom_nav_hardware_title" />
+    </com.nusantara.wings.bottomnav.BubbleNavigationConstraintView>
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+	android:tint="@color/dt_battery_options_icon_tint">
+
+    <path
+        android:fillColor="#000000"
+        android:pathData="M16.4,4.2h-1.6V2.6c0-0.7-0.5-1.2-1.2-1.2h-3.2c-0.7,0-1.2,0.5-1.2,1.2v1.6H7.6c-0.7,0-1.2,0.5-1.2,1.2v16 c0,0.7,0.5,1.2,1.2,1.2h8.8c0.7,0,1.2-0.5,1.2-1.2v-16C17.6,4.7,17.1,4.2,16.4,4.2z M11.6,3.8h0.8v0.4h-0.8V3.8z M15.2,20.2H8.8V6.6 h6.4V20.2z" />
+</vector>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2017-2019 The Dirty Unicorns Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Nusantara Wings -->
+    <string name="nusantarawings_title">Nusantara Wings</string>
+    <string name="nusantarawings_summary">Get your favorite customization</string>
+    <string name="nad_style_title">Nusantara wings background</string>
+    <string name="nad_color_random">Random</string>
+    <string name="nad_color_transparent">Transparent</string>
+    <string name="nad_color_accent">Accent</string>
+
+    <!-- The Team -->
+    <string name="dialog_team_title">The team</string>
+    <string name="developer_title">Developer</string>
+    <string name="maintainer_title">Maintainer</string>
+    <string name="contributor_title">Contributor</string>
+
+    <!-- Bottom navigation -->
+    <string name="bottom_nav_system_title">System</string>
+    <string name="bottom_nav_lockscreen_title">Lockscreen</string>
+    <string name="bottom_nav_statusbar_title">Statusbar</string>
+    <string name="bottom_nav_hardware_title">Hardware</string>
+    <string name="bottom_nav_multitasking_title">Multitasking</string>
+
+    <!-- Categories -->
+    <!-- System -->
+    <string name="nad_parts_title">Nusantara Parts</string>
+    <string name="nad_parts_summary">Device specific customization</string>
+    <string name="themes_title">Themes</string>
+    <string name="themes_summary">Customize the themes</string>
+    <string name="miscellaneous_title">Miscellaneous</string>
+    <string name="miscellaneous_summary">Customize the miscellaneous</string>
+    <string name="powermenu_title">Power menu</string>
+    <string name="powermenu_summary">Customize the power menu</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_summary">Customize the notifications</string>
+
+    <!-- Lockscreen -->
+    <string name="fingerprint_prefs_title">Fingerprint prefs</string>
+    <string name="fingerprint_prefs_summary">Customize the fingerprint scanner</string>
+    <string name="lockscreen_items_title">Lockscreen items</string>
+    <string name="lockscreen_items_summary">Customize the lockscreen item</string>
+    <string name="lockscreen_style_title">Lockscreen Style</string>
+    <string name="lockscreen_style_summary">Customize the lockscreen</string>
+
+    <!-- Statusbar -->
+    <string name="battery_options_title">Battery options</string>
+    <string name="battery_options_summary">Customize the statusbar battery</string>
+    <string name="carrier_label_title">Carrier label</string>
+    <string name="carrier_label_summary">Customize the carrier label</string>
+    <string name="clock_options_title">Clock options</string>
+    <string name="clock_options_summary">Customize the statusbar clock</string>
+    <string name="icon_manager_title">Icon manager</string>
+    <string name="icon_manager_summary">Customize the statusbar items</string>
+    <string name="quicksettings_title">Quick settings</string>
+    <string name="quicksettings_summary">Customize the quick settings</string>
+    <string name="traffic_title">Traffic indicators</string>
+    <string name="traffic_summary">Customize the traffic indicators</string>
+
+    <!-- Navigation -->
+    <string name="buttons_title">Buttons</string>
+    <string name="buttons_summary">Customize the Button options</string>
+    <string name="navigation_options_title">Navigation</string>
+    <string name="navigation_options_summary">Customize the navigation options</string>
+
+    <!-- Misc -->
+    <string name="ok">OK</string>
+    <string name="reset">Reset</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+</resources>
