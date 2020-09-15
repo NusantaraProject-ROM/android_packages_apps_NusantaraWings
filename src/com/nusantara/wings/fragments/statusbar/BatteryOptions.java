@@ -18,34 +18,24 @@ package com.nusantara.wings.fragments.statusbar;
 
 import android.content.Context;
 import android.content.ContentResolver;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.UserHandle;
-import android.os.RemoteException;
 import android.provider.Settings;
-import android.provider.SearchIndexableResource;
-import androidx.preference.*;
 
-import android.util.Log;
-import android.view.View;
-import android.view.WindowManagerGlobal;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceScreen;
 
 import com.android.internal.logging.nano.MetricsProto;
 
 import com.android.settings.R;
-import com.android.settings.search.BaseSearchIndexProvider;
-import com.android.settingslib.search.Indexable;
-import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.Utils;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.android.settingslib.search.SearchIndexable;
+import com.android.settings.search.BaseSearchIndexProvider;
 
 @SearchIndexable
 public class BatteryOptions extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener, Indexable {
+        implements Preference.OnPreferenceChangeListener {
 
 
     @Override
@@ -67,24 +57,6 @@ public class BatteryOptions extends SettingsPreferenceFragment
         return MetricsProto.MetricsEvent.NUSANTARA_PRJ;
     }
 
-    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider() {
-                @Override
-                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
-                        boolean enabled) {
-                    ArrayList<SearchIndexableResource> result =
-                            new ArrayList<SearchIndexableResource>();
-
-                    SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.nad_battery_options;
-                    result.add(sir);
-                    return result;
-                }
-
-                @Override
-                public List<String> getNonIndexableKeys(Context context) {
-                    List<String> keys = super.getNonIndexableKeys(context);
-                    return keys;
-        }
-    };
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.nad_battery_options);
 }

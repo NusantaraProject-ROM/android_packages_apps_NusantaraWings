@@ -16,47 +16,26 @@
 
 package com.nusantara.wings.fragments.statusbar;
 
-import android.app.AlertDialog;
-import androidx.preference.*;
-import android.content.ContentResolver;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
-import android.content.res.Resources;
-import android.database.ContentObserver;
-import android.content.Intent;
+import android.content.ContentResolver;
 import android.os.Bundle;
 import android.os.UserHandle;
-
 import android.provider.Settings;
-import android.provider.SearchIndexableResource;
 
-import android.text.format.DateFormat;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceScreen;
 
 import com.android.internal.logging.nano.MetricsProto;
 
 import com.android.settings.R;
-import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.Utils;
-import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Date;
-
-import com.nusantara.support.preferences.SystemSettingSwitchPreference;
-import com.nusantara.support.preferences.CustomSeekBarPreference;
-import com.nusantara.support.colorpicker.ColorPickerPreference;
+import com.android.settings.search.BaseSearchIndexProvider;
 
 @SearchIndexable
 public class ClockOptions extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener, Indexable {
+        implements Preference.OnPreferenceChangeListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,24 +63,6 @@ public class ClockOptions extends SettingsPreferenceFragment
         return MetricsProto.MetricsEvent.NUSANTARA_PRJ;
     }
 
-    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider() {
-                @Override
-                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
-                        boolean enabled) {
-                    ArrayList<SearchIndexableResource> result =
-                            new ArrayList<SearchIndexableResource>();
-
-                    SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.nad_clock_options;
-                    result.add(sir);
-                    return result;
-                }
-
-                @Override
-                public List<String> getNonIndexableKeys(Context context) {
-                    List<String> keys = super.getNonIndexableKeys(context);
-                    return keys;
-        }
-    };
+    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider(R.xml.nad_clock_options);
 }
