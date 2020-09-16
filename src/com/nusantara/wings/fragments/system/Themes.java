@@ -16,17 +16,28 @@
 
 package com.nusantara.wings.fragments.system;
 
+import static com.nusantara.wings.UtilsThemes.handleBackgrounds;
+import static com.nusantara.wings.UtilsThemes.handleOverlays;
+
+import android.app.UiModeManager;
 import android.content.Context;
 import android.content.ContentResolver;
+import android.content.Intent;
+import android.content.om.IOverlayManager;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.os.ServiceManager;
 import android.provider.Settings;
 
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 
 import com.android.internal.logging.nano.MetricsProto;
+
+import com.android.internal.util.nad.ThemesUtils;
+import com.android.internal.util.nad.NadUtils;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -37,18 +48,99 @@ import com.android.settings.search.BaseSearchIndexProvider;
 public class Themes extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
+    public static final String PREF_THEME_SWITCH = "theme_switch";
+
+    private Context mContext;
+    private IOverlayManager mOverlayManager;
+    private UiModeManager mUiModeManager;
+
+    private ListPreference mThemeSwitch;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.nad_themes);
         final PreferenceScreen prefScreen = getPreferenceScreen();
-        final ContentResolver resolver = getActivity().getContentResolver();
+        mContext = getActivity();
+
+        // Theme services
+        mUiModeManager = getContext().getSystemService(UiModeManager.class);
+        mOverlayManager = IOverlayManager.Stub.asInterface(
+                ServiceManager.getService(Context.OVERLAY_SERVICE));
+
+        // Themes
+        mThemeSwitch = (ListPreference) findPreference(PREF_THEME_SWITCH);
+        // First of all we have to evaluate whether the light or dark mode is active
+        if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO) {
+            mThemeSwitch.setValue("1");
+        } else if (NadUtils.isThemeEnabled("com.android.theme.solarizeddark.system")) {
+            mThemeSwitch.setValue("4");
+        } else if (NadUtils.isThemeEnabled("com.android.theme.pitchblack.system")) {
+            mThemeSwitch.setValue("3");
+        } else { // Google dark theme
+            mThemeSwitch.setValue("2");
+        }
+
+        mThemeSwitch.setSummary(mThemeSwitch.getEntry());
+        mThemeSwitch.setOnPreferenceChangeListener(this);	
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        final ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mThemeSwitch) {
+            String themeSwitch = (String) newValue;
+                switch (themeSwitch) {
+                    case "1":
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                                ThemesUtils.PITCH_BLACK, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                        break;
+                    case "2":
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.PITCH_BLACK, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                        break;
+                    case "3":
+                        handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.PITCH_BLACK, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                        break;
+                    case "4":
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.PITCH_BLACK, mOverlayManager);
+                        handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                        break;
+            mThemeSwitch.setSummary(mThemeSwitch.getEntry());
+            }
+            return true;
+        }
         return false;
+    }
+
+    private int getOverlayPosition(String[] overlays) {
+        int position = -1;
+        for (int i = 0; i < overlays.length; i++) {
+            String overlay = overlays[i];
+            if (NadUtils.isThemeEnabled(overlay)) {
+                position = i;
+            }
+        }
+        return position;
+    }
+
+    private String getOverlayName(String[] overlays) {
+        String overlayName = null;
+        for (int i = 0; i < overlays.length; i++) {
+            String overlay = overlays[i];
+            if (NadUtils.isThemeEnabled(overlay)) {
+                overlayName = overlay;
+            }
+        }
+        return overlayName;
     }
 
     @Override

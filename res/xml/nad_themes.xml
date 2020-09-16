@@ -24,4 +24,12 @@
         android:summary="%s"
         android:defaultValue="0" />
 
+    <ListPreference
+        android:key="theme_switch"
+        android:title="@string/theme_type_title"
+        android:summary="@string/theme_type_summary"
+        android:dialogTitle="@string/theme_type_summary"
+        android:entries="@array/theme_type_titles"
+        android:entryValues="@array/theme_type_values"/>
+
 </PreferenceScreen>
