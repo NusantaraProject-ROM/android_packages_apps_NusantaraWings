@@ -48,13 +48,15 @@ import com.android.settings.search.BaseSearchIndexProvider;
 public class Themes extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-    public static final String PREF_THEME_SWITCH = "theme_switch";
+    private static final String PREF_THEME_SWITCH = "theme_switch";
+    private static final String PREF_THEME_ACCENT_PICKER = "theme_accent_picker";
 
     private Context mContext;
     private IOverlayManager mOverlayManager;
     private UiModeManager mUiModeManager;
 
     private ListPreference mThemeSwitch;
+    private ListPreference mAccentPicker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,7 +84,17 @@ public class Themes extends SettingsPreferenceFragment
         }
 
         mThemeSwitch.setSummary(mThemeSwitch.getEntry());
-        mThemeSwitch.setOnPreferenceChangeListener(this);	
+        mThemeSwitch.setOnPreferenceChangeListener(this);
+
+        mAccentPicker = (ListPreference) findPreference(PREF_THEME_ACCENT_PICKER);
+        int accentPickerValues = getOverlayPosition(ThemesUtils.ACCENTS);
+        if (accentPickerValues != -1) {
+            mAccentPicker.setValue(String.valueOf(accentPickerValues + 2));
+        } else {
+            mAccentPicker.setValue("1");
+        }
+        mAccentPicker.setSummary(mAccentPicker.getEntry());
+        mAccentPicker.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -114,8 +126,22 @@ public class Themes extends SettingsPreferenceFragment
                         handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
                                 ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                         break;
-            mThemeSwitch.setSummary(mThemeSwitch.getEntry());
             }
+            mThemeSwitch.setSummary(mThemeSwitch.getEntry());
+            return true;
+        } else if (preference == mAccentPicker) {
+            String accentStyle = (String) newValue;
+            int accentPickerValue = Integer.parseInt(accentStyle);
+            mAccentPicker.setValue(String.valueOf(accentPickerValue));
+            String overlayName = getOverlayName(ThemesUtils.ACCENTS);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (accentPickerValue > 1) {
+                    handleOverlays(ThemesUtils.ACCENTS[accentPickerValue - 2],
+                            true, mOverlayManager);
+            }
+            mAccentPicker.setSummary(mAccentPicker.getEntry());
             return true;
         }
         return false;

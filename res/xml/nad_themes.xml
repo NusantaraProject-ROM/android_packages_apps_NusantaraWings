@@ -32,4 +32,12 @@
         android:entries="@array/theme_type_titles"
         android:entryValues="@array/theme_type_values"/>
 
+    <ListPreference
+        android:key="theme_accent_picker"
+        android:title="@string/accent_type_title"
+        android:summary="@string/accent_type_summary"
+        android:dialogTitle="@string/accent_type_summary"
+        android:entries="@array/accent_type_titles"
+        android:entryValues="@array/accent_type_values"/>
+
 </PreferenceScreen>
