@@ -71,13 +71,19 @@ public class NusantaraWings extends SettingsPreferenceFragment {
             public void onNavigationChanged(View view, int position) {
             int id = view.getId();
                if (id == R.id.system) {
-                   } else if (id == R.id.lockscreen) {
-                   } else if (id == R.id.statusbar) {
-                   } else if (id == R.id.hardware) {
-                         viewPager.setCurrentItem(position, true);
-                   }
+                   viewPager.setCurrentItem(0);
+
+               } else if (id == R.id.lockscreen) {
+                   viewPager.setCurrentItem(1);
+
+               } else if (id == R.id.statusbar) {
+                   viewPager.setCurrentItem(2);
+
+               } else if (id == R.id.hardware) {
+                   viewPager.setCurrentItem(3);
                }
-           });
+           }
+       });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
