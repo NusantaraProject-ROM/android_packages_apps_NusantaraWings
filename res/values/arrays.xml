@@ -179,4 +179,42 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+
+    <!-- Adaptive icon shapes -->
+    <string-array name="adapative_icon_shape_titles">
+        <item>@string/adaptive_icon_shape_default</item>
+        <item>@string/adaptive_icon_shape_teardrop</item>
+        <item>@string/adaptive_icon_shape_squircle</item>
+        <item>@string/adaptive_icon_shape_roundedrect</item>
+        <item>@string/adaptive_icon_shape_pebble</item>
+        <item>@string/adaptive_icon_shape_taperedrect</item>
+        <item>@string/adaptive_icon_shape_vessel</item>
+        <item>@string/adaptive_icon_shape_heart</item>
+    </string-array>
+
+    <string-array name="adapative_icon_shape_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <!-- Statusbar icons -->
+    <string-array name="statusbar_icons_titles">
+        <item>@string/statusbar_icons_default</item>
+        <item>@string/statusbar_icons_filled</item>
+        <item>@string/statusbar_icons_rounded</item>
+        <item>@string/statusbar_icons_circular</item>
+    </string-array>
+
+    <string-array name="statusbar_icons_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>

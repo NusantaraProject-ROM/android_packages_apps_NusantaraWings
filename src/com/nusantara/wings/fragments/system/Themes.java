@@ -50,6 +50,8 @@ public class Themes extends SettingsPreferenceFragment
 
     private static final String PREF_THEME_SWITCH = "theme_switch";
     private static final String PREF_THEME_ACCENT_PICKER = "theme_accent_picker";
+    private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
+    public static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
 
     private Context mContext;
     private IOverlayManager mOverlayManager;
@@ -57,6 +59,8 @@ public class Themes extends SettingsPreferenceFragment
 
     private ListPreference mThemeSwitch;
     private ListPreference mAccentPicker;
+    private ListPreference mAdaptiveIconShape;
+    private ListPreference mStatusbarIcons;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,6 +99,28 @@ public class Themes extends SettingsPreferenceFragment
         }
         mAccentPicker.setSummary(mAccentPicker.getEntry());
         mAccentPicker.setOnPreferenceChangeListener(this);
+
+        // Statusbar icons
+        mStatusbarIcons = (ListPreference) findPreference(PREF_STATUSBAR_ICONS);
+        int sbIconsValue = getOverlayPosition(ThemesUtils.STATUSBAR_ICONS);
+
+        if (sbIconsValue != -1) {
+            mStatusbarIcons.setValue(String.valueOf(sbIconsValue + 2));
+        } else {
+            mStatusbarIcons.setValue("1");
+        }
+        mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
+        mStatusbarIcons.setOnPreferenceChangeListener(this);
+
+        mAdaptiveIconShape = (ListPreference) findPreference(PREF_ADAPTIVE_ICON_SHAPE);
+        int iconShapeValue = getOverlayPosition(ThemesUtils.ADAPTIVE_ICON_SHAPE);
+        if (iconShapeValue != -1) {
+            mAdaptiveIconShape.setValue(String.valueOf(iconShapeValue + 2));
+        } else {
+            mAdaptiveIconShape.setValue("1");
+        }
+        mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
+        mAdaptiveIconShape.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -142,6 +168,34 @@ public class Themes extends SettingsPreferenceFragment
                             true, mOverlayManager);
             }
             mAccentPicker.setSummary(mAccentPicker.getEntry());
+            return true;
+        } else if (preference == mStatusbarIcons) {
+            String statusbarIcons = (String) newValue;
+            String overlayName = getOverlayName(ThemesUtils.STATUSBAR_ICONS);
+            int statusbarIconsValue = Integer.parseInt(statusbarIcons);
+            mStatusbarIcons.setValue(String.valueOf(statusbarIconsValue));
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (statusbarIconsValue > 1) {
+                    handleOverlays(ThemesUtils.STATUSBAR_ICONS[statusbarIconsValue - 2],
+                            true, mOverlayManager);
+            }
+            mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
+            return true;
+        } else if (preference == mAdaptiveIconShape) {
+            String adapativeIconShape = (String) newValue;
+            String overlayName = getOverlayName(ThemesUtils.ADAPTIVE_ICON_SHAPE);
+            int adapativeIconShapeValue = Integer.parseInt(adapativeIconShape);
+            mAdaptiveIconShape.setValue(String.valueOf(adapativeIconShapeValue));
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (adapativeIconShapeValue > 1) {
+                    handleOverlays(ThemesUtils.ADAPTIVE_ICON_SHAPE[adapativeIconShapeValue - 2],
+                            true, mOverlayManager);
+            }
+            mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
             return true;
         }
         return false;
