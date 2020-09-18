@@ -480,4 +480,8 @@
     <!-- Locksreen small clock -->
     <string name="lockscreen_small_clock_title">Always show small clock</string>
     <string name="lockscreen_small_clock_summary">Do not change clock style based on notifications</string>
+
+    <!-- Volume Panel on Left -->
+    <string name="volume_panel_on_left_title">Volume Panel on Left</string>
+    <string name="volume_panel_on_left_summary">Change volume panel from right side to left side</string>
 </resources>
