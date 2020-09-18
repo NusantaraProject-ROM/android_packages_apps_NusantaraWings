@@ -198,4 +198,8 @@
     <string name="statusbar_icons_circular">Circular</string>
     <string name="statusbar_icons_title">Statusbar/QS icons</string>
     <string name="statusbar_icons_dialog_title">Select statusbar icon set</string>
+
+    <!-- Volume Panel on Left -->
+    <string name="volume_panel_on_left_title">Volume Panel on Left</string>
+    <string name="volume_panel_on_left_summary">Change volume panel from right side to left side</string>
 </resources>
