@@ -178,6 +178,8 @@
     <string name="status_bar_battery_percentage_text_next">Next to the icon</string>
     <string name="qs_battery_percentage_title">QS battery percentage</string>
     <string name="qs_battery_percentage_summary">Show battery percentage in the QS header instead of battery estimate</string>
+    <string name="battery_show_location_title">Battery location</string>
+    <string name="battery_show_location_summary">Toggle battery location for QS header</string>
 
     <!-- Adaptive icon shapes -->
     <string name="adaptive_icon_shape_default">Default</string>
@@ -202,4 +204,5 @@
     <!-- Volume Panel on Left -->
     <string name="volume_panel_on_left_title">Volume Panel on Left</string>
     <string name="volume_panel_on_left_summary">Change volume panel from right side to left side</string>
+
 </resources>
