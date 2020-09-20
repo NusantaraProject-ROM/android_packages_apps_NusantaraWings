@@ -230,6 +230,7 @@
         <item>@string/font_type_8</item>
         <item>@string/font_type_9</item>
         <item>@string/font_type_10</item>
+        <item>@string/font_type_11</item>
     </string-array>
 
     <string-array name="font_type_values">
@@ -243,5 +244,6 @@
         <item>8</item>
         <item>9</item>
         <item>10</item>
+        <item>11</item>
     </string-array>
 </resources>
