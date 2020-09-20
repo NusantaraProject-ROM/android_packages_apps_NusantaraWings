@@ -208,4 +208,14 @@
     <!-- Volume Wake -->
     <string name="volume_rocker_wake_title">Volume rocker wake</string>
     <string name="volume_rocker_wake_summary">Pressing the volume keys will wake your device</string>
+
+    <!-- Fonts -->
+    <string name="font_type_title">Font type</string>
+    <string name="font_type_summary">Select font type</string>
+    <string name="font_type_default">Default</string>
+    <string name="font_type_2">Noto Serif / Source Sans Pro</string>
+    <string name="font_type_3">Cagliostro</string>
+    <string name="font_type_4">LG Smart Gothic</string>
+    <string name="font_type_5">Rosemary</string>
+    <string name="font_type_6">Sony Sketch</string>
 </resources>

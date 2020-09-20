@@ -41,6 +41,14 @@
         android:entryValues="@array/accent_type_values"/>
 
     <ListPreference
+        android:key="font_picker"
+        android:title="@string/font_type_title"
+        android:summary="@string/font_type_summary"
+        android:dialogTitle="@string/font_type_summary"
+        android:entries="@array/font_type_titles"
+        android:entryValues="@array/font_type_values" />
+
+    <ListPreference
         android:key="adapative_icon_shape"
         android:title="@string/adaptive_icon_shape_title"
         android:dialogTitle="@string/adaptive_icon_shape_dialog_title"

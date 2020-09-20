@@ -51,7 +51,8 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_THEME_SWITCH = "theme_switch";
     private static final String PREF_THEME_ACCENT_PICKER = "theme_accent_picker";
     private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
-    public static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
+    private static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
+    private static final String PREF_FONT_PICKER = "font_picker";
 
     private Context mContext;
     private IOverlayManager mOverlayManager;
@@ -61,6 +62,7 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mAccentPicker;
     private ListPreference mAdaptiveIconShape;
     private ListPreference mStatusbarIcons;
+    private ListPreference mFontPicker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -121,6 +123,17 @@ public class Themes extends SettingsPreferenceFragment
         }
         mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
         mAdaptiveIconShape.setOnPreferenceChangeListener(this);
+
+        // Font picker
+        mFontPicker = (ListPreference) findPreference(PREF_FONT_PICKER);
+        int fontPickerValue = getOverlayPosition(ThemesUtils.FONTS);
+        if (fontPickerValue != -1) {
+            mFontPicker.setValue(String.valueOf(fontPickerValue + 2));
+        } else {
+            mFontPicker.setValue("1");
+        }
+        mFontPicker.setSummary(mFontPicker.getEntry());
+        mFontPicker.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -196,6 +209,20 @@ public class Themes extends SettingsPreferenceFragment
                             true, mOverlayManager);
             }
             mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
+            return true;
+        } else if (preference == mFontPicker) {
+            String font = (String) newValue;
+            int fontTypeValue = Integer.parseInt(font);
+            mFontPicker.setValue(String.valueOf(fontTypeValue));
+            String overlayName = getOverlayName(ThemesUtils.FONTS);
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (fontTypeValue > 1) {
+                handleOverlays(ThemesUtils.FONTS[fontTypeValue - 2],
+                        true, mOverlayManager);
+            }
+            mFontPicker.setSummary(mFontPicker.getEntry());
             return true;
         }
         return false;

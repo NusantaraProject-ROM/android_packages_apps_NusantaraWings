@@ -217,4 +217,23 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+
+    <!-- Fonts -->
+    <string-array name="font_type_titles">
+        <item>@string/font_type_default</item>
+        <item>@string/font_type_2</item>
+        <item>@string/font_type_3</item>
+        <item>@string/font_type_4</item>
+        <item>@string/font_type_5</item>
+        <item>@string/font_type_6</item>
+    </string-array>
+
+    <string-array name="font_type_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
 </resources>
