@@ -29,9 +29,6 @@ import android.provider.Settings;
 import android.util.TypedValue;
 import android.os.RemoteException;
 
-import com.android.internal.util.nad.ThemesUtils;
-import com.android.internal.util.nad.NadUtils;
-
 import java.util.Objects;
 
 import com.android.settings.R;

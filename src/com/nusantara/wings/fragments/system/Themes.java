@@ -53,6 +53,7 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
     private static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
     private static final String PREF_FONT_PICKER = "font_picker";
+    private static final String PREF_NAVBAR_STYLE = "theme_navbar_style";
 
     private Context mContext;
     private IOverlayManager mOverlayManager;
@@ -63,6 +64,7 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mAdaptiveIconShape;
     private ListPreference mStatusbarIcons;
     private ListPreference mFontPicker;
+    private ListPreference mNavbarPicker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -134,6 +136,16 @@ public class Themes extends SettingsPreferenceFragment
         }
         mFontPicker.setSummary(mFontPicker.getEntry());
         mFontPicker.setOnPreferenceChangeListener(this);
+
+        mNavbarPicker = (ListPreference) findPreference(PREF_NAVBAR_STYLE);
+        int navbarStyleValues = getOverlayPosition(ThemesUtils.NAVBAR_STYLES);
+        if (navbarStyleValues != -1) {
+            mNavbarPicker.setValue(String.valueOf(navbarStyleValues + 2));
+        } else {
+            mNavbarPicker.setValue("1");
+        }
+        mNavbarPicker.setSummary(mNavbarPicker.getEntry());
+        mNavbarPicker.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -223,6 +235,20 @@ public class Themes extends SettingsPreferenceFragment
                         true, mOverlayManager);
             }
             mFontPicker.setSummary(mFontPicker.getEntry());
+            return true;
+        } else if (preference == mNavbarPicker) {
+            String navbarStyle = (String) newValue;
+            int navbarStyleValue = Integer.parseInt(navbarStyle);
+            mNavbarPicker.setValue(String.valueOf(navbarStyleValue));
+            String overlayName = getOverlayName(ThemesUtils.NAVBAR_STYLES);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (navbarStyleValue > 1) {
+                    handleOverlays(ThemesUtils.NAVBAR_STYLES[navbarStyleValue - 2],
+                            true, mOverlayManager);
+            }
+            mNavbarPicker.setSummary(mNavbarPicker.getEntry());
             return true;
         }
         return false;

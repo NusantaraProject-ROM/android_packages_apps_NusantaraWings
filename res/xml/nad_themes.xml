@@ -49,6 +49,14 @@
         android:entryValues="@array/font_type_values" />
 
     <ListPreference
+        android:key="theme_navbar_style"
+        android:title="@string/theme_navbar_picker_title"
+        android:summary="@string/theme_navbar_picker_summary"
+        android:dialogTitle="@string/theme_navbar_picker_summary"
+        android:entries="@array/navbar_name_entries"
+        android:entryValues="@array/navbar_picker_values"/>
+
+    <ListPreference
         android:key="adapative_icon_shape"
         android:title="@string/adaptive_icon_shape_title"
         android:dialogTitle="@string/adaptive_icon_shape_dialog_title"
