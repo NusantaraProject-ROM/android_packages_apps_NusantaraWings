@@ -227,6 +227,8 @@
         <item>@string/font_type_5</item>
         <item>@string/font_type_6</item>
         <item>@string/font_type_7</item>
+        <item>@string/font_type_8</item>
+        <item>@string/font_type_9</item>
     </string-array>
 
     <string-array name="font_type_values">
@@ -237,5 +239,7 @@
         <item>5</item>
         <item>6</item>
         <item>7</item>
+        <item>8</item>
+        <item>9</item>
     </string-array>
 </resources>
