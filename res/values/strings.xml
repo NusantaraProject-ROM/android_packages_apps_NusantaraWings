@@ -102,6 +102,8 @@
     <string name="theme_type_google_dark">Google dark</string>
     <string name="theme_type_pitch_black">Pitch black</string>
     <string name="theme_type_solarized_dark">Solarized dark</string>
+    <string name="theme_type_nad_clear">Nusantara clear</string>
+    <string name="theme_type_material_ocean">Material ocean</string>
 
     <!-- Accent -->
     <string name="accent_type_title">Accent</string>
@@ -239,5 +241,4 @@
     <string name="theme_navbar_picker_nexus">Nexus</string>
     <string name="theme_navbar_picker_old">Old</string>
     <string name="theme_navbar_picker_sammy">Samsung</string>
-    <string name="theme_type_nad_clear">Nusantara clear</string>
 </resources>

@@ -83,6 +83,8 @@ public class Themes extends SettingsPreferenceFragment
         // First of all we have to evaluate whether the light or dark mode is active
         if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO) {
             mThemeSwitch.setValue("1");
+        } else if (NadUtils.isThemeEnabled("com.android.theme.materialocean.system")) {
+            mThemeSwitch.setValue("6");
         } else if (NadUtils.isThemeEnabled("com.android.theme.nadclear.system")) {
             mThemeSwitch.setValue("5");
         } else if (NadUtils.isThemeEnabled("com.android.theme.solarizeddark.system")) {
@@ -162,6 +164,8 @@ public class Themes extends SettingsPreferenceFragment
                                 ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
                                 ThemesUtils.NAD_CLEAR, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
                         break;
                     case "2":
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
@@ -170,6 +174,8 @@ public class Themes extends SettingsPreferenceFragment
                                 ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                                 ThemesUtils.NAD_CLEAR, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
                         break;
                     case "3":
                         handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
@@ -178,6 +184,8 @@ public class Themes extends SettingsPreferenceFragment
                                 ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                                 ThemesUtils.NAD_CLEAR, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
                         break;
                     case "4":
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
@@ -186,6 +194,8 @@ public class Themes extends SettingsPreferenceFragment
                                 ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                                 ThemesUtils.NAD_CLEAR, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
                         break;
                     case "5":
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
@@ -194,6 +204,18 @@ public class Themes extends SettingsPreferenceFragment
                                 ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                         handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
                                 ThemesUtils.NAD_CLEAR, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
+                        break;
+                    case "6":
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.PITCH_BLACK, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.NAD_CLEAR, mOverlayManager);
+                        handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
                         break;
             }
             mThemeSwitch.setSummary(mThemeSwitch.getEntry());
