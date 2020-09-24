@@ -132,6 +132,9 @@ public class NavigationOptions extends SettingsPreferenceFragment
         deviceKeys = getResources().getInteger(
                 com.android.internal.R.integer.config_deviceHardwareKeys);
 
+        boolean buttonBacklightSupported = getResources().getBoolean(
+                com.android.internal.R.bool.config_button_brightness_support);
+
         int backKeyLongPress = getResources().getInteger(
                 com.android.internal.R.integer.config_longPressOnBackKeyBehavior);
         int backKeyDoubleTap = getResources().getInteger(
@@ -306,6 +309,10 @@ public class NavigationOptions extends SettingsPreferenceFragment
         updateBacklight();
         navbarCheck();
         customAppCheck();
+
+        if (!buttonBacklightSupported) {
+            mButtonBrightness.setVisible(false);
+        }
 
         mBackLongPressCustomApp.setVisible(mBackLongPress.getEntryValues()
                 [backlongpress].equals("16"));
