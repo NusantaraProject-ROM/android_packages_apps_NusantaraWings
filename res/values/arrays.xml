@@ -190,9 +190,9 @@
         <item>@string/adaptive_icon_shape_teardrop</item>
         <item>@string/adaptive_icon_shape_squircle</item>
         <item>@string/adaptive_icon_shape_roundedrect</item>
-        <item>@string/adaptive_icon_shape_pebble</item>
-        <item>@string/adaptive_icon_shape_taperedrect</item>
         <item>@string/adaptive_icon_shape_vessel</item>
+        <item>@string/adaptive_icon_shape_taperedrect</item>
+        <item>@string/adaptive_icon_shape_pebble</item>
         <item>@string/adaptive_icon_shape_heart</item>
     </string-array>
 
