@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nusantara.wings.hardware;
+package com.nusantara.wings.fragments.hardware;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -91,6 +91,6 @@ public class ButtonBrightness extends SettingsPreferenceFragment implements Pref
 
     @Override
     public int getMetricsCategory() {
-        return MetricsProto.MetricsEvent.DIRTYTWEAKS;
+        return MetricsProto.MetricsEvent.NUSANTARA_PRJ;
     }
 }
