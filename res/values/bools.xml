@@ -41,7 +41,7 @@
     <bool name="has_icon_manager">true</bool>
 
     <!-- Whether to display notifications category -->
-    <bool name="has_notifications">false</bool>
+    <bool name="has_notifications">true</bool>
 
     <!-- Whether to display QS category -->
     <bool name="has_quick_settings">true</bool>
