@@ -307,4 +307,8 @@
     <string name="qs_datausage_monthly">Monthly usage</string>
     <string name="qs_data_usage_location_title">Data usage location</string>
     <string name="qs_data_usage_location_summary">Show data usage in QS header</string>
+
+    <!-- Notification Vibration -->
+    <string name="vibrate_on_notifications_title">Vibrate for notifications</string>
+    <string name="vibrate_on_notifications_summary">Toogle for disable vibrate notification</string>
 </resources>
