@@ -165,6 +165,7 @@
 
     <!-- Accent -->
     <string name="accent_type_title">Accent</string>
+    <string name="rgb_accent_color_title">RGB accent</string>
     <string name="accent_type_summary">Select accent</string>
     <string name="accent_color_default">Default</string>
     <string name="accent_color_space">Space</string>

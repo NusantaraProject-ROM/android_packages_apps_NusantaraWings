@@ -44,6 +44,8 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.search.BaseSearchIndexProvider;
 
+import com.nusantara.support.colorpicker.ColorPickerPreference;
+
 @SearchIndexable
 public class Themes extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
@@ -54,6 +56,8 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
     private static final String PREF_FONT_PICKER = "font_picker";
     private static final String PREF_NAVBAR_STYLE = "theme_navbar_style";
+    private static final String ACCENT_COLOR = "accent_color";
+    static final int DEFAULT_ACCENT_COLOR = 0xff1a73e8;
 
     private Context mContext;
     private IOverlayManager mOverlayManager;
@@ -65,6 +69,7 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mStatusbarIcons;
     private ListPreference mFontPicker;
     private ListPreference mNavbarPicker;
+    private ColorPickerPreference mAccentColor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -150,6 +155,18 @@ public class Themes extends SettingsPreferenceFragment
         }
         mNavbarPicker.setSummary(mNavbarPicker.getEntry());
         mNavbarPicker.setOnPreferenceChangeListener(this);
+
+        mAccentColor = (ColorPickerPreference) findPreference(ACCENT_COLOR);
+        int intColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.ACCENT_COLOR, DEFAULT_ACCENT_COLOR, UserHandle.USER_CURRENT);
+        String hexColor = String.format("#%08x", (0xff1a73e8 & intColor));
+        if (hexColor.equals("#ff1a73e8")) {
+            mAccentColor.setSummary(R.string.accent_color_default);
+        } else {
+            mAccentColor.setSummary(hexColor);
+        }
+        mAccentColor.setNewPreviewColor(intColor);
+        mAccentColor.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -289,6 +306,18 @@ public class Themes extends SettingsPreferenceFragment
                             true, mOverlayManager);
             }
             mNavbarPicker.setSummary(mNavbarPicker.getEntry());
+            return true;
+        } else if (preference == mAccentColor) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            if (hex.equals("#ff1a73e8")) {
+                mAccentColor.setSummary(R.string.accent_color_default);
+            } else {
+                mAccentColor.setSummary(hex);
+            }
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putIntForUser(mContext.getContentResolver(),
+                    Settings.System.ACCENT_COLOR, intHex, UserHandle.USER_CURRENT);
             return true;
         }
         return false;

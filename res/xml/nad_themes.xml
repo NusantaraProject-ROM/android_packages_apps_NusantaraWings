@@ -32,6 +32,12 @@
         android:entries="@array/theme_type_titles"
         android:entryValues="@array/theme_type_values"/>
 
+    <com.nusantara.support.colorpicker.ColorPickerPreference
+        android:key="accent_color"
+        android:title="@string/rgb_accent_color_title"
+        android:defaultValue="0xff1a73e8"
+        android:persistent="false" />
+
     <ListPreference
         android:key="theme_accent_picker"
         android:title="@string/accent_type_title"
