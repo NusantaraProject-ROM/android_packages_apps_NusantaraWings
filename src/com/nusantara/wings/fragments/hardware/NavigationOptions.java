@@ -38,6 +38,7 @@ import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.search.BaseSearchIndexProvider;
 
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
+import com.nusantara.support.preferences.SecureSettingSwitchPreference;
 
 @SearchIndexable
 public class NavigationOptions extends SettingsPreferenceFragment
@@ -46,8 +47,8 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private static final String KEY_NAVIGATION_BAR_ENABLED = "force_show_navbar";
     private static final String KEY_LAYOUT_SETTINGS = "layout_settings";
     private static final String KEY_NAVIGATION_BAR_ARROWS = "navigation_bar_menu_arrow_keys";
-    private static final String KEY_BUTTON_BRIGHTNESS = "button_brightness";
-    private static final String KEY_SWAP_NAVIGATION_KEYS = "swap_navigation_keys";
+    private static final String KEY_BUTTON_BACKLIGHT = "button_backlight";
+    private static final String KEY_SWAP_KEYS = "swap_navigation_keys";
 
     private static final String KEY_BACK_LONG_PRESS_ACTION = "back_key_long_press";
     private static final String KEY_BACK_LONG_PRESS_CUSTOM_APP = "back_key_long_press_custom_app";
@@ -74,6 +75,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private static final String KEY_CATEGORY_ASSIST        = "assist_key";
     private static final String KEY_CATEGORY_APP_SWITCH    = "app_switch_key";
     private static final String KEY_CATEGORY_CAMERA        = "camera_key";
+    private static final String KEY_CATEGORY_HW_KEYS       = "hw_keys";
 
     private static final int KEY_MASK_HOME = 0x01;
     private static final int KEY_MASK_BACK = 0x02;
@@ -102,11 +104,11 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private Preference mHomeLongPressCustomApp;
     private Preference mHomeDoubleTapCustomApp;
     private Preference mLayoutSettings;
-    private Preference mButtonBrightness;
+    private Preference mButtonBacklight;
 
     private SwitchPreference mNavigationBar;
     private SystemSettingSwitchPreference mNavigationArrowKeys;
-    private SystemSettingSwitchPreference mSwapHardwareKeys;
+    private SystemSettingSwitchPreference mSwapKeys;
 
     private PreferenceCategory homeCategory;
     private PreferenceCategory backCategory;
@@ -114,6 +116,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private PreferenceCategory assistCategory;
     private PreferenceCategory appSwitchCategory;
     private PreferenceCategory cameraCategory;
+    private PreferenceCategory hwKeysCategory;
 
     private int deviceKeys;
 
@@ -160,8 +163,11 @@ public class NavigationOptions extends SettingsPreferenceFragment
         int AssistKeyDoubleTap = getResources().getInteger(
                 com.android.internal.R.integer.config_doubleTapOnAssistKeyBehavior);
 
+        boolean hasHome = (deviceKeys & KEY_MASK_HOME) != 0;
+        boolean hasBack = (deviceKeys & KEY_MASK_BACK) != 0;
         boolean hasMenu = (deviceKeys & KEY_MASK_MENU) != 0;
         boolean hasAssist = (deviceKeys & KEY_MASK_ASSIST) != 0;
+        boolean hasAppSwitch = (deviceKeys & KEY_MASK_APP_SWITCH) != 0;
         boolean hasCamera = (deviceKeys & KEY_MASK_CAMERA) != 0;
 
         homeCategory = (PreferenceCategory) findPreference(KEY_CATEGORY_HOME);
@@ -170,6 +176,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
         assistCategory = (PreferenceCategory) findPreference(KEY_CATEGORY_ASSIST);
         appSwitchCategory = (PreferenceCategory) findPreference(KEY_CATEGORY_APP_SWITCH);
         cameraCategory = (PreferenceCategory) findPreference(KEY_CATEGORY_CAMERA);
+        hwKeysCategory = (PreferenceCategory) findPreference(KEY_CATEGORY_HW_KEYS);
 
         mBackLongPressCustomApp = (Preference) findPreference(KEY_BACK_LONG_PRESS_CUSTOM_APP);
         mBackDoubleTapCustomApp = (Preference) findPreference(KEY_BACK_DOUBLE_TAP_CUSTOM_APP);
@@ -177,8 +184,6 @@ public class NavigationOptions extends SettingsPreferenceFragment
         mHomeDoubleTapCustomApp = (Preference) findPreference(KEY_HOME_DOUBLE_TAP_CUSTOM_APP);
         mAppSwitchLongPressCustomApp = (Preference) findPreference(KEY_APP_SWITCH_LONG_PRESS_CUSTOM_APP);
         mAppSwitchDoubleTapCustomApp = (Preference) findPreference(KEY_APP_SWITCH_DOUBLE_TAP_CUSTOM_APP);
-
-        mSwapHardwareKeys = (SystemSettingSwitchPreference) findPreference(KEY_SWAP_NAVIGATION_KEYS);
 
         mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
         if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural")
@@ -193,10 +198,13 @@ public class NavigationOptions extends SettingsPreferenceFragment
                 || NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_wide_back")
                 || NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_extra_wide_back")
                 || NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.gestural_narrow_back")) {
-            prefSet.removePreference(mNavigationArrowKeys);
+            mNavigationArrowKeys.setVisible(false);
+        } else {
+            mNavigationArrowKeys.setVisible(true);
         }
 
-        mButtonBrightness = (Preference) findPreference(KEY_BUTTON_BRIGHTNESS);
+        mButtonBacklight = (Preference) findPreference(KEY_BUTTON_BACKLIGHT);
+        mSwapKeys = (SystemSettingSwitchPreference) findPreference(KEY_SWAP_KEYS);
 
         mNavigationBar = (SwitchPreference) findPreference(KEY_NAVIGATION_BAR_ENABLED);
         mNavigationBar.setChecked(isNavbarVisible());
@@ -299,19 +307,25 @@ public class NavigationOptions extends SettingsPreferenceFragment
         }
 
         if (deviceKeys == 0) {
-            prefSet.removePreference(mSwapHardwareKeys);
+            prefSet.removePreference(hwKeysCategory);
             prefSet.removePreference(menuCategory);
             prefSet.removePreference(assistCategory);
             prefSet.removePreference(cameraCategory);
         }
 
         mHandler = new Handler();
-        updateBacklight();
+        updateHwKeys();
         navbarCheck();
         customAppCheck();
 
         if (!buttonBacklightSupported) {
-            mButtonBrightness.setVisible(false);
+            mButtonBacklight.setVisible(false);
+        }
+
+        boolean keySwapSupported = hasBack && (hasMenu || hasAppSwitch);
+
+        if (!keySwapSupported) {
+            mSwapKeys.setVisible(false);
         }
 
         mBackLongPressCustomApp.setVisible(mBackLongPress.getEntryValues()
@@ -339,7 +353,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
             Settings.System.putInt(resolver,
                     Settings.System.FORCE_SHOW_NAVBAR, value ? 1 : 0);
             navbarCheck();
-            updateBacklight();
+            updateHwKeys();
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -472,18 +486,16 @@ public class NavigationOptions extends SettingsPreferenceFragment
         return false;
     }
 
-    private void updateBacklight() {
+    private void updateHwKeys() {
         if (isNavbarVisible()) {
-            mButtonBrightness.setEnabled(false);
-            mSwapHardwareKeys.setEnabled(false);
+            hwKeysCategory.setEnabled(false);
         } else {
-            mButtonBrightness.setEnabled(true);
-            mSwapHardwareKeys.setEnabled(true);
+            hwKeysCategory.setEnabled(true);
         }
     }
 
     private boolean isNavbarVisible() {
-        boolean defaultToNavigationBar = Utils.deviceSupportNavigationBar(getActivity());
+        boolean defaultToNavigationBar = NadUtils.deviceSupportNavigationBar(getActivity());
         return Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.FORCE_SHOW_NAVBAR, defaultToNavigationBar ? 1 : 0) == 1;
     }
@@ -493,7 +505,6 @@ public class NavigationOptions extends SettingsPreferenceFragment
                 com.android.internal.R.integer.config_deviceHardwareKeys);
 
         if (deviceKeys == 0) {
-            if (isNavbarVisible()) {
                 homeCategory.setEnabled(true);
                 backCategory.setEnabled(true);
                 menuCategory.setEnabled(true);
@@ -501,15 +512,6 @@ public class NavigationOptions extends SettingsPreferenceFragment
                 appSwitchCategory.setEnabled(true);
                 cameraCategory.setEnabled(true);
                 mNavigationArrowKeys.setEnabled(true);
-            } else {
-                homeCategory.setEnabled(false);
-                backCategory.setEnabled(false);
-                menuCategory.setEnabled(false);
-                assistCategory.setEnabled(false);
-                appSwitchCategory.setEnabled(false);
-                cameraCategory.setEnabled(false);
-                mNavigationArrowKeys.setEnabled(false);
-            }
         } else {
             if (isNavbarVisible()) {
                 homeCategory.setEnabled(true);
@@ -550,7 +552,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     public void onResume() {
         super.onResume();
         navbarCheck();
-        updateBacklight();
+        updateHwKeys();
         customAppCheck();
     }
 
@@ -558,7 +560,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     public void onPause() {
         super.onPause();
         navbarCheck();
-        updateBacklight();
+        updateHwKeys();
         customAppCheck();
     }
 
