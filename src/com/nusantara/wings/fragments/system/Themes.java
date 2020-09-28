@@ -18,6 +18,7 @@ package com.nusantara.wings.fragments.system;
 
 import static com.nusantara.wings.UtilsThemes.handleBackgrounds;
 import static com.nusantara.wings.UtilsThemes.handleOverlays;
+import static com.nusantara.wings.UtilsThemes.threeButtonNavbarEnabled;
 
 import android.app.UiModeManager;
 import android.content.Context;
@@ -147,14 +148,18 @@ public class Themes extends SettingsPreferenceFragment
         mFontPicker.setOnPreferenceChangeListener(this);
 
         mNavbarPicker = (ListPreference) findPreference(PREF_NAVBAR_STYLE);
-        int navbarStyleValues = getOverlayPosition(ThemesUtils.NAVBAR_STYLES);
-        if (navbarStyleValues != -1) {
-            mNavbarPicker.setValue(String.valueOf(navbarStyleValues + 2));
+        if (threeButtonNavbarEnabled(mContext)) {
+            int navbarStyleValues = getOverlayPosition(ThemesUtils.NAVBAR_STYLES);
+            if (navbarStyleValues != -1) {
+                mNavbarPicker.setValue(String.valueOf(navbarStyleValues + 2));
+            } else {
+                mNavbarPicker.setValue("1");
+            }
+            mNavbarPicker.setSummary(mNavbarPicker.getEntry());
+            mNavbarPicker.setOnPreferenceChangeListener(this);
         } else {
-            mNavbarPicker.setValue("1");
+            prefScreen.removePreference(mNavbarPicker);
         }
-        mNavbarPicker.setSummary(mNavbarPicker.getEntry());
-        mNavbarPicker.setOnPreferenceChangeListener(this);
 
         mAccentColor = (ColorPickerPreference) findPreference(ACCENT_COLOR);
         int intColor = Settings.System.getIntForUser(mContext.getContentResolver(),
