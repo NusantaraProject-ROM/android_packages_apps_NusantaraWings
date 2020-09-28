@@ -339,4 +339,13 @@
     <string name="fprint_sucess_vib_summary">Vibrate when fingerprint authentication is successful</string>
     <string name="fprint_error_vib_title">FP error vibration</string>
     <string name="fprint_error_vib_summary">Vibrate when fingerprint authentication fails</string>
+
+    <!-- QS header style -->
+    <string name="qs_header_style_default">Default</string>
+    <string name="qs_header_style_grey">Grey</string>
+    <string name="qs_header_style_lightgrey">Light Grey</string>
+    <string name="qs_header_style_accent">Accent</string>
+    <string name="qs_header_style_transparent">Transparent</string>
+    <string name="qs_header_style_title">QS Header style</string>
+    <string name="qs_header_style_dialog_title">Select QS header style set</string>
 </resources>

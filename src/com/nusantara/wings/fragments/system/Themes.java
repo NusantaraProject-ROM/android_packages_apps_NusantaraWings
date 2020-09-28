@@ -58,6 +58,7 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_FONT_PICKER = "font_picker";
     private static final String PREF_NAVBAR_STYLE = "theme_navbar_style";
     private static final String ACCENT_COLOR = "accent_color";
+    private static final String PREF_QS_HEADER_STYLE = "qs_header_style";
     static final int DEFAULT_ACCENT_COLOR = 0xff1a73e8;
 
     private Context mContext;
@@ -70,6 +71,7 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mStatusbarIcons;
     private ListPreference mFontPicker;
     private ListPreference mNavbarPicker;
+    private ListPreference mQsHeaderStyle;
     private ColorPickerPreference mAccentColor;
 
     @Override
@@ -177,6 +179,16 @@ public class Themes extends SettingsPreferenceFragment
         if (hexColor.equals("#ff1a73e8"))
             mAccentColor.setCustomColorPreview(getContext().getResources()
                     .getColor(R.color.nusantara_wings_category_icon_tint));
+
+        mQsHeaderStyle = (ListPreference) findPreference(PREF_QS_HEADER_STYLE);
+        int qsStyleValue = getOverlayPosition(ThemesUtils.QS_HEADER_THEMES);
+        if (qsStyleValue != -1) {
+            mQsHeaderStyle.setValue(String.valueOf(qsStyleValue + 2));
+        } else {
+            mQsHeaderStyle.setValue("1");
+        }
+        mQsHeaderStyle.setSummary(mQsHeaderStyle.getEntry());
+        mQsHeaderStyle.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -330,6 +342,20 @@ public class Themes extends SettingsPreferenceFragment
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putIntForUser(mContext.getContentResolver(),
                     Settings.System.ACCENT_COLOR, intHex, UserHandle.USER_CURRENT);
+            return true;
+        } else if (preference == mQsHeaderStyle) {
+            String qsHeaderStyle = (String) newValue;
+            int qsHeaderStyleValue = Integer.parseInt(qsHeaderStyle);
+            mQsHeaderStyle.setValue(String.valueOf(qsHeaderStyleValue));
+            String overlayName = getOverlayName(ThemesUtils.QS_HEADER_THEMES);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (qsHeaderStyleValue > 1) {
+                    handleOverlays(ThemesUtils.QS_HEADER_THEMES[qsHeaderStyleValue -2],
+                            true, mOverlayManager);
+            }
+            mQsHeaderStyle.setSummary(mQsHeaderStyle.getEntry());
             return true;
         }
         return false;
