@@ -257,7 +257,6 @@
 
     <!-- Navbar name -->
     <string-array name="navbar_name_entries" translatable="false">
-        <item>@string/theme_navbar_picker_default</item>
         <item>@string/theme_navbar_picker_android</item>
         <item>@string/theme_navbar_picker_asus</item>
         <item>@string/theme_navbar_picker_moto</item>
@@ -280,7 +279,6 @@
         <item>7</item>
         <item>8</item>
         <item>9</item>
-        <item>10</item>
     </string-array>
 
     <string-array name="qs_header_style_titles">
