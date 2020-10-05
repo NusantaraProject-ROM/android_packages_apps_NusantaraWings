@@ -34,15 +34,15 @@ import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
-import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@SearchIndexable
+
+@SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class IconManager extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener, Indexable {
+        implements Preference.OnPreferenceChangeListener {
 
     private static final String KEY_STATUS_BAR_LOGO = "status_bar_logo";
 

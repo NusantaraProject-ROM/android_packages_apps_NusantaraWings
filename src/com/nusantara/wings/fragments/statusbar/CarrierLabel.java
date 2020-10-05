@@ -43,7 +43,6 @@ import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 
 import java.util.ArrayList;
@@ -51,10 +50,9 @@ import java.util.List;
 
 import com.android.internal.util.nad.NadUtils;
 
-
-@SearchIndexable
+@SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class CarrierLabel extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener, Indexable {
+        implements Preference.OnPreferenceChangeListener {
 
     private static final String KEY_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
     private static final String KEY_STATUS_BAR_SHOW_CARRIER = "status_bar_show_carrier";

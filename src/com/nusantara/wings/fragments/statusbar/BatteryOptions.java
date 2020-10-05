@@ -33,16 +33,15 @@ import com.android.internal.logging.nano.MetricsProto;
 
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
-import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.SettingsPreferenceFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@SearchIndexable
+@SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class BatteryOptions extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener, Indexable {
+        implements Preference.OnPreferenceChangeListener {
 
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";

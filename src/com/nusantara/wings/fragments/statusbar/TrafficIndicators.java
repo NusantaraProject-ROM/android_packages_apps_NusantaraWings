@@ -33,7 +33,6 @@ import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ import com.nusantara.support.preferences.CustomSeekBarPreference;
 
 @SearchIndexable
 public class TrafficIndicators extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener, Indexable {
+        implements Preference.OnPreferenceChangeListener {
 
     private CustomSeekBarPreference mThreshold;
     private SwitchPreference mNetMonitor;

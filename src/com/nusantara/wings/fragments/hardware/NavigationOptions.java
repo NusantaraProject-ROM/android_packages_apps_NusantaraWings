@@ -37,7 +37,6 @@ import com.android.internal.util.nad.NadUtils;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
@@ -46,9 +45,9 @@ import com.nusantara.support.preferences.SecureSettingSwitchPreference;
 import java.util.ArrayList;
 import java.util.List;
 
-@SearchIndexable
+@SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class NavigationOptions extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener, Indexable {
+        implements Preference.OnPreferenceChangeListener {
 
     private static final String KEY_NAVIGATION_BAR_ENABLED = "force_show_navbar";
     private static final String KEY_LAYOUT_SETTINGS = "layout_settings";

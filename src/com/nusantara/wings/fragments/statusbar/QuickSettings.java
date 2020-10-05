@@ -31,7 +31,6 @@ import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.nusantara.support.preferences.CustomSeekBarPreference;
@@ -41,9 +40,9 @@ import com.nusantara.support.preferences.SystemSettingMasterSwitchPreference;
 import java.util.ArrayList;
 import java.util.List;
 
-@SearchIndexable
+@SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class QuickSettings extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener, Indexable {
+        implements Preference.OnPreferenceChangeListener {
 
     private static final String FOOTER_TEXT_STRING = "footer_text_string";
     private static final String STATUS_BAR_CUSTOM_HEADER = "status_bar_custom_header";

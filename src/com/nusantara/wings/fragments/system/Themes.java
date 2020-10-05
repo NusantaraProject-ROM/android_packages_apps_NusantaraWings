@@ -42,7 +42,6 @@ import com.android.internal.logging.nano.MetricsProto;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.search.BaseSearchIndexProvider;
 
@@ -51,9 +50,9 @@ import java.util.List;
 
 import com.nusantara.support.colorpicker.ColorPickerPreference;
 
-@SearchIndexable
+@SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class Themes extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener, Indexable {
+        implements Preference.OnPreferenceChangeListener {
 
     private static final String PREF_THEME_SWITCH = "theme_switch";
     private static final String PREF_THEME_ACCENT_PICKER = "theme_accent_picker";
