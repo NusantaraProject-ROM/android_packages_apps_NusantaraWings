@@ -62,6 +62,9 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_NAVBAR_STYLE = "theme_navbar_style";
     private static final String ACCENT_COLOR = "accent_color";
     private static final String PREF_QS_HEADER_STYLE = "qs_header_style";
+    private static final String PREF_ROUNDED_CORNER = "rounded_ui";
+    private static final String PREF_SB_HEIGHT = "statusbar_height";
+
     static final int DEFAULT_ACCENT_COLOR = 0xff1a73e8;
 
     private Context mContext;
@@ -75,6 +78,8 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mFontPicker;
     private ListPreference mNavbarPicker;
     private ListPreference mQsHeaderStyle;
+    private ListPreference mRoundedUi;
+    private ListPreference mSbHeight;
     private ColorPickerPreference mAccentColor;
 
     @Override
@@ -192,6 +197,26 @@ public class Themes extends SettingsPreferenceFragment
         }
         mQsHeaderStyle.setSummary(mQsHeaderStyle.getEntry());
         mQsHeaderStyle.setOnPreferenceChangeListener(this);
+
+        mRoundedUi = (ListPreference) findPreference(PREF_ROUNDED_CORNER);
+        int roundedValue = getOverlayPosition(ThemesUtils.UI_RADIUS);
+        if (roundedValue != -1) {
+            mRoundedUi.setValue(String.valueOf(roundedValue + 2));
+        } else {
+            mRoundedUi.setValue("1");
+        }
+        mRoundedUi.setSummary(mRoundedUi.getEntry());
+        mRoundedUi.setOnPreferenceChangeListener(this);
+
+        mSbHeight = (ListPreference) findPreference(PREF_SB_HEIGHT);
+        int sbHeightValue = getOverlayPosition(ThemesUtils.STATUSBAR_HEIGHT);
+        if (sbHeightValue != -1) {
+            mSbHeight.setValue(String.valueOf(sbHeightValue + 2));
+        } else {
+            mSbHeight.setValue("1");
+        }
+        mSbHeight.setSummary(mSbHeight.getEntry());
+        mSbHeight.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -359,6 +384,34 @@ public class Themes extends SettingsPreferenceFragment
                             true, mOverlayManager);
             }
             mQsHeaderStyle.setSummary(mQsHeaderStyle.getEntry());
+            return true;
+        } else if (preference == mRoundedUi) {
+            String rounded = (String) newValue;
+            int roundedValue = Integer.parseInt(rounded);
+            mRoundedUi.setValue(String.valueOf(roundedValue));
+            String overlayName = getOverlayName(ThemesUtils.UI_RADIUS);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (roundedValue > 1) {
+                    handleOverlays(ThemesUtils.UI_RADIUS[roundedValue -2],
+                            true, mOverlayManager);
+            }
+            mRoundedUi.setSummary(mRoundedUi.getEntry());
+            return true;
+        } else if (preference == mSbHeight) {
+            String sbheight = (String) newValue;
+            int sbheightValue = Integer.parseInt(sbheight);
+            mSbHeight.setValue(String.valueOf(sbheightValue));
+            String overlayName = getOverlayName(ThemesUtils.STATUSBAR_HEIGHT);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (sbheightValue > 1) {
+                    handleOverlays(ThemesUtils.STATUSBAR_HEIGHT[sbheightValue -2],
+                            true, mOverlayManager);
+            }
+            mSbHeight.setSummary(mSbHeight.getEntry());
             return true;
         }
         return false;
