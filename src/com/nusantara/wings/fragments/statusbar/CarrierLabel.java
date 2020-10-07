@@ -18,11 +18,12 @@ package com.nusantara.wings.fragments.statusbar;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ContentResolver;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.text.InputFilter;
 import android.text.Spannable;
@@ -40,16 +41,20 @@ import androidx.preference.SwitchPreference;
 import com.android.internal.logging.nano.MetricsProto;
 
 import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.SettingsPreferenceFragment;
+import com.android.settingslib.search.Indexable;
+import com.android.settingslib.search.SearchIndexable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.android.internal.util.nad.NadUtils;
 
 
 @SearchIndexable
 public class CarrierLabel extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener {
+        implements Preference.OnPreferenceChangeListener, Indexable {
 
     private static final String KEY_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
     private static final String KEY_STATUS_BAR_SHOW_CARRIER = "status_bar_show_carrier";
@@ -168,6 +173,24 @@ public class CarrierLabel extends SettingsPreferenceFragment
         return MetricsProto.MetricsEvent.NUSANTARA_PRJ;
     }
 
-    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider(R.xml.nad_carrier_label);
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.nad_carrier_label;
+                    result.add(sir);
+                    return result;
+                }
+
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    List<String> keys = super.getNonIndexableKeys(context);
+                    return keys;
+        }
+    };
 }

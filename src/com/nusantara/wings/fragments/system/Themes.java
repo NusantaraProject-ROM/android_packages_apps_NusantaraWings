@@ -29,27 +29,31 @@ import android.os.Bundle;
 import android.os.UserHandle;
 import android.os.ServiceManager;
 import android.provider.Settings;
+import android.provider.SearchIndexableResource;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
-
-import com.android.internal.logging.nano.MetricsProto;
 
 import com.android.internal.util.nad.ThemesUtils;
 import com.android.internal.util.nad.NadUtils;
 
+import com.android.internal.logging.nano.MetricsProto;
+
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settingslib.search.Indexable;
 import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.search.BaseSearchIndexProvider;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.nusantara.support.colorpicker.ColorPickerPreference;
 
 @SearchIndexable
 public class Themes extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener {
+        implements Preference.OnPreferenceChangeListener, Indexable {
 
     private static final String PREF_THEME_SWITCH = "theme_switch";
     private static final String PREF_THEME_ACCENT_PICKER = "theme_accent_picker";
@@ -388,6 +392,24 @@ public class Themes extends SettingsPreferenceFragment
         return MetricsProto.MetricsEvent.NUSANTARA_PRJ;
     }
 
-    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider(R.xml.nad_themes);
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.nad_themes;
+                    result.add(sir);
+                    return result;
+                }
+
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    List<String> keys = super.getNonIndexableKeys(context);
+                    return keys;
+        }
+    };
 }

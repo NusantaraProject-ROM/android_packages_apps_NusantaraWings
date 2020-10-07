@@ -20,7 +20,9 @@ import android.content.Context;
 import android.content.ContentResolver;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.ServiceManager;
 import android.os.UserHandle;
+import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 
 import androidx.preference.ListPreference;
@@ -33,16 +35,20 @@ import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.util.nad.NadUtils;
 
 import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.SettingsPreferenceFragment;
+import com.android.settingslib.search.Indexable;
+import com.android.settingslib.search.SearchIndexable;
 
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
 import com.nusantara.support.preferences.SecureSettingSwitchPreference;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SearchIndexable
 public class NavigationOptions extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener {
+        implements Preference.OnPreferenceChangeListener, Indexable {
 
     private static final String KEY_NAVIGATION_BAR_ENABLED = "force_show_navbar";
     private static final String KEY_LAYOUT_SETTINGS = "layout_settings";
@@ -583,6 +589,24 @@ public class NavigationOptions extends SettingsPreferenceFragment
         return MetricsProto.MetricsEvent.NUSANTARA_PRJ;
     }
 
-    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider(R.xml.nad_navigation_options);
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.nad_navigation_options;
+                    result.add(sir);
+                    return result;
+                }
+
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    List<String> keys = super.getNonIndexableKeys(context);
+                    return keys;
+        }
+    };
 }

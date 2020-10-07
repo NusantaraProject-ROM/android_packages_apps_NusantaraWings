@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.ContentResolver;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 
 import androidx.preference.Preference;
@@ -27,19 +28,22 @@ import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
 
 import com.android.internal.logging.nano.MetricsProto;
-
 import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.SettingsPreferenceFragment;
+import com.android.settingslib.search.Indexable;
+import com.android.settingslib.search.SearchIndexable;
 
 import com.nusantara.support.preferences.CustomSeekBarPreference;
 import com.nusantara.support.preferences.SystemSettingEditTextPreference;
 import com.nusantara.support.preferences.SystemSettingMasterSwitchPreference;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SearchIndexable
 public class QuickSettings extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceChangeListener {
+        implements Preference.OnPreferenceChangeListener, Indexable {
 
     private static final String FOOTER_TEXT_STRING = "footer_text_string";
     private static final String STATUS_BAR_CUSTOM_HEADER = "status_bar_custom_header";
@@ -149,6 +153,24 @@ public class QuickSettings extends SettingsPreferenceFragment
         return MetricsProto.MetricsEvent.NUSANTARA_PRJ;
     }
 
-    public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider(R.xml.nad_quick_settings);
+    public static final SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.nad_quick_settings;
+                    result.add(sir);
+                    return result;
+                }
+
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    List<String> keys = super.getNonIndexableKeys(context);
+                    return keys;
+        }
+    };
 }
