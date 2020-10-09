@@ -349,4 +349,8 @@
     <!-- QS date -->
     <string name="qs_date_title">Date</string>
     <string name="qs_date_summary">Display date in quick status bar header</string>
+
+    <!-- Notification headers -->
+    <string name="notification_headers_title">Notification Headers</string>
+    <string name="notification_headers_summary">Show headers in the notification shade</string>
 </resources>
