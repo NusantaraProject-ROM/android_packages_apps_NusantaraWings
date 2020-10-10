@@ -39,9 +39,17 @@ import com.android.settingslib.search.SearchIndexable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nusantara.support.preferences.SystemSettingSwitchPreference;
+
+import com.nusantara.wings.UtilsNad;
+
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class Notifications extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
+
+    private static final String NOTIFICATION_HEADER = "notification_headers";
+
+    private SystemSettingSwitchPreference mNotificationHeader;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,11 +57,23 @@ public class Notifications extends SettingsPreferenceFragment
         addPreferencesFromResource(R.xml.nad_notifications);
         final PreferenceScreen prefScreen = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
+
+        mNotificationHeader = (SystemSettingSwitchPreference) findPreference(NOTIFICATION_HEADER);
+        mNotificationHeader.setChecked((Settings.System.getInt(resolver,
+                Settings.System.NOTIFICATION_HEADERS, 1) == 1));
+        mNotificationHeader.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mNotificationHeader) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.NOTIFICATION_HEADERS, value ? 0 : 1);
+            UtilsNad.showSystemUiRestartDialog(getContext());
+            return true;
+        }
         return false;
     }
 
