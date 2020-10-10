@@ -436,4 +436,10 @@
     <string name="sb_height_medium">Medium</string>
     <string name="sb_height_large">Large</string>
     <string name="sb_height_extralarge">Extra Large</string>
+
+    <!-- SystemUI restart prompt -->
+    <string name="systemui_restart_title">WARNING</string>
+    <string name="systemui_restart_message">SystemUI will be restarted so that selected setting can be applied correctly.</string>
+    <string name="restarting_ui">Restarting UI\u2026</string>
+    <string name="print_restart">Restart</string>
 </resources>
