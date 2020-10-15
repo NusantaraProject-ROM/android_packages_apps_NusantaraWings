@@ -90,17 +90,6 @@
     <string name="long_press_custom_app_title">Long press custom app</string>
     <string name="double_tap_custom_app_title">Double tap custom app</string>
 
-    <!-- Button backlight -->
-    <string name="button_backlight_title">Button backlight</string>
-    <string name="button_backlight_summary">Configure backlight for capacitive keys</string>
-    <string name="button_backlight_on_touch_only_title">Button touch</string>
-    <string name="button_backlight_on_touch_only_summary">Enable backlight with timeout only on button touch</string>
-    <string name="button_timeout_title">Backlight timeout (seconds)</string>
-    <string name="button_link_brightness">Link to screen brightness</string>
-    <string name="button_link_brightness_summary">Use screen brightness level</string>
-    <string name="button_manual_brightness">Brightness level</string>
-    <string name="button_backlight_enable_title">Allow backlight</string>
-
     <!-- Custom actions -->
     <string name="action_nothing">No action</string>
     <string name="action_menu">Menu</string>
