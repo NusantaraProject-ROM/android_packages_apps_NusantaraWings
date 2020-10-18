@@ -24,4 +24,10 @@
         android:summary="@string/lockscreen_battery_info_summary"
         android:defaultValue="false" />
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="lockscreen_status_bar"
+        android:title="@string/lockscreen_status_bar_title"
+        android:summary="@string/lockscreen_status_bar_summary"
+        android:defaultValue="true" />
+
 </PreferenceScreen>

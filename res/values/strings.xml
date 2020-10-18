@@ -471,4 +471,8 @@
     <string name="brightness_icon_summary">Show toggle for adaptive brightness near the slider</string>
     <string name="brightness_buttons_title">Brightness control buttons</string>
     <string name="brightness_buttons_summary">Show buttons beside the brightness slider to adjust brightness</string>
+
+    <!-- Show Statusbar on Lockscreen -->
+    <string name="lockscreen_status_bar_title">Status bar on lockscreen</string>
+    <string name="lockscreen_status_bar_summary">Display status bar on the lockscreen</string>
 </resources>
