@@ -475,4 +475,8 @@
     <!-- Show Statusbar on Lockscreen -->
     <string name="lockscreen_status_bar_title">Status bar on lockscreen</string>
     <string name="lockscreen_status_bar_summary">Display status bar on the lockscreen</string>
+
+    <!-- Quick settings on secure lockscreen -->
+    <string name="lockscreen_enable_qs_title">Quick settings on lockscreen</string>
+    <string name="lockscreen_enable_qs_summary">Allow accessing quick settings on secure lockscreen</string>
 </resources>
