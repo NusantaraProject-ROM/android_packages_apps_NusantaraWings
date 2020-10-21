@@ -851,4 +851,8 @@
     <string name="global_actions_screenshot_summary">Add Screenshot toggle to Power Menu</string>
     <string name="global_actions_screenrecord_title">Screen Record</string>
     <string name="global_actions_screenrecord_summary">Add Screen Record toggle to Power Menu</string>
+
+    <!-- FOD animation -->
+    <string name="fod_recognizing_animation_title">Recognizing animation</string>
+    <string name="fod_recognizing_animation_summary">Show an animation while reading your fingerprint</string>
 </resources>
