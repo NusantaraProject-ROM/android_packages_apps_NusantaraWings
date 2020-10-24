@@ -411,6 +411,8 @@
     <!-- Notification headers -->
     <string name="notification_headers_title">Notification Headers</string>
     <string name="notification_headers_summary">Hide headers in the notification shade</string>
+    <string name="center_notification_headers_title">Center Notification Headers</string>
+    <string name="center_notification_headers_summary">Enable center text headers in the notification shade</string>
 
     <!-- Custom UI -->
     <string name="gvisual_title">Gvisual Mod</string>

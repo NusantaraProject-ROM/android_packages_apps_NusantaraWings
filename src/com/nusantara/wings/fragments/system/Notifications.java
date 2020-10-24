@@ -49,10 +49,12 @@ public class Notifications extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String NOTIFICATION_HEADER = "notification_headers";
+    private static final String CENTER_NOTIFICATION_HEADER = "center_notification_headers";
     private static final String HEADS_UP_NOTIFICATIONS_ENABLED = "heads_up_notifications_enabled";
 
     private GlobalSettingMasterSwitchPreference mHeadsUpEnabled;
     private SystemSettingSwitchPreference mNotificationHeader;
+    private SystemSettingSwitchPreference mCenterNotificationHeader;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,11 @@ public class Notifications extends SettingsPreferenceFragment
         mNotificationHeader.setChecked((Settings.System.getInt(resolver,
                 Settings.System.NOTIFICATION_HEADERS, 1) == 1));
         mNotificationHeader.setOnPreferenceChangeListener(this);
+
+        mCenterNotificationHeader = (SystemSettingSwitchPreference) findPreference(CENTER_NOTIFICATION_HEADER);
+        mCenterNotificationHeader.setChecked((Settings.System.getInt(resolver,
+                Settings.System.CENTER_NOTIFICATION_HEADERS, 0) == 1));
+        mCenterNotificationHeader.setOnPreferenceChangeListener(this);
 
         mHeadsUpEnabled = (GlobalSettingMasterSwitchPreference) findPreference(HEADS_UP_NOTIFICATIONS_ENABLED);
         mHeadsUpEnabled.setOnPreferenceChangeListener(this);
@@ -79,7 +86,13 @@ public class Notifications extends SettingsPreferenceFragment
         if (preference == mNotificationHeader) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
-                    Settings.System.NOTIFICATION_HEADERS, value ? 0 : 1);
+                    Settings.System.NOTIFICATION_HEADERS, value ? 1 : 0);
+            UtilsNad.showSystemUiRestartDialog(getContext());
+            return true;
+        } else if (preference == mCenterNotificationHeader) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.CENTER_NOTIFICATION_HEADERS, value ? 0 : 1);
             UtilsNad.showSystemUiRestartDialog(getContext());
             return true;
         } else if (preference == mHeadsUpEnabled) {
