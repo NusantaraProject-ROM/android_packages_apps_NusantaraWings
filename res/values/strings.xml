@@ -230,6 +230,8 @@
     <string name="qs_battery_percentage_summary">Show battery percentage in the QS header instead of battery estimate</string>
     <string name="battery_show_location_title">Battery location</string>
     <string name="battery_show_location_summary">Toggle battery location for QS header</string>
+    <string name="battery_show_percent_estimate_title">Battery percent &amp; estimate</string>
+    <string name="battery_show_percent_estimate_summary">Enable battery percent &amp; estimate together</string>
 
     <!-- Adaptive icon shapes -->
     <string name="adaptive_icon_shape_default">Default</string>

@@ -39,6 +39,8 @@ import com.android.settings.SettingsPreferenceFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nusantara.support.preferences.SystemSettingSwitchPreference;
+
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class BatteryOptions extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
@@ -46,10 +48,12 @@ public class BatteryOptions extends SettingsPreferenceFragment
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
     private static final String QS_BATTERY_PERCENTAGE = "qs_battery_percentage";
+    private static final String QS_BATTERY_PERCENT_ESTIMATE = "qs_show_battery_percent_estimate";
 
     private ListPreference mBatteryPercent;
     private ListPreference mBatteryStyle;
     private SwitchPreference mQsBatteryPercent;
+    private SystemSettingSwitchPreference mQsBatteryPercentEstimate;
 
     private int mBatteryPercentValue;
 
@@ -88,6 +92,12 @@ public class BatteryOptions extends SettingsPreferenceFragment
                 getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.QS_SHOW_BATTERY_PERCENT, 0) == 1));
         mQsBatteryPercent.setOnPreferenceChangeListener(this);
+
+        mQsBatteryPercentEstimate = (SystemSettingSwitchPreference) findPreference(QS_BATTERY_PERCENT_ESTIMATE);
+        mQsBatteryPercentEstimate.setChecked((Settings.System.getInt(resolver,
+                Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE, 0) == 1));
+        mQsBatteryPercentEstimate.setOnPreferenceChangeListener(this);
+        isEstimate();
     }
 
     @Override
@@ -115,9 +125,27 @@ public class BatteryOptions extends SettingsPreferenceFragment
             Settings.System.putInt(resolver,
                     Settings.System.QS_SHOW_BATTERY_PERCENT,
                     (Boolean) newValue ? 1 : 0);
+            isEstimate();
+            return true;
+        } else if (preference == mQsBatteryPercentEstimate) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE, value ? 1 : 0);
+            isEstimate();
             return true;
         }
         return false;
+    }
+
+    private void isEstimate() {
+        boolean qsBatteryPercentDisabled = Settings.System.getInt(getContentResolver(),
+                Settings.System.QS_SHOW_BATTERY_PERCENT, 0) == 1;
+
+        if (qsBatteryPercentDisabled) {
+             mQsBatteryPercentEstimate.setEnabled(false);
+        } else {
+             mQsBatteryPercentEstimate.setEnabled(true);
+        }
     }
 
     @Override

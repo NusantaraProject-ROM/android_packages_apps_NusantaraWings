@@ -46,4 +46,9 @@
         android:summary="@string/battery_show_location_summary"
         android:defaultValue="false"/>
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="qs_show_battery_percent_estimate"
+        android:title="@string/battery_show_percent_estimate_title"
+        android:summary="@string/battery_show_percent_estimate_summary"
+        android:defaultValue="false"/>
 </PreferenceScreen>
