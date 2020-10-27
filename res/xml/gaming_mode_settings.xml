@@ -53,11 +53,11 @@
         android:defaultValue="3"
         android:summary="%s" />
 
-    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+    <!--com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="gaming_mode_dynamic_state"
         android:title="@string/gaming_mode_dynamic_title"
         android:summary="@string/gaming_mode_dynamic_summary"
-        android:defaultValue="false" />
+        android:defaultValue="false" /-->
 
     <PreferenceCategory
         android:title="@string/gaming_mode_app_picker_title"
