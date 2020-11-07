@@ -32,6 +32,7 @@
     <string name="developer_title">Developer</string>
     <string name="maintainer_title">Maintainer</string>
     <string name="contributor_title">Contributor</string>
+    <string name="designer_title">Designer</string>
 
     <!-- Bottom navigation -->
     <string name="bottom_nav_system_title">System</string>
