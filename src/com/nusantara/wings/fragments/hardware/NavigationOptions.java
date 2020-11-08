@@ -53,6 +53,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private static final String KEY_NAVIGATION_BAR_ENABLED = "force_show_navbar";
     private static final String KEY_LAYOUT_SETTINGS = "layout_settings";
     private static final String KEY_NAVIGATION_BAR_ARROWS = "navigation_bar_menu_arrow_keys";
+    private static final String KEY_BUTTON_BACKLIGHT = "button_backlight";
     private static final String KEY_SWAP_KEYS = "swap_navigation_keys";
     private static final String KEY_GESTURE_SYSTEM = "gesture_system_navigation";
 
@@ -135,6 +136,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private Preference mLeftVerticalSwipeAppSelection;
     private Preference mRightVerticalSwipeAppSelection;
     private Preference mGestureSystemNavigation;
+    private Preference mButtonBacklight;
 
     private SwitchPreference mNavigationBar;
     private SystemSettingSwitchPreference mNavigationArrowKeys;
@@ -170,6 +172,9 @@ public class NavigationOptions extends SettingsPreferenceFragment
 
         deviceKeys = getResources().getInteger(
                 com.android.internal.R.integer.config_deviceHardwareKeys);
+
+        boolean buttonBacklightSupported = getResources().getBoolean(
+                com.android.internal.R.bool.config_button_brightness_support);
 
         int backKeyLongPress = getResources().getInteger(
                 com.android.internal.R.integer.config_longPressOnBackKeyBehavior);
@@ -229,6 +234,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
 
         mGestureSystemNavigation = (Preference) findPreference(KEY_GESTURE_SYSTEM);
 
+        mButtonBacklight = (Preference) findPreference(KEY_BUTTON_BACKLIGHT);
         mSwapKeys = (SystemSettingSwitchPreference) findPreference(KEY_SWAP_KEYS);
         mNavigationArrowKeys = (SystemSettingSwitchPreference) findPreference(KEY_NAVIGATION_BAR_ARROWS);
 
@@ -405,6 +411,10 @@ public class NavigationOptions extends SettingsPreferenceFragment
         updateHwKeys();
         navbarCheck();
         customAppCheck();
+
+        if (!buttonBacklightSupported) {
+            mButtonBacklight.setVisible(false);
+        }
 
         boolean keySwapSupported = hasBack && (hasMenu || hasAppSwitch);
 
