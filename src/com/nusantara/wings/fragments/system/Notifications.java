@@ -45,6 +45,7 @@ import com.nusantara.wings.UtilsNad;
 import com.nusantara.support.preferences.CustomSeekBarPreference;
 import com.nusantara.support.preferences.SystemSettingListPreference;
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
+import com.nusantara.support.preferences.SystemSettingMasterSwitchPreference;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class Notifications extends SettingsPreferenceFragment
@@ -54,10 +55,12 @@ public class Notifications extends SettingsPreferenceFragment
     private static final String PREF_FLASH_ON_CALL = "flashlight_on_call";
     private static final String PREF_FLASH_ON_CALL_DND = "flashlight_on_call_ignore_dnd";
     private static final String PREF_FLASH_ON_CALL_RATE = "flashlight_on_call_rate";
+    private static final String KEY_EDGE_LIGHTNING = "pulse_ambient_light";
 
     private SystemSettingListPreference mFlashOnCall;
     private SystemSettingSwitchPreference mFlashOnCallIgnoreDND;
     private CustomSeekBarPreference mFlashOnCallRate;
+    private SystemSettingMasterSwitchPreference mEdgeLightning;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,6 +91,13 @@ public class Notifications extends SettingsPreferenceFragment
         mFlashOnCall = (SystemSettingListPreference)
                 findPreference(PREF_FLASH_ON_CALL);
         mFlashOnCall.setOnPreferenceChangeListener(this);
+
+        mEdgeLightning = (SystemSettingMasterSwitchPreference)
+                findPreference(KEY_EDGE_LIGHTNING);
+        boolean enabled = Settings.System.getIntForUser(resolver,
+                KEY_EDGE_LIGHTNING, 0, UserHandle.USER_CURRENT) == 1;
+        mEdgeLightning.setChecked(enabled);
+        mEdgeLightning.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -104,6 +114,11 @@ public class Notifications extends SettingsPreferenceFragment
             int value = (Integer) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.FLASHLIGHT_ON_CALL_RATE, value);
+            return true;
+        } else if (preference == mEdgeLightning) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putIntForUser(resolver, KEY_EDGE_LIGHTNING,
+                    value ? 1 : 0, UserHandle.USER_CURRENT);
             return true;
         }
         return false;

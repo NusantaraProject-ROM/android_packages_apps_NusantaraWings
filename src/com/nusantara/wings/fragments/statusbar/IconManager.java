@@ -63,7 +63,7 @@ public class IconManager extends SettingsPreferenceFragment
         final PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
 
-	    mShowNadLogo = (SwitchPreference) findPreference(KEY_STATUS_BAR_LOGO);
+        mShowNadLogo = (SwitchPreference) findPreference(KEY_STATUS_BAR_LOGO);
         mShowNadLogo.setChecked((Settings.System.getInt(getContentResolver(),
              Settings.System.STATUS_BAR_LOGO, 0) == 1));
         mShowNadLogo.setOnPreferenceChangeListener(this);
@@ -84,7 +84,7 @@ public class IconManager extends SettingsPreferenceFragment
                     CONFIG_RESOURCE_NAME, "bool", SYSTEMUI_PACKAGE);
             if (resId != 0) def = sysUIRes.getBoolean(resId);
         }
-        enabled = Settings.Secure.getInt(resolver,
+        boolean enabled = Settings.Secure.getInt(resolver,
                 COBINED_STATUSBAR_ICONS, def ? 1 : 0) == 1;
         mCombinedIcons.setChecked(enabled);
         mCombinedIcons.setOnPreferenceChangeListener(this);
