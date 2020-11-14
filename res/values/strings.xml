@@ -672,4 +672,11 @@
     <string name="lock_clock_font_burnstown">Burnstown</string>
     <string name="lock_clock_font_dumbledor">Dumbledor</string>
     <string name="lock_clock_font_phantombold">PhantomBold</string>
+
+    <!-- Lock screen cover art -->
+    <string name="lockscreen_media_art_title">Media art</string>
+    <string name="lockscreen_media_art_summary">Display media cover art when playing music</string>
+    <string name="lockscreen_media_blur_title">Media art blur level</string>
+    <string name="show_lockscreen_media_art_title">Show media art</string>
+    <string name="lockscreen_media_art_options_title">Media art</string>
 </resources>
