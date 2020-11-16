@@ -1,4 +1,4 @@
-package com.nusantara.wings.hardware.navbar;
+package com.nusantara.wings.fragments.hardware.navbar;
 
 import android.content.pm.ActivityInfo;
 import android.provider.Settings;
