@@ -56,13 +56,6 @@
             android:summary="@string/hw_keys_swap_summary"
             android:defaultValue="false"
             android:dependency="hardware_keys_enable" />
-
-        <Preference
-            android:key="button_backlight"
-            android:title="@string/button_backlight_title"
-            android:summary="@string/button_backlight_summary"
-            android:fragment="com.nusantara.wings.fragments.hardware.ButtonBrightness"
-            android:dependency="hardware_keys_enable" />
     </PreferenceCategory>
 
     <PreferenceCategory
