@@ -52,6 +52,115 @@
         android:summary="@string/hw_keys_swap_summary"
         android:defaultValue="false" />
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="back_swipe_extended"
+        android:title="@string/back_swipe_extended_title"
+        android:summary="@string/back_swipe_extended_summary"
+        android:defaultValue="false" />
+
+    <com.nusantara.support.preferences.SystemSettingListPreference
+        android:key="long_back_swipe_timeout"
+        android:title="@string/long_back_swipe_timeout_title"
+        android:entries="@array/long_back_swipe_timeout_entries"
+        android:entryValues="@array/long_back_swipe_timeout_values"
+        android:defaultValue="2000" />
+
+    <PreferenceCategory
+        android:key="left_swipe"
+        android:title="@string/left_swipe_key_title">
+
+        <ListPreference
+            android:key="left_swipe_actions"
+            android:title="@string/left_swipe_actions_title"
+            android:entries="@array/back_swipe_actions_entries"
+            android:entryValues="@array/back_swipe_actions_values"
+            android:dependency="force_show_navbar"
+            android:defaultValue="0" />
+
+        <Preference
+            android:key="left_swipe_app_action"
+            android:title="@string/left_swipe_app_action_title"
+            android:summary="@string/back_swipe_app_select_summary"
+            android:dependency="force_show_navbar">
+            <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.systemui"
+                android:targetClass="com.android.systemui.statusbar.phone.LeftBackSwipeCustomApp" />
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="right_swipe"
+        android:title="@string/right_swipe_key_title">
+
+        <ListPreference
+            android:key="right_swipe_actions"
+            android:title="@string/right_swipe_actions_title"
+            android:dependency="force_show_navbar"
+            android:entries="@array/back_swipe_actions_entries"
+            android:entryValues="@array/back_swipe_actions_values"
+            android:defaultValue="0" />
+
+        <Preference
+            android:key="right_swipe_app_action"
+            android:title="@string/right_swipe_app_action_title"
+            android:summary="@string/back_swipe_app_select_summary"
+            android:dependency="force_show_navbar">
+            <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.systemui"
+                android:targetClass="com.android.systemui.statusbar.phone.RightBackSwipeCustomApp" />
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="left_vertical_swipe"
+        android:title="@string/left_vertical_swipe_key_title">
+
+        <ListPreference
+            android:key="left_vertical_swipe_actions"
+            android:title="@string/left_vertical_swipe_actions_title"
+            android:dependency="force_show_navbar"
+            android:entries="@array/back_swipe_actions_entries"
+            android:entryValues="@array/back_swipe_actions_values"
+            android:defaultValue="0" />
+
+        <Preference
+            android:key="left_vertical_swipe_app_action"
+            android:title="@string/left_vertical_swipe_app_action_title"
+            android:dependency="force_show_navbar"
+            android:summary="@string/back_swipe_app_select_summary">
+            <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.systemui"
+                android:targetClass="com.android.systemui.statusbar.phone.LeftBackVerticalSwipeCustomApp" />
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="right_vertical_swipe"
+        android:title="@string/right_vertical_swipe_key_title">
+
+        <ListPreference
+            android:key="right_vertical_swipe_actions"
+            android:title="@string/right_vertical_swipe_actions_title"
+            android:dependency="force_show_navbar"
+            android:entries="@array/back_swipe_actions_entries"
+            android:entryValues="@array/back_swipe_actions_values"
+            android:defaultValue="0" />
+
+        <Preference
+            android:key="right_vertical_swipe_app_action"
+            android:title="@string/right_vertical_swipe_app_action_title"
+            android:dependency="force_show_navbar"
+            android:summary="@string/back_swipe_app_select_summary">
+            <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.systemui"
+                android:targetClass="com.android.systemui.statusbar.phone.RightBackVerticalSwipeCustomApp" />
+        </Preference>
+
+    </PreferenceCategory>
+
     <PreferenceCategory
         android:key="back_key"
         android:title="@string/back_key_title">
@@ -214,4 +323,6 @@
 
     </PreferenceCategory>
 
+    <com.android.settingslib.widget.FooterPreference
+        android:title="@string/gesture_nav_tweaks_footer_info" />
 </PreferenceScreen>
