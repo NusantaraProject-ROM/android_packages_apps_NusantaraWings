@@ -212,6 +212,8 @@
     <string name="qs_tint_random">Random color</string>
     <string name="qs_tint_accent">Accent color</string>
     <string name="qs_disco_mode">Disco</string>
+    <string name="qs_icon_primary_title">Qs Tile Icon Bright|Dark</string>
+    <string name="qs_icon_primary_summary">Make Qs Icon Bright-Dark</string>
 
     <!-- Statusbar Tuner -->
     <string name="statusbar_items_title">Tuner Statusbar icons</string>

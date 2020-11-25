@@ -36,6 +36,12 @@
         android:summary="%s"
         android:defaultValue="0" />
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="qs_tile_icon_primary"
+        android:title="@string/qs_icon_primary_title"
+        android:summary="@string/qs_icon_primary_summary"
+        android:defaultValue="false" />
+
     <com.nusantara.support.preferences.SystemSettingMasterSwitchPreference
         android:key="status_bar_custom_header"
         android:fragment="com.nusantara.wings.fragments.statusbar.QsHeader"
