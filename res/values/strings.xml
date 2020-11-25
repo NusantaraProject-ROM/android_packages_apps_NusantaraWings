@@ -187,6 +187,11 @@
     <string name="network_traffic_disabled">Disabled</string>
     <string name="network_traffic_statusbar">Status bar</string>
     <string name="network_traffic_qs_header">QS header</string>
+    <string name="network_traffic_type">Net activity type</string>
+    <string name="show_network_traffic_dynamic">Dynamic (Up-/Download)</string>
+    <string name="show_network_traffic_up">Upload</string>
+    <string name="show_network_traffic_down">Download</string>
+    <string name="show_network_traffic_all">Both</string>
     <string name="network_traffic_autohide_threshold_title">Auto-hide threshold</string>
     <string name="network_traffic_refresh_interval_title">Refresh interval</string>
 
