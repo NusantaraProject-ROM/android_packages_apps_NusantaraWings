@@ -139,6 +139,7 @@
     <string name="action_app_action">Application</string>
     <string name="action_ringer_modes">Ringer modes</string>
     <string name="kill_app">Kill app</string>
+    <string name="partial_screenshot">Partial screenshot</string>
 
     <!-- HW keys -->
     <string name="hw_keys_swap_title">Swap hardware buttons</string>
