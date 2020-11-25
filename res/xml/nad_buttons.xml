@@ -43,10 +43,10 @@
         android:title="@string/volume_rocker_wake_title"
         android:defaultValue="false" />
 
-    <com.nusantara.support.preferences.SystemSettingSwitchPreference
-        android:key="volume_button_music_control"
-        android:summary="@string/volume_rocker_music_controls_summary"
-        android:title="@string/volume_rocker_music_controls_title"
-        android:defaultValue="false" />
+    <SwitchPreference
+        android:key="volume_rocker_skip_track"
+        android:title="@string/volume_skiptrack_title"
+        android:summary="@string/volume_skiptrack_summary"
+        android:defaultValue="true" />
 
 </PreferenceScreen>
