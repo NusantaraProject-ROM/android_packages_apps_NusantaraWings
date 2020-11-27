@@ -38,4 +38,9 @@
     <dimen name="default_nav_item_text_padding">8dp</dimen>
     <dimen name="default_nav_item_title_max_width">80dp</dimen>
     <dimen name="default_icon_size">26dp</dimen>
+
+    <!-- FOD icon picker -->
+    <dimen name="fod_picker_item_margin">10dp</dimen>
+    <dimen name="fod_picker_item_size">100dp</dimen>
+    <dimen name="fod_picker_item_padding">20dp</dimen>
 </resources>

@@ -36,11 +36,18 @@
         android:summary="@string/fp_unlock_keystore_summary"
         android:defaultValue="false" />
 
+    <!-- FOD icon picker -->
+    <Preference
+        android:key="fod_icon_picker_category"
+        android:title="@string/fod_icon_picker_title"
+        android:summary="@string/fod_icon_picker_summary"
+        android:fragment="com.nusantara.wings.fragments.lockscreen.FODIconPickerFragment" />
+
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="fod_recognizing_animation"
         android:title="@string/fod_recognizing_animation_title"
         android:summary="@string/fod_recognizing_animation_summary"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
     <com.nusantara.support.preferences.SystemSettingListPreference 
         android:key="fod_recognizing_animation_list" 

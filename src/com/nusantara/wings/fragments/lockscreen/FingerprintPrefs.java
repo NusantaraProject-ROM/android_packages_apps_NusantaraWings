@@ -45,8 +45,10 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String FP_KEYSTORE = "fp_unlock_keystore";
+    private static final String FOD_ICON_PICKER_CATEGORY = "fod_icon_picker_category";
 
     private SystemSettingSwitchPreference mFingerprintUnlock;
+    private Preference mFODIconPicker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,13 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
                mFingerprintUnlock.setEnabled(true);
                mFingerprintUnlock.setSummary(R.string.fp_unlock_keystore_summary);
             }
+        }
+
+
+        mFODIconPicker = (Preference) findPreference(FOD_ICON_PICKER_CATEGORY);
+        if (mFODIconPicker != null
+                && !getResources().getBoolean(com.android.internal.R.bool.config_supportsInDisplayFingerprint)) {
+            prefScreen.removePreference(mFODIconPicker);
         }
     }
 
