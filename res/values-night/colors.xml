@@ -16,5 +16,6 @@
 <resources>
 
     <color name="themes_reset_menu_item">#FFFFFFFF</color>
+    <color name="ios_card_bg">#10ffffff</color>
 
 </resources>

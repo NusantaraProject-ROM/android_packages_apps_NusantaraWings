@@ -18,8 +18,9 @@
 
     <!-- Nusantara style -->
     <string-array name="nad_style_color_entries" translatable="false">
-        <item>@string/nad_color_random</item>
+        <item>@string/nad_color_ios</item>
         <item>@string/nad_color_transparent</item>
+        <item>@string/nad_color_random</item>
         <item>@string/nad_color_accent</item>
     </string-array>
 
@@ -27,6 +28,7 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+        <item>3</item>
     </string-array>
 
     <!-- Themes -->

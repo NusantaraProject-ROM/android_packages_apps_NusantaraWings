@@ -20,8 +20,9 @@
     <string name="nusantarawings_title">Nusantara Wings</string>
     <string name="nusantarawings_summary">Get your favorite customization</string>
     <string name="nad_style_title">Nusantara wings background</string>
-    <string name="nad_color_random">Random</string>
+    <string name="nad_color_ios">IOS</string>
     <string name="nad_color_transparent">Transparent</string>
+    <string name="nad_color_random">Random</string>
     <string name="nad_color_accent">Accent</string>
 
     <!-- The Team -->
