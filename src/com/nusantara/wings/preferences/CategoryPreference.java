@@ -78,7 +78,7 @@ public class CategoryPreference extends Preference {
                     Settings.System.NUSANTARA_WINGS_STYLE, 0, UserHandle.USER_CURRENT);
 
         if (nadStyle == 0) {
-            mBG.setImageResource(R.drawable.ios_bg);
+            mBG.setImageResource(R.drawable.ios_card_bg);
         } else if (nadStyle == 1) {
             mBG.setColorFilter(Color.TRANSPARENT);
         } else if (nadStyle == 2) {
