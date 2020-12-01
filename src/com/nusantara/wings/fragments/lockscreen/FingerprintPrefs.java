@@ -30,6 +30,8 @@ import androidx.preference.PreferenceScreen;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.widget.LockPatternUtils;
 
+import com.android.internal.util.nad.NadUtils;
+
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
@@ -45,6 +47,7 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String FP_KEYSTORE = "fp_unlock_keystore";
+    private static final String FOD_ANIMATION_CATEGORY = "fod_animations";
     private static final String FOD_ICON_PICKER_CATEGORY = "fod_icon_picker_category";
 
     private SystemSettingSwitchPreference mFingerprintUnlock;
@@ -74,6 +77,14 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
         if (mFODIconPicker != null
                 && !getResources().getBoolean(com.android.internal.R.bool.config_supportsInDisplayFingerprint)) {
             prefScreen.removePreference(mFODIconPicker);
+        }
+
+        final PreferenceCategory fodCat = (PreferenceCategory) prefScreen
+                .findPreference(FOD_ANIMATION_CATEGORY);
+        final boolean isFodAnimationResources = NadUtils.isPackageInstalled(getContext(),
+                      getResources().getString(com.android.internal.R.string.config_fodAnimationPackage));
+        if (!isFodAnimationResources) {
+            prefScreen.removePreference(fodCat);
         }
     }
 
