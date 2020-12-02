@@ -290,6 +290,7 @@
     <string name="font_type_11">Ubuntu</string>
     <string name="font_type_12">Titillium Web</string>
     <string name="font_type_13">Caviar Dreams</string>
+    <string name="font_type_14">Linotte</string>
 
     <!-- Navbar Picker -->
     <string name="theme_navbar_picker_title">Navbar style</string>

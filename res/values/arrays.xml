@@ -245,6 +245,7 @@
         <item>@string/font_type_11</item>
         <item>@string/font_type_12</item>
         <item>@string/font_type_13</item>
+        <item>@string/font_type_14</item>
     </string-array>
 
     <string-array name="font_type_values">
@@ -261,6 +262,7 @@
         <item>11</item>
         <item>12</item>
         <item>13</item>
+        <item>14</item>
     </string-array>
 
     <!-- Navbar name -->
