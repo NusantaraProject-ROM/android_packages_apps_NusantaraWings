@@ -1018,6 +1018,7 @@
         <item>@string/fod_recog_animation_miui_star_cas</item>
         <item>@string/fod_recog_animation_op_mclaren</item>
         <item>@string/fod_recog_animation_op_ripple</item>
+        <item>@string/fod_recog_animation_op_scanning</item>
         <item>@string/fod_recog_animation_op_stripe</item>
         <item>@string/fod_recog_animation_rog_pulsar</item>
         <item>@string/fod_recog_animation_rog_supernova</item>
@@ -1033,5 +1034,6 @@
         <item>6</item>
         <item>7</item> 
         <item>8</item>
+        <item>9</item>
     </string-array>
 </resources>
