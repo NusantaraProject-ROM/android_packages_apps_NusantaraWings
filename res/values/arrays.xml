@@ -814,4 +814,83 @@
         <item>0</item>
         <item>1</item>
     </string-array>
+
+    <!-- Brightness sliders styles -->
+    <string-array name="brightness_slider_style_selector_entries" translatable="false">
+        <item>@string/brightness_slider_default</item>
+        <item>@string/brightness_slider_type_a</item>
+        <item>@string/brightness_slider_type_b</item>
+        <item>@string/brightness_slider_type_c</item>
+        <item>@string/brightness_slider_type_d</item>
+    </string-array>
+
+    <string-array name="brightness_slider_style_selector_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <!-- Panel Background Style-->
+    <string-array name="panel_bg_titles" translatable="false">
+        <item>@string/panel_default</item>
+        <item>@string/panel_batik</item>
+        <item>@string/panel_kece</item>
+        <item>@string/panel_outline</item>
+    </string-array>
+
+    <string-array name="panel_bg_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    
+    <!-- Qs shapes -->
+    <string-array name="qs_shape_titles">
+        <item>@string/qs_shape_default</item>
+        <item>@string/qs_shape_a</item>
+        <item>@string/qs_shape_b</item>
+        <item>@string/qs_shape_c</item>
+        <item>@string/qs_shape_d</item>
+        <item>@string/qs_shape_e</item>
+        <item>@string/qs_shape_f</item>
+        <item>@string/qs_shape_g</item>
+        <item>@string/qs_shape_h</item>
+        <item>@string/qs_shape_i</item>
+        <item>@string/qs_shape_j</item>
+        <item>@string/qs_shape_k</item>
+        <item>@string/qs_shape_l</item>
+        <item>@string/qs_shape_m</item>
+        <item>@string/qs_shape_n</item>
+        <item>@string/qs_shape_o</item>
+        <item>@string/qs_shape_p</item>
+        <item>@string/qs_shape_q</item>
+        <item>@string/qs_shape_r</item>
+        <item>@string/qs_shape_s</item>
+    </string-array>
+
+    <string-array name="qs_shape_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+    </string-array>
 </resources>

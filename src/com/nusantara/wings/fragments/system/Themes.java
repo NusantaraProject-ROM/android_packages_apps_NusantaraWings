@@ -37,6 +37,7 @@ import androidx.preference.PreferenceScreen;
 
 import com.android.internal.util.nad.ThemesUtils;
 import com.android.internal.util.nad.NadUtils;
+import com.nusantara.wings.UtilsNad;
 
 import com.android.internal.logging.nano.MetricsProto;
 
@@ -64,6 +65,9 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_QS_HEADER_STYLE = "qs_header_style";
     private static final String PREF_ROUNDED_CORNER = "rounded_ui";
     private static final String PREF_SB_HEIGHT = "statusbar_height";
+    private static final String BRIGHTNESS_SLIDER_STYLE = "brightness_slider_style";
+    private static final String PREF_PANEL_BG = "panel_bg";
+    private static final String PREF_QS_SHAPE = "qs_shape";
 
     static final int DEFAULT_ACCENT_COLOR = 0xff1a73e8;
 
@@ -80,6 +84,9 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mQsHeaderStyle;
     private ListPreference mRoundedUi;
     private ListPreference mSbHeight;
+    private ListPreference mBrightnessSliderStyle;
+    private ListPreference mPanelBg;
+    private ListPreference mQsShape;
     private ColorPickerPreference mAccentColor;
 
     @Override
@@ -217,6 +224,38 @@ public class Themes extends SettingsPreferenceFragment
         }
         mSbHeight.setSummary(mSbHeight.getEntry());
         mSbHeight.setOnPreferenceChangeListener(this);
+
+        mBrightnessSliderStyle = (ListPreference) findPreference(BRIGHTNESS_SLIDER_STYLE);
+        int brightnessSliderValue = getOverlayPosition(ThemesUtils.BRIGHTNESS_SLIDER_THEMES);
+        if (brightnessSliderValue != -1) {
+            mBrightnessSliderStyle.setValue(String.valueOf(brightnessSliderValue + 2));
+        } else {
+            mBrightnessSliderStyle.setValue("1");
+        }
+        mBrightnessSliderStyle.setSummary(mBrightnessSliderStyle.getEntry());
+        mBrightnessSliderStyle.setOnPreferenceChangeListener(this);
+
+
+        mPanelBg = (ListPreference) findPreference(PREF_PANEL_BG);
+        int mPanelValue = getOverlayPosition(ThemesUtils.PANEL_BG_STYLE);
+        if (mPanelValue != -1) {
+            mPanelBg.setValue(String.valueOf(mPanelValue + 2));
+        } else {
+            mPanelBg.setValue("1");
+        }
+        mPanelBg.setSummary(mPanelBg.getEntry());
+        mPanelBg.setOnPreferenceChangeListener(this);
+
+        // Qs shape
+        mQsShape = (ListPreference) findPreference(PREF_QS_SHAPE);
+        int qsShapeValue = getOverlayPosition(ThemesUtils.QS_SHAPE);
+        if (qsShapeValue != -1) {
+            mQsShape.setValue(String.valueOf(qsShapeValue + 2));
+        } else {
+            mQsShape.setValue("1");
+        }
+        mQsShape.setSummary(mQsShape.getEntry());
+        mQsShape.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -412,6 +451,50 @@ public class Themes extends SettingsPreferenceFragment
                             true, mOverlayManager);
             }
             mSbHeight.setSummary(mSbHeight.getEntry());
+            return true;
+        } else if (preference == mBrightnessSliderStyle) {
+            String sliderStyle = (String) newValue;
+            int sliderValue = Integer.parseInt(sliderStyle);
+            mBrightnessSliderStyle.setValue(String.valueOf(sliderValue));
+            String overlayName = getOverlayName(ThemesUtils.BRIGHTNESS_SLIDER_THEMES);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (sliderValue > 1) {
+                    handleOverlays(ThemesUtils.BRIGHTNESS_SLIDER_THEMES[sliderValue - 2],
+                            true, mOverlayManager);
+            }
+            mBrightnessSliderStyle.setSummary(mBrightnessSliderStyle.getEntry());
+            return true;
+        } else if (preference == mPanelBg) {
+            String panelbg = (String) newValue;
+            int panelBgValue = Integer.parseInt(panelbg);
+            mPanelBg.setValue(String.valueOf(panelBgValue));
+            String overlayName = getOverlayName(ThemesUtils.PANEL_BG_STYLE);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (panelBgValue > 1) {
+                	UtilsNad.showSystemUiRestartDialog(getContext());
+                    handleOverlays(ThemesUtils.PANEL_BG_STYLE[panelBgValue -2],
+                            true, mOverlayManager);
+                    
+            }
+            mPanelBg.setSummary(mPanelBg.getEntry());
+            return true;
+        } else if (preference == mQsShape) {
+            String qqsShape = (String) newValue;
+            String overlayName = getOverlayName(ThemesUtils.QS_SHAPE);
+            int qqsShapeValue = Integer.parseInt(qqsShape);
+            mQsShape.setValue(String.valueOf(qqsShapeValue));
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (qqsShapeValue > 1) {
+                    handleOverlays(ThemesUtils.QS_SHAPE[qqsShapeValue - 2],
+                            true, mOverlayManager);
+            }
+            mQsShape.setSummary(mQsShape.getEntry());
             return true;
         }
         return false;

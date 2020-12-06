@@ -674,4 +674,44 @@
     <!-- Allow fake signature -->
     <string name="allow_signature_fake">Allow signature spoofing</string>
     <string name="allow_signature_fake_summary">Allow apps to bypass security systems by pretending to be a different app.</string>
+
+    <!-- Brightness Slider style -->
+    <string name="brightness_slider_style_title">Brightness slider style</string>
+    <string name="brightness_slider_default">Default</string>
+    <string name="brightness_slider_type_a">Type A</string>
+    <string name="brightness_slider_type_b">Type B</string>
+    <string name="brightness_slider_type_c">Type C</string>
+    <string name="brightness_slider_type_d">Type D</string>
+
+    <!-- Panel Background style -->
+    <string name="panel_bg_title">Panel background style</string>
+    <string name="panel_bg_dialog_title">Select panel background model</string>
+    <string name="panel_default">Default</string>
+    <string name="panel_batik">Batik</string>
+    <string name="panel_kece">Kece</string>
+    <string name="panel_outline">Outline</string>
+    
+    <!-- Qs shapes -->
+    <string name="qs_shape_default">Default</string>
+    <string name="qs_shape_a">Cloud</string>
+    <string name="qs_shape_b">Orb</string>
+    <string name="qs_shape_c">Paint</string>
+    <string name="qs_shape_d">Balloon</string>
+    <string name="qs_shape_e">Shade</string>
+    <string name="qs_shape_f">File</string>
+    <string name="qs_shape_g">Android Mascot</string>
+    <string name="qs_shape_h">Shield</string>
+    <string name="qs_shape_i">Diamond</string>
+    <string name="qs_shape_j">Shield 2</string>
+    <string name="qs_shape_k">Nusa</string>
+    <string name="qs_shape_l">Sun</string>
+    <string name="qs_shape_m">Rebana</string>
+    <string name="qs_shape_n">Shuriken</string>
+    <string name="qs_shape_o">Sharingan</string>
+    <string name="qs_shape_p">Flower</string>
+    <string name="qs_shape_q">Flower 2</string>
+    <string name="qs_shape_r">Dialog</string>
+    <string name="qs_shape_s">Mesenger</string>
+    <string name="qs_shape_title">Qs Tile Shape</string>
+    <string name="qs_shape_dialog_title">Select qs shape</string>
 </resources>
