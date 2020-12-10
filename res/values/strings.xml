@@ -78,7 +78,7 @@
 
     <!-- Navigation -->
     <string name="buttons_title">Buttons</string>
-    <string name="buttons_summary">Customize the Button options</string>
+    <string name="buttons_summary">Customize the button options</string>
     <string name="navigation_options_title">Navigation</string>
     <string name="navigation_options_summary">Customize the navigation options</string>
     <string name="home_key_title">Home button</string>
@@ -197,7 +197,7 @@
     <string name="double_tap_sleep_gesture_summary">Double tap on the status bar to put the device to sleep</string>
 
     <!-- Network Traffic -->
-    <string name="network_traffic_state_title">Show net activity in expanded statusbar</string>
+    <string name="network_traffic_state_title">Show network traffic</string>
     <string name="network_traffic_location_title">Location</string>
     <string name="network_traffic_statusbar">Status bar</string>
     <string name="network_traffic_qs_header">QS header</string>
@@ -216,11 +216,11 @@
     <string name="qs_tint_random">Random color</string>
     <string name="qs_tint_accent">Accent color</string>
     <string name="qs_disco_mode">Disco</string>
-    <string name="qs_icon_primary_title">Qs Tile Icon Bright|Dark</string>
-    <string name="qs_icon_primary_summary">Make Qs Icon Bright-Dark</string>
+    <string name="qs_icon_primary_title">Qs tile icon bright|dark</string>
+    <string name="qs_icon_primary_summary">Make qs icon bright-dark</string>
 
     <!-- Statusbar Tuner -->
-    <string name="statusbar_items_title">Tuner Statusbar icons</string>
+    <string name="statusbar_items_title">Tuner statusbar icons</string>
     <string name="statusbar_items_summary">Toggle the visibility of icons in statusbar</string>
 
     <!-- Battery Styles -->
