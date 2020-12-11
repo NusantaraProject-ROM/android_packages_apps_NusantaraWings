@@ -928,4 +928,8 @@
     <!-- QS themes -->
     <string name="sysui_colors_active_title">Wallpaper colored scrims</string>
     <string name="sysui_colors_active_summary">Toogle for wallpaper colored scrims</string>
+
+    <!-- QuickSettings haptic feedback -->
+    <string name="quick_settings_vibrate_title">Vibrate on touch</string>
+    <string name="quick_settings_vibrate_summary">Vibrate when touching QS tiles</string>
 </resources>
