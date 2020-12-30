@@ -68,6 +68,7 @@ public class Themes extends SettingsPreferenceFragment
     private static final String BRIGHTNESS_SLIDER_STYLE = "brightness_slider_style";
     private static final String PREF_PANEL_BG = "panel_bg";
     private static final String PREF_QS_SHAPE = "qs_shape";
+    private static final String PREF_SWITCH_STYLE = "switch_style";
 
     static final int DEFAULT_ACCENT_COLOR = 0xff1a73e8;
 
@@ -87,6 +88,7 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mBrightnessSliderStyle;
     private ListPreference mPanelBg;
     private ListPreference mQsShape;
+    private ListPreference mSwitchStyle;
     private ColorPickerPreference mAccentColor;
 
     @Override
@@ -256,6 +258,17 @@ public class Themes extends SettingsPreferenceFragment
         }
         mQsShape.setSummary(mQsShape.getEntry());
         mQsShape.setOnPreferenceChangeListener(this);
+
+        // Switch style
+        mSwitchStyle = (ListPreference) findPreference(PREF_SWITCH_STYLE);
+        int switchStyleValue = getOverlayPosition(ThemesUtils.SWITCH_STYLE);
+        if (switchStyleValue != -1) {
+            mSwitchStyle.setValue(String.valueOf(switchStyleValue + 2));
+        } else {
+            mSwitchStyle.setValue("1");
+        }
+        mSwitchStyle.setSummary(mSwitchStyle.getEntry());
+        mSwitchStyle.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -495,6 +508,20 @@ public class Themes extends SettingsPreferenceFragment
                             true, mOverlayManager);
             }
             mQsShape.setSummary(mQsShape.getEntry());
+            return true;
+        } else if (preference == mSwitchStyle) {
+            String switchStyle = (String) newValue;
+            String overlayName = getOverlayName(ThemesUtils.SWITCH_STYLE);
+            int switchStyleValue = Integer.parseInt(switchStyle);
+            mQsShape.setValue(String.valueOf(switchStyleValue));
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (switchStyleValue > 1) {
+                    handleOverlays(ThemesUtils.SWITCH_STYLE[switchStyleValue - 2],
+                            true, mOverlayManager);
+            }
+            mSwitchStyle.setSummary(mSwitchStyle.getEntry());
             return true;
         }
         return false;

@@ -77,6 +77,13 @@
         android:entryValues="@array/qs_header_style_values" />
 
     <ListPreference
+        android:key="switch_style"
+        android:title="@string/switch_style_title"
+        android:dialogTitle="@string/switch_style_dialog_title"
+        android:entries="@array/switch_style_entries"
+        android:entryValues="@array/switch_style_values" />
+
+    <ListPreference
         android:key="adapative_icon_shape"
         android:title="@string/adaptive_icon_shape_title"
         android:dialogTitle="@string/adaptive_icon_shape_dialog_title"
