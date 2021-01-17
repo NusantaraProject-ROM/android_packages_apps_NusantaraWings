@@ -24,4 +24,10 @@
         android:summary="@string/powermenu_advanced_reboot_summary"
         android:defaultValue="true" />
 
+    <com.nusantara.support.preferences.SecureSettingSwitchPreference
+        android:key="screenshot_in_power_menu"
+        android:title="@string/global_actions_screenshot_title"
+        android:summary="@string/global_actions_screenshot_summary"
+        android:defaultValue="false" />
+
 </PreferenceScreen>
