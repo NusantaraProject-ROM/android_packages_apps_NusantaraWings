@@ -42,7 +42,7 @@ import java.util.List;
 
 import com.nusantara.support.colorpicker.ColorPickerPreference;
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
-import com.nusantara.support.preferences.SystemSettingSeekBarPreference;
+import com.nusantara.support.preferences.CustomSeekBarPreference;
 import com.nusantara.support.preferences.GlobalSettingMasterSwitchPreference;
 
 import com.nusantara.wings.UtilsNad;
@@ -55,21 +55,22 @@ public class Notifications extends SettingsPreferenceFragment
     private static final String CENTER_NOTIFICATION_HEADER = "center_notification_headers";
     private static final String HEADS_UP_NOTIFICATIONS_ENABLED = "heads_up_notifications_enabled";
     // EdgeLight
+    private static final String NOTIFICATION_PULSE_COLOR_MODE = "ambient_notification_light_color_mode";
     private static final String NOTIFICATION_PULSE_COLOR = "ambient_notification_light_color";
-    private static final String AMBIENT_LIGHT_DURATION = "ambient_light_duration";
-    private static final String AMBIENT_LIGHT_REPEAT_COUNT = "ambient_light_repeat_count";
-    private static final String PULSE_COLOR_MODE_PREF = "ambient_notification_light_color_mode";
+    private static final String NOTIFICATION_PULSE_DURATION = "ambient_notification_light_duration";
+    private static final String NOTIFICATION_PULSE_REPEATS = "ambient_notification_light_repeats";
     private static final String KEY_AMBIENT = "ambient_notification_light_enabled";
 
     private GlobalSettingMasterSwitchPreference mHeadsUpEnabled;
     private SystemSettingSwitchPreference mNotificationHeader;
     private SystemSettingSwitchPreference mCenterNotificationHeader;
+
     // EdgeLight
     private ColorPickerPreference mEdgeLightColorPreference;
-    private SystemSettingSeekBarPreference mEdgeLightDurationPreference;
-    private SystemSettingSeekBarPreference mEdgeLightRepeatCountPreference;
+    private CustomSeekBarPreference mEdgeLightDurationPreference;
+    private CustomSeekBarPreference mEdgeLightRepeatCountPreference;
     private SystemSettingSwitchPreference mAmbientPref;
-    private ListPreference mColorMode;
+    private SystemSettingListPreference mEdgeLightColorMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,31 +95,24 @@ public class Notifications extends SettingsPreferenceFragment
                 HEADS_UP_NOTIFICATIONS_ENABLED, 1);
         mHeadsUpEnabled.setChecked(headsUpEnabled != 0);
 
-        mEdgeLightRepeatCountPreference = (SystemSettingSeekBarPreference) findPreference(AMBIENT_LIGHT_REPEAT_COUNT);
+        mEdgeLightRepeatCountPreference = (CustomSeekBarPreference) findPreference(NOTIFICATION_PULSE_REPEATS);
         mEdgeLightRepeatCountPreference.setOnPreferenceChangeListener(this);
-        int rCount = Settings.System.getInt(getContentResolver(),
-                Settings.System.AMBIENT_LIGHT_REPEAT_COUNT, 0);
-        mEdgeLightRepeatCountPreference.setValue(rCount);
+        int repeats = Settings.System.getInt(getContentResolver(),
+                Settings.System.NOTIFICATION_PULSE_REPEATS, 0);
+        mEdgeLightRepeatCountPreference.setValue(repeats);
 
-        mEdgeLightDurationPreference = (SystemSettingSeekBarPreference) findPreference(AMBIENT_LIGHT_DURATION);
+        mEdgeLightDurationPreference = (CustomSeekBarPreference) findPreference(NOTIFICATION_PULSE_DURATION);
         mEdgeLightDurationPreference.setOnPreferenceChangeListener(this);
         int duration = Settings.System.getInt(getContentResolver(),
-                Settings.System.AMBIENT_LIGHT_DURATION, 2);
+                Settings.System.NOTIFICATION_PULSE_DURATION, 2);
         mEdgeLightDurationPreference.setValue(duration);
 
-        mColorMode = (ListPreference) findPreference(PULSE_COLOR_MODE_PREF);
-        int value;
-        boolean colorModeAutomatic = Settings.System.getInt(getContentResolver(),
-                Settings.System.NOTIFICATION_PULSE_COLOR_AUTOMATIC, 0) != 0;
-        boolean colorModeAccent = Settings.System.getInt(getContentResolver(),
-                Settings.System.NOTIFICATION_PULSE_ACCENT, 0) != 0;
-        if (colorModeAutomatic) {
-            value = 0;
-        } else if (colorModeAccent) {
-            value = 1;
-        } else {
-            value = 2;
-        }
+        mEdgeLightColorMode = (SystemSettingListPreference) findPreference(NOTIFICATION_PULSE_COLOR_MODE);
+        int edgeLightColorMode = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.NOTIFICATION_PULSE_COLOR_MODE, 0, UserHandle.USER_CURRENT);
+        mEdgeLightColorMode.setValue(String.valueOf(edgeLightColorMode));
+        mEdgeLightColorMode.setSummary(mEdgeLightColorMode.getEntry());
+        mEdgeLightColorMode.setOnPreferenceChangeListener(this);
 
         mColorMode.setValue(Integer.toString(value));
         mColorMode.setSummary(mColorMode.getEntry());
@@ -126,11 +120,11 @@ public class Notifications extends SettingsPreferenceFragment
 
         mEdgeLightColorPreference = (ColorPickerPreference) findPreference(NOTIFICATION_PULSE_COLOR);
         int edgeLightColor = Settings.System.getInt(getContentResolver(),
-                Settings.System.NOTIFICATION_PULSE_COLOR, 0xFF3980FF);
+                Settings.System.NOTIFICATION_PULSE_COLOR, 0xFFFFFFFF);
         mEdgeLightColorPreference.setNewPreviewColor(edgeLightColor);
         mEdgeLightColorPreference.setAlphaSliderEnabled(false);
-        String edgeLightColorHex = String.format("#%08x", (0xFF3980FF & edgeLightColor));
-        if (edgeLightColorHex.equals("#ff3980ff")) {
+        String edgeLightColorHex = String.format("#%08x", (0xFFFFFFFF & edgeLightColor));
+        if (edgeLightColorHex.equals("#ffffffff")) {
             mEdgeLightColorPreference.setSummary(R.string.color_default);
         } else {
             mEdgeLightColorPreference.setSummary(edgeLightColorHex);
@@ -170,7 +164,7 @@ public class Notifications extends SettingsPreferenceFragment
         } else if (preference == mEdgeLightColorPreference) {
             String hex = ColorPickerPreference.convertToARGB(
                     Integer.valueOf(String.valueOf(newValue)));
-            if (hex.equals("#ff3980ff")) {
+            if (hex.equals("#ffffffff")) {
                 preference.setSummary(R.string.color_default);
             } else {
                 preference.setSummary(hex);
@@ -180,38 +174,35 @@ public class Notifications extends SettingsPreferenceFragment
                     Settings.System.NOTIFICATION_PULSE_COLOR, intHex);
             return true;
         } else if (preference == mEdgeLightRepeatCountPreference) {
-                int value = (Integer) newValue;
-                Settings.System.putInt(getContentResolver(),
-                        Settings.System.AMBIENT_LIGHT_REPEAT_COUNT, value);
-                return true;
+            int value = (Integer) newValue;
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.NOTIFICATION_PULSE_REPEATS, value, UserHandle.USER_CURRENT);
+            return true;
         } else if (preference == mEdgeLightDurationPreference) {
             int value = (Integer) newValue;
-                Settings.System.putInt(getContentResolver(),
-                    Settings.System.AMBIENT_LIGHT_DURATION, value);
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.NOTIFICATION_PULSE_DURATION, value, UserHandle.USER_CURRENT);
             return true;
-        } else if (preference == mColorMode) {
-             int value = Integer.valueOf((String) newValue);
-            int index = mColorMode.findIndexOfValue((String) newValue);
-            mColorMode.setSummary(mColorMode.getEntries()[index]);
-            if (value == 0) {
-                Settings.System.putInt(getContentResolver(),
-                        Settings.System.NOTIFICATION_PULSE_COLOR_AUTOMATIC, 1);
-                Settings.System.putInt(getContentResolver(),
-                        Settings.System.NOTIFICATION_PULSE_ACCENT, 0);
-            } else if (value == 1) {
-                Settings.System.putInt(getContentResolver(),
-                        Settings.System.NOTIFICATION_PULSE_COLOR_AUTOMATIC, 0);
-                Settings.System.putInt(getContentResolver(),
-                        Settings.System.NOTIFICATION_PULSE_ACCENT, 1);
-            } else {
-                Settings.System.putInt(getContentResolver(),
-                        Settings.System.NOTIFICATION_PULSE_COLOR_AUTOMATIC, 0);
-                Settings.System.putInt(getContentResolver(),
-                        Settings.System.NOTIFICATION_PULSE_ACCENT, 0);
-            }
+        } else if (preference == mEdgeLightColorMode) {
+            int edgeLightColorMode = Integer.valueOf((String) newValue);
+            int index = mEdgeLightColorMode.findIndexOfValue((String) newValue);
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.NOTIFICATION_PULSE_COLOR_MODE, edgeLightColorMode, UserHandle.USER_CURRENT);
+            mEdgeLightColorMode.setSummary(mEdgeLightColorMode.getEntries()[index]);
+            updateColorPrefs(edgeLightColorMode);
             return true;
         }
         return false;
+    }
+
+    private void updateColorPrefs(int edgeLightColorMode) {
+        if (mEdgeLightColor != null) {
+            if (edgeLightColorMode == 3) {
+                getPreferenceScreen().addPreference(mEdgeLightColor);
+            } else {
+                getPreferenceScreen().removePreference(mEdgeLightColor);
+            }
+        }
     }
 
     @Override

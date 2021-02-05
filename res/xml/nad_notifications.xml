@@ -113,10 +113,10 @@
             android:summary="@string/ambient_notification_light_color_summary"
             android:title="@string/ambient_notification_light_color_title"
             ledPreview="true"
-            android:defaultValue="0xFF3980FF" />
+            android:defaultValue="0xFFFFFFFF" />
 
-        <com.nusantara.support.preferences.SystemSettingSeekBarPreference
-            android:key="ambient_light_duration"
+        <com.nusantara.support.preferences.CustomSeekBarPreference
+            android:key="ambient_notification_light_duration"
             android:title="@string/pulse_ambient_light_duration_title"
             android:summary="@string/pulse_ambient_light_duration_summary"
             android:persistent="false"
@@ -127,8 +127,8 @@
             settings:interval="1"
             android:dependency="pulse_ambient_light" />
 
-        <com.nusantara.support.preferences.SystemSettingSeekBarPreference
-            android:key="ambient_light_repeat_count"
+        <com.nusantara.support.preferences.CustomSeekBarPreference
+            android:key="ambient_notification_light_repeats"
             android:title="@string/pulse_ambient_light_repeat_count_title"
             android:summary="@string/pulse_ambient_light_repeat_count_summary"
             android:persistent="false"
