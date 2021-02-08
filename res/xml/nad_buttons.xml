@@ -43,12 +43,6 @@
         android:title="@string/volume_rocker_wake_title"
         android:defaultValue="false" />
 
-    <SwitchPreference
-        android:key="volume_rocker_skip_track"
-        android:title="@string/volume_skiptrack_title"
-        android:summary="@string/volume_skiptrack_summary"
-        android:defaultValue="true" />
-
     <com.nusantara.support.preferences.SystemSettingSeekBarPreference
         android:key="audio_panel_view_timeout"
         android:title="@string/volume_dialog_timeout_title"

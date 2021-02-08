@@ -365,10 +365,6 @@
     <string name="qs_header_style_title">QS Header style</string>
     <string name="qs_header_style_dialog_title">Select QS header style set</string>
 
-    <!-- Volume rocker gestures -->
-    <string name="volume_skiptrack_title">Volume rocker skip tracks</string>
-    <string name="volume_skiptrack_summary">Long press the volume rocker to skip tracks when playing music, even remotely on tv or PC with e.g. Spotify (app must run on the phone and show the notification).</string>
-
     <!-- Lockscreen battery info indicator  -->
     <string name="lockscreen_battery_info_title">Lockscreen charging info</string>
     <string name="lockscreen_battery_info_summary">Display negociated charger max current and voltage and battery temperature on lockscreen while charging</string>
