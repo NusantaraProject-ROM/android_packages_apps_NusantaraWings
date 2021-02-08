@@ -53,7 +53,7 @@
     <bool name="has_misc_options">true</bool>
 
     <!-- Whether to display power menu category -->
-    <bool name="has_powermenu">false</bool>
+    <bool name="has_powermenu">true</bool>
 
     <!-- Whether to display themes category -->
     <bool name="has_themes">true</bool>
