@@ -51,8 +51,6 @@ public class IconManager extends SettingsPreferenceFragment
     private SwitchPreference mUseOldMobileType;
     private ListPreference mLogoStyle;
 
-    private boolean mConfigUseOldMobileType;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,11 +72,9 @@ public class IconManager extends SettingsPreferenceFragment
         mLogoStyle.setSummary(mLogoStyle.getEntry());
         mLogoStyle.setOnPreferenceChangeListener(this);
 
-        mConfigUseOldMobileType = getResources().getBoolean(com.android.internal.R.bool.config_useOldMobileIcons);
-        int useOldMobileIcons = (!mConfigUseOldMobileType ? 1 : 0);
         mUseOldMobileType = (SwitchPreference) findPreference(KEY_USE_OLD_MOBILETYPE);
         mUseOldMobileType.setChecked((Settings.System.getInt(resolver,
-                Settings.System.USE_OLD_MOBILETYPE, useOldMobileIcons) == 1));
+                Settings.System.USE_OLD_MOBILETYPE, 0) == 1));
         mUseOldMobileType.setOnPreferenceChangeListener(this);
     }
 
