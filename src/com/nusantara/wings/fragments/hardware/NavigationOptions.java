@@ -344,12 +344,12 @@ public class NavigationOptions extends SettingsPreferenceFragment
 
         mLeftSwipeAppSelection = (Preference) findPreference(KEY_LEFT_SWIPE_APP_ACTION);
         boolean isAppSelection = Settings.System.getIntForUser(resolver,
-                Settings.System.LEFT_LONG_BACK_SWIPE_ACTION, 0, UserHandle.USER_CURRENT) == 5/*action_app_action*/;
+                Settings.System.LEFT_LONG_BACK_SWIPE_ACTION, 0, UserHandle.USER_CURRENT) == 2/*action_app_action*/;
         mLeftSwipeAppSelection.setEnabled(isAppSelection);
 
         mRightSwipeAppSelection = (Preference) findPreference(KEY_RIGHT_SWIPE_APP_ACTION);
         isAppSelection = Settings.System.getIntForUser(resolver,
-                Settings.System.RIGHT_LONG_BACK_SWIPE_ACTION, 0, UserHandle.USER_CURRENT) == 5/*action_app_action*/;
+                Settings.System.RIGHT_LONG_BACK_SWIPE_ACTION, 0, UserHandle.USER_CURRENT) == 2/*action_app_action*/;
         mRightSwipeAppSelection.setEnabled(isAppSelection);
 
         int leftVerticalSwipeActions = Settings.System.getIntForUser(resolver,
@@ -370,12 +370,12 @@ public class NavigationOptions extends SettingsPreferenceFragment
 
         mLeftVerticalSwipeAppSelection = (Preference) findPreference(KEY_LEFT_VERTICAL_SWIPE_APP_ACTION);
         isAppSelection = Settings.System.getIntForUser(resolver,
-                Settings.System.LEFT_VERTICAL_BACK_SWIPE_ACTION, 0, UserHandle.USER_CURRENT) == 5/*action_app_action*/;
+                Settings.System.LEFT_VERTICAL_BACK_SWIPE_ACTION, 0, UserHandle.USER_CURRENT) == 2/*action_app_action*/;
         mLeftVerticalSwipeAppSelection.setEnabled(isAppSelection);
 
         mRightVerticalSwipeAppSelection = (Preference) findPreference(KEY_RIGHT_VERTICAL_SWIPE_APP_ACTION);
         isAppSelection = Settings.System.getIntForUser(resolver,
-                Settings.System.RIGHT_VERTICAL_BACK_SWIPE_ACTION, 0, UserHandle.USER_CURRENT) == 5/*action_app_action*/;
+                Settings.System.RIGHT_VERTICAL_BACK_SWIPE_ACTION, 0, UserHandle.USER_CURRENT) == 2/*action_app_action*/;
         mRightVerticalSwipeAppSelection.setEnabled(isAppSelection);
 
         mTimeout = (SystemSettingListPreference) findPreference(KEY_LONG_BACK_SWIPE_TIMEOUT);
@@ -435,13 +435,13 @@ public class NavigationOptions extends SettingsPreferenceFragment
         mAppSwitchDoubleTapCustomApp.setVisible(mAppSwitchDoubleTap.getEntryValues()
                 [appswitchdoubletap].equals("16"));
         mLeftSwipeAppSelection.setVisible(mLeftSwipeActions.getEntryValues()
-                [leftSwipeActions].equals("5"));
+                [leftSwipeActions].equals("2"));
         mRightSwipeAppSelection.setVisible(mRightSwipeActions.getEntryValues()
-                [rightSwipeActions].equals("5"));
+                [rightSwipeActions].equals("2"));
         mLeftVerticalSwipeAppSelection.setVisible(mLeftVerticalSwipeActions.getEntryValues()
-                [leftVerticalSwipeActions].equals("5"));
+                [leftVerticalSwipeActions].equals("2"));
         mRightVerticalSwipeAppSelection.setVisible(mRightVerticalSwipeActions.getEntryValues()
-                [rightVerticalSwipeActions].equals("5"));
+                [rightVerticalSwipeActions].equals("2"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -592,7 +592,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
             int index = mLeftSwipeActions.findIndexOfValue((String) objValue);
             mLeftSwipeActions.setSummary(
                     mLeftSwipeActions.getEntries()[index]);
-            mLeftSwipeAppSelection.setEnabled(leftSwipeActions == 5);
+            mLeftSwipeAppSelection.setEnabled(leftSwipeActions == 2);
             actionPreferenceReload();
             customAppCheck();
             return true;
@@ -604,7 +604,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
             int index = mRightSwipeActions.findIndexOfValue((String) objValue);
             mRightSwipeActions.setSummary(
                     mRightSwipeActions.getEntries()[index]);
-            mRightSwipeAppSelection.setEnabled(rightSwipeActions == 5);
+            mRightSwipeAppSelection.setEnabled(rightSwipeActions == 2);
             actionPreferenceReload();
             customAppCheck();
             return true;
@@ -622,7 +622,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
             int index = mLeftVerticalSwipeActions.findIndexOfValue((String) objValue);
             mLeftVerticalSwipeActions.setSummary(
                     mLeftVerticalSwipeActions.getEntries()[index]);
-            mLeftVerticalSwipeAppSelection.setEnabled(leftVerticalSwipeActions == 5);
+            mLeftVerticalSwipeAppSelection.setEnabled(leftVerticalSwipeActions == 2);
             actionPreferenceReload();
             customAppCheck();
             return true;
@@ -634,7 +634,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
             int index = mRightVerticalSwipeActions.findIndexOfValue((String) objValue);
             mRightVerticalSwipeActions.setSummary(
                     mRightVerticalSwipeActions.getEntries()[index]);
-            mRightVerticalSwipeAppSelection.setEnabled(rightVerticalSwipeActions == 5);
+            mRightVerticalSwipeAppSelection.setEnabled(rightVerticalSwipeActions == 2);
             actionPreferenceReload();
             customAppCheck();
             return true;
@@ -832,14 +832,14 @@ public class NavigationOptions extends SettingsPreferenceFragment
         mRightVerticalSwipeActions.setSummary(mRightVerticalSwipeActions.getEntry());
 
         mLeftSwipeAppSelection.setVisible(mLeftSwipeActions.getEntryValues()
-                [leftSwipeActions].equals("5"));
+                [leftSwipeActions].equals("2"));
         mRightSwipeAppSelection.setVisible(mRightSwipeActions.getEntryValues()
-                [rightSwipeActions].equals("5"));
+                [rightSwipeActions].equals("2"));
 
         mLeftVerticalSwipeAppSelection.setVisible(mLeftVerticalSwipeActions.getEntryValues()
-                [leftVerticalSwipeActions].equals("5"));
+                [leftVerticalSwipeActions].equals("2"));
         mRightVerticalSwipeAppSelection.setVisible(mRightVerticalSwipeActions.getEntryValues()
-                [rightVerticalSwipeActions].equals("5"));
+                [rightVerticalSwipeActions].equals("2"));
     }
 
     @Override
