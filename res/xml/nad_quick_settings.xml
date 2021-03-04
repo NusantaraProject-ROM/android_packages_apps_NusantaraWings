@@ -123,7 +123,7 @@
             android:summary="@string/qs_footer_edit_summary"
             android:defaultValue="true" />
 
-        <com.nusantara.support.preferences.SecureSettingSwitchPreference
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
             android:key="qs_show_drag_handle"
             android:title="@string/qs_show_drag_handle_title"
             android:summary="@string/qs_show_drag_handle_summary"
