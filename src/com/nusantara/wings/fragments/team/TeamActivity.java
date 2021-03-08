@@ -52,7 +52,7 @@ public class TeamActivity extends Activity {
         setTeamMember("Muhammad Fikri", getString(R.string.developer_title)
                 + " / " + getString(R.string.maintainer_title), "Genkzsz11", "Genkzsz11", 
                 R.drawable.genkzsz11);
-        setTeamMember("Shrimp Guy", getString(R.string.developer_title)
+        setTeamMember("Rafi Ramadhan 🦈", getString(R.string.developer_title)
                 + " / " + getString(R.string.maintainer_title), "Rafiester", "Rafiester", 
                 R.drawable.rafiester);
         setTeamMember("Rizky Benggolo", getString(R.string.developer_title)
@@ -66,7 +66,7 @@ public class TeamActivity extends Activity {
                 R.drawable.aoihara);
         setTeamMember("Hatsune", getString(R.string.maintainer_title), "Hatsune71", "hats721",
                 R.drawable.hatsune);
-        setTeamMember("Icecream", getString(R.string.maintainer_title), "1cecreamm", "iicecreamm",
+        setTeamMember("Alien Icecream", getString(R.string.maintainer_title), "1cecreamm", "whothefvckareyou",
                 R.drawable.icecream);
         setTeamMember("Kry9toN", getString(R.string.maintainer_title), "Kry9toN", "Kry9toN",
                 R.drawable.kry9ton);
@@ -94,7 +94,7 @@ public class TeamActivity extends Activity {
                 R.drawable.heinz);
         setTeamMember("Hiitagiii", getString(R.string.maintainer_title), "azrim", "Hiitagiii",
                 R.drawable.hitagi);
-        setTeamMember("Muhammad Fauzan", getString(R.string.maintainer_title), "buglessx", "mhmmdfauzans",
+        setTeamMember("Muhammad Fauzan", getString(R.string.maintainer_title), "buglessx", "xzanxz",
                 R.drawable.mfauzan);
         setTeamMember("MocaRafee", getString(R.string.maintainer_title), "Mocarafee", "yuu_ak12",
                 R.drawable.moca);
