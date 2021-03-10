@@ -6,6 +6,6 @@
     android:viewportHeight="24">
 
     <path
-        android:fillColor="#fff"
+        android:fillColor="@color/dt_battery_options_color"
         android:pathData="M16.4,4.2h-1.6V2.6c0-0.7-0.5-1.2-1.2-1.2h-3.2c-0.7,0-1.2,0.5-1.2,1.2v1.6H7.6c-0.7,0-1.2,0.5-1.2,1.2v16 c0,0.7,0.5,1.2,1.2,1.2h8.8c0.7,0,1.2-0.5,1.2-1.2v-16C17.6,4.7,17.1,4.2,16.4,4.2z M11.6,3.8h0.8v0.4h-0.8V3.8z M15.2,20.2H8.8V6.6 h6.4V20.2z" />
 </vector>
