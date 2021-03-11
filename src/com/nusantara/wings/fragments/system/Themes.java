@@ -16,45 +16,46 @@
 
 package com.nusantara.wings.fragments.system;
 
-import static com.nusantara.wings.UtilsThemes.handleBackgrounds;
-import static com.nusantara.wings.UtilsThemes.handleOverlays;
-import static com.nusantara.wings.UtilsThemes.threeButtonNavbarEnabled;
-
+import android.app.Dialog;
 import android.app.UiModeManager;
 import android.content.Context;
-import android.content.ContentResolver;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.om.IOverlayManager;
 import android.os.Bundle;
-import android.os.UserHandle;
 import android.os.ServiceManager;
-import android.provider.Settings;
+import android.os.UserHandle;
 import android.provider.SearchIndexableResource;
+import android.provider.Settings;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
 
-import com.android.internal.util.nad.ThemesUtils;
-import com.android.internal.util.nad.NadUtils;
-import com.nusantara.wings.UtilsNad;
-
 import com.android.internal.logging.nano.MetricsProto;
-
+import com.android.internal.util.nad.NadUtils;
+import com.android.internal.util.nad.ThemesUtils;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settingslib.search.SearchIndexable;
 import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settingslib.search.SearchIndexable;
+import com.nusantara.support.colorpicker.ColorPickerPreference;
+import com.nusantara.wings.UtilsNad;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nusantara.support.colorpicker.ColorPickerPreference;
+import static com.nusantara.wings.UtilsThemes.handleBackgrounds;
+import static com.nusantara.wings.UtilsThemes.handleOverlays;
+import static com.nusantara.wings.UtilsThemes.threeButtonNavbarEnabled;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class Themes extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
+    static final int DEFAULT_ACCENT_COLOR = 0xff1a73e8;
     private static final String PREF_THEME_SWITCH = "theme_switch";
     private static final String PREF_THEME_ACCENT_PICKER = "theme_accent_picker";
     private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
@@ -69,13 +70,10 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_PANEL_BG = "panel_bg";
     private static final String PREF_QS_SHAPE = "qs_shape";
     private static final String PREF_SWITCH_STYLE = "switch_style";
-
-    static final int DEFAULT_ACCENT_COLOR = 0xff1a73e8;
-
+    private static final String PREF_SETTINGS_THEMES = "themes_settings";
     private Context mContext;
     private IOverlayManager mOverlayManager;
     private UiModeManager mUiModeManager;
-
     private ListPreference mThemeSwitch;
     private ListPreference mAccentPicker;
     private ListPreference mAdaptiveIconShape;
@@ -90,6 +88,7 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mQsShape;
     private ListPreference mSwitchStyle;
     private ColorPickerPreference mAccentColor;
+    private Preference mThemesSettings;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -269,73 +268,126 @@ public class Themes extends SettingsPreferenceFragment
         }
         mSwitchStyle.setSummary(mSwitchStyle.getEntry());
         mSwitchStyle.setOnPreferenceChangeListener(this);
+
+        // Settings themes
+        mThemesSettings = (Preference) findPreference(PREF_SETTINGS_THEMES);
+        mThemesSettings.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            public boolean onPreferenceClick(Preference pref) {
+                Dialog dialog = new Dialog(getActivity());
+                dialog.setCancelable(true);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+                View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_settings, null);
+                dialog.setContentView(view);
+                RadioButton a = (RadioButton) view.findViewById(R.id.themes_a);
+                RadioButton def = (RadioButton) view.findViewById(R.id.themes_default);
+                Button ok = view.findViewById(R.id.button_oke);
+
+                SharedPreferences sharedPreferences = mContext.getSharedPreferences("PrefsFile", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                Boolean val = sharedPreferences.getBoolean("tema_satu", true);
+                Boolean val2 = sharedPreferences.getBoolean("tema_def", true);
+                if (val){
+                     def.setChecked(false);
+                } else if (val2) {
+                     a.setChecked(false);
+                }
+                dialog.show();
+                
+                if (a.isChecked()) {
+                     def.setChecked(false);
+                 } else if (def.isChecked()) {
+                     a.setChecked(false);
+                 }
+                ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (a.isChecked()) {
+                            editor.putBoolean("tema_satu", true);
+                            editor.putBoolean("tema_def", false);
+                            editor.putString("tema", "TEMA_SATU");
+                            editor.commit();
+                            editor.apply();
+                        } else if (def.isChecked()) {
+                            editor.putBoolean("tema_def", true);
+                            editor.putBoolean("tema_satu", false);
+                            editor.putString("tema", "TEMA_DEFAULT");
+                            editor.commit();
+                            editor.apply();
+                        }
+                        dialog.dismiss();
+                    }
+                });
+                return false;
+            }
+        });
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mThemeSwitch) {
             String themeSwitch = (String) newValue;
-                switch (themeSwitch) {
-                    case "1":
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
-                                ThemesUtils.PITCH_BLACK, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
-                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
-                                ThemesUtils.NAD_CLEAR, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
-                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
-                        break;
-                    case "2":
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.PITCH_BLACK, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.NAD_CLEAR, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
-                        break;
-                    case "3":
-                        handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.PITCH_BLACK, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.NAD_CLEAR, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
-                        break;
-                    case "4":
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.PITCH_BLACK, mOverlayManager);
-                        handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.NAD_CLEAR, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
-                        break;
-                    case "5":
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.PITCH_BLACK, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
-                        handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.NAD_CLEAR, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
-                        break;
-                    case "6":
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.PITCH_BLACK, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
-                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.NAD_CLEAR, mOverlayManager);
-                        handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
-                                ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
-                        break;
+            switch (themeSwitch) {
+                case "1":
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                            ThemesUtils.PITCH_BLACK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                            ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                            ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                            ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
+                    break;
+                case "2":
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.PITCH_BLACK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
+                    break;
+                case "3":
+                    handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.PITCH_BLACK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
+                    break;
+                case "4":
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.PITCH_BLACK, mOverlayManager);
+                    handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
+                    break;
+                case "5":
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.PITCH_BLACK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                    handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
+                    break;
+                case "6":
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.PITCH_BLACK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
+                    break;
             }
             mThemeSwitch.setSummary(mThemeSwitch.getEntry());
             return true;
@@ -344,12 +396,12 @@ public class Themes extends SettingsPreferenceFragment
             int accentPickerValue = Integer.parseInt(accentStyle);
             mAccentPicker.setValue(String.valueOf(accentPickerValue));
             String overlayName = getOverlayName(ThemesUtils.ACCENTS);
-                if (overlayName != null) {
-                    handleOverlays(overlayName, false, mOverlayManager);
-                }
-                if (accentPickerValue > 1) {
-                    handleOverlays(ThemesUtils.ACCENTS[accentPickerValue - 2],
-                            true, mOverlayManager);
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (accentPickerValue > 1) {
+                handleOverlays(ThemesUtils.ACCENTS[accentPickerValue - 2],
+                        true, mOverlayManager);
             }
             mAccentPicker.setSummary(mAccentPicker.getEntry());
             return true;
@@ -358,12 +410,12 @@ public class Themes extends SettingsPreferenceFragment
             String overlayName = getOverlayName(ThemesUtils.STATUSBAR_ICONS);
             int statusbarIconsValue = Integer.parseInt(statusbarIcons);
             mStatusbarIcons.setValue(String.valueOf(statusbarIconsValue));
-                if (overlayName != null) {
-                    handleOverlays(overlayName, false, mOverlayManager);
-                }
-                if (statusbarIconsValue > 1) {
-                    handleOverlays(ThemesUtils.STATUSBAR_ICONS[statusbarIconsValue - 2],
-                            true, mOverlayManager);
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (statusbarIconsValue > 1) {
+                handleOverlays(ThemesUtils.STATUSBAR_ICONS[statusbarIconsValue - 2],
+                        true, mOverlayManager);
             }
             mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
             return true;
@@ -372,12 +424,12 @@ public class Themes extends SettingsPreferenceFragment
             String overlayName = getOverlayName(ThemesUtils.ADAPTIVE_ICON_SHAPE);
             int adapativeIconShapeValue = Integer.parseInt(adapativeIconShape);
             mAdaptiveIconShape.setValue(String.valueOf(adapativeIconShapeValue));
-                if (overlayName != null) {
-                    handleOverlays(overlayName, false, mOverlayManager);
-                }
-                if (adapativeIconShapeValue > 1) {
-                    handleOverlays(ThemesUtils.ADAPTIVE_ICON_SHAPE[adapativeIconShapeValue - 2],
-                            true, mOverlayManager);
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (adapativeIconShapeValue > 1) {
+                handleOverlays(ThemesUtils.ADAPTIVE_ICON_SHAPE[adapativeIconShapeValue - 2],
+                        true, mOverlayManager);
             }
             mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
             return true;
@@ -400,12 +452,12 @@ public class Themes extends SettingsPreferenceFragment
             int navbarStyleValue = Integer.parseInt(navbarStyle);
             mNavbarPicker.setValue(String.valueOf(navbarStyleValue));
             String overlayName = getOverlayName(ThemesUtils.NAVBAR_STYLES);
-                if (overlayName != null) {
-                    handleOverlays(overlayName, false, mOverlayManager);
-                }
-                if (navbarStyleValue > 1) {
-                    handleOverlays(ThemesUtils.NAVBAR_STYLES[navbarStyleValue - 2],
-                            true, mOverlayManager);
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (navbarStyleValue > 1) {
+                handleOverlays(ThemesUtils.NAVBAR_STYLES[navbarStyleValue - 2],
+                        true, mOverlayManager);
             }
             mNavbarPicker.setSummary(mNavbarPicker.getEntry());
             return true;
@@ -428,12 +480,12 @@ public class Themes extends SettingsPreferenceFragment
             int qsHeaderStyleValue = Integer.parseInt(qsHeaderStyle);
             mQsHeaderStyle.setValue(String.valueOf(qsHeaderStyleValue));
             String overlayName = getOverlayName(ThemesUtils.QS_HEADER_THEMES);
-                if (overlayName != null) {
-                    handleOverlays(overlayName, false, mOverlayManager);
-                }
-                if (qsHeaderStyleValue > 1) {
-                    handleOverlays(ThemesUtils.QS_HEADER_THEMES[qsHeaderStyleValue -2],
-                            true, mOverlayManager);
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (qsHeaderStyleValue > 1) {
+                handleOverlays(ThemesUtils.QS_HEADER_THEMES[qsHeaderStyleValue - 2],
+                        true, mOverlayManager);
             }
             mQsHeaderStyle.setSummary(mQsHeaderStyle.getEntry());
             return true;
@@ -442,12 +494,12 @@ public class Themes extends SettingsPreferenceFragment
             int roundedValue = Integer.parseInt(rounded);
             mRoundedUi.setValue(String.valueOf(roundedValue));
             String overlayName = getOverlayName(ThemesUtils.UI_RADIUS);
-                if (overlayName != null) {
-                    handleOverlays(overlayName, false, mOverlayManager);
-                }
-                if (roundedValue > 1) {
-                    handleOverlays(ThemesUtils.UI_RADIUS[roundedValue -2],
-                            true, mOverlayManager);
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (roundedValue > 1) {
+                handleOverlays(ThemesUtils.UI_RADIUS[roundedValue - 2],
+                        true, mOverlayManager);
             }
             mRoundedUi.setSummary(mRoundedUi.getEntry());
             return true;
@@ -456,12 +508,12 @@ public class Themes extends SettingsPreferenceFragment
             int sbheightValue = Integer.parseInt(sbheight);
             mSbHeight.setValue(String.valueOf(sbheightValue));
             String overlayName = getOverlayName(ThemesUtils.STATUSBAR_HEIGHT);
-                if (overlayName != null) {
-                    handleOverlays(overlayName, false, mOverlayManager);
-                }
-                if (sbheightValue > 1) {
-                    handleOverlays(ThemesUtils.STATUSBAR_HEIGHT[sbheightValue -2],
-                            true, mOverlayManager);
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (sbheightValue > 1) {
+                handleOverlays(ThemesUtils.STATUSBAR_HEIGHT[sbheightValue - 2],
+                        true, mOverlayManager);
             }
             mSbHeight.setSummary(mSbHeight.getEntry());
             return true;
@@ -470,12 +522,12 @@ public class Themes extends SettingsPreferenceFragment
             int sliderValue = Integer.parseInt(sliderStyle);
             mBrightnessSliderStyle.setValue(String.valueOf(sliderValue));
             String overlayName = getOverlayName(ThemesUtils.BRIGHTNESS_SLIDER_THEMES);
-                if (overlayName != null) {
-                    handleOverlays(overlayName, false, mOverlayManager);
-                }
-                if (sliderValue > 1) {
-                    handleOverlays(ThemesUtils.BRIGHTNESS_SLIDER_THEMES[sliderValue - 2],
-                            true, mOverlayManager);
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (sliderValue > 1) {
+                handleOverlays(ThemesUtils.BRIGHTNESS_SLIDER_THEMES[sliderValue - 2],
+                        true, mOverlayManager);
             }
             mBrightnessSliderStyle.setSummary(mBrightnessSliderStyle.getEntry());
             return true;
@@ -484,14 +536,14 @@ public class Themes extends SettingsPreferenceFragment
             int panelBgValue = Integer.parseInt(panelbg);
             mPanelBg.setValue(String.valueOf(panelBgValue));
             String overlayName = getOverlayName(ThemesUtils.PANEL_BG_STYLE);
-                if (overlayName != null) {
-                    handleOverlays(overlayName, false, mOverlayManager);
-                }
-                if (panelBgValue > 1) {
-                	UtilsNad.showSystemUiRestartDialog(getContext());
-                    handleOverlays(ThemesUtils.PANEL_BG_STYLE[panelBgValue -2],
-                            true, mOverlayManager);
-                    
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (panelBgValue > 1) {
+                UtilsNad.showSystemUiRestartDialog(getContext());
+                handleOverlays(ThemesUtils.PANEL_BG_STYLE[panelBgValue - 2],
+                        true, mOverlayManager);
+
             }
             mPanelBg.setSummary(mPanelBg.getEntry());
             return true;
@@ -500,12 +552,12 @@ public class Themes extends SettingsPreferenceFragment
             String overlayName = getOverlayName(ThemesUtils.QS_SHAPE);
             int qqsShapeValue = Integer.parseInt(qqsShape);
             mQsShape.setValue(String.valueOf(qqsShapeValue));
-                if (overlayName != null) {
-                    handleOverlays(overlayName, false, mOverlayManager);
-                }
-                if (qqsShapeValue > 1) {
-                    handleOverlays(ThemesUtils.QS_SHAPE[qqsShapeValue - 2],
-                            true, mOverlayManager);
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (qqsShapeValue > 1) {
+                handleOverlays(ThemesUtils.QS_SHAPE[qqsShapeValue - 2],
+                        true, mOverlayManager);
             }
             mQsShape.setSummary(mQsShape.getEntry());
             return true;
@@ -514,12 +566,12 @@ public class Themes extends SettingsPreferenceFragment
             String overlayName = getOverlayName(ThemesUtils.SWITCH_STYLE);
             int switchStyleValue = Integer.parseInt(switchStyle);
             mQsShape.setValue(String.valueOf(switchStyleValue));
-                if (overlayName != null) {
-                    handleOverlays(overlayName, false, mOverlayManager);
-                }
-                if (switchStyleValue > 1) {
-                    handleOverlays(ThemesUtils.SWITCH_STYLE[switchStyleValue - 2],
-                            true, mOverlayManager);
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (switchStyleValue > 1) {
+                handleOverlays(ThemesUtils.SWITCH_STYLE[switchStyleValue - 2],
+                        true, mOverlayManager);
             }
             mSwitchStyle.setSummary(mSwitchStyle.getEntry());
             return true;
@@ -558,7 +610,7 @@ public class Themes extends SettingsPreferenceFragment
             new BaseSearchIndexProvider() {
                 @Override
                 public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
-                        boolean enabled) {
+                                                                            boolean enabled) {
                     ArrayList<SearchIndexableResource> result =
                             new ArrayList<SearchIndexableResource>();
 
@@ -572,6 +624,6 @@ public class Themes extends SettingsPreferenceFragment
                 public List<String> getNonIndexableKeys(Context context) {
                     List<String> keys = super.getNonIndexableKeys(context);
                     return keys;
-        }
-    };
+                }
+            };
 }

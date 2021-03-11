@@ -137,4 +137,16 @@
             android:entryValues="@array/rounded_ui_values" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="settings_themes"
+        android:title="Settings Interface" >
+    
+    <Preference 
+            android:key="themes_settings"
+            android:title="Settings Themes"
+            android:summary="Choose your favorite settings interface"
+            /> 
+            
+    </PreferenceCategory>
 </PreferenceScreen>
