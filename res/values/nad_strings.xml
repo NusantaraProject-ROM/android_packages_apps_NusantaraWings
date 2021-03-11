@@ -561,13 +561,14 @@
     <string name="volume_panel_compat">Compat</string>
     <string name="volume_panel_oreo">Oreo</string>
     <string name="volume_panel_tiled">Tiled</string>
+    <string name="volume_panel_miui">MIUI Compact</string>
     <!--  Volume Panel Plugin Values   -->
     <string name="volume_panel_aospa_val">com.android.systemui.volume</string>
     <string name="volume_panel_aosp_val">co.potatoproject.plugin.volume.aosp</string>
     <string name="volume_panel_compat_val">co.potatoproject.plugin.volume.compact</string>
     <string name="volume_panel_oreo_val">co.potatoproject.plugin.volume.oreo</string>
     <string name="volume_panel_tiled_val">co.potatoproject.plugin.volume.tiled</string>
-
+    <string name="volume_panel_miui_val" translatable="false">com.kangos.plugin.volume.miui</string>
     <!-- Flashlight gestures -->
     <string name="double_tap_power_flashlight_title">Screen off power button torch</string>
     <string name="torch_power_button_gesture_none">Disabled</string>
