@@ -1071,4 +1071,11 @@
     <string name="sensor_block_app_picker_title">Block sensors for these apps</string> 
     <string name="add_sensor_block_package_title">Add apps for Sensor block</string>
     <string name="add_sensor_block_package_summary">Significant motion, accelerometer, linear acceleration sensors will be blocked for these apps</string>
+
+    <!-- Global Actions -->
+    <string name="global_actions_users_choice_title">Optional user action</string>
+    <string name="global_actions_flashlight_title">Flashlight</string>
+    <string name="global_actions_screenshot_title">Screenshot</string>
+    <string name="global_actions_screenrecord_title">Screenrecord</string>
+    <string name="global_actions_none_title">None</string>
 </resources>
