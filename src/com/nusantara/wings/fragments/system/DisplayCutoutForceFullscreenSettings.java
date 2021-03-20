@@ -36,6 +36,7 @@ import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.internal.util.custom.cutout.CutoutFullscreenController;
@@ -52,7 +53,6 @@ import java.util.Map;
 public class DisplayCutoutForceFullscreenSettings extends SettingsPreferenceFragment
         implements ApplicationsState.Callbacks {
 
-    private ActivityManager mActivityManager;
     private AllPackagesAdapter mAllPackagesAdapter;
     private ApplicationsState mApplicationsState;
     private ApplicationsState.Session mSession;
@@ -70,8 +70,6 @@ public class DisplayCutoutForceFullscreenSettings extends SettingsPreferenceFrag
         mApplicationsState = ApplicationsState.getInstance(getActivity().getApplication());
         mSession = mApplicationsState.newSession(this);
         mSession.onResume();
-        mActivityManager = (ActivityManager) getActivity().getSystemService(
-                Context.ACTIVITY_SERVICE);
         mActivityFilter = new ActivityFilter(getActivity().getPackageManager());
         mAllPackagesAdapter = new AllPackagesAdapter(getActivity());
 
@@ -238,10 +236,9 @@ public class DisplayCutoutForceFullscreenSettings extends SettingsPreferenceFrag
                     } else {
                         mCutoutForceFullscreenSettings.removeApp(appEntry.info.packageName);
                     }
-                    try{
-                        mActivityManager.forceStopPackage(appEntry.info.packageName);
-                    }catch(Exception ignored){
-                    }
+                    Toast.makeText(getActivity(),
+                            getActivity().getString(R.string.display_cutout_force_fullscreen_restart_app),
+                            Toast.LENGTH_SHORT).show();
                 });
             } else {
                 holder = (ViewHolder) convertView.getTag();
