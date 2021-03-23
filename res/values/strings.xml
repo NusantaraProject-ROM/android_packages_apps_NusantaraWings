@@ -489,13 +489,15 @@
     <!-- Quick settings brightness -->
     <string name="qs_brightness_title">Brightness slider</string>
     <string name="brightness_slider_title">Brightness slider position</string>
-    <string name="brightness_slider_show_never">Never show</string>
-    <string name="brightness_slider_show_expanded">Show when expanded</string>
-    <string name="brightness_slider_show_always">Show always</string>
+    <string name="qs_brightness_slider_hide">Hide</string>
+    <string name="qs_brightness_slider_bottom">Bottom</string>
+    <string name="qs_brightness_slider_top">Top</string>
     <string name="brightness_icon_title">Auto brightness icon</string>
     <string name="brightness_icon_summary">Show toggle for adaptive brightness near the slider</string>
     <string name="brightness_buttons_title">Brightness control buttons</string>
     <string name="brightness_buttons_summary">Show buttons beside the brightness slider to adjust brightness</string>
+    <!-- QQS brightness slider -->
+    <string name="qqs_brightness_slider_title">QQS brightness slider</string>
 
     <!-- Show Statusbar on Lockscreen -->
     <string name="lockscreen_status_bar_title">Status bar on lockscreen</string>

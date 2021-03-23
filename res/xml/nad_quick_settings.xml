@@ -183,7 +183,16 @@
             android:title="@string/brightness_slider_title"
             android:entries="@array/brightness_slider_entries"
             android:entryValues="@array/brightness_slider_values"
+            android:summary="%s"
             android:defaultValue="1" />
+
+        <com.nusantara.support.preferences.SecureSettingListPreference
+            android:key="qqs_show_brightness_slider"
+            android:title="@string/qqs_brightness_slider_title"
+            android:entries="@array/brightness_slider_entries"
+            android:entryValues="@array/brightness_slider_values"
+            android:summary="%s"
+            android:defaultValue="2" />
 
         <com.nusantara.support.preferences.SecureSettingSwitchPreference
             android:key="qs_show_auto_brightness"
