@@ -31,44 +31,49 @@
         android:summary="@string/enable_clear_all_button_summary"
         android:defaultValue="false" />
 
-    <com.nusantara.support.preferences.SystemSettingListPreference
-        android:key="qs_panel_bg_use_new_tint"
-        android:title="@string/qs_bg_use_new_tint"
-        android:dialogTitle="@string/qs_bg_use_new_tint"
-        android:entries="@array/qs_tint_entries"
-        android:entryValues="@array/qs_tint_values"
-        android:summary="%s"
-        android:defaultValue="0" />
+    <PreferenceCategory
+        android:key="qs_themes_category"
+        android:title="@string/qs_themes_title">
 
-    <com.nusantara.support.preferences.SystemSettingListPreference
-        android:key="qs_label_use_new_tint"
-        android:title="@string/qs_label_use_new_tint"
-        android:dialogTitle="@string/qs_label_use_new_tint"
-        android:entries="@array/qs__label_tint_entries"
-        android:entryValues="@array/qs_label_tint_values"
-        android:summary="%s"
-        android:defaultValue="0" />
+        <com.nusantara.support.preferences.SystemSettingListPreference
+            android:key="qs_panel_bg_use_new_tint"
+            android:title="@string/qs_bg_use_new_tint"
+            android:dialogTitle="@string/qs_bg_use_new_tint"
+            android:entries="@array/qs_tint_entries"
+            android:entryValues="@array/qs_tint_values"
+            android:summary="%s"
+            android:defaultValue="0" />
 
-    <com.nusantara.support.preferences.SystemSettingSwitchPreference
-        android:key="qs_tile_icon_primary"
-        android:title="@string/qs_icon_primary_title"
-        android:summary="@string/qs_icon_primary_summary"
-        android:defaultValue="false" />
+        <com.nusantara.support.preferences.SystemSettingListPreference
+            android:key="qs_label_use_new_tint"
+            android:title="@string/qs_label_use_new_tint"
+            android:dialogTitle="@string/qs_label_use_new_tint"
+            android:entries="@array/qs__label_tint_entries"
+            android:entryValues="@array/qs_label_tint_values"
+            android:summary="%s"
+            android:defaultValue="0" />
 
-    <com.nusantara.support.preferences.SystemSettingMasterSwitchPreference
-        android:key="status_bar_custom_header"
-        android:fragment="com.nusantara.wings.fragments.statusbar.QsHeader"
-        android:title="@string/status_bar_custom_header_title"
-        android:summary="@string/status_bar_custom_header_summary"
-        android:defaultValue="false" />
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="qs_tile_icon_primary"
+            android:title="@string/qs_icon_primary_title"
+            android:summary="@string/qs_icon_primary_summary"
+            android:defaultValue="false" />
 
-    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
-        android:key="qs_panel_bg_alpha"
-        android:title="@string/qs_panel_alpha_title"
-        android:max="255"
-        settings:min="100"
-        settings:interval="5"
-        android:defaultValue="255" />
+        <com.nusantara.support.preferences.SystemSettingMasterSwitchPreference
+            android:key="status_bar_custom_header"
+            android:fragment="com.nusantara.wings.fragments.statusbar.QsHeader"
+            android:title="@string/status_bar_custom_header_title"
+            android:summary="@string/status_bar_custom_header_summary"
+            android:defaultValue="false" />
+
+        <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+            android:key="qs_panel_bg_alpha"
+            android:title="@string/qs_panel_alpha_title"
+            android:max="255"
+            settings:min="100"
+            settings:interval="5"
+            android:defaultValue="255" />
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="qs_datausage_category"

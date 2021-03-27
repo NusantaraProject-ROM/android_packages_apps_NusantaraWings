@@ -330,7 +330,7 @@
     <string name="vibrate_on_notifications_summary">Toogle for disable vibrate notification</string>
 
     <!-- QS footer icons -->
-    <string name="qs_footer_title">QS Footer</string>
+    <string name="qs_footer_title">Footer</string>
     <string name="qs_footer_settings_title">Settings icon</string>
     <string name="qs_footer_settings_summary">Display Settings icon in quick settings footer</string>
     <string name="qs_footer_user_title">User switcher icon</string>
@@ -358,6 +358,8 @@
     <string name="fprint_error_vib_title">FP error vibration</string>
     <string name="fprint_error_vib_summary">Vibrate when fingerprint authentication fails</string>
 
+    <!-- QS Themes -->
+    <string name="qs_themes_title">Themes</string>
     <!-- QS header style -->
     <string name="qs_header_style_default">Default</string>
     <string name="qs_header_style_grey">Grey</string>
@@ -487,7 +489,7 @@
     <string name="status_bar_clock_color_title">Font color</string>
 
     <!-- Quick settings brightness -->
-    <string name="qs_brightness_title">Brightness slider</string>
+    <string name="qs_brightness_title">Brightness</string>
     <string name="brightness_slider_title">Brightness slider position</string>
     <string name="qs_brightness_slider_hide">Hide</string>
     <string name="qs_brightness_slider_bottom">Bottom</string>
@@ -724,7 +726,7 @@
     <string name="qs_shape_q">Flower 2</string>
     <string name="qs_shape_r">Dialog</string>
     <string name="qs_shape_s">Mesenger</string>
-    <string name="qs_shape_title">Qs Tile Shape</string>
+    <string name="qs_shape_title">QS Tile shape</string>
     <string name="qs_shape_dialog_title">Select qs shape</string>
 
     <!-- Pulse -->
@@ -860,10 +862,10 @@
     <string name="fod_recognizing_animation_summary">Show an animation while reading your fingerprint</string>
 
     <!-- Fingerprint Customizations -->
-    <string name="fingerprint_title">Fingerprint Customizations</string>
+    <string name="fingerprint_title">Fingerprint customizations</string>
 
     <!-- FOD icon picker -->
-    <string name="fod_icon_picker_category_title">FOD Customizations</string>
+    <string name="fod_icon_picker_category_title">FOD customizations</string>
     <string name="fod_icon_picker_title">Fingerprint icon</string>
     <string name="fod_icon_picker_summary">Choose your favorite fingerprint icon</string>
     <string name="fod_icon_picker_footer">In order to add your own icon, select the top left icon and use the OnePlus 6T FP Customizer app to select the icon you want.</string>
