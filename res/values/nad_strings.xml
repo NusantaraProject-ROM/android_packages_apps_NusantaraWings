@@ -632,4 +632,8 @@
     <string name="blur_scale_title">Blur Scale</string>
     <string name="combined_blur_title">Combined blur</string>
     <string name="combined_blur_summary">Combine blur with original notification panel background</string>
+
+    <!-- OOS clear all button -->
+    <string name="enable_clear_all_button">Clear all notification button</string>
+    <string name="enable_clear_all_button_summary">Show clear all notifications button in quick settings instead of default text one</string>
 </resources>
