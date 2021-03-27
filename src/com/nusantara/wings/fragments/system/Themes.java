@@ -55,14 +55,12 @@ import static com.nusantara.wings.UtilsThemes.threeButtonNavbarEnabled;
 public class Themes extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-    static final int DEFAULT_ACCENT_COLOR = 0xff1a73e8;
     private static final String PREF_THEME_SWITCH = "theme_switch";
     private static final String PREF_THEME_ACCENT_PICKER = "theme_accent_picker";
     private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
     private static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
     private static final String PREF_FONT_PICKER = "font_picker";
     private static final String PREF_NAVBAR_STYLE = "theme_navbar_style";
-    private static final String ACCENT_COLOR = "accent_color";
     private static final String PREF_QS_HEADER_STYLE = "qs_header_style";
     private static final String PREF_ROUNDED_CORNER = "rounded_ui";
     private static final String PREF_SB_HEIGHT = "statusbar_height";
@@ -71,6 +69,7 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_QS_SHAPE = "qs_shape";
     private static final String PREF_SWITCH_STYLE = "switch_style";
     private static final String PREF_SETTINGS_THEMES = "themes_settings";
+
     private Context mContext;
     private IOverlayManager mOverlayManager;
     private UiModeManager mUiModeManager;
@@ -87,7 +86,6 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mPanelBg;
     private ListPreference mQsShape;
     private ListPreference mSwitchStyle;
-    private ColorPickerPreference mAccentColor;
     private Preference mThemesSettings;
 
     @Override
@@ -178,23 +176,6 @@ public class Themes extends SettingsPreferenceFragment
         } else {
             prefScreen.removePreference(mNavbarPicker);
         }
-
-        mAccentColor = (ColorPickerPreference) findPreference(ACCENT_COLOR);
-        int intColor = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.ACCENT_COLOR, DEFAULT_ACCENT_COLOR, UserHandle.USER_CURRENT);
-        String hexColor = String.format("#%08x", (0xff1a73e8 & intColor));
-        if (hexColor.equals("#ff1a73e8")) {
-            mAccentColor.setSummary(R.string.accent_color_default);
-            mAccentPicker.setEnabled(true);
-        } else {
-            mAccentColor.setSummary(hexColor);
-            mAccentPicker.setEnabled(false);
-        }
-        mAccentColor.setNewPreviewColor(intColor);
-        mAccentColor.setOnPreferenceChangeListener(this);
-        if (hexColor.equals("#ff1a73e8"))
-            mAccentColor.setCustomColorPreview(getContext().getResources()
-                    .getColor(R.color.nusantara_wings_category_icon_tint));
 
         mQsHeaderStyle = (ListPreference) findPreference(PREF_QS_HEADER_STYLE);
         int qsStyleValue = getOverlayPosition(ThemesUtils.QS_HEADER_THEMES);
@@ -460,20 +441,6 @@ public class Themes extends SettingsPreferenceFragment
                         true, mOverlayManager);
             }
             mNavbarPicker.setSummary(mNavbarPicker.getEntry());
-            return true;
-        } else if (preference == mAccentColor) {
-            String hex = ColorPickerPreference.convertToARGB(
-                    Integer.valueOf(String.valueOf(newValue)));
-            if (hex.equals("#ff1a73e8")) {
-                mAccentColor.setSummary(R.string.accent_color_default);
-                mAccentPicker.setEnabled(true);
-            } else {
-                mAccentColor.setSummary(hex);
-                mAccentPicker.setEnabled(false);
-            }
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putIntForUser(mContext.getContentResolver(),
-                    Settings.System.ACCENT_COLOR, intHex, UserHandle.USER_CURRENT);
             return true;
         } else if (preference == mQsHeaderStyle) {
             String qsHeaderStyle = (String) newValue;
