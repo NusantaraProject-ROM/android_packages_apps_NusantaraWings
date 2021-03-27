@@ -896,4 +896,8 @@
     <!-- Notification sound -->
     <string name="notification_sound_vib_screen_on_title">Notification sound if active</string>
     <string name="notification_sound_vib_screen_on_summary">Play sound and vibration for notifications when screen is on</string>
+
+    <!-- OOS clear all button -->
+    <string name="enable_clear_all_button">OOS clear buttons</string>
+    <string name="enable_clear_all_button_summary">Show clear all notifications button in quick settings instead of default text one</string>
 </resources>
