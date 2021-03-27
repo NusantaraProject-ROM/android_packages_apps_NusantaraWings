@@ -21,7 +21,9 @@ import android.app.UiModeManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.om.IOverlayManager;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.provider.SearchIndexableResource;
@@ -69,10 +71,13 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_QS_SHAPE = "qs_shape";
     private static final String PREF_SWITCH_STYLE = "switch_style";
     private static final String PREF_SETTINGS_THEMES = "themes_settings";
+    private static final String PREF_RGB_ACCENT_PICKER = "rgb_accent_picker";
 
     private Context mContext;
     private IOverlayManager mOverlayManager;
     private UiModeManager mUiModeManager;
+
+    private ColorPickerPreference rgbAccentPicker;
     private ListPreference mThemeSwitch;
     private ListPreference mAccentPicker;
     private ListPreference mAdaptiveIconShape;
@@ -249,6 +254,15 @@ public class Themes extends SettingsPreferenceFragment
         }
         mSwitchStyle.setSummary(mSwitchStyle.getEntry());
         mSwitchStyle.setOnPreferenceChangeListener(this);
+
+        rgbAccentPicker = (ColorPickerPreference) findPreference(PREF_RGB_ACCENT_PICKER);
+        String colorVal = Settings.Secure.getStringForUser(mContext.getContentResolver(),
+                Settings.Secure.ACCENT_COLOR, UserHandle.USER_CURRENT);
+        int color = (colorVal == null)
+                ? Color.WHITE
+                : Color.parseColor("#" + colorVal);
+        rgbAccentPicker.setNewPreviewColor(color);
+        rgbAccentPicker.setOnPreferenceChangeListener(this);
 
         // Settings themes
         mThemesSettings = (Preference) findPreference(PREF_SETTINGS_THEMES);
@@ -542,6 +556,19 @@ public class Themes extends SettingsPreferenceFragment
             }
             mSwitchStyle.setSummary(mSwitchStyle.getEntry());
             return true;
+        } else if (preference == rgbAccentPicker) {
+            int color = (Integer) newValue;
+            String hexColor = String.format("%08X", (0xFFFFFFFF & color));
+            Settings.Secure.putStringForUser(mContext.getContentResolver(),
+                        Settings.Secure.ACCENT_COLOR,
+                        hexColor, UserHandle.USER_CURRENT);
+            try {
+                 mOverlayManager.reloadAssets("com.android.settings", UserHandle.USER_CURRENT);
+                 mOverlayManager.reloadAssets("com.android.systemui", UserHandle.USER_CURRENT);
+             } catch (RemoteException ignored) {
+             }
+            return true;
+
         }
         return false;
     }

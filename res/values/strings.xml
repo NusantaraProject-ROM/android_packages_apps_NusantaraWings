@@ -901,4 +901,7 @@
     <!-- OOS clear all button -->
     <string name="enable_clear_all_button">OOS clear buttons</string>
     <string name="enable_clear_all_button_summary">Show clear all notifications button in quick settings instead of default text one</string>
+
+    <string name="rgb_accent_picker_title">RGB accent picker</string>
+    <string name="rgb_accent_picker_summary">Choose the accent color yourself</string>
 </resources>
