@@ -110,8 +110,8 @@
             android:key="ambient_notification_light_color_mode"
             android:title="@string/ambient_notification_light_color_mode_title"
             android:persistent="false"
-            android:entries="@array/ambient_notification_light_color_mode_entries"
-            android:entryValues="@array/ambient_notification_light_color_mode_values"
+            android:entries="@array/pulse_ambient_light_color_mode_entries"
+            android:entryValues="@array/pulse_ambient_light_color_mode_values"
             android:defaultValue="0" />
 
         <com.nusantara.support.colorpicker.ColorPickerPreference
@@ -120,6 +120,13 @@
             android:title="@string/ambient_notification_light_color_title"
             ledPreview="true"
             android:defaultValue="0xFFFFFFFF" />
+
+        <com.nusantara.support.colorpicker.ColorPickerPreference
+            android:key="ambient_light_blend_color"
+            android:summary="@string/ambient_notification_light_blend_summary"
+            android:title="@string/ambient_notification_light_blend_title"
+            ledPreview="true"
+            android:defaultValue="0x3980FF" />
 
         <com.nusantara.support.preferences.CustomSeekBarPreference
             android:key="ambient_notification_light_duration"

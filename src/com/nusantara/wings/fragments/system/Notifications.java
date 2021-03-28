@@ -42,6 +42,7 @@ import java.util.List;
 
 import com.nusantara.support.colorpicker.ColorPickerPreference;
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
+import com.nusantara.support.preferences.SystemSettingListPreference;
 import com.nusantara.support.preferences.CustomSeekBarPreference;
 import com.nusantara.support.preferences.GlobalSettingMasterSwitchPreference;
 
@@ -59,6 +60,7 @@ public class Notifications extends SettingsPreferenceFragment
     private static final String NOTIFICATION_PULSE_COLOR = "ambient_notification_light_color";
     private static final String NOTIFICATION_PULSE_DURATION = "ambient_notification_light_duration";
     private static final String NOTIFICATION_PULSE_REPEATS = "ambient_notification_light_repeats";
+    private static final String NOTIFICATION_PULSE_BLEND_COLOR = "ambient_light_blend_color";
     private static final String KEY_AMBIENT = "ambient_notification_light_enabled";
 
     private GlobalSettingMasterSwitchPreference mHeadsUpEnabled;
@@ -67,6 +69,7 @@ public class Notifications extends SettingsPreferenceFragment
 
     // EdgeLight
     private ColorPickerPreference mEdgeLightColorPreference;
+    private ColorPickerPreference mEdgeLightColorBlendPreference;
     private CustomSeekBarPreference mEdgeLightDurationPreference;
     private CustomSeekBarPreference mEdgeLightRepeatCountPreference;
     private SystemSettingSwitchPreference mAmbientPref;
@@ -131,6 +134,19 @@ public class Notifications extends SettingsPreferenceFragment
         }
         mEdgeLightColorPreference.setOnPreferenceChangeListener(this);
 
+        mEdgeLightColorBlendPreference = (ColorPickerPreference) findPreference(NOTIFICATION_PULSE_BLEND_COLOR);
+        int edgeblendColor = Settings.System.getInt(getContentResolver(),
+                Settings.System.AMBIENT_LIGHT_BLEND_COLOR, 0xFF3980FF);
+        mEdgeLightColorPreference.setNewPreviewColor(edgeblendColor);
+        mEdgeLightColorBlendPreference.setAlphaSliderEnabled(false);
+        String edgeBlendColorHex = String.format("#%08x", (0xFF3980FF & edgeblendColor));
+        if (edgeLightColorHex.equals("#0xFF3980FF")) {
+            mEdgeLightColorBlendPreference.setSummary(R.string.color_default);
+        } else {
+            mEdgeLightColorBlendPreference.setSummary(edgeBlendColorHex);
+        }
+        mEdgeLightColorBlendPreference.setOnPreferenceChangeListener(this);
+
         mAmbientPref = (SystemSettingSwitchPreference) findPreference(KEY_AMBIENT);
         boolean aodEnabled = Settings.Secure.getIntForUser(resolver,
                 Settings.Secure.DOZE_ALWAYS_ON, 0, UserHandle.USER_CURRENT) == 1;
@@ -191,16 +207,33 @@ public class Notifications extends SettingsPreferenceFragment
             mEdgeLightColorMode.setSummary(mEdgeLightColorMode.getEntries()[index]);
             updateColorPrefs(edgeLightColorMode);
             return true;
+        } else if (preference == mEdgeLightColorBlendPreference) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            if (hex.equals("#FF3980FF")) {
+                preference.setSummary(R.string.color_default);
+            } else {
+                preference.setSummary(hex);
+            }
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.AMBIENT_LIGHT_BLEND_COLOR, intHex);
+            return true;
         }
         return false;
     }
 
     private void updateColorPrefs(int edgeLightColorMode) {
-        if (mEdgeLightColor != null) {
+        if (mEdgeLightColorPreference != null) {
             if (edgeLightColorMode == 3) {
-                getPreferenceScreen().addPreference(mEdgeLightColor);
-            } else {
-                getPreferenceScreen().removePreference(mEdgeLightColor);
+                getPreferenceScreen().addPreference(mEdgeLightColorPreference);
+                getPreferenceScreen().removePreference(mEdgeLightColorBlendPreference);
+             } else if (edgeLightColorMode == 4) {
+                getPreferenceScreen().addPreference(mEdgeLightColorPreference);
+                getPreferenceScreen().addPreference(mEdgeLightColorBlendPreference);
+             } else  {
+                getPreferenceScreen().removePreference(mEdgeLightColorPreference);
+                getPreferenceScreen().removePreference(mEdgeLightColorBlendPreference);
             }
         }
     }
