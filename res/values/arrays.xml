@@ -947,6 +947,15 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="pulse_ambient_light_layout_entries">
+        <item>@string/pulse_ambient_light_layout_faded</item>
+        <item>@string/pulse_ambient_light_layout_solid</item>
+    </string-array>
+    <string-array name="pulse_ambient_light_layout_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
     <string-array name="pulse_ambient_light_repeat_direction_entries">
         <item>@string/pulse_ambient_light_repeat_direction_restart</item>
         <item>@string/pulse_ambient_light_repeat_direction_reverse</item>
