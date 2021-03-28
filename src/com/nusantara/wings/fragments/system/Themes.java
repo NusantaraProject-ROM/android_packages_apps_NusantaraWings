@@ -105,13 +105,13 @@ public class Themes extends SettingsPreferenceFragment
         // First of all we have to evaluate whether the light or dark mode is active
         if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO) {
             mThemeSwitch.setValue("1");
-        } else if (NadUtils.isThemeEnabled("com.android.theme.materialocean.system")) {
+        } else if (NadUtils.isThemeEnabled("com.android.theme.color.ocean.system")) {
             mThemeSwitch.setValue("6");
-        } else if (NadUtils.isThemeEnabled("com.android.theme.nadclear.system")) {
+        } else if (NadUtils.isThemeEnabled("com.android.theme.color.nadclear.system")) {
             mThemeSwitch.setValue("5");
-        } else if (NadUtils.isThemeEnabled("com.android.theme.solarizeddark.system")) {
+        } else if (NadUtils.isThemeEnabled("com.android.theme.color.solarized.system")) {
             mThemeSwitch.setValue("4");
-        } else if (NadUtils.isThemeEnabled("com.android.theme.pitchblack.system")) {
+        } else if (NadUtils.isThemeEnabled("com.android.theme.color.pitchblack.system")) {
             mThemeSwitch.setValue("3");
         } else { // Google dark theme
             mThemeSwitch.setValue("2");
