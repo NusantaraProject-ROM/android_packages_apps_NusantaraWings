@@ -810,6 +810,8 @@
     <string name="pulse_ambient_light_color_mode_accent">Accent</string>
     <string name="pulse_ambient_light_color_mode_custom">Custom</string>
     <string name="pulse_ambient_light_color_mode_blend">Blend</string>
+    <string name="pulse_ambient_light_color_mode_random">Random</string>
+    <string name="pulse_ambient_light_color_mode_randomboth">Random (Both edges)</string>
     <string name="pulse_ambient_light_duration_title">Duration</string>
     <string name="ambient_notification_light_enabled_title">Show on always on</string>
     <string name="aod_disabled">AOD is disabled</string>
