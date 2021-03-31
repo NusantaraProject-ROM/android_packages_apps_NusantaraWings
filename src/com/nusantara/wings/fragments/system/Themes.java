@@ -58,7 +58,6 @@ public class Themes extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String PREF_THEME_SWITCH = "theme_switch";
-    private static final String PREF_THEME_ACCENT_PICKER = "theme_accent_picker";
     private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
     private static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
     private static final String PREF_FONT_PICKER = "font_picker";
@@ -124,16 +123,6 @@ public class Themes extends SettingsPreferenceFragment
 
         mThemeSwitch.setSummary(mThemeSwitch.getEntry());
         mThemeSwitch.setOnPreferenceChangeListener(this);
-
-        mAccentPicker = (ListPreference) findPreference(PREF_THEME_ACCENT_PICKER);
-        int accentPickerValues = getOverlayPosition(ThemesUtils.ACCENTS);
-        if (accentPickerValues != -1) {
-            mAccentPicker.setValue(String.valueOf(accentPickerValues + 2));
-        } else {
-            mAccentPicker.setValue("1");
-        }
-        mAccentPicker.setSummary(mAccentPicker.getEntry());
-        mAccentPicker.setOnPreferenceChangeListener(this);
 
         // Statusbar icons
         mStatusbarIcons = (ListPreference) findPreference(PREF_STATUSBAR_ICONS);
@@ -385,20 +374,6 @@ public class Themes extends SettingsPreferenceFragment
                     break;
             }
             mThemeSwitch.setSummary(mThemeSwitch.getEntry());
-            return true;
-        } else if (preference == mAccentPicker) {
-            String accentStyle = (String) newValue;
-            int accentPickerValue = Integer.parseInt(accentStyle);
-            mAccentPicker.setValue(String.valueOf(accentPickerValue));
-            String overlayName = getOverlayName(ThemesUtils.ACCENTS);
-            if (overlayName != null) {
-                handleOverlays(overlayName, false, mOverlayManager);
-            }
-            if (accentPickerValue > 1) {
-                handleOverlays(ThemesUtils.ACCENTS[accentPickerValue - 2],
-                        true, mOverlayManager);
-            }
-            mAccentPicker.setSummary(mAccentPicker.getEntry());
             return true;
         } else if (preference == mStatusbarIcons) {
             String statusbarIcons = (String) newValue;

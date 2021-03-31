@@ -50,61 +50,6 @@
         <item>6</item>
     </string-array>
 
-    <!-- Themes -->
-    <string-array name="accent_type_titles">
-        <item>@string/accent_color_default</item>
-        <item>@string/accent_color_space</item>
-        <item>@string/accent_color_purple</item>
-        <item>@string/accent_color_orchid</item>
-        <item>@string/accent_color_ocean</item>
-        <item>@string/accent_color_green</item>
-        <item>@string/accent_color_cinnamon</item>
-        <item>@string/accent_color_amber</item>
-        <item>@string/accent_color_blue</item>
-        <item>@string/accent_color_bluegrey</item>
-        <item>@string/accent_color_brown</item>
-        <item>@string/accent_color_cyan</item>
-        <item>@string/accent_color_deeporange</item>
-        <item>@string/accent_color_deeppurple</item>
-        <item>@string/accent_color_grey</item>
-        <item>@string/accent_color_indigo</item>
-        <item>@string/accent_color_lightblue</item>
-        <item>@string/accent_color_lightgreen</item>
-        <item>@string/accent_color_lime</item>
-        <item>@string/accent_color_orange</item>
-        <item>@string/accent_color_pink</item>
-        <item>@string/accent_color_red</item>
-        <item>@string/accent_color_teal</item>
-        <item>@string/accent_color_yellow</item>
-    </string-array>
-
-    <string-array name="accent_type_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>21</item>
-        <item>22</item>
-        <item>23</item>
-        <item>24</item>
-    </string-array>
-
     <!-- Network traffic location -->
     <string-array name="network_traffic_location_entries" translatable="false">
         <item>@string/network_traffic_statusbar</item>
