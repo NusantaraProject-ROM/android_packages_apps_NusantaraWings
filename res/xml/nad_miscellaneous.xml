@@ -19,6 +19,12 @@
             android:title="@string/miscellaneous_title" >
 
     <Preference
+        android:key="gaming_category"
+        android:title="@string/gaming_title"
+        android:fragment="com.nusantara.wings.fragments.system.GamingModeSettings"
+        android:summary="@string/gaming_title_summary" />
+            
+    <Preference
         android:key="cutout_settings"
         android:title="@string/cutout_main"
         android:summary="@string/cutout_main_summary"
