@@ -680,6 +680,7 @@
     <string name="panel_batik">Batik</string>
     <string name="panel_kece">Kece</string>
     <string name="panel_outline">Outline</string>
+    <string name="panel_glassy">Glassy</string>
     
     <!-- Qs shapes -->
     <string name="qs_shape_default">Default</string>

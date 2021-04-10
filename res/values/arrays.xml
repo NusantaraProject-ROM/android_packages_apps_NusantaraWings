@@ -800,6 +800,7 @@
         <item>@string/panel_batik</item>
         <item>@string/panel_kece</item>
         <item>@string/panel_outline</item>
+        <item>@string/panel_glassy</item>
     </string-array>
 
     <string-array name="panel_bg_values" translatable="false">
@@ -807,6 +808,7 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+        <item>5</item>
     </string-array>
     
     <!-- Qs shapes -->
