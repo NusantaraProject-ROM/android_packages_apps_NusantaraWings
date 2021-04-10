@@ -42,13 +42,13 @@ public class CategoryPreference extends Preference {
     private boolean mAllowDividerBelow;
     private int mColorRandom;
     private ImageView mBG;
-    private boolean mCatStyle;
+    private int mCatStyle;
 
     public CategoryPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        mCatStyle = Settings.System.getInt(context.getContentResolver(),
-                Settings.System.CATEGORY_NUSANTARA, 1) == 1;
+        mCatStyle = Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.CATEGORY_NUSANTARA, 0, UserHandle.USER_CURRENT);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Preference);
 
@@ -58,12 +58,13 @@ public class CategoryPreference extends Preference {
                 R.styleable.Preference_allowDividerBelow, false);
         a.recycle();
 
-        if (mCatStyle) {
-            setLayoutResource(R.layout.tab_preference);
-        } else {
+        if (mCatStyle == 0) {
             setLayoutResource(R.layout.category_preference);
+        } else if (mCatStyle == 1) {
+            setLayoutResource(R.layout.category_preference);
+        } else {
+            setLayoutResource(R.layout.tab_preference);
         }
-        
     }
 
     @Override

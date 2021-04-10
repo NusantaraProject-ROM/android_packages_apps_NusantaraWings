@@ -20,12 +20,16 @@
     <string name="nusantarawings_title">Nusantara Wings</string>
     <string name="nusantarawings_summary">Get your favorite customization</string>
     <string name="nad_style_title">Nusantara wings background</string>
-    <string name="nusantara_cat_style_title">Nusantara category style</string>
-    <string name="nusantara_cat_style_summary">Toggle for enable/disable bottom navbar</string>
     <string name="nad_color_ios">IOS</string>
     <string name="nad_color_transparent">Transparent</string>
     <string name="nad_color_random">Random</string>
     <string name="nad_color_accent">Accent</string>
+
+    <!-- Nusantara Category -->
+    <string name="nusantara_cat_style_title">Nusantara category style</string>
+    <string name="nad_cat_navbar">With navbar</string>
+    <string name="nad_cat_withoutnavbar">Without navbar</string>
+    <string name="nad_cat_tabbed">Tabbed (With navbar)</string>
 
     <!-- The Team -->
     <string name="dialog_team_title">The team</string>

@@ -51,7 +51,7 @@ public class NusantaraWings extends SettingsPreferenceFragment {
 
     protected Context mContext;
     private View view;
-    private boolean mCatStyle;
+    private int mCatStyle;
     ViewGroup mContainer;
     LayoutInflater mInflater;
     ViewPager mViewPager;
@@ -69,8 +69,8 @@ public class NusantaraWings extends SettingsPreferenceFragment {
 
     public void createNavLayout() {
 
-        mCatStyle = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.CATEGORY_NUSANTARA, 1) == 1;
+        int mCatStyle = Settings.System.getIntForUser(getActivity().getContentResolver(),
+                Settings.System.CATEGORY_NUSANTARA, 0, UserHandle.USER_CURRENT);
 
         view = mInflater.inflate(R.layout.nusantarawings, mContainer, false);
 
@@ -84,10 +84,12 @@ public class NusantaraWings extends SettingsPreferenceFragment {
         mPagerAdapter = new PagerAdapter(getFragmentManager());
         mViewPager.setAdapter(mPagerAdapter);
 
-        if (mCatStyle) {
+        if (mCatStyle == 0) {
             bubbleNavigationConstraintView.setVisibility(View.VISIBLE);
-        } else {
+        } else if (mCatStyle == 1) {
             bubbleNavigationConstraintView.setVisibility(View.GONE);
+        } else {
+            bubbleNavigationConstraintView.setVisibility(View.VISIBLE);
         }
 
         bubbleNavigationConstraintView.setNavigationChangeListener(new BubbleNavigationChangeListener() {
@@ -128,8 +130,8 @@ public class NusantaraWings extends SettingsPreferenceFragment {
 
     class PagerAdapter extends FragmentPagerAdapter {
 
-        boolean mCatStyle = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.CATEGORY_NUSANTARA, 1) == 1;
+        int mCatStyle = Settings.System.getIntForUser(getActivity().getContentResolver(),
+                Settings.System.CATEGORY_NUSANTARA, 0, UserHandle.USER_CURRENT);
 
         String titles[] = getTitles();
         private Fragment frags[] = new Fragment[titles.length];
@@ -137,13 +139,18 @@ public class NusantaraWings extends SettingsPreferenceFragment {
         PagerAdapter(FragmentManager fm) {
             super(fm);
 
-        	if (mCatStyle) {
+        	if (mCatStyle == 0) {
                 frags[0] = new System();
                 frags[1] = new Lockscreen();
                 frags[2] = new Statusbar();
                 frags[3] = new Hardware();
-        	  } else {
+        	  } else if (mCatStyle == 1)  {
                 frags[0] = new NusantaraCat();
+        	  } else {
+                frags[0] = new System();
+                frags[1] = new Lockscreen();
+                frags[2] = new Statusbar();
+                frags[3] = new Hardware();
             }
         }
 
@@ -164,18 +171,24 @@ public class NusantaraWings extends SettingsPreferenceFragment {
     }
 
     private String[] getTitles() {
-        mCatStyle = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.CATEGORY_NUSANTARA, 1) == 1;
+        int mCatStyle = Settings.System.getIntForUser(getActivity().getContentResolver(),
+                Settings.System.CATEGORY_NUSANTARA, 0, UserHandle.USER_CURRENT);
         String titleString[];
-        if (mCatStyle) {
+        if (mCatStyle == 0) {
         titleString = new String[]{
                 getString(R.string.bottom_nav_system_title),
                 getString(R.string.bottom_nav_lockscreen_title),
                 getString(R.string.bottom_nav_statusbar_title),
                 getString(R.string.bottom_nav_hardware_title)};
-        	} else {
+        	} else if (mCatStyle == 1) {
                 titleString = new String[]{
                 getString(R.string.nusantarawings_title)};
+        	} else {
+                titleString = new String[]{
+                getString(R.string.bottom_nav_system_title),
+                getString(R.string.bottom_nav_lockscreen_title),
+                getString(R.string.bottom_nav_statusbar_title),
+                getString(R.string.bottom_nav_hardware_title)};
           }
         return titleString;
     }
