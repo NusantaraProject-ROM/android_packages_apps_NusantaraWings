@@ -921,4 +921,8 @@
     <string name="content_padding">Corner content padding</string>
     <string name="corner_fwvals">Use framework values</string>
     <string name="corner_fwvals_summary">Useful if the device actually has rounded corners</string>
+
+    <!-- QS themes -->
+    <string name="sysui_colors_active_title">Wallpaper colored scrims</string>
+    <string name="sysui_colors_active_summary">Toogle for wallpaper colored scrims</string>
 </resources>

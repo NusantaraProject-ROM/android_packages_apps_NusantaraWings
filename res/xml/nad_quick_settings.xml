@@ -66,6 +66,12 @@
             android:summary="@string/status_bar_custom_header_summary"
             android:defaultValue="false" />
 
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="sysui_colors_active"
+            android:title="@string/sysui_colors_active_title"
+            android:summary="@string/sysui_colors_active_summary"
+            android:defaultValue="false" />
+
         <com.nusantara.support.preferences.SystemSettingSeekBarPreference
             android:key="qs_panel_bg_alpha"
             android:title="@string/qs_panel_alpha_title"
