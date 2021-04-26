@@ -40,12 +40,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nusantara.support.preferences.CustomSeekBarPreference;
+import com.nusantara.support.preferences.SystemSettingSeekBarPreference;
 
 @SearchIndexable
 public class TrafficIndicators extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private CustomSeekBarPreference mThreshold;
+    private SystemSettingSeekBarPreference mInterval;
     private ListPreference mNetTrafficLocation;
     private ListPreference mNetTrafficType;
 
@@ -67,6 +69,12 @@ public class TrafficIndicators extends SettingsPreferenceFragment
         mThreshold = (CustomSeekBarPreference) findPreference("network_traffic_autohide_threshold");
         mThreshold.setValue(value);
         mThreshold.setOnPreferenceChangeListener(this);
+
+        int val = Settings.System.getIntForUser(resolver,
+                Settings.System.NETWORK_TRAFFIC_REFRESH_INTERVAL, 1, UserHandle.USER_CURRENT);
+        mInterval = (SystemSettingSeekBarPreference) findPreference("network_traffic_refresh_interval");
+        mInterval.setValue(val);
+        mInterval.setOnPreferenceChangeListener(this);
 
         int netMonitorEnabled = Settings.System.getIntForUser(resolver,
                 Settings.System.NETWORK_TRAFFIC_STATE, 0, UserHandle.USER_CURRENT);
@@ -113,6 +121,12 @@ public class TrafficIndicators extends SettingsPreferenceFragment
                     Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, val,
                     UserHandle.USER_CURRENT);
             return true;
+        } else if (preference == mInterval) {
+            int val = (Integer) newValue;
+            Settings.System.putIntForUser(resolver,
+                    Settings.System.NETWORK_TRAFFIC_REFRESH_INTERVAL, val,
+                    UserHandle.USER_CURRENT);
+            return true;
         } else if (preference == mNetTrafficType) {
             int val = Integer.valueOf((String) newValue);
             Settings.System.putIntForUser(getContentResolver(),
@@ -129,10 +143,12 @@ public class TrafficIndicators extends SettingsPreferenceFragment
         switch(location){
             case 0:
                 mThreshold.setEnabled(false);
+                mInterval.setEnabled(false);
                 break;
             case 1:
             case 2:
                 mThreshold.setEnabled(true);
+                mInterval.setEnabled(true);
                 break;
             default:
                 break;
