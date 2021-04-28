@@ -35,6 +35,8 @@ import com.android.settingslib.search.SearchIndexable;
 
 import com.nusantara.support.preferences.SystemSettingEditTextPreference;
 import com.nusantara.support.preferences.SystemSettingMasterSwitchPreference;
+import com.nusantara.support.preferences.SystemSettingListPreference;
+import com.nusantara.support.preferences.SystemSettingSwitchPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,8 @@ public class QuickSettings extends SettingsPreferenceFragment
 
     private SystemSettingEditTextPreference mFooterString;
     private SystemSettingMasterSwitchPreference mCustomHeader;
+    private SystemSettingListPreference mDataUsage;
+    private SystemSettingSwitchPreference mDataUsageLoc;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,19 @@ public class QuickSettings extends SettingsPreferenceFragment
                 Settings.System.STATUS_BAR_CUSTOM_HEADER, 0);
         mCustomHeader.setChecked(qsHeader != 0);
         mCustomHeader.setOnPreferenceChangeListener(this);
+
+        mDataUsage = (SystemSettingListPreference) findPreference("qs_datausage");
+        int usage = Settings.System.getIntForUser(resolver,
+                Settings.System.QS_DATAUSAGE, 0, UserHandle.USER_CURRENT);
+        mDataUsage.setValue(String.valueOf(usage));
+        mDataUsage.setOnPreferenceChangeListener(this);
+
+        mDataUsageLoc = (SystemSettingSwitchPreference) findPreference("qs_datausage_location");
+        mDataUsageLoc.setChecked((Settings.System.getInt(resolver,
+                Settings.System.QS_DATAUSAGE_LOCATION, 0) == 1));
+        mDataUsageLoc.setOnPreferenceChangeListener(this);
+
+        updateDataUsage(usage);
     }
 
     @Override
@@ -94,8 +111,33 @@ public class QuickSettings extends SettingsPreferenceFragment
             Settings.System.putInt(resolver,
                     Settings.System.STATUS_BAR_CUSTOM_HEADER, header ? 1 : 0);
             return true;
+        } else if (preference == mDataUsage) {
+            int datausage = Integer.valueOf((String) newValue);
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.QS_DATAUSAGE, datausage, UserHandle.USER_CURRENT);
+            updateDataUsage(datausage);
+            return true;
+        } else if (preference == mDataUsageLoc) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.QS_DATAUSAGE_LOCATION, value ? 0 : 1);
+            return true;
         }
         return false;
+    }
+
+    public void updateDataUsage(int usage) {
+        switch(usage){
+            case 0:
+                mDataUsageLoc.setEnabled(false);
+                break;
+            case 1:
+            case 2:
+                mDataUsageLoc.setEnabled(true);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
