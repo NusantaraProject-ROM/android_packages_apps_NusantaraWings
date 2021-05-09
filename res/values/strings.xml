@@ -307,10 +307,6 @@
     <string name="qs_data_usage_location_title">Data usage location</string>
     <string name="qs_data_usage_location_summary">Show data usage in QS Panel</string>
 
-    <!-- Notification Vibration -->
-    <string name="vibrate_on_notifications_title">Vibrate for notifications</string>
-    <string name="vibrate_on_notifications_summary">Toogle for disable vibrate notification</string>
-
     <!-- QS footer icons -->
     <string name="qs_footer_title">Footer</string>
     <string name="qs_footer_settings_title">Settings icon</string>
