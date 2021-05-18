@@ -38,7 +38,7 @@
         android:defaultValue="@string/volume_panel_aospa_val" />
 
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
-        android:key="audio_panel_view_position"
+        android:key="volume_panel_on_left"
         android:title="@string/volume_panel_on_left_title"
         android:summary="@string/volume_panel_on_left_summary"
         android:defaultValue="false" />
