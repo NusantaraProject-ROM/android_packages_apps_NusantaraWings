@@ -264,38 +264,61 @@ public class Themes extends SettingsPreferenceFragment
                 View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_settings, null);
                 dialog.setContentView(view);
                 RadioButton a = (RadioButton) view.findViewById(R.id.themes_a);
+                RadioButton b = (RadioButton) view.findViewById(R.id.themes_b);
                 RadioButton def = (RadioButton) view.findViewById(R.id.themes_default);
                 Button ok = view.findViewById(R.id.button_oke);
 
                 SharedPreferences sharedPreferences = mContext.getSharedPreferences("PrefsFile", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 Boolean val = sharedPreferences.getBoolean("tema_satu", true);
+                Boolean val1 = sharedPreferences.getBoolean("tema_dua", true);
                 Boolean val2 = sharedPreferences.getBoolean("tema_def", true);
-                if (val){
-                     def.setChecked(false);
-                } else if (val2) {
-                     a.setChecked(false);
-                }
-                dialog.show();
+
                 
                 if (a.isChecked()) {
                      def.setChecked(false);
+                     b.setChecked(false);
                  } else if (def.isChecked()) {
                      a.setChecked(false);
+                     b.setChecked(false);
+                 } else if (b.isChecked()) {
+                     a.setChecked(false);
+                     def.setChecked(false);
                  }
+
+                if (val){
+                     b.setChecked(false);
+                     def.setChecked(false);
+                } else if (val2) {
+                     a.setChecked(false);
+                     b.setChecked(false);
+                } else if (val1) {
+                     a.setChecked(false);
+                     def.setChecked(false);
+                }
+                dialog.show();
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (a.isChecked()) {
                             editor.putBoolean("tema_satu", true);
                             editor.putBoolean("tema_def", false);
+                            editor.putBoolean("tema_dua", false);
                             editor.putString("tema", "TEMA_SATU");
                             editor.commit();
                             editor.apply();
                         } else if (def.isChecked()) {
                             editor.putBoolean("tema_def", true);
                             editor.putBoolean("tema_satu", false);
+                            editor.putBoolean("tema_dua", false);
                             editor.putString("tema", "TEMA_DEFAULT");
+                            editor.commit();
+                            editor.apply();
+                        } else if (b.isChecked()) {
+                            editor.putBoolean("tema_dua", true);
+                            editor.putBoolean("tema_def", false);
+                            editor.putBoolean("tema_satu", false);
+                            editor.putString("tema", "TEMA_DUA");
                             editor.commit();
                             editor.apply();
                         }
