@@ -57,6 +57,14 @@
         android:summary="@string/status_bar_notif_count_summary"
         android:defaultValue="false" />
 
+    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+        android:key="notification_bg_alpha"
+        android:title="@string/notification_alpha_title"
+        android:defaultValue="255"
+        android:max="255"
+        settings:min="0"
+        settings:units="" />
+
     <PreferenceCategory
         android:key="notif_header_cat"
         android:title="@string/notification_headers_title" >
