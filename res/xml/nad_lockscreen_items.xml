@@ -56,6 +56,15 @@
         android:summary="@string/hide_lockicon_summary"
         android:defaultValue="true" />
 
+    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+        android:key="lockscreen_blur"
+        android:title="@string/lockscreen_blur_title"
+        android:max="100"
+        settings:min="0"
+        settings:units="%"
+        settings:interval="5"
+        android:defaultValue="0" />
+
     <PreferenceCategory
         android:key="lockscreen_media_art_options"
         android:title="@string/lockscreen_media_art_options_title">

@@ -23,15 +23,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.content.Intent;
 import android.content.ComponentName;
-import android.os.RemoteException;
 
 import java.util.Objects;
 
 import com.android.settings.R;
 
 public class UtilsNad {
+
+    private static boolean isUiBlurAvailable = false;
+
+    private static boolean mBlurDisabledSysProp = SystemProperties
+            .getBoolean("persist.sys.sf.disable_blurs", false);
 
     public static void showSystemUiRestartDialog(Context context) {
         new AlertDialog.Builder(context)
@@ -143,5 +149,12 @@ public class UtilsNad {
             }
             return null;
         }
+    }
+
+    public static boolean isBlurSupported() {
+            try {
+                 isUiBlurAvailable = ActivityManager.getService().isUiBackgroundBlurAvailable();
+            } catch (RemoteException e) { }
+        return !mBlurDisabledSysProp && ActivityManager.isHighEndGfx() && isUiBlurAvailable;
     }
 }
