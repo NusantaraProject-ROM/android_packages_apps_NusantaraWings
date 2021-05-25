@@ -52,13 +52,14 @@ public class TeamActivity extends Activity {
         setTeamMember("Muhammad Fikri", getString(R.string.developer_title)
                 + " / " + getString(R.string.maintainer_title), "Genkzsz11", "Genkzsz11", 
                 R.drawable.genkzsz11);
-        setTeamMember("Rafi Ramadhan 🦈", getString(R.string.developer_title)
+        setTeamMember("Rafi Ramadhan", getString(R.string.developer_title)
                 + " / " + getString(R.string.maintainer_title), "Rafiester", "Rafiester", 
                 R.drawable.rafiester);
         setTeamMember("Rizky Benggolo", getString(R.string.developer_title)
                 + " / " + getString(R.string.contributor_title), "travarilo", "travarilo", 
                 R.drawable.travarilo);
-        setTeamMember("Andra Ramadan", getString(R.string.contributor_title), "andrraa", "Andrraa",
+        setTeamMember("Andra Ramadan", getString(R.string.maintainer_title)
+                + " / " + getString(R.string.contributor_title), "andrraa", "Andrraa", 
                 R.drawable.andra);
         setTeamMember("Julian Surya", getString(R.string.maintainer_title), "juliansurya", "JulianSurya",
                 R.drawable.juliansurya);
@@ -68,9 +69,9 @@ public class TeamActivity extends Activity {
                 R.drawable.hatsune);
         setTeamMember("Alien Icecream", getString(R.string.maintainer_title), "1cecreamm", "whothefvckareyou",
                 R.drawable.icecream);
-        setTeamMember("Kry9toN", getString(R.string.maintainer_title), "Kry9toN", "Kry9toN",
+        setTeamMember("Kry9toN", getString(R.string.contributor_title), "Kry9toN", "Kry9toN",
                 R.drawable.kry9ton);
-        setTeamMember("G M L R", getString(R.string.maintainer_title), "GMLR", "warga_sosmed",
+        setTeamMember("G M L R", getString(R.string.contributor_title), "GMLR", "warga_sosmed",
                 R.drawable.gmlr);
         setTeamMember("Harun Al Rasyid", getString(R.string.maintainer_title), "goodmeow", "aarunalr",
                 R.drawable.harun);
@@ -80,6 +81,8 @@ public class TeamActivity extends Activity {
         setTeamMember("Joko Narimo", getString(R.string.developer_title)
                 + " / " + getString(R.string.maintainer_title), "703joko", "jrInfected",
                 R.drawable.jrinfected);
+        setTeamMember("Ayra Hikari", getString(R.string.contributor_title), "AyraHikari", "AyraHikari",
+                R.drawable.ted);
         setTeamMember("Alanndz", getString(R.string.maintainer_title), "alanndz", "alanndz",
                 R.drawable.alanndz);
         setTeamMember("Anggi Al Ansori", getString(R.string.maintainer_title), "anggialansori404", "hikarinochikara",
@@ -98,24 +101,40 @@ public class TeamActivity extends Activity {
                 R.drawable.mfauzan);
         setTeamMember("MocaRafee", getString(R.string.maintainer_title), "Mocarafee", "yuu_ak12",
                 R.drawable.moca);
-        setTeamMember("Ahmad Thoriq Najahi", getString(R.string.maintainer_title), "najahiiii", "Najahiii",
+        setTeamMember("Ahmad Thoriq Najahi", getString(R.string.contributor_title), "najahiiii", "Najahiii",
                 R.drawable.najahi);
         setTeamMember("【Ｅｋａｒｉｓｔｉ】", getString(R.string.maintainer_title), "Risti699", "kaguyaasama",
                 R.drawable.risti);
-        setTeamMember("Syarifibnu-19", getString(R.string.maintainer_title), "Syarifibnu-19", "Syarifibnu",
-                R.drawable.syarifibnu);
+        setTeamMember("Hadad", getString(R.string.maintainer_title), "hdrjt", "hadad",
+                R.drawable.hadad);
         setTeamMember("TRISF", getString(R.string.maintainer_title), "trisfaizal", "trisf",
                 R.drawable.trisf);
-        setTeamMember("Wahid Nursidik", getString(R.string.maintainer_title), "dns24", "attack_dns24",
-                R.drawable.wahid);
         setTeamMember("Galih Gusti Priatna", getString(R.string.maintainer_title), "wulan17", "wulan17",
                 R.drawable.wulan17);
-        setTeamMember("Acelynx", getString(R.string.maintainer_title), "yaudahlah", "yaudahlahgpp",
+        setTeamMember("𝑺𝒏𝒐𝒘𝒇𝒍𝒂𝒌𝒆.", getString(R.string.maintainer_title), "nothingpeace", "yaudahlahgpp",
                 R.drawable.yaudahlahgpp);
         setTeamMember("yincen17", getString(R.string.maintainer_title), "yincen17", "Yincen",
                 R.drawable.yincen17);
-        setTeamMember("ZHANtech™", getString(R.string.maintainer_title), "zhantech", "zhantech",
-                R.drawable.zhantech);
+        setTeamMember("Wadie Habib", getString(R.string.maintainer_title), "wadiehabib", "mans0amador",
+                R.drawable.wadie);
+        setTeamMember("Zahid M", getString(R.string.maintainer_title), "zahidmgsk", "zahidmgsk",
+                R.drawable.zahidm);
+        setTeamMember("Leonardo Araujo Pimentel", getString(R.string.maintainer_title), "batmann4bot", "pimentelleo",
+                R.drawable.rick);
+        setTeamMember("Reza Bagas Rifaldy", getString(R.string.maintainer_title), "GrettoRosella", "GrettoRosella",
+                R.drawable.reja);
+        setTeamMember("家 | Zenka Bestia | 家", getString(R.string.maintainer_title), "ZenkaBestia", "ZenkaBestia",
+                R.drawable.zenkab);
+        setTeamMember("Nadins", getString(R.string.maintainer_title), "NadinAlissa", "NadinSylaa",
+                R.drawable.nadins);
+        setTeamMember("officialputuid", getString(R.string.maintainer_title), "officialputuid", "officialputuid",
+                R.drawable.officialputuid);
+        setTeamMember("ToxicLord", getString(R.string.maintainer_title), "ToxicLord", "ToxicLord501",
+                R.drawable.toxiclord);
+        setTeamMember("Bayerische Motoren Werke", getString(R.string.maintainer_title), "bmwtheseries", "BayerischeMotorenWerke",
+                R.drawable.bmw);
+        setTeamMember("Sena", getString(R.string.maintainer_title), "namaskaragusthi", "namaskaragusthi",
+                R.drawable.sena);
 
         ListAdapter mAdapter = new ListAdapter(mList);
         mRecycleview.setAdapter(mAdapter);
