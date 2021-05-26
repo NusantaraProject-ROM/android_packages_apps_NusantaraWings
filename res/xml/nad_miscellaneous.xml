@@ -32,6 +32,12 @@
         android:fragment="com.nusantara.wings.fragments.system.CutoutFragment"/>
 
     <com.nusantara.support.preferences.GlobalSettingSwitchPreference
+        android:key="allow_signature_fake"
+        android:title="@string/allow_signature_fake"
+        android:summary="@string/allow_signature_fake_summary"
+        android:defaultValue="false" />
+
+    <com.nusantara.support.preferences.GlobalSettingSwitchPreference
         android:key="aggressive_idle_enabled"
         android:title="@string/aggressive_idle_title"
         android:summary="@string/aggressive_idle_summary"

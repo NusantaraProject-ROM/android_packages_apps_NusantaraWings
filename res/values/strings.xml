@@ -664,6 +664,10 @@
     <!-- Volume dialog timeout -->
     <string name="volume_dialog_timeout_title">Volume dialog timeout</string>
 
+    <!-- Allow fake signature -->
+    <string name="allow_signature_fake">Allow signature spoofing</string>
+    <string name="allow_signature_fake_summary">Allow apps to bypass security systems by pretending to be a different app.</string>
+
     <!-- Brightness Slider style -->
     <string name="brightness_slider_style_title">Brightness slider style</string>
     <string name="brightness_slider_default">Default</string>
