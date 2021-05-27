@@ -44,10 +44,14 @@ import java.util.List;
 public class Ticker extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
+    private static final String TICKER_FOOTER = "ticker_footer";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.ticker);
+
+        findPreference(TICKER_FOOTER).setTitle(R.string.ticker_footer_title);
     }
 
     @Override

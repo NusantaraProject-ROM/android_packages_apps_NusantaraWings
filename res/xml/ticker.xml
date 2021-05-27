@@ -41,4 +41,9 @@
         android:max="10000"
         android:defaultValue="3000"
         settings:units="ms" />
+
+    <com.android.settingslib.widget.FooterPreference
+        android:key="ticker_footer"
+        android:selectable="false"
+        settings:searchable="false" />
 </PreferenceScreen>

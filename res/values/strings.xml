@@ -955,6 +955,7 @@
     <string name="ticker_animation_mode_alpha_fade">Fade</string>
     <string name="ticker_animation_mode_scroll">Scroll</string>
     <string name="ticker_tick_duration_title">Duration</string>
+    <string name="ticker_footer_title">Needed reboot SystemUI after changes</string>
 
     <!-- Lock icon -->
     <string name="hide_lockicon_title">Hide lock icon</string>
