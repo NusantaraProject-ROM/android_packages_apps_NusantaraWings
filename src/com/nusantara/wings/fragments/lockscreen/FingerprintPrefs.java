@@ -38,6 +38,7 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
+import com.nusantara.support.preferences.SecureSettingSwitchPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +50,10 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
     private static final String FP_KEYSTORE = "fp_unlock_keystore";
     private static final String FOD_ANIMATION_CATEGORY = "fod_animations";
     private static final String FOD_ICON_PICKER_CATEGORY = "fod_icon_picker_category";
+    private static final String FINGERPRINT_POWER_BUTTON_PRESS = "fingerprint_power_button_press";
 
     private SystemSettingSwitchPreference mFingerprintUnlock;
+    private SecureSettingSwitchPreference mFingerprintPowerButtonPress;
     private Preference mFODIconPicker;
 
     @Override
@@ -86,12 +89,42 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
         if (!isFodAnimationResources) {
             prefScreen.removePreference(fodCat);
         }
+
+        mFingerprintPowerButtonPress = (SecureSettingSwitchPreference) findPreference(FINGERPRINT_POWER_BUTTON_PRESS);
+        mFingerprintPowerButtonPress.setChecked((Settings.Secure.getIntForUser(resolver,
+                Settings.Secure.FINGERPRINT_POWER_BUTTON_PRESS, 0, UserHandle.USER_CURRENT) == 1));
+        mFingerprintPowerButtonPress.setOnPreferenceChangeListener(this);
+
+        if (mFingerprintPowerButtonPress != null
+                && !getResources().getBoolean(com.android.internal.R.bool.config_powerButtonFingerprint)) {
+            mFingerprintPowerButtonPress.setVisible(false);
+        }
+        updateFpSummary();
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mFingerprintPowerButtonPress) {
+            boolean value = (Boolean) newValue;
+            Settings.Secure.putIntForUser(getContext().getContentResolver(),
+                    FINGERPRINT_POWER_BUTTON_PRESS, value ? 1 : 0, UserHandle.USER_CURRENT);
+            updateFpSummary();
+            return true;
+        }
         return false;
     }
+
+    private void updateFpSummary() {
+        boolean fp = Settings.Secure.getIntForUser(getContentResolver(),
+                Settings.Secure.FINGERPRINT_POWER_BUTTON_PRESS, 0,
+                UserHandle.USER_CURRENT) == 1;
+        if (!fp) {
+            mFingerprintPowerButtonPress.setSummary(R.string.fingerprint_power_button_press_off_summary);
+        } else {
+            mFingerprintPowerButtonPress.setSummary(R.string.fingerprint_power_button_press_on_summary);
+        }
+    }
+
 
     @Override
     public int getMetricsCategory() {

@@ -977,4 +977,9 @@
     <!-- Volume per app-->
     <string name="show_app_volume_title">Show app volume</string>
     <string name="show_app_volume_summary">Show app volume in volume panel</string>
+
+    <!-- Power Button Fingerprint -->
+    <string name="fingerprint_power_button_press_title">Press to unlock</string>
+    <string name="fingerprint_power_button_press_off_summary">Touch power button to unlock with fingerprint when screen is off</string>
+    <string name="fingerprint_power_button_press_on_summary">Press power button firmly to unlock with fingerprint when screen is off</string>
 </resources>

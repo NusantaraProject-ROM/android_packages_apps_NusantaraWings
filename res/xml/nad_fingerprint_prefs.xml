@@ -36,6 +36,11 @@
         android:summary="@string/fp_unlock_keystore_summary"
         android:defaultValue="false" />
 
+    <com.nusantara.support.preferences.SecureSettingSwitchPreference 
+        android:key="fingerprint_power_button_press" 
+        android:title="@string/fingerprint_power_button_press_title" 
+        android:defaultValue="false" />
+
     <!-- FOD icon picker -->
     <Preference
         android:key="fod_icon_picker_category"
