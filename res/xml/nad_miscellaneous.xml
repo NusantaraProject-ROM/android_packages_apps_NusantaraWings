@@ -63,6 +63,11 @@
         android:summary="@string/sensor_block_summary"
         android:fragment="com.nusantara.wings.fragments.system.SensorBlockSettings"/>
 
+    <Preference
+        android:key="sleep_mode"
+        android:title="@string/sleep_mode_title"
+        android:fragment="com.nusantara.wings.fragments.system.SleepMode" />
+
     <PreferenceCategory
         android:title="@string/flashlight_category">
 

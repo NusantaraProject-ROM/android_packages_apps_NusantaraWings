@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
+import android.text.format.DateFormat;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
@@ -46,6 +47,9 @@ import com.nusantara.support.preferences.SystemSettingSwitchPreference;
 import com.nusantara.support.preferences.SystemSettingListPreference;
 import com.nusantara.support.preferences.SystemSettingSeekBarPreference;
 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
+
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class Miscellaneous extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
@@ -67,6 +71,7 @@ public class Miscellaneous extends SettingsPreferenceFragment
     private SecureSettingSwitchPreference mRoundedFwvals;
     private SystemSettingSeekBarPreference mStartPadding;
     private SystemSettingSeekBarPreference mEndPadding;
+    private Preference mSleepMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -133,7 +138,66 @@ public class Miscellaneous extends SettingsPreferenceFragment
         mStartPadding.setValue(mStartPaddingVal);
         mEndPadding.setValue(mEndPaddingVal);
         mStartPadding.setDefaultValue((int) (res.getDimensionPixelSize(startPadding) / density));
-        mEndPadding.setDefaultValue((int) (res.getDimensionPixelSize(endPadding) / density));      
+        mEndPadding.setDefaultValue((int) (res.getDimensionPixelSize(endPadding) / density));
+
+        mSleepMode = findPreference("sleep_mode");
+        updateSleepModeSummary();
+    }
+
+    private void updateSleepModeSummary() {
+        if (mSleepMode == null) return;
+        boolean enabled = Settings.Secure.getIntForUser(getActivity().getContentResolver(),
+                Settings.Secure.SLEEP_MODE_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
+        int mode = Settings.Secure.getIntForUser(getActivity().getContentResolver(),
+                Settings.Secure.SLEEP_MODE_AUTO_MODE, 0, UserHandle.USER_CURRENT);
+        String timeValue = Settings.Secure.getStringForUser(getActivity().getContentResolver(),
+                Settings.Secure.SLEEP_MODE_AUTO_TIME, UserHandle.USER_CURRENT);
+        if (timeValue == null || timeValue.equals("")) timeValue = "20:00,07:00";
+        String[] time = timeValue.split(",", 0);
+        String outputFormat = DateFormat.is24HourFormat(getContext()) ? "HH:mm" : "h:mm a";
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime sinceValue = LocalTime.parse(time[0], formatter);
+        LocalTime tillValue = LocalTime.parse(time[1], formatter);
+        String detail;
+        switch (mode) {
+            default:
+            case 0:
+                detail = getActivity().getString(enabled
+                        ? R.string.night_display_summary_on_auto_mode_never
+                        : R.string.night_display_summary_off_auto_mode_never);
+                break;
+            case 1:
+                detail = getActivity().getString(enabled
+                        ? R.string.night_display_summary_on_auto_mode_twilight
+                        : R.string.night_display_summary_off_auto_mode_twilight);
+                break;
+            case 2:
+                if (enabled) {
+                    detail = getActivity().getString(R.string.night_display_summary_on_auto_mode_custom, tillValue.format(outputFormatter));
+                } else {
+                    detail = getActivity().getString(R.string.night_display_summary_off_auto_mode_custom, sinceValue.format(outputFormatter));
+                }
+                break;
+            case 3:
+                if (enabled) {
+                    detail = getActivity().getString(R.string.night_display_summary_on_auto_mode_custom, tillValue.format(outputFormatter));
+                } else {
+                    detail = getActivity().getString(R.string.night_display_summary_off_auto_mode_twilight);
+                }
+                break;
+            case 4:
+                if (enabled) {
+                    detail = getActivity().getString(R.string.night_display_summary_on_auto_mode_twilight);
+                } else {
+                    detail = getActivity().getString(R.string.night_display_summary_off_auto_mode_custom, sinceValue.format(outputFormatter));
+                }
+                break;
+        }
+        String summary = getActivity().getString(enabled
+                ? R.string.night_display_summary_on
+                : R.string.night_display_summary_off, detail);
+        mSleepMode.setSummary(summary);
     }
 
     @Override
@@ -180,6 +244,19 @@ public class Miscellaneous extends SettingsPreferenceFragment
     private static boolean hasPhysicalDisplayCutout(Context context) {
         return context.getResources().getBoolean(
                 com.android.internal.R.bool.config_physicalDisplayCutout);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateSleepModeSummary();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        updateSleepModeSummary();
     }
 
     @Override
