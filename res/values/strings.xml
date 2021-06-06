@@ -989,4 +989,7 @@
     <!-- Lockscreen blur -->
     <string name="lockscreen_blur_title">Background blur</string>
     <string name="lockscreen_blur_summary">Blur lock screen background</string>
+
+    <!-- Power menu background opacity -->
+    <string name="power_menu_alpha_title">Power menu opacity</string>
 </resources>
