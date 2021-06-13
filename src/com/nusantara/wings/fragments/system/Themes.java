@@ -48,6 +48,7 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.display.FontDialogPreference;
 import com.android.settingslib.search.SearchIndexable;
 import com.nusantara.support.colorpicker.ColorPickerPreference;
+import com.nusantara.support.preferences.SystemSettingListPreference;
 import com.nusantara.wings.UtilsNad;
 
 import java.util.ArrayList;
@@ -78,6 +79,7 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_SIGNAL_ICON = "signal_icon";
     private static final String PREF_WIFI_ICON = "wifi_icon";
     private static final String KEY_FONT_PICKER_FRAGMENT_PREF = "custom_font";
+    private static final String PREF_SETTINGS_ICONS = "theming_settings_dashboard_icons";
 
     private Context mContext;
     private IOverlayManager mOverlayManager;
@@ -100,6 +102,7 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mWifiIcon;
     private Preference mThemesSettings;
     private FontDialogPreference mFontPreference;
+    private SystemSettingListPreference mDashboardIcons;
 
     IFontService mFontService = IFontService.Stub.asInterface(ServiceManager.getService("dufont"));
 
@@ -272,6 +275,10 @@ public class Themes extends SettingsPreferenceFragment
                 : Color.parseColor("#" + colorVal);
         rgbAccentPicker.setNewPreviewColor(color);
         rgbAccentPicker.setOnPreferenceChangeListener(this);
+
+        mDashboardIcons = (SystemSettingListPreference)
+                findPreference(PREF_SETTINGS_ICONS);
+        mDashboardIcons.setOnPreferenceChangeListener(this);
 
         // Settings themes
         mThemesSettings = (Preference) findPreference(PREF_SETTINGS_THEMES);
@@ -548,6 +555,11 @@ public class Themes extends SettingsPreferenceFragment
                         true, mOverlayManager);
             }
             mQsShape.setSummary(mQsShape.getEntry());
+            return true;
+        } else if (preference == mDashboardIcons) {
+            int value = Integer.parseInt((String) newValue);
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.THEMING_SETTINGS_DASHBOARD_ICONS, value);
             return true;
         } else if (preference == mSwitchStyle) {
             String switchStyle = (String) newValue;
