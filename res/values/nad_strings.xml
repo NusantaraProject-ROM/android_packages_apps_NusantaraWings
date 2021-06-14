@@ -1063,4 +1063,7 @@
     <string name="artwork_media_background_summary">Set media artwork as notification media background</string>
     <string name="artwork_media_fade_level_title">Artwork fade level</string>
     <string name="artwork_media_fade_level_summary">Fading the media artwork image</string>
+
+    <!-- Ios like clipboard access toast notification -->
+   <string name="ios_clipboard_title">iOS-like toast notification for clipboard access</string>
 </resources>
