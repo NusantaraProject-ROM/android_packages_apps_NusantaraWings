@@ -131,7 +131,7 @@ public class TeamActivity extends Activity {
                 R.drawable.officialputuid);
         setTeamMember("ToxicLord", getString(R.string.maintainer_title), "ToxicLord", "ToxicLord501",
                 R.drawable.toxiclord);
-        setTeamMember("Bayerische Motoren Werke", getString(R.string.maintainer_title), "bmwtheseries", "BayerischeMotorenWerke",
+        setTeamMember("Bayerische Motoren Werke", getString(R.string.maintainer_title), "BayerischeMotorenWerke", "bmwtheseries",
                 R.drawable.bmw);
         setTeamMember("Sena", getString(R.string.maintainer_title), "namaskaragusthi", "namaskaragusthi",
                 R.drawable.sena);
