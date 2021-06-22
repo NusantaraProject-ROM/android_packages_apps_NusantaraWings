@@ -783,6 +783,31 @@
         <item>4</item>
     </string-array>
     
+    <!-- Statusbar icon Style-->
+    <string-array name="signal_bar_titles" translatable="false">
+        <item>@string/signal_bar_default</item>
+        <item>@string/signal_bar_a</item>
+        <item>@string/signal_bar_b</item>
+        <item>@string/signal_bar_c</item>
+        <item>@string/signal_bar_d</item>
+        <item>@string/signal_bar_e</item>
+        <item>@string/signal_bar_f</item>
+        <item>@string/signal_bar_g</item>
+        <item>@string/signal_bar_h</item>
+    </string-array>
+
+    <string-array name="signal_bar_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+
     <!-- Qs shapes -->
     <string-array name="qs_shape_titles">
         <item>@string/qs_shape_default</item>

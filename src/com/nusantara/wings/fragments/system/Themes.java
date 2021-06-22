@@ -75,6 +75,8 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_SWITCH_STYLE = "switch_style";
     private static final String PREF_SETTINGS_THEMES = "themes_settings";
     private static final String PREF_RGB_ACCENT_PICKER = "rgb_accent_picker";
+    private static final String PREF_SIGNAL_ICON = "signal_icon";
+    private static final String PREF_WIFI_ICON = "wifi_icon";
     private static final String KEY_FONT_PICKER_FRAGMENT_PREF = "custom_font";
 
     private Context mContext;
@@ -94,6 +96,8 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mPanelBg;
     private ListPreference mQsShape;
     private ListPreference mSwitchStyle;
+    private ListPreference mSignalIcon;
+    private ListPreference mWifiIcon;
     private Preference mThemesSettings;
     private FontDialogPreference mFontPreference;
 
@@ -217,6 +221,26 @@ public class Themes extends SettingsPreferenceFragment
         }
         mPanelBg.setSummary(mPanelBg.getEntry());
         mPanelBg.setOnPreferenceChangeListener(this);
+
+        mSignalIcon = (ListPreference) findPreference(PREF_SIGNAL_ICON);
+        int mSignalIconValue = getOverlayPosition(ThemesUtils.SIGNAL_BAR);
+        if (mSignalIconValue != -1) {
+            mSignalIcon.setValue(String.valueOf(mSignalIconValue + 2));
+        } else {
+            mSignalIcon.setValue("1");
+        }
+        mSignalIcon.setSummary(mSignalIcon.getEntry());
+        mSignalIcon.setOnPreferenceChangeListener(this);
+
+        mWifiIcon = (ListPreference) findPreference(PREF_WIFI_ICON);
+        int mWifiIconValue = getOverlayPosition(ThemesUtils.WIFI_BAR);
+        if (mWifiIconValue != -1) {
+            mWifiIcon.setValue(String.valueOf(mWifiIconValue + 2));
+        } else {
+            mWifiIcon.setValue("1");
+        }
+        mWifiIcon.setSummary(mWifiIcon.getEntry());
+        mWifiIcon.setOnPreferenceChangeListener(this);
 
         // Qs shape
         mQsShape = (ListPreference) findPreference(PREF_QS_SHAPE);
@@ -538,6 +562,34 @@ public class Themes extends SettingsPreferenceFragment
                         true, mOverlayManager);
             }
             mSwitchStyle.setSummary(mSwitchStyle.getEntry());
+            return true;
+        } else if (preference == mSignalIcon) {
+            String signalIcon = (String) newValue;
+            String overlayName = getOverlayName(ThemesUtils.SIGNAL_BAR);
+            int signalIconValue = Integer.parseInt(signalIcon);
+            mSignalIcon.setValue(String.valueOf(signalIconValue));
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (signalIconValue > 1) {
+                handleOverlays(ThemesUtils.SIGNAL_BAR[signalIconValue - 2],
+                        true, mOverlayManager);
+            }
+            mSignalIcon.setSummary(mSignalIcon.getEntry());
+            return true;
+        } else if (preference == mWifiIcon) {
+            String wifiIcon = (String) newValue;
+            String overlayName = getOverlayName(ThemesUtils.WIFI_BAR);
+            int wifiIconValue = Integer.parseInt(wifiIcon);
+            mWifiIcon.setValue(String.valueOf(wifiIconValue));
+            if (overlayName != null) {
+                handleOverlays(overlayName, false, mOverlayManager);
+            }
+            if (wifiIconValue > 1) {
+                handleOverlays(ThemesUtils.WIFI_BAR[wifiIconValue - 2],
+                        true, mOverlayManager);
+            }
+            mWifiIcon.setSummary(mWifiIcon.getEntry());
             return true;
         } else if (preference == rgbAccentPicker) {
             int color = (Integer) newValue;

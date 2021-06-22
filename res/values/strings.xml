@@ -974,4 +974,21 @@
 
     <!-- Power menu background opacity -->
     <string name="power_menu_alpha_title">Power menu opacity</string>
+
+    <!-- Signal bar style -->
+    <string name="signal_bar_title">Signal bar style</string>
+    <string name="signal_bar_dialog_title">Select signal bar model</string>
+    <string name="signal_bar_default">Default</string>
+    <string name="signal_bar_a">Stroke</string>
+    <string name="signal_bar_b">Sneaky</string>
+    <string name="signal_bar_c">Xperia</string>
+    <string name="signal_bar_d">Zig-Zag</string>
+    <string name="signal_bar_e">Wavy</string>
+    <string name="signal_bar_f">Round</string>
+    <string name="signal_bar_g">Inside</string>
+    <string name="signal_bar_h">Bars</string>
+
+    <!-- Wifi bar style -->
+    <string name="wifi_bar_title">Wifi bar style</string>
+    <string name="wifi_bar_dialog_title">Select wifi bar model</string>
 </resources>
