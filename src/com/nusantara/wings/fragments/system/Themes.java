@@ -19,6 +19,8 @@ package com.nusantara.wings.fragments.system;
 import android.app.Dialog;
 import android.app.UiModeManager;
 import android.content.Context;
+import android.content.FontInfo;
+import android.content.IFontService;
 import android.content.SharedPreferences;
 import android.content.om.IOverlayManager;
 import android.graphics.Color;
@@ -31,6 +33,7 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -42,6 +45,7 @@ import com.android.internal.util.nad.ThemesUtils;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.display.FontDialogPreference;
 import com.android.settingslib.search.SearchIndexable;
 import com.nusantara.support.colorpicker.ColorPickerPreference;
 import com.nusantara.wings.UtilsNad;
@@ -52,6 +56,7 @@ import java.util.List;
 import static com.nusantara.wings.UtilsThemes.handleBackgrounds;
 import static com.nusantara.wings.UtilsThemes.handleOverlays;
 import static com.nusantara.wings.UtilsThemes.threeButtonNavbarEnabled;
+
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class Themes extends SettingsPreferenceFragment
@@ -70,6 +75,7 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_SWITCH_STYLE = "switch_style";
     private static final String PREF_SETTINGS_THEMES = "themes_settings";
     private static final String PREF_RGB_ACCENT_PICKER = "rgb_accent_picker";
+    private static final String KEY_FONT_PICKER_FRAGMENT_PREF = "custom_font";
 
     private Context mContext;
     private IOverlayManager mOverlayManager;
@@ -89,6 +95,9 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mQsShape;
     private ListPreference mSwitchStyle;
     private Preference mThemesSettings;
+    private FontDialogPreference mFontPreference;
+
+    IFontService mFontService = IFontService.Stub.asInterface(ServiceManager.getService("dufont"));
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -315,6 +324,9 @@ public class Themes extends SettingsPreferenceFragment
                 return false;
             }
         });
+
+        mFontPreference = (FontDialogPreference) findPreference(KEY_FONT_PICKER_FRAGMENT_PREF);
+        mFontPreference.setSummary(getCurrentFontInfo().fontName.replace("_", " "));
     }
 
     @Override
@@ -564,6 +576,18 @@ public class Themes extends SettingsPreferenceFragment
             }
         }
         return overlayName;
+    }
+
+    private FontInfo getCurrentFontInfo() {
+        try {
+            return mFontService.getFontInfo();
+        } catch (RemoteException e) {
+            return FontInfo.getDefaultFontInfo();
+        }
+    }
+
+    public void stopProgress() {
+    	mFontPreference.stopProgress();
     }
 
     @Override

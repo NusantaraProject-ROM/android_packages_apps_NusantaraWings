@@ -47,6 +47,11 @@
         android:summary="@string/rgb_accent_picker_summary"
         android:persistent="false" />
 
+    <com.android.settings.display.FontDialogPreference
+        android:key="custom_font"
+        android:title="@string/font_picker_title"
+        android:persistent="false" />
+
     <ListPreference
         android:key="theme_navbar_style"
         android:title="@string/theme_navbar_picker_title"
