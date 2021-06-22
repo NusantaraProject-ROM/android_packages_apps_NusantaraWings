@@ -60,7 +60,6 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_THEME_SWITCH = "theme_switch";
     private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
     private static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
-    private static final String PREF_FONT_PICKER = "font_picker";
     private static final String PREF_NAVBAR_STYLE = "theme_navbar_style";
     private static final String PREF_QS_HEADER_STYLE = "qs_header_style";
     private static final String PREF_ROUNDED_CORNER = "rounded_ui";
@@ -81,7 +80,6 @@ public class Themes extends SettingsPreferenceFragment
     private ListPreference mAccentPicker;
     private ListPreference mAdaptiveIconShape;
     private ListPreference mStatusbarIcons;
-    private ListPreference mFontPicker;
     private ListPreference mNavbarPicker;
     private ListPreference mQsHeaderStyle;
     private ListPreference mRoundedUi;
@@ -145,17 +143,6 @@ public class Themes extends SettingsPreferenceFragment
         }
         mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
         mAdaptiveIconShape.setOnPreferenceChangeListener(this);
-
-        // Font picker
-        mFontPicker = (ListPreference) findPreference(PREF_FONT_PICKER);
-        int fontPickerValue = getOverlayPosition(ThemesUtils.FONTS);
-        if (fontPickerValue != -1) {
-            mFontPicker.setValue(String.valueOf(fontPickerValue + 2));
-        } else {
-            mFontPicker.setValue("1");
-        }
-        mFontPicker.setSummary(mFontPicker.getEntry());
-        mFontPicker.setOnPreferenceChangeListener(this);
 
         mNavbarPicker = (ListPreference) findPreference(PREF_NAVBAR_STYLE);
         if (threeButtonNavbarEnabled(mContext)) {
@@ -425,20 +412,6 @@ public class Themes extends SettingsPreferenceFragment
                         true, mOverlayManager);
             }
             mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
-            return true;
-        } else if (preference == mFontPicker) {
-            String font = (String) newValue;
-            int fontTypeValue = Integer.parseInt(font);
-            mFontPicker.setValue(String.valueOf(fontTypeValue));
-            String overlayName = getOverlayName(ThemesUtils.FONTS);
-            if (overlayName != null) {
-                handleOverlays(overlayName, false, mOverlayManager);
-            }
-            if (fontTypeValue > 1) {
-                handleOverlays(ThemesUtils.FONTS[fontTypeValue - 2],
-                        true, mOverlayManager);
-            }
-            mFontPicker.setSummary(mFontPicker.getEntry());
             return true;
         } else if (preference == mNavbarPicker) {
             String navbarStyle = (String) newValue;

@@ -195,41 +195,6 @@
         <item>7</item>
     </string-array>
 
-    <!-- Fonts -->
-    <string-array name="font_type_titles">
-        <item>@string/font_type_default</item>
-        <item>@string/font_type_2</item>
-        <item>@string/font_type_3</item>
-        <item>@string/font_type_4</item>
-        <item>@string/font_type_5</item>
-        <item>@string/font_type_6</item>
-        <item>@string/font_type_7</item>
-        <item>@string/font_type_8</item>
-        <item>@string/font_type_9</item>
-        <item>@string/font_type_10</item>
-        <item>@string/font_type_11</item>
-        <item>@string/font_type_12</item>
-        <item>@string/font_type_13</item>
-        <item>@string/font_type_14</item>
-    </string-array>
-
-    <string-array name="font_type_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-    </string-array>
-
     <!-- Navbar name -->
     <string-array name="navbar_name_entries" translatable="false">
         <item>@string/theme_navbar_picker_default</item>

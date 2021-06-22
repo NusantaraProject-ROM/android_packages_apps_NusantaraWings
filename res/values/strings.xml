@@ -267,24 +267,6 @@
     <string name="volume_rocker_wake_title">Volume rocker wake</string>
     <string name="volume_rocker_wake_summary">Pressing the volume keys will wake your device</string>
 
-    <!-- Fonts -->
-    <string name="font_type_title">Font type</string>
-    <string name="font_type_summary">Select font type</string>
-    <string name="font_type_default">Default</string>
-    <string name="font_type_2">Noto Serif / Source Sans Pro</string>
-    <string name="font_type_3">Cagliostro</string>
-    <string name="font_type_4">LG Smart Gothic</string>
-    <string name="font_type_5">Rosemary</string>
-    <string name="font_type_6">Sony Sketch</string>
-    <string name="font_type_7">Google Sans</string>
-    <string name="font_type_8">OnePlus Slate</string>
-    <string name="font_type_9">Samsung One</string>
-    <string name="font_type_10">Fira Sans</string>
-    <string name="font_type_11">Ubuntu</string>
-    <string name="font_type_12">Titillium Web</string>
-    <string name="font_type_13">Caviar Dreams</string>
-    <string name="font_type_14">Linotte</string>
-
     <!-- Navbar Picker -->
     <string name="theme_navbar_picker_title">Navbar style</string>
     <string name="theme_navbar_picker_summary">Select navbar style</string>
