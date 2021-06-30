@@ -49,6 +49,7 @@ import com.android.settings.display.FontDialogPreference;
 import com.android.settingslib.search.SearchIndexable;
 import com.nusantara.support.colorpicker.ColorPickerPreference;
 import com.nusantara.support.preferences.SystemSettingListPreference;
+import com.nusantara.support.preferences.SystemSettingSwitchPreference;
 import com.nusantara.wings.UtilsNad;
 
 import java.util.ArrayList;
@@ -79,6 +80,7 @@ public class Themes extends SettingsPreferenceFragment
     private static final String PREF_SIGNAL_ICON = "signal_icon";
     private static final String PREF_WIFI_ICON = "wifi_icon";
     private static final String KEY_FONT_PICKER_FRAGMENT_PREF = "custom_font";
+    private static final String PREF_CUSTOM_ICONS = "custom_icons";
     private static final String PREF_SETTINGS_ICONS = "theming_settings_dashboard_icons";
 
     private Context mContext;
@@ -103,6 +105,7 @@ public class Themes extends SettingsPreferenceFragment
     private Preference mThemesSettings;
     private FontDialogPreference mFontPreference;
     private SystemSettingListPreference mDashboardIcons;
+    private SystemSettingSwitchPreference mCustomIcons;
 
     IFontService mFontService = IFontService.Stub.asInterface(ServiceManager.getService("dufont"));
 
@@ -358,6 +361,13 @@ public class Themes extends SettingsPreferenceFragment
 
         mFontPreference = (FontDialogPreference) findPreference(KEY_FONT_PICKER_FRAGMENT_PREF);
         mFontPreference.setSummary(getCurrentFontInfo().fontName.replace("_", " "));
+
+        mCustomIcons = (SystemSettingSwitchPreference) findPreference(PREF_CUSTOM_ICONS);
+        mCustomIcons.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.DASHBOARD_ICONS, 0) == 1));
+        mDashboardIcons.setEnabled((Settings.System.getInt(getContentResolver(),
+                Settings.System.DASHBOARD_ICONS, 0) == 1));
+        mCustomIcons.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -555,6 +565,12 @@ public class Themes extends SettingsPreferenceFragment
                         true, mOverlayManager);
             }
             mQsShape.setSummary(mQsShape.getEntry());
+            return true;
+        } else if (preference == mCustomIcons) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.DASHBOARD_ICONS, value ? 1 : 0);
+            mDashboardIcons.setEnabled(value);
             return true;
         } else if (preference == mDashboardIcons) {
             int value = Integer.parseInt((String) newValue);

@@ -17,115 +17,132 @@
             xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
             android:title="@string/themes_title" >
 
-    <com.nusantara.support.preferences.SystemSettingListPreference
-        android:key="nusantara_wings_style"
-        android:title="@string/nad_style_title"
-        android:entries="@array/nad_style_color_entries"
-        android:entryValues="@array/nad_style_color_values"
-        android:summary="%s"
-        android:defaultValue="0" />
+    <PreferenceCategory
+        android:key="system_category"
+        android:title="NusantaraWings Interface">
 
-    <com.nusantara.support.preferences.SystemSettingListPreference
-        android:key="cat_nusantara"
-        android:title="@string/nusantara_cat_style_title"
-        android:entries="@array/nad_style_cat_entries"
-        android:entryValues="@array/nad_style_cat_values"
-        android:summary="%s"
-        android:defaultValue="0" />
+        <com.nusantara.support.preferences.SystemSettingListPreference
+            android:key="nusantara_wings_style"
+            android:title="@string/nad_style_title"
+            android:entries="@array/nad_style_color_entries"
+            android:entryValues="@array/nad_style_color_values"
+            android:summary="%s"
+            android:defaultValue="0" />
 
-    <ListPreference
-        android:key="theme_switch"
-        android:title="@string/theme_type_title"
-        android:summary="@string/theme_type_summary"
-        android:dialogTitle="@string/theme_type_summary"
-        android:entries="@array/theme_type_titles"
-        android:entryValues="@array/theme_type_values"/>
+        <com.nusantara.support.preferences.SystemSettingListPreference
+            android:key="cat_nusantara"
+            android:title="@string/nusantara_cat_style_title"
+            android:entries="@array/nad_style_cat_entries"
+            android:entryValues="@array/nad_style_cat_values"
+            android:summary="%s"
+            android:defaultValue="0" />
+    </PreferenceCategory>
 
-    <com.nusantara.support.colorpicker.ColorPickerPreference
-        android:key="rgb_accent_picker"
-        android:title="@string/rgb_accent_picker_title"
-        android:summary="@string/rgb_accent_picker_summary"
-        android:persistent="false" />
+    <PreferenceCategory
+        android:key="system_category"
+        android:title="System Interface">
 
-    <com.android.settings.display.FontDialogPreference
-        android:key="custom_font"
-        android:title="@string/font_picker_title"
-        android:persistent="false" />
+        <com.nusantara.support.colorpicker.ColorPickerPreference
+            android:key="rgb_accent_picker"
+            android:title="@string/rgb_accent_picker_title"
+            android:summary="@string/rgb_accent_picker_summary"
+            android:persistent="false" />
 
-    <ListPreference
-        android:key="theme_navbar_style"
-        android:title="@string/theme_navbar_picker_title"
-        android:summary="@string/theme_navbar_picker_summary"
-        android:dialogTitle="@string/theme_navbar_picker_summary"
-        android:entries="@array/navbar_name_entries"
-        android:entryValues="@array/navbar_picker_values"/>
+        <com.android.settings.display.FontDialogPreference
+            android:key="custom_font"
+            android:title="@string/font_picker_title"
+            android:persistent="false" />
 
-    <ListPreference
-        android:key="qs_header_style"
-        android:title="@string/qs_header_style_title"
-        android:dialogTitle="@string/qs_header_style_dialog_title"
-        android:entries="@array/qs_header_style_titles"
-        android:entryValues="@array/qs_header_style_values" />
+        <ListPreference
+            android:key="theme_switch"
+            android:title="@string/theme_type_title"
+            android:summary="@string/theme_type_summary"
+            android:dialogTitle="@string/theme_type_summary"
+            android:entries="@array/theme_type_titles"
+            android:entryValues="@array/theme_type_values"/>
 
-    <ListPreference
-        android:key="switch_style"
-        android:title="@string/switch_style_title"
-        android:dialogTitle="@string/switch_style_dialog_title"
-        android:entries="@array/switch_style_entries"
-        android:entryValues="@array/switch_style_values" />
+        <ListPreference
+            android:key="switch_style"
+            android:title="@string/switch_style_title"
+            android:dialogTitle="@string/switch_style_dialog_title"
+            android:entries="@array/switch_style_entries"
+            android:entryValues="@array/switch_style_values" />
 
-    <ListPreference
-        android:key="adapative_icon_shape"
-        android:title="@string/adaptive_icon_shape_title"
-        android:dialogTitle="@string/adaptive_icon_shape_dialog_title"
-        android:entries="@array/adapative_icon_shape_titles"
-        android:entryValues="@array/adapative_icon_shape_values" />
+        <ListPreference
+            android:key="adapative_icon_shape"
+            android:title="@string/adaptive_icon_shape_title"
+            android:dialogTitle="@string/adaptive_icon_shape_dialog_title"
+            android:entries="@array/adapative_icon_shape_titles"
+            android:entryValues="@array/adapative_icon_shape_values" />
 
-    <ListPreference
-        android:key="statusbar_icons"
-        android:title="@string/statusbar_icons_title"
-        android:dialogTitle="@string/statusbar_icons_dialog_title"
-        android:entries="@array/statusbar_icons_titles"
-        android:entryValues="@array/statusbar_icons_values" />
+    </PreferenceCategory>
 
-    <ListPreference
-        android:key="qs_shape"
-        android:title="@string/qs_shape_title"
-        android:dialogTitle="@string/qs_shape_dialog_title"
-        android:entries="@array/qs_shape_titles"
-        android:entryValues="@array/qs_shape_values" />
+    <PreferenceCategory
+        android:key="systemui_category"
+        android:title="SystemUI Interface">
 
-    <ListPreference
-        android:key="brightness_slider_style"
-        android:title="@string/brightness_slider_style_title"
-        android:entries="@array/brightness_slider_style_selector_entries"
-        android:dialogTitle="@string/brightness_slider_style_title"
-        android:entryValues="@array/brightness_slider_style_selector_values" />
+        <ListPreference
+            android:key="qs_header_style"
+            android:title="@string/qs_header_style_title"
+            android:dialogTitle="@string/qs_header_style_dialog_title"
+            android:entries="@array/qs_header_style_titles"
+            android:entryValues="@array/qs_header_style_values" />
 
-    <ListPreference
-        android:key="panel_bg"
-        android:title="@string/panel_bg_title"
-        android:dialogTitle="@string/panel_bg_dialog_title"
-        android:entries="@array/panel_bg_titles"
-        android:entryValues="@array/panel_bg_values" />
+        <ListPreference
+            android:key="statusbar_icons"
+            android:title="@string/statusbar_icons_title"
+            android:dialogTitle="@string/statusbar_icons_dialog_title"
+            android:entries="@array/statusbar_icons_titles"
+            android:entryValues="@array/statusbar_icons_values" />
 
-    <ListPreference
-        android:key="signal_icon"
-        android:title="@string/signal_bar_title"
-        android:dialogTitle="@string/signal_bar_dialog_title"
-        android:entries="@array/signal_bar_titles"
-        android:entryValues="@array/signal_bar_values" />
+        <ListPreference
+            android:key="qs_shape"
+            android:title="@string/qs_shape_title"
+            android:dialogTitle="@string/qs_shape_dialog_title"
+            android:entries="@array/qs_shape_titles"
+            android:entryValues="@array/qs_shape_values" />
 
-    <ListPreference
-        android:key="wifi_icon"
-        android:title="@string/wifi_bar_title"
-        android:dialogTitle="@string/wifi_bar_dialog_title"
-        android:entries="@array/signal_bar_titles"
-        android:entryValues="@array/signal_bar_values" />
+        <ListPreference
+            android:key="theme_navbar_style"
+            android:title="@string/theme_navbar_picker_title"
+            android:summary="@string/theme_navbar_picker_summary"
+            android:dialogTitle="@string/theme_navbar_picker_summary"
+            android:entries="@array/navbar_name_entries"
+            android:entryValues="@array/navbar_picker_values"/>
+
+        <ListPreference
+            android:key="brightness_slider_style"
+            android:title="@string/brightness_slider_style_title"
+            android:entries="@array/brightness_slider_style_selector_entries"
+            android:dialogTitle="@string/brightness_slider_style_title"
+            android:entryValues="@array/brightness_slider_style_selector_values" />
+
+        <ListPreference
+            android:key="panel_bg"
+            android:title="@string/panel_bg_title"
+            android:dialogTitle="@string/panel_bg_dialog_title"
+            android:entries="@array/panel_bg_titles"
+            android:entryValues="@array/panel_bg_values" />
+
+        <ListPreference
+            android:key="signal_icon"
+            android:title="@string/signal_bar_title"
+            android:dialogTitle="@string/signal_bar_dialog_title"
+            android:entries="@array/signal_bar_titles"
+            android:entryValues="@array/signal_bar_values" />
+
+        <ListPreference
+            android:key="wifi_icon"
+            android:title="@string/wifi_bar_title"
+            android:dialogTitle="@string/wifi_bar_dialog_title"
+            android:entries="@array/signal_bar_titles"
+            android:entryValues="@array/signal_bar_values" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="gvisual_category"
-        android:title="@string/gvisual_title" >
+        android:title="@string/gvisual_title">
 
         <ListPreference
             android:key="statusbar_height"
@@ -145,13 +162,19 @@
 
     <PreferenceCategory
         android:key="settings_themes"
-        android:title="Settings Interface" >
+        android:title="Settings Interface">
     
         <Preference 
             android:key="themes_settings"
             android:title="Settings Themes"
             android:summary="Choose your favorite settings interface"
             /> 
+
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="custom_icons"
+            android:title="@string/dashboard_icons_title"
+            android:summary="@string/dashboard_icons_summary"
+            android:defaultValue="false" />
 
         <!-- Settings dashboard icon style -->
         <com.nusantara.support.preferences.SystemSettingListPreference

@@ -1093,6 +1093,8 @@
     <string-array name="theming_settings_dashboard_icons_entries" translatable="false">
         <item>@string/theming_settings_dashboard_icons_default</item>
         <item>@string/theming_settings_dashboard_icons_white</item>
+        <item>@string/theming_settings_dashboard_icons_d_acents</item>
+        <item>@string/theming_settings_dashboard_icons_black</item>
         <item>@string/theming_settings_dashboard_icons_accent</item>
         <item>@string/theming_settings_dashboard_icons_plain</item>
         <item>@string/theming_settings_dashboard_icons_plain_accent</item>
@@ -1104,5 +1106,7 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+        <item>5</item>
+        <item>6</item>
     </string-array>
 </resources>
