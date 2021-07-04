@@ -366,7 +366,7 @@ public class Themes extends SettingsPreferenceFragment
         mCustomIcons.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.DASHBOARD_ICONS, 0) == 1));
         mDashboardIcons.setEnabled((Settings.System.getInt(getContentResolver(),
-                Settings.System.DASHBOARD_ICONS, 0) == 1));
+                Settings.System.THEMING_SETTINGS_DASHBOARD_ICONS, 0) == 1));
         mCustomIcons.setOnPreferenceChangeListener(this);
     }
 
