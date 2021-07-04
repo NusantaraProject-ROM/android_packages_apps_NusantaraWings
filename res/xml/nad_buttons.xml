@@ -30,43 +30,47 @@
         android:summary="@string/notification_guts_kill_app_button_summary"
         android:defaultValue="false" />
 
-    <Preference
-        android:key="volume_steps"
-        android:title="@string/volume_steps_title"
-        android:summary="@string/volume_steps_summary"
-        android:fragment="com.nusantara.wings.fragments.hardware.VolumeSteps" />
+    <PreferenceCategory
+        android:key="volume"
+        android:title="Volume" >
 
-    <com.nusantara.support.preferences.SystemSettingListPreference
-        android:key="systemui_plugin_volume"
-        android:title="@string/volume_panel"
-        android:entries="@array/volume_panel_entries"
-        android:entryValues="@array/volume_panel_values"
-        android:defaultValue="@string/volume_panel_aospa_val" />
+        <com.nusantara.support.preferences.SystemSettingListPreference
+            android:key="systemui_plugin_volume"
+            android:title="@string/volume_panel"
+            android:entries="@array/volume_panel_entries"
+            android:entryValues="@array/volume_panel_values"
+            android:defaultValue="@string/volume_panel_aospa_val" />
 
-    <com.nusantara.support.preferences.SystemSettingSwitchPreference
-        android:key="show_app_volume"
-        android:title="@string/show_app_volume_title"
-        android:summary="@string/show_app_volume_summary"
-        android:defaultValue="false" />
+        <Preference
+            android:key="volume_steps"
+            android:title="@string/volume_steps_title"
+            android:summary="@string/volume_steps_summary"
+            android:fragment="com.nusantara.wings.fragments.hardware.VolumeSteps" />
 
-    <com.nusantara.support.preferences.SystemSettingSwitchPreference
-        android:key="volume_panel_on_left"
-        android:title="@string/volume_panel_on_left_title"
-        android:summary="@string/volume_panel_on_left_summary"
-        android:defaultValue="false" />
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="show_app_volume"
+            android:title="@string/show_app_volume_title"
+            android:summary="@string/show_app_volume_summary"
+            android:defaultValue="false" />
 
-    <com.nusantara.support.preferences.SystemSettingSwitchPreference
-        android:key="volume_rocker_wake"
-        android:summary="@string/volume_rocker_wake_summary"
-        android:title="@string/volume_rocker_wake_title"
-        android:defaultValue="false" />
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="volume_panel_on_left"
+            android:title="@string/volume_panel_on_left_title"
+            android:summary="@string/volume_panel_on_left_summary"
+            android:defaultValue="false" />
 
-    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
-        android:key="audio_panel_view_timeout"
-        android:title="@string/volume_dialog_timeout_title"
-        settings:min="1"
-        android:max="10"
-        android:defaultValue="3"
-        settings:units="sec" />
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="volume_rocker_wake"
+            android:summary="@string/volume_rocker_wake_summary"
+            android:title="@string/volume_rocker_wake_title"
+             android:defaultValue="false" />
 
+        <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+            android:key="audio_panel_view_timeout"
+            android:title="@string/volume_dialog_timeout_title"
+            settings:min="1"
+            android:max="10"
+            android:defaultValue="3"
+            settings:units="sec" />
+    </PreferenceCategory>
 </PreferenceScreen>
