@@ -37,6 +37,12 @@
         android:summary="@string/quick_settings_vibrate_summary"
         android:defaultValue="false" />
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="status_bar_brightness_control"
+        android:title="@string/status_bar_toggle_brightness"
+        android:summary="@string/status_bar_toggle_brightness_summary"
+        android:defaultValue="false" />
+
     <PreferenceCategory
         android:key="qs_themes_category"
         android:title="@string/qs_themes_title">
@@ -88,24 +94,6 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="qs_datausage_category"
-        android:title="@string/qs_datausage_title">
-
-        <com.nusantara.support.preferences.SystemSettingListPreference
-            android:key="qs_datausage"
-            android:title="@string/qs_datausage_title"
-            android:entries="@array/qs_datausage_entries"
-            android:entryValues="@array/qs_datausage_values"
-            android:defaultValue="0" />
-
-        <com.nusantara.support.preferences.SystemSettingSwitchPreference
-            android:key="qs_datausage_location"
-            android:title="@string/qs_data_usage_location_title"
-            android:summary="@string/qs_data_usage_location_summary"
-            android:defaultValue="false"/>
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:key="qs_footer"
         android:title="@string/qs_footer_title" >
 
@@ -154,6 +142,24 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="qs_datausage_category"
+        android:title="@string/qs_datausage_title">
+
+        <com.nusantara.support.preferences.SystemSettingListPreference
+            android:key="qs_datausage"
+            android:title="@string/qs_datausage_title"
+            android:entries="@array/qs_datausage_entries"
+            android:entryValues="@array/qs_datausage_values"
+            android:defaultValue="0" />
+
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="qs_datausage_location"
+            android:title="@string/qs_data_usage_location_title"
+            android:summary="@string/qs_data_usage_location_summary"
+            android:defaultValue="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="qs_layout_category"
         android:title="@string/qs_layout_title">
 
@@ -195,44 +201,5 @@
             android:defaultValue="4"
             settings:units="" />
 
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="brightness_slider"
-        android:title="@string/qs_brightness_title">
-
-        <com.nusantara.support.preferences.SecureSettingListPreference
-            android:key="qs_show_brightness_slider"
-            android:title="@string/brightness_slider_title"
-            android:entries="@array/brightness_slider_entries"
-            android:entryValues="@array/brightness_slider_values"
-            android:summary="%s"
-            android:defaultValue="1" />
-
-        <com.nusantara.support.preferences.SecureSettingListPreference
-            android:key="qqs_show_brightness_slider"
-            android:title="@string/qqs_brightness_slider_title"
-            android:entries="@array/brightness_slider_entries"
-            android:entryValues="@array/brightness_slider_values"
-            android:summary="%s"
-            android:defaultValue="2" />
-
-        <com.nusantara.support.preferences.SecureSettingSwitchPreference
-            android:key="qs_show_auto_brightness"
-            android:title="@string/brightness_icon_title"
-            android:summary="@string/brightness_icon_summary"
-            android:defaultValue="true" />
-
-        <com.nusantara.support.preferences.SecureSettingSwitchPreference
-            android:key="qs_show_brightness_buttons"
-            android:title="@string/brightness_buttons_title"
-            android:summary="@string/brightness_buttons_summary"
-            android:defaultValue="true" />
-
-        <com.nusantara.support.preferences.SystemSettingSwitchPreference
-            android:key="status_bar_brightness_control"
-            android:title="@string/status_bar_toggle_brightness"
-            android:summary="@string/status_bar_toggle_brightness_summary"
-            android:defaultValue="false" />
     </PreferenceCategory>
 </PreferenceScreen>
