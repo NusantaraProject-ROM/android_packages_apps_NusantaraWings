@@ -281,14 +281,6 @@
     <string name="theme_navbar_picker_old">Old</string>
     <string name="theme_navbar_picker_sammy">Samsung</string>
 
-    <!-- QS data usage -->
-    <string name="qs_datausage_title">Data usage</string>
-    <string name="qs_datausage_disabled">Disabled</string>
-    <string name="qs_datausage_daily">Daily usage</string>
-    <string name="qs_datausage_monthly">Monthly usage</string>
-    <string name="qs_data_usage_location_title">Data usage location</string>
-    <string name="qs_data_usage_location_summary">Show data usage in QS Panel</string>
-
     <!-- QS footer icons -->
     <string name="qs_footer_title">Footer</string>
     <string name="qs_footer_settings_title">Settings icon</string>
