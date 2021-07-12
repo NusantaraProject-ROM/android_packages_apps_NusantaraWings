@@ -40,6 +40,12 @@
         android:defaultValue="false" />
 
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="status_bar_show_lyric"
+        android:title="@string/status_bar_show_lyric_title"
+        android:summary="@string/status_bar_show_lyric_summary"
+        android:defaultValue="true" />
+
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="less_boring_heads_up"
         android:title="@string/less_boring_heads_up_title"
         android:summary="@string/less_boring_heads_up_summary"

@@ -1013,4 +1013,8 @@
     <string name="lockscreen_weather_style_title">Weather style</string>
     <string name="lockscreen_weather_omni_style_title">Omni style</string>
     <string name="lockscreen_weather_pixel_style_title">Pixel style</string>
+
+    <!-- Status Bar Lyric -->
+    <string name="status_bar_show_lyric_title">Status bar lyric</string>
+    <string name="status_bar_show_lyric_summary">Show lyric in status bar (need App support)</string>
 </resources>
