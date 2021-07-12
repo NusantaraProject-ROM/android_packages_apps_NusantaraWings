@@ -625,11 +625,6 @@ public class Themes extends SettingsPreferenceFragment
             Settings.Secure.putStringForUser(mContext.getContentResolver(),
                         Settings.Secure.ACCENT_COLOR,
                         hexColor, UserHandle.USER_CURRENT);
-            try {
-                 mOverlayManager.reloadAssets("com.android.settings", UserHandle.USER_CURRENT);
-                 mOverlayManager.reloadAssets("com.android.systemui", UserHandle.USER_CURRENT);
-             } catch (RemoteException ignored) {
-             }
             return true;
 
         }
