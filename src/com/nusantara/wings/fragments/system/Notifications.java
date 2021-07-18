@@ -110,7 +110,6 @@ public class Notifications extends SettingsPreferenceFragment
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.NOTIFICATION_HEADERS, value ? 1 : 0);
-            UtilsNad.showSystemUiRestartDialog(getContext());
             return true;
         } else if (preference == mCenterNotificationHeader) {
             boolean value = (Boolean) newValue;
