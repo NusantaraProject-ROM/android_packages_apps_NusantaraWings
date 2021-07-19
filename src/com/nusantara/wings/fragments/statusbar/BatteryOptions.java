@@ -49,17 +49,18 @@ public class BatteryOptions extends SettingsPreferenceFragment
     private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
     private static final String QS_BATTERY_PERCENTAGE = "qs_battery_percentage";
     private static final String QS_BATTERY_PERCENT_ESTIMATE = "qs_show_battery_percent_estimate";
+    private static final String LEFT_BATTERY_TEXT = "do_left_battery_text";
 
     private ListPreference mBatteryPercent;
     private ListPreference mBatteryStyle;
     private SwitchPreference mQsBatteryPercent;
-    private SystemSettingSwitchPreference mQsBatteryPercentEstimate;
+    private SystemSettingSwitchPreference mQsBatteryPercentEstimate, mLeftBatteryText;
 
     private int mBatteryPercentValue;
 
     private static final int BATTERY_STYLE_PORTRAIT = 0;
-    private static final int BATTERY_STYLE_TEXT = 4;
-    private static final int BATTERY_STYLE_HIDDEN = 5;
+    private static final int BATTERY_STYLE_TEXT = 6;
+    private static final int BATTERY_STYLE_HIDDEN = 7;
     private static final int BATTERY_PERCENT_HIDDEN = 0;
     //private static final int BATTERY_PERCENT_SHOW_INSIDE = 1;
     //private static final int BATTERY_PERCENT_SHOW_OUTSIDE = 2;
@@ -93,6 +94,11 @@ public class BatteryOptions extends SettingsPreferenceFragment
                 Settings.System.QS_SHOW_BATTERY_PERCENT, 0) == 1));
         mQsBatteryPercent.setOnPreferenceChangeListener(this);
 
+        mLeftBatteryText = (SystemSettingSwitchPreference) findPreference(LEFT_BATTERY_TEXT);
+        mLeftBatteryText.setChecked((Settings.System.getInt(resolver,
+                Settings.System.DO_LEFT_BATTERY_TEXT, 0) == 1));
+        mLeftBatteryText.setOnPreferenceChangeListener(this);
+
         mQsBatteryPercentEstimate = (SystemSettingSwitchPreference) findPreference(QS_BATTERY_PERCENT_ESTIMATE);
         mQsBatteryPercentEstimate.setChecked((Settings.System.getInt(resolver,
                 Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE, 0) == 1));
@@ -111,6 +117,8 @@ public class BatteryOptions extends SettingsPreferenceFragment
             int index = mBatteryStyle.findIndexOfValue((String) newValue);
             mBatteryStyle.setSummary(mBatteryStyle.getEntries()[index]);
             mBatteryPercent.setEnabled(
+                    batterystyle != BATTERY_STYLE_TEXT && batterystyle != BATTERY_STYLE_HIDDEN);
+            mLeftBatteryText.setEnabled(
                     batterystyle != BATTERY_STYLE_TEXT && batterystyle != BATTERY_STYLE_HIDDEN);
             return true;
         } else if (preference == mBatteryPercent) {
@@ -132,6 +140,11 @@ public class BatteryOptions extends SettingsPreferenceFragment
             Settings.System.putInt(resolver,
                     Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE, value ? 1 : 0);
             isEstimate();
+            return true;
+        } else if (preference == mLeftBatteryText) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.DO_LEFT_BATTERY_TEXT, value ? 1 : 0);
             return true;
         }
         return false;

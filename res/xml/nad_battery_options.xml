@@ -35,6 +35,12 @@
         android:entryValues="@array/battery_percent_values"
         android:defaultValue="0" />
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="do_left_battery_text"
+        android:title="@string/left_battery_text_title"
+        android:summary="@string/left_battery_text_summary" 
+        android:defaultValue="false"/>
+
     <SwitchPreference
         android:key="qs_battery_percentage"
         android:title="@string/qs_battery_percentage_title"

@@ -221,21 +221,25 @@
     <string name="battery_percent_title">Status bar battery percentage</string>
     <string name="status_bar_battery_style_title">Battery style</string>
     <string name="status_bar_battery_style_icon_portrait">Icon portrait (default)</string>
-    <string name="status_bar_battery_style_circle">Circle</string>
-    <string name="status_bar_battery_style_dotted_circle">Circle (Dotted)</string>
+    <string name="status_bar_battery_style_icon_rlandscape">Icon landscape R</string>
+    <string name="status_bar_battery_style_icon_landscape">Icon landscape L</string>
+    <string name="status_bar_battery_style_circle">Circle (Dotted)</string>
+    <string name="status_bar_battery_style_dotted_circle">Circle</string>
     <string name="status_bar_battery_style_filled_circle">Circle (Filled)</string>
     <string name="status_bar_battery_style_text">Text</string>
     <string name="status_bar_battery_style_hidden">Hidden</string>
     <string name="status_bar_battery_percentage_title">Battery percentage</string>
     <string name="status_bar_battery_percentage_default">Hidden (default)</string>
     <string name="status_bar_battery_percentage_text_inside">Inside the icon</string>
-    <string name="status_bar_battery_percentage_text_next">Next to the icon</string>
+    <string name="status_bar_battery_percentage_text_next">Outside the icon</string>
     <string name="qs_battery_percentage_title">QS battery percentage</string>
     <string name="qs_battery_percentage_summary">Show battery percentage in the QS header instead of battery estimate</string>
     <string name="battery_show_location_title">Battery location</string>
     <string name="battery_show_location_summary">Toggle battery location for QS header</string>
     <string name="battery_show_percent_estimate_title">Battery percent &amp; estimate</string>
     <string name="battery_show_percent_estimate_summary">Enable battery percent &amp; estimate together</string>
+    <string name="left_battery_text_title">Left battery text</string>
+    <string name="left_battery_text_summary">Put the battery text on left of battery icon</string>
 
     <!-- Adaptive icon shapes -->
     <string name="adaptive_icon_shape_default">Default</string>
