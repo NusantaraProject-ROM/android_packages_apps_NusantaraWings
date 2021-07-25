@@ -97,7 +97,7 @@
         android:key="qs_footer"
         android:title="@string/qs_footer_title" >
 
-        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        <!--com.nusantara.support.preferences.SystemSettingSwitchPreference
             android:key="footer_text_show"
             android:title="@string/qs_footer_text_title"
             android:summary="@string/qs_footer_text_summary"
@@ -108,7 +108,7 @@
             android:title="@string/qs_footer_text_string_title"
             android:summary="@string/qs_footer_text_string_summary"
             android:dependency="footer_text_show"
-            android:defaultValue="#Nusantara Project" />
+            android:defaultValue="#Nusantara Project" /-->
 
         <com.nusantara.support.preferences.SystemSettingSwitchPreference
             android:key="qs_footer_show_datausage"
