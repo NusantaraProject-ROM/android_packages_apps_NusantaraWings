@@ -1051,6 +1051,9 @@
     <string name="gaming_mode_danmaku_blacklist">Blacklist</string>
 
     <!-- Media artwork -->
+    <string name="media_category">Media notification options</string>
     <string name="artwork_media_background_title">Artwork media background</string>
     <string name="artwork_media_background_summary">Set media artwork as notification media background</string>
+    <string name="artwork_media_fade_level_title">Artwork fade level</string>
+    <string name="artwork_media_fade_level_summary">Fading the media artwork image</string>
 </resources>
