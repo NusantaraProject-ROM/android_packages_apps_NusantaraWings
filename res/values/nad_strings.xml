@@ -503,7 +503,11 @@
     <string name="click_partial_screenshot_summary">Short click Volume Down and Power to take partial screenshot</string>
 
     <!-- Media artwork -->
+    <string name="media_category">Media artwork</string>
     <string name="artwork_media_background_title">Artwork media background</string>
     <string name="artwork_media_background_summary">Set media artwork as notification media background</string>
+
+    <string name="artwork_media_fade_level_title">Artwork fade level</string>
+    <string name="artwork_media_fade_level_summary">Fading the media artwork image</string>
 
 </resources>
