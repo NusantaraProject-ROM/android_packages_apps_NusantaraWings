@@ -45,7 +45,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="-60dp"
                 android:gravity="center"
-                android:text="Themes Default"
+                android:text="Default"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="16sp" />
 
@@ -77,7 +77,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="-60dp"
                 android:gravity="center"
-                android:text="Themes Accent"
+                android:text="Accent"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="16sp" />
 
@@ -109,7 +109,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="-60dp"
                 android:gravity="center"
-                android:text="Themes AOSP"
+                android:text="AOSP"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="16sp" />
 
