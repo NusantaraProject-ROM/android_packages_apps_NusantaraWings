@@ -18,13 +18,6 @@
             xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
             android:title="@string/miscellaneous_title" >
 
-    <com.nusantara.support.preferences.SystemSettingMasterSwitchPreference
-        android:key="gaming_mode_enabled"
-        android:fragment="com.nusantara.wings.fragments.system.GamingMode"
-        android:title="@string/gaming_mode_title"
-        android:summary="@string/gaming_mode_summary"
-        android:defaultValue="false" />
-
     <Preference
         android:key="cutout_settings"
         android:title="@string/cutout_main"
