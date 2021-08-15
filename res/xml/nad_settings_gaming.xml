@@ -58,7 +58,8 @@
         android:title="@string/gaming_mode_menu_opacity_title"
         android:max="100"
         settings:min="0"
-        android:defaultValue="75"/>
+        android:defaultValue="75"
+        android:dependency="gaming_mode_enabled" />
 
     <PreferenceCategory
         android:title="@string/gaming_mode_performance">
