@@ -122,6 +122,12 @@
             android:defaultValue="false"
             android:dependency="gaming_mode_enabled" />
 
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="gaming_mode_disable_hw_keys"
+            android:title="@string/gaming_mode_hardware_keys_title"
+            android:defaultValue="false"
+            android:dependency="gaming_mode_enabled" />
+
     </PreferenceCategory>
 
     <com.nusantara.wings.preferences.PackageListPreference
