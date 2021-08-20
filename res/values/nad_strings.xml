@@ -1049,6 +1049,10 @@
     <string name="gaming_mode_danmaku_speed_horizontal_title">Danmaku speed (horizontal)</string>
     <string name="gaming_mode_danmaku_speed_vertical_title">Danmaku speed (vertical)</string>
     <string name="gaming_mode_danmaku_blacklist">Blacklist</string>
+    
+    <!-- Statusbar paddings -->
+    <string name="statusbar_left_padding">Left padding statusbar</string>
+    <string name="statusbar_right_padding">Right padding statusbar</string>
 
     <!-- Media artwork -->
     <string name="media_category">Media notification options</string>
