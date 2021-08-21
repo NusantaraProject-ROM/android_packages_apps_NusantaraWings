@@ -988,10 +988,6 @@
     <string name="lockscreen_weather_omni_style_title">Omni style</string>
     <string name="lockscreen_weather_pixel_style_title">Pixel style</string>
 
-    <!-- Status Bar Lyric -->
-    <string name="status_bar_show_lyric_title">Status bar lyric</string>
-    <string name="status_bar_show_lyric_summary">Show lyric in status bar (need App support)</string>
-
     <!-- Clock header -->
     <string name="clock_header_title">QS Clock</string>
     <string name="qs_clock_location_title">Qs clock location</string>
