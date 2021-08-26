@@ -1027,4 +1027,15 @@
     <string name="left_clock">Left</string>
     <string name="center_clock">Center</string>
     <string name="right_clock">Right</string>
+	
+    <!-- Settings Theme Interface -->
+    <string name="settings_themes_title">Settings Themes</string>
+    <string name="settings_themes_summary">Choose your favorite settings interface</string>
+    <string name="choose_interface_title">Choose Interface</string>
+    <string name="themes_default_title">Themes Default</string>
+    <string name="themes_accent_title">Themes Accent</string>
+    <string name="themes_aosp_title">Themes AOSP</string>
+    <string name="notes_title">Notes : Reopen Settings to take effect</string>
+    <string name="apply_title">Apply</string>
+	
 </resources>

@@ -166,8 +166,8 @@
     
         <Preference 
             android:key="themes_settings"
-            android:title="Settings Themes"
-            android:summary="Choose your favorite settings interface"
+            android:title="@string/settings_themes_title"
+            android:summary="@string/settings_themes_summary"
             /> 
 
         <com.nusantara.support.preferences.SystemSettingSwitchPreference
