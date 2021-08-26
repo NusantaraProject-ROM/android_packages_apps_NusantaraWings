@@ -124,8 +124,14 @@ public class Themes extends SettingsPreferenceFragment
         // Themes
         mThemeSwitch = (ListPreference) findPreference(PREF_THEME_SWITCH);
         // First of all we have to evaluate whether the light or dark mode is active
-        if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO) {
-            mThemeSwitch.setValue("1");
+        if (!NadUtils.isThemeEnabled("com.android.theme.jrmod.nadnew.system" ) && 
+            mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO ) {
+        	  mThemeSwitch.setValue("1");
+        } else if (NadUtils.isThemeEnabled("com.android.theme.jrmod.nadnew.system" ) && 
+            mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO ||
+            NadUtils.isThemeEnabled("com.android.theme.jrmod.nadnew.system" ) && 
+            mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES ) {
+            mThemeSwitch.setValue("7");
         } else if (NadUtils.isThemeEnabled("com.android.theme.color.ocean.system")) {
             mThemeSwitch.setValue("6");
         } else if (NadUtils.isThemeEnabled("com.android.theme.color.nadclear.system")) {
@@ -134,7 +140,8 @@ public class Themes extends SettingsPreferenceFragment
             mThemeSwitch.setValue("4");
         } else if (NadUtils.isThemeEnabled("com.android.theme.color.pitchblack.system")) {
             mThemeSwitch.setValue("3");
-        } else { // Google dark theme
+        } else if (!NadUtils.isThemeEnabled("com.android.theme.jrmod.nadnew.system" ) && 
+            mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES ) {
             mThemeSwitch.setValue("2");
         }
 
@@ -382,6 +389,13 @@ public class Themes extends SettingsPreferenceFragment
                             ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                     handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
                             ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO) {
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    } else {
+        	              handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    }
                     handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
                             ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
                     break;
@@ -392,6 +406,13 @@ public class Themes extends SettingsPreferenceFragment
                             ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                     handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                             ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO) {
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    } else {
+        	              handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    }
                     handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                             ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
                     break;
@@ -402,6 +423,13 @@ public class Themes extends SettingsPreferenceFragment
                             ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                     handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                             ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO) {
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    } else {
+        	              handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    }
                     handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                             ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
                     break;
@@ -412,6 +440,13 @@ public class Themes extends SettingsPreferenceFragment
                             ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                     handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                             ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO) {
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    } else {
+        	              handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    }
                     handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                             ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
                     break;
@@ -422,6 +457,13 @@ public class Themes extends SettingsPreferenceFragment
                             ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                     handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
                             ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO) {
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    } else {
+        	              handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    }
                     handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                             ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
                     break;
@@ -432,7 +474,31 @@ public class Themes extends SettingsPreferenceFragment
                             ThemesUtils.SOLARIZED_DARK, mOverlayManager);
                     handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                             ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO) {
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    } else {
+        	              handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    }
                     handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
+                    break;
+                case "7":
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.PITCH_BLACK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                            ThemesUtils.NAD_CLEAR, mOverlayManager);
+                    if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_NO) {
+                        handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    } else {
+        	              handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_NO,
+                        ThemesUtils.NAD_NEW, mOverlayManager);
+                    }
+                    handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                             ThemesUtils.MATERIAL_OCEAN, mOverlayManager);
                     break;
             }
@@ -545,11 +611,11 @@ public class Themes extends SettingsPreferenceFragment
                 handleOverlays(overlayName, false, mOverlayManager);
             }
             if (panelBgValue > 1) {
-                UtilsNad.showSystemUiRestartDialog(getContext());
                 handleOverlays(ThemesUtils.PANEL_BG_STYLE[panelBgValue - 2],
                         true, mOverlayManager);
 
             }
+            UtilsNad.showSystemUiRestartDialog(getContext());
             mPanelBg.setSummary(mPanelBg.getEntry());
             return true;
         } else if (preference == mQsShape) {

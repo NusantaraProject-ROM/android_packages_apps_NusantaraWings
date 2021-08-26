@@ -168,12 +168,13 @@
     <!-- Themes -->
     <string name="theme_type_title">System theme</string>
     <string name="theme_type_summary">Select theme</string>
-    <string name="theme_type_light">Light</string>
-    <string name="theme_type_google_dark">Google dark</string>
-    <string name="theme_type_pitch_black">Pitch black</string>
-    <string name="theme_type_solarized_dark">Solarized dark</string>
-    <string name="theme_type_nad_clear">Nusantara clear</string>
-    <string name="theme_type_material_ocean">Material ocean</string>
+    <string name="theme_type_light">Pure Light</string>
+    <string name="theme_type_google_dark">Google Dark</string>
+    <string name="theme_type_pitch_black">Amoled Black</string>
+    <string name="theme_type_solarized_dark">Solarized Dark</string>
+    <string name="theme_type_nad_clear">Nusantara Clear</string>
+    <string name="theme_type_material_ocean">Material Ocean</string>
+    <string name="theme_type_nad_new">Nusantara X</string>
 
     <!-- Double Tap to Sleep -->
     <string name="gesture_cat_title">Gestures</string>
