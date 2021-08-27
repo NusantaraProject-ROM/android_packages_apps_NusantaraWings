@@ -34,18 +34,17 @@ import com.nusantara.wings.preferences.PackageListPreference;
 
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
 
+import com.android.internal.util.nad.NadUtils;
+
 public class GamingModeSettings extends SettingsPreferenceFragment {
 
     private static final String GAMING_MODE_DISABLE_HW_KEYS = "gaming_mode_disable_hw_keys";
-
-    private static final int KEY_MASK_HOME = 0x01;
-    private static final int KEY_MASK_BACK = 0x02;
-    private static final int KEY_MASK_MENU = 0x04;
-    private static final int KEY_MASK_APP_SWITCH = 0x10;
+    private static final String GAMING_MODE_DISABLE_NAVBAR = "gaming_mode_disable_navbar";
 
     private PackageListPreference mGamingPrefList;
 
     private SystemSettingSwitchPreference mHardwareKeysDisable;
+    private SystemSettingSwitchPreference mNavbarDisable;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -59,23 +58,19 @@ public class GamingModeSettings extends SettingsPreferenceFragment {
         mGamingPrefList.setRemovedListKey(Settings.System.GAMING_MODE_REMOVED_APP_LIST);
 
         mHardwareKeysDisable = (SystemSettingSwitchPreference) findPreference(GAMING_MODE_DISABLE_HW_KEYS);
+        mNavbarDisable = (SystemSettingSwitchPreference) findPreference(GAMING_MODE_DISABLE_NAVBAR);
 
-        if (!hasHWkeys()) {
+        if (isNavbarVisible()) {
             prefScreen.removePreference(mHardwareKeysDisable);
+        } else {
+            prefScreen.removePreference(mNavbarDisable);
         }
     }
 
-    private boolean hasHWkeys() {
-        final int deviceKeys = getContext().getResources().getInteger(
-                com.android.internal.R.integer.config_deviceHardwareKeys);
-
-        // read bits for present hardware keys
-        final boolean hasHomeKey = (deviceKeys & KEY_MASK_HOME) != 0;
-        final boolean hasBackKey = (deviceKeys & KEY_MASK_BACK) != 0;
-        final boolean hasMenuKey = (deviceKeys & KEY_MASK_MENU) != 0;
-        final boolean hasAppSwitchKey = (deviceKeys & KEY_MASK_APP_SWITCH) != 0;
-
-        return (hasHomeKey || hasBackKey || hasMenuKey || hasAppSwitchKey);
+    private boolean isNavbarVisible() {
+        boolean defaultToNavigationBar = NadUtils.deviceSupportNavigationBar(getActivity());
+        return Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.FORCE_SHOW_NAVBAR, defaultToNavigationBar ? 1 : 0) == 1;
     }
 
     @Override
