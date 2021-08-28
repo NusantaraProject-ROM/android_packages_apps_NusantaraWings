@@ -174,7 +174,7 @@ public class Themes extends SettingsPreferenceFragment
             mNavbarPicker.setSummary(mNavbarPicker.getEntry());
             mNavbarPicker.setOnPreferenceChangeListener(this);
         } else {
-            prefScreen.removePreference(mNavbarPicker);
+            mNavbarPicker.setEnabled(false);
         }
 
         mQsHeaderStyle = (ListPreference) findPreference(PREF_QS_HEADER_STYLE);
