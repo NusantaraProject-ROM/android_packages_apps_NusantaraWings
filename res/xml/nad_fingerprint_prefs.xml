@@ -41,22 +41,28 @@
         android:title="@string/fingerprint_power_button_press_title" 
         android:defaultValue="false" />
 
-    <!-- FOD icon picker -->
-    <Preference
-        android:key="fod_icon_picker_category"
-        android:title="@string/fod_icon_picker_title"
-        android:summary="@string/fod_icon_picker_summary"
-        android:fragment="com.nusantara.wings.fragments.lockscreen.FODIconPickerFragment" />
+    <!-- FOD -->
+    <PreferenceCategory
+        android:key="fod_icon"
+        android:title="@string/fod_icon_picker_category_title">
 
-    <!-- FOD pressed color -->
-    <com.nusantara.support.preferences.SystemSettingListPreference
-        android:key="fod_color"
-        android:dialogTitle="@string/fod_pressed_color_title"
-        android:title="@string/fod_pressed_color_title"
-        android:summary="%s"
-        android:entries="@array/fod_pressed_color_entries"
-        android:entryValues="@array/fod_pressed_color_values"
-        android:defaultValue="@*android:integer/config_fod_pressed_color" />
+        <!-- FOD icon picker -->
+        <Preference
+            android:key="fod_icon_picker_category"
+            android:title="@string/fod_icon_picker_title"
+            android:summary="@string/fod_icon_picker_summary"
+            android:fragment="com.nusantara.wings.fragments.lockscreen.FODIconPickerFragment" />
+
+        <!-- FOD pressed color -->
+        <com.nusantara.support.preferences.SystemSettingListPreference
+            android:key="fod_color"
+            android:dialogTitle="@string/fod_pressed_color_title"
+            android:title="@string/fod_pressed_color_title"
+            android:summary="%s"
+            android:entries="@array/fod_pressed_color_entries"
+            android:entryValues="@array/fod_pressed_color_values"
+            android:defaultValue="@*android:integer/config_fod_pressed_color" />
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/fod_recognizing_animation_title"

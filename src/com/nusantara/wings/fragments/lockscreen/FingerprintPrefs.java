@@ -49,12 +49,12 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
 
     private static final String FP_KEYSTORE = "fp_unlock_keystore";
     private static final String FOD_ANIMATION_CATEGORY = "fod_animations";
-    private static final String FOD_ICON_PICKER_CATEGORY = "fod_icon_picker_category";
+    private static final String FOD_ICON = "fod_icon";
     private static final String FINGERPRINT_POWER_BUTTON_PRESS = "fingerprint_power_button_press";
 
     private SystemSettingSwitchPreference mFingerprintUnlock;
     private SecureSettingSwitchPreference mFingerprintPowerButtonPress;
-    private Preference mFODIconPicker;
+    private PreferenceCategory mFodIcon;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,10 +76,10 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
         }
 
 
-        mFODIconPicker = (Preference) findPreference(FOD_ICON_PICKER_CATEGORY);
-        if (mFODIconPicker != null
+        mFodIcon = findPreference(FOD_ICON);
+        if (mFodIcon != null
                 && !getResources().getBoolean(com.android.internal.R.bool.config_supportsInDisplayFingerprint)) {
-            prefScreen.removePreference(mFODIconPicker);
+            prefScreen.removePreference(mFodIcon);
         }
 
         final PreferenceCategory fodCat = (PreferenceCategory) prefScreen
