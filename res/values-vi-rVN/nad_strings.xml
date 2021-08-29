@@ -198,21 +198,25 @@
     <string name="battery_percent_title">Phần trăm pin trên thanh trạng thái</string>
     <string name="status_bar_battery_style_title">Kiểu Pin</string>
     <string name="status_bar_battery_style_icon_portrait">Biểu tượng dọc (mặc định)</string>
-    <string name="status_bar_battery_style_circle">Vòng tròn</string>
-    <string name="status_bar_battery_style_dotted_circle">Vòng tròn (Chấm)</string>
+    <string name="status_bar_battery_style_icon_rlandscape">Biểu tượng nằm ngang R</string>
+    <string name="status_bar_battery_style_icon_landscape">Biểu tượng nằm ngang L</string>
+    <string name="status_bar_battery_style_circle">Vòng tròn (Chấm)</string>
+    <string name="status_bar_battery_style_dotted_circle">Vòng tròn</string>
     <string name="status_bar_battery_style_filled_circle">Vòng tròn (đầy)</string>
     <string name="status_bar_battery_style_text">Văn bản</string>
     <string name="status_bar_battery_style_hidden">Ẩn</string>
     <string name="status_bar_battery_percentage_title">Phần trăm Pin</string>
     <string name="status_bar_battery_percentage_default">Ẩn (mặc định)</string>
     <string name="status_bar_battery_percentage_text_inside">Bên trong biểu tượng</string>
-    <string name="status_bar_battery_percentage_text_next">Bên cạnh biểu tượng</string>
+    <string name="status_bar_battery_percentage_text_next">Bên ngoài biểu tượng</string>
     <string name="qs_battery_percentage_title">Phần trăm pin QS</string>
     <string name="qs_battery_percentage_summary">Hiển thị phần trăm pin trong tiêu đề QS thay vì ước tính pin</string>
     <string name="battery_show_location_title">Vị trí pin</string>
     <string name="battery_show_location_summary">Chuyển đổi vị trí pin cho tiêu đề QS</string>
     <string name="battery_show_percent_estimate_title">Phần trăm pin &amp; ước tính</string>
     <string name="battery_show_percent_estimate_summary">Bật phần trăm pin &amp; ước tính</string>
+    <string name="left_battery_text_title">Bên trái pin kiểu chữ</string>
+    <string name="left_battery_text_summary">Đặt văn bản pin ở bên trái của biểu tượng pin</string>
     <!-- Adaptive icon shapes -->
     <string name="adaptive_icon_shape_default">Mặc định</string>
     <string name="adaptive_icon_shape_teardrop">Giọt nước</string>
@@ -436,36 +440,6 @@
     <!-- Heads up options -->
     <string name="less_boring_heads_up_title">Thông báo nổi cho trình quay số</string>
     <string name="less_boring_heads_up_summary">Chỉ hiển thị thông báo nổi cho ứng dụng quay số và tắt tất cả các ứng dụng khác</string>
-    <!-- Gaming mode -->
-    <string name="gaming_mode_title">Chế độ Game</string>
-    <string name="gaming_mode_summary">Tùy chỉnh tùy chọn chế độ trò chơi</string>
-    <string name="gaming_mode_app_picker_title">Tự động bật cho các ứng dụng này</string>
-    <string name="add_gaming_mode_package_title">Thêm ứng dụng cho chế độ Trò chơi</string>
-    <string name="add_gaming_mode_package_summary">Chế độ trò chơi sẽ tự động bật khi các ứng dụng này được mở và tắt khi chúng bị đóng</string>
-    <string name="gaming_mode_headsup_title">Thông báo nổi</string>
-    <string name="gaming_mode_headsup_allow">Cho phép tất cả thông báo nổi</string>
-    <string name="gaming_mode_headsup_dnc">Chặn tất cả thông báo báo nổi ngoại trừ cuộc gọi &amp; báo thức</string>
-    <string name="gaming_mode_headsup_clock">Chặn tất cả các thông báo nổi ngoại trừ báo thức</string>
-    <string name="gaming_mode_headsup_dialer">Chặn tất cả thông báo nổi ngoại trừ cuộc gọi</string>
-    <string name="gaming_mode_headsup_stop">Chặn tất cả thông báo nổi</string>
-    <string name="gaming_mode_hardware_keys_title">Khóa phím</string>
-    <string name="gaming_mode_hardware_keys_summary">Tắt các nút phần cứng khi chế độ Trò chơi được bật</string>
-    <string name="gaming_mode_brightness_title">Tắt độ sáng tự động</string>
-    <string name="gaming_mode_brightness_summary">Khóa độ sáng màn hình khi bật chế độ Trò chơi</string>
-    <string name="gaming_mode_ringer_title">Đổ chuông ở chế độ trò chơi</string>
-    <string name="gaming_mode_ringer_off_title">Không thay đổi</string>
-    <string name="gaming_mode_ringer_vibrate_title">Rung</string>
-    <string name="gaming_mode_ringer_dnd_title">Không làm phiền</string>
-    <string name="gaming_mode_ringer_silent_title">Im lặng</string>
-    <string name="gaming_mode_notifications_title">Thông báo chế độ chơi game</string>
-    <string name="gaming_mode_notifications_off_title">Tắt</string>
-    <string name="gaming_mode_notifications_notif_title">Hiện thông báo</string>
-    <string name="gaming_mode_notifications_toast_title">Hiện thông báo nhanh</string>
-    <string name="gaming_mode_notifications_all_title">Hiện thông báo nhanh và thông báo</string>
-    <string name="gaming_mode_dynamic_title">Chế độ động</string>
-    <string name="gaming_mode_dynamic_summary">Thử tự động phát hiện và thêm các ứng dụng trò chơi</string>
-    <string name="gaming_mode_notifications_feedback_title">Tắt phản hồi thông báo</string>
-    <string name="gaming_mode_notifications_feedback_summary">Chặn âm thanh thông báo &amp; rung khi chế độ Trò chơi được bật</string>
     <!-- Screen off animation -->
     <string name="screen_off_animation_title">Hiệu ứng tắt màn hình</string>
     <string name="screen_off_animation_default">Mặc định</string>
@@ -831,9 +805,9 @@
     <string name="ticker_animation_mode_scroll">Cuộn</string>
     <string name="ticker_tick_duration_title">Thời lượng</string>
     <string name="ticker_footer_title">Cần khởi động lại SystemUI sau khi thay đổi</string>
-    <!-- Lock icon -->
-    <string name="hide_lockicon_title">Ẩn biểu tượng khóa</string>
-    <string name="hide_lockicon_summary">Ẩn biểu tượng khoá trên màn hình khoá</string>
+    <!-- Lock Icon -->
+    <string name="lockscreen_lock_icon_title">Biểu tượng khoá</string>
+    <string name="lockscreen_lock_icon_summary">Hiển thị biểu tượng khóa trên màn hình khóa</string>
     <!-- Blink flashlight for incoming calls -->
     <string name="flashlight_category">Đèn pin</string>
     <string name="flashlight_on_call_title">Nháy đèn pin khi có cuộc gọi</string>
@@ -905,9 +879,6 @@
     <string name="lockscreen_weather_style_title">Kiểu thời tiết</string>
     <string name="lockscreen_weather_omni_style_title">Kiểu Omni</string>
     <string name="lockscreen_weather_pixel_style_title">Kiểu Pixel</string>
-    <!-- Status Bar Lyric -->
-    <string name="status_bar_show_lyric_title">Lời bài hát thanh trạng thái</string>
-    <string name="status_bar_show_lyric_summary">Hiển thị lời bài hát thanh trạng tháir (cần ứng dụng hỗ trợ)</string>
     <!-- Clock header -->
     <string name="clock_header_title">Đồng hồ QS</string>
     <string name="qs_clock_location_title">Vị trí đồng hồ Qs</string>
@@ -916,4 +887,59 @@
     <string name="left_clock">Trái</string>
     <string name="center_clock">Giữa</string>
     <string name="right_clock">Phải</string>
+    <!-- FOD pressed color -->
+    <string name="fod_pressed_color_title">Màu vân tay khi xác thực</string>
+    <string name="fod_pressed_color_white">Trắng</string>
+    <string name="fod_pressed_color_cyan">Màu xanh lá mạ</string>
+    <string name="fod_pressed_color_green">Xanh lá</string>
+    <string name="fod_pressed_color_yellow">Màu vàng</string>
+    <!-- Gaming mode -->
+    <string name="gaming_title">Chế độ chơi game</string>
+    <string name="gaming_title_summary">Các tính năng bổ sung cho trải nghiệm chơi game nhập vai</string>
+    <string name="add_package_to_title">Thêm ứng dụng</string>
+    <string name="gaming_mode_enabled_title">Bật chế độ chơi trò chơi</string>
+    <string name="gaming_mode_disable_auto_brightness_title">Tắt độ sáng tự động</string>
+    <string name="gaming_mode_disable_auto_brightness_summary">Tắt độ sáng tự động khi vào chế độ trò chơi</string>
+    <string name="gaming_mode_notification_danmaku_title">Thông báo Danmaku</string>
+    <string name="gaming_mode_notification_danmaku_summary">Hiển thị nội dung thông báo dưới dạng danmaku trong game</string>
+    <string name="gaming_mode_quick_start_apps_title">Ứng dụng bắt đầu nhanh</string>
+    <string name="gaming_mode_quick_start_apps_summary">Chọn ứng dụng mà bạn muốn khởi chạy với một quả bóng nổi</string>
+    <string name="gaming_mode_menu_opacity_title">Mức độ mờ của menu</string>
+    <string name="gaming_mode_hardware_keys_title">Tắt các phím cứng</string>
+    <string name="gaming_mode_navbar_title">Tắt thanh điều hướng</string>
+    <string name="gaming_mode_performance">Hiệu năng</string>
+    <string name="gaming_mode_use_game_driver_title">Sử dụng trình điều khiển trò chơi</string>
+    <string name="gaming_mode_use_game_driver_summary">Sử dụng trình điều khiển cụ thể cho trò chơi</string>
+    <string name="gaming_mode_change_performance_title">Điều chỉnh hiệu suất</string>
+    <string name="gaming_mode_change_performance_summary">Điều chỉnh mức hiệu suất khi bắt đầu trò chơi</string>
+    <string name="gaming_mode_performance_title">Mức độ hiệu suất</string>
+    <string name="gaming_mode_dnd">Không làm phiền</string>
+    <string name="gaming_mode_disable_notification_alert_title">Tắt thông báo cảnh báo</string>
+    <string name="gaming_mode_disable_notification_alert_summary">Không cho phép thông báo nổi và bong bóng hội thoại ngoài cuộc gọi đến và báo thức</string>
+    <string name="gaming_mode_disable_ringtone_title">Không đổ chuông</string>
+    <string name="gaming_mode_disable_ringtone_summary">Tắt chuông cuộc gọi đến và thông báo ở chế độ chơi game</string>
+    <string name="gaming_mode_auto_answer_call_title">Trả lời cuộc gọi tự động</string>
+    <string name="gaming_mode_auto_answer_call_summary">Trả lời cuộc gọi tự động trong trò chơi và rảnh tay khi không kết nối tai nghe</string>
+    <string name="gaming_mode_prevent_accidental_touch">Ngăn vô tình chạm</string>
+    <string name="gaming_mode_disable_gesture_title">Vô hiệu hóa cử chỉ</string>
+    <string name="gaming_mode_apps">Danh sách trò chơi</string>
+    <string name="gaming_mode_dynamic_add_title">Chế độ động</string>
+    <string name="gaming_mode_dynamic_add_summary">Thử tự động phát hiện và thêm các ứng dụng trò chơi</string>
+    <string name="gaming_mode_show_danmaku_title">Hiển thị danmaku</string>
+    <string name="gaming_mode_danmaku_dynamic_notification_filter_title">Lọc thông báo động</string>
+    <string name="gaming_mode_danmaku_dynamic_notification_filter_summary">Tự động lọc các thông báo như tiến trình tải xuống</string>
+    <string name="gaming_mode_danmaku_size_horizontal_title">Kích thước Danmaku (ngang)</string>
+    <string name="gaming_mode_danmaku_size_vertical_title">Kích thước Danmaku (dọc)</string>
+    <string name="gaming_mode_danmaku_speed_horizontal_title">Danmaku tốc độ (ngang)</string>
+    <string name="gaming_mode_danmaku_speed_vertical_title">Danmaku tốc độ (dọc)</string>
+    <string name="gaming_mode_danmaku_blacklist">Danh sách đen</string>
+    <!-- Statusbar paddings -->
+    <string name="statusbar_left_padding">Phần đệm nội dung bên trái thanh trạng thái</string>
+    <string name="statusbar_right_padding">Phần đệm nội dung bên phải thanh trạng thái</string>
+    <!-- Media artwork -->
+    <string name="media_category">Tùy chọn thông báo phương tiện</string>
+    <string name="artwork_media_background_title">Hình nền ảnh bìa phương tiện</string>
+    <string name="artwork_media_background_summary">Đặt tác phẩm nghệ thuật phương tiện làm nền phương tiện thông báo</string>
+    <string name="artwork_media_fade_level_title">Mức độ mờ dần của tác phẩm nghệ thuật</string>
+    <string name="artwork_media_fade_level_summary">Làm mờ hình ảnh tác phẩm nghệ thuật phương tiện</string>
 </resources>
