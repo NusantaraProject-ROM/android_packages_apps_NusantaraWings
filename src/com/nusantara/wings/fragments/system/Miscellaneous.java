@@ -44,7 +44,7 @@ import com.nusantara.support.preferences.SystemSettingMasterSwitchPreference;
 import com.nusantara.support.preferences.SecureSettingSwitchPreference;
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
 import com.nusantara.support.preferences.SystemSettingListPreference;
-
+import com.nusantara.support.preferences.SystemSettingSeekBarPreference;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class Miscellaneous extends SettingsPreferenceFragment
@@ -56,14 +56,17 @@ public class Miscellaneous extends SettingsPreferenceFragment
     private static final String PREF_FLASH_ON_CALL = "flashlight_on_call";
     private static final String PREF_FLASH_ON_CALL_DND = "flashlight_on_call_ignore_dnd";
     private static final String PREF_FLASH_ON_CALL_RATE = "flashlight_on_call_rate";
+    private static final String START_PADDING= "statusbar_left_padding";
+    private static final String END_PADDING= "statusbar_right_padding";
 
-
-    private SystemSettingListPreference mFlashOnCall;
-    private SystemSettingSwitchPreference mFlashOnCallIgnoreDND;
     private CustomSeekBarPreference mFlashOnCallRate;
     private CustomSeekBarPreference mCornerRadius;
     private CustomSeekBarPreference mContentPadding;
+    private SystemSettingListPreference mFlashOnCall;
+    private SystemSettingSwitchPreference mFlashOnCallIgnoreDND;
     private SecureSettingSwitchPreference mRoundedFwvals;
+    private SystemSettingSeekBarPreference mStartPadding;
+    private SystemSettingSeekBarPreference mEndPadding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -116,6 +119,21 @@ public class Miscellaneous extends SettingsPreferenceFragment
         mFlashOnCall = (SystemSettingListPreference)
                 findPreference(PREF_FLASH_ON_CALL);
         mFlashOnCall.setOnPreferenceChangeListener(this);
+
+        mStartPadding = (SystemSettingSeekBarPreference) findPreference(START_PADDING);
+        mEndPadding = (SystemSettingSeekBarPreference) findPreference(END_PADDING);
+
+        int startPadding = res.getIdentifier("com.android.systemui:dimen/status_bar_padding_start", null, null);
+        int endPadding = res.getIdentifier("com.android.systemui:dimen/status_bar_padding_end", null, null);
+
+        int mStartPaddingVal = Settings.System.getIntForUser(ctx.getContentResolver(),
+                Settings.System.LEFT_PADDING, (int) (res.getDimensionPixelSize(startPadding) / density) , UserHandle.USER_CURRENT);;
+        int mEndPaddingVal = Settings.System.getIntForUser(ctx.getContentResolver(),
+                Settings.System.RIGHT_PADDING, (int) (res.getDimensionPixelSize(endPadding) / density) , UserHandle.USER_CURRENT);
+        mStartPadding.setValue(mStartPaddingVal);
+        mEndPadding.setValue(mEndPaddingVal);
+        mStartPadding.setDefaultValue((int) (res.getDimensionPixelSize(startPadding) / density));
+        mEndPadding.setDefaultValue((int) (res.getDimensionPixelSize(endPadding) / density));      
     }
 
     @Override
