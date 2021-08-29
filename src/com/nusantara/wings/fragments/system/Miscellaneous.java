@@ -50,10 +50,8 @@ import com.nusantara.support.preferences.SystemSettingListPreference;
 public class Miscellaneous extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-    private static final String GAMING_MODE_ENABLED = "gaming_mode_enabled";
     private static final String PREF_KEY_CUTOUT = "cutout_settings";
     private static final String SYSUI_ROUNDED_SIZE = "sysui_rounded_size";
-    private static final String SYSUI_ROUNDED_CONTENT_PADDING = "sysui_rounded_content_padding";
     private static final String SYSUI_ROUNDED_FWVALS = "sysui_rounded_fwvals";
     private static final String PREF_FLASH_ON_CALL = "flashlight_on_call";
     private static final String PREF_FLASH_ON_CALL_DND = "flashlight_on_call_ignore_dnd";
@@ -66,7 +64,6 @@ public class Miscellaneous extends SettingsPreferenceFragment
     private CustomSeekBarPreference mCornerRadius;
     private CustomSeekBarPreference mContentPadding;
     private SecureSettingSwitchPreference mRoundedFwvals;
-    private SystemSettingMasterSwitchPreference mGamingMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,11 +72,6 @@ public class Miscellaneous extends SettingsPreferenceFragment
 
         final PreferenceScreen prefScreen = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
-
-        mGamingMode = (SystemSettingMasterSwitchPreference) findPreference(GAMING_MODE_ENABLED);
-        mGamingMode.setChecked((Settings.System.getInt(resolver,
-                Settings.System.GAMING_MODE_ENABLED, 0) == 1));
-        mGamingMode.setOnPreferenceChangeListener(this);
 
         Preference mCutoutPref = (Preference) findPreference(PREF_KEY_CUTOUT);
         if (!hasPhysicalDisplayCutout(getContext()))
@@ -102,16 +94,6 @@ public class Miscellaneous extends SettingsPreferenceFragment
                 ((int) (resourceIdRadius / density)), UserHandle.USER_CURRENT);
         mCornerRadius.setValue(cornerRadius);
         mCornerRadius.setOnPreferenceChangeListener(this);
-
-        // Rounded Content Padding
-        //mContentPadding = (CustomSeekBarPreference) findPreference(SYSUI_ROUNDED_CONTENT_PADDING);
-        //int resourceIdPadding = res.getIdentifier("com.android.systemui:dimen/rounded_corner_content_padding", null,
-        //        null);
-        //int contentPadding = Settings.Secure.getIntForUser(ctx.getContentResolver(),
-        //        Settings.Secure.SYSUI_ROUNDED_CONTENT_PADDING,
-        //        (int) (res.getDimension(resourceIdPadding) / density), UserHandle.USER_CURRENT);
-        //mContentPadding.setValue(contentPadding);
-        //mContentPadding.setOnPreferenceChangeListener(this);
 
         // Rounded use Framework Values
         mRoundedFwvals = (SecureSettingSwitchPreference) findPreference(SYSUI_ROUNDED_FWVALS);
@@ -139,19 +121,10 @@ public class Miscellaneous extends SettingsPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mGamingMode) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(resolver,
-                    Settings.System.GAMING_MODE_ENABLED, value ? 1 : 0);
-            return true;
-        } else if (preference == mCornerRadius) {
+        if (preference == mCornerRadius) {
             Settings.Secure.putIntForUser(getContext().getContentResolver(), Settings.Secure.SYSUI_ROUNDED_SIZE,
                     (int) newValue, UserHandle.USER_CURRENT);
             return true;
-        //} else if (preference == mContentPadding) {
-        //    Settings.Secure.putIntForUser(getContext().getContentResolver(), Settings.Secure.SYSUI_ROUNDED_CONTENT_PADDING,
-        //            (int) newValue, UserHandle.USER_CURRENT);
-        //    return true;
         } else if (preference == mRoundedFwvals) {
             restoreCorners();
             return true;
@@ -183,9 +156,7 @@ public class Miscellaneous extends SettingsPreferenceFragment
         }
 
         int resourceIdRadius = (int) ctx.getResources().getDimension(com.android.internal.R.dimen.rounded_corner_radius);
-        //int resourceIdPadding = res.getIdentifier("com.android.systemui:dimen/rounded_corner_content_padding", null, null);
         mCornerRadius.setValue((int) (resourceIdRadius / density));
-        //mContentPadding.setValue((int) (res.getDimension(resourceIdPadding) / density));
     }
 
     private static boolean hasPhysicalDisplayCutout(Context context) {

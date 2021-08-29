@@ -40,12 +40,6 @@
         android:defaultValue="false" />
 
     <com.nusantara.support.preferences.SystemSettingSwitchPreference
-        android:key="status_bar_show_lyric"
-        android:title="@string/status_bar_show_lyric_title"
-        android:summary="@string/status_bar_show_lyric_summary"
-        android:defaultValue="true" />
-
-    <com.nusantara.support.preferences.SystemSettingSwitchPreference
         android:key="less_boring_heads_up"
         android:title="@string/less_boring_heads_up_title"
         android:summary="@string/less_boring_heads_up_summary"
@@ -70,6 +64,29 @@
         android:max="255"
         settings:min="0"
         settings:units="" />
+
+    <PreferenceCategory
+        android:key="media_category"
+        android:title="@string/media_category" >
+
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="artwork_media_background"
+            android:title="@string/artwork_media_background_title"
+            android:summary="@string/artwork_media_background_summary"
+            android:defaultValue="true" />
+
+        <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+            android:key="artwork_media_fade_level"
+            android:title="@string/artwork_media_fade_level_title"
+            android:summary="@string/artwork_media_fade_level_summary"
+            android:dependency="artwork_media_background"
+            android:max="100"
+            settings:min="0"
+            settings:units="%"
+            settings:interval="5"
+            android:defaultValue="30" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="notif_header_cat"
