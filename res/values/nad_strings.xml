@@ -806,6 +806,7 @@
     <string name="fod_icon_picker_footer">In order to add your own icon, select the top left icon and use the OnePlus 6T FP Customizer app to select the icon you want.</string>
 
     <string name="fod_recog_animation_effect_title">Select fingerprint animation effect</string>
+    <string name="fod_recog_animation_nad_scanning">Garuda Nusantara</string>
     <string name="fod_recog_animation_miui_aurora">Aurora (K30 Pro)</string>
     <string name="fod_recog_animation_miui_aurora_cas">Aurora (Mi 10 Ultra)</string>
     <string name="fod_recog_animation_miui_star_cas">Starlight</string>
