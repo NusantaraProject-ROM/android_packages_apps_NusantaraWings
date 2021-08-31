@@ -605,6 +605,7 @@
         <item>@string/volume_panel_miui</item>
         <item>@string/volume_panel_p404</item>
         <item>@string/volume_panel_ssos</item>
+        <item>@string/volume_panel_jr</item>
     </string-array>
 
     <string-array name="volume_panel_values" translatable="false">
@@ -616,6 +617,7 @@
         <item>@string/volume_panel_miui_val</item>
         <item>@string/volume_panel_p404_val</item>
         <item>@string/volume_panel_ssos_val</item>
+        <item>@string/volume_panel_jr_val</item>
     </string-array>
 
     <!-- Flashlight gestures -->
