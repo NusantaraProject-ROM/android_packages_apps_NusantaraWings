@@ -16,6 +16,9 @@
 
 package com.nusantara.wings.fragments.statusbar;
 
+import static android.view.DisplayCutout.BOUNDS_POSITION_LEFT;
+import static android.view.DisplayCutout.BOUNDS_POSITION_RIGHT;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.ContentResolver;
@@ -34,7 +37,6 @@ import android.widget.EditText;
 
 import android.provider.Settings;
 import android.provider.SearchIndexableResource;
-
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
@@ -49,6 +51,8 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 import com.android.settingslib.search.SearchIndexable;
 
+import com.android.internal.util.nad.NadUtils;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -60,6 +64,8 @@ import com.nusantara.support.colorpicker.ColorPickerPreference;
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class ClockOptions extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
+
+    private static final String TAG = "ClockDateSettings";
 
     private static final String PREF_AM_PM_STYLE = "statusbar_clock_am_pm_style";
     private static final String PREF_CLOCK_DATE_DISPLAY = "statusbar_clock_date_display";
@@ -165,7 +171,6 @@ public class ClockOptions extends SettingsPreferenceFragment
             mClockDatePosition.setEnabled(false);
         }
     }
-
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -305,6 +310,24 @@ public class ClockOptions extends SettingsPreferenceFragment
     @Override
     public void onResume() {
         super.onResume();
+
+        final boolean hasNotch = NadUtils.hasNotch(getActivity());
+        final int notchType = NadUtils.getCutoutType(getActivity());
+        Log.v(TAG,"notchType: " + notchType);
+
+        // Adjust status bar preferences for RTL
+        if (getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+            if (hasNotch && !(notchType == BOUNDS_POSITION_LEFT || notchType == BOUNDS_POSITION_RIGHT)) {
+                mStatusBarClockStyle.setEntries(R.array.statusbar_clock_style_entries_notch_rtl);
+                mStatusBarClockStyle.setEntryValues(R.array.statusbar_clock_style_values_notch_rtl);
+            } else {
+                mStatusBarClockStyle.setEntries(R.array.statusbar_clock_style_entries_rtl);
+                mStatusBarClockStyle.setEntryValues(R.array.statusbar_clock_style_values_rtl);
+            }
+        } else if (hasNotch && !(notchType == BOUNDS_POSITION_LEFT || notchType == BOUNDS_POSITION_RIGHT)) {
+            mStatusBarClockStyle.setEntries(R.array.statusbar_clock_style_entries_notch);
+            mStatusBarClockStyle.setEntryValues(R.array.statusbar_clock_style_values_notch);
+        }
     }
 
     @Override
