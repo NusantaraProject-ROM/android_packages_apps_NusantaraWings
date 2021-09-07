@@ -22,6 +22,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.provider.Settings;
 
+import androidx.preference.PreferenceCategory;
 import androidx.preference.SwitchPreference;
 import androidx.preference.PreferenceScreen;
 
@@ -45,6 +46,7 @@ public class GamingModeSettings extends SettingsPreferenceFragment {
 
     private SystemSettingSwitchPreference mHardwareKeysDisable;
     private SystemSettingSwitchPreference mNavbarDisable;
+    private boolean performance_supported;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -53,6 +55,16 @@ public class GamingModeSettings extends SettingsPreferenceFragment {
         addPreferencesFromResource(R.xml.nad_settings_gaming);
 
         final PreferenceScreen prefScreen = getPreferenceScreen();
+
+        final PreferenceCategory perfCat = (PreferenceCategory) prefScreen
+                .findPreference("performance_category");
+
+        performance_supported = getResources().getBoolean(
+                    com.android.internal.R.bool.config_gamingmode_performance);
+
+        if (!performance_supported) {
+            prefScreen.removePreference(perfCat);
+        }
 
         mGamingPrefList = (PackageListPreference) findPreference("gaming_mode_app_list");
         mGamingPrefList.setRemovedListKey(Settings.System.GAMING_MODE_REMOVED_APP_LIST);
