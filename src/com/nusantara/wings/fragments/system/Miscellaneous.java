@@ -131,12 +131,8 @@ public class Miscellaneous extends SettingsPreferenceFragment
         int startPadding = res.getIdentifier("com.android.systemui:dimen/status_bar_padding_start", null, null);
         int endPadding = res.getIdentifier("com.android.systemui:dimen/status_bar_padding_end", null, null);
 
-        int mStartPaddingVal = Settings.System.getIntForUser(ctx.getContentResolver(),
-                Settings.System.LEFT_PADDING, (int) (res.getDimensionPixelSize(startPadding) / density) , UserHandle.USER_CURRENT);;
-        int mEndPaddingVal = Settings.System.getIntForUser(ctx.getContentResolver(),
-                Settings.System.RIGHT_PADDING, (int) (res.getDimensionPixelSize(endPadding) / density) , UserHandle.USER_CURRENT);
-        mStartPadding.setValue(mStartPaddingVal);
-        mEndPadding.setValue(mEndPaddingVal);
+        mStartPadding.setValue((int) (res.getDimensionPixelSize(startPadding) / density));
+        mEndPadding.setValue((int) (res.getDimensionPixelSize(endPadding) / density));
         mStartPadding.setDefaultValue((int) (res.getDimensionPixelSize(startPadding) / density));
         mEndPadding.setDefaultValue((int) (res.getDimensionPixelSize(endPadding) / density));
 
