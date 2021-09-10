@@ -18,10 +18,13 @@ package com.nusantara.wings.fragments.system;
 
 import com.android.internal.logging.nano.MetricsProto;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Bundle;
 import android.provider.Settings;
 
+import androidx.preference.Preference.OnPreferenceChangeListener;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.SwitchPreference;
 import androidx.preference.PreferenceScreen;
@@ -37,12 +40,18 @@ import com.nusantara.support.preferences.SystemSettingSwitchPreference;
 
 import com.android.internal.util.nad.NadUtils;
 
-public class GamingModeSettings extends SettingsPreferenceFragment {
+import com.nusantara.support.preferences.SystemSettingSeekBarPreference;
+
+public class GamingModeSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String GAMING_MODE_DISABLE_HW_KEYS = "gaming_mode_disable_hw_keys";
     private static final String GAMING_MODE_DISABLE_NAVBAR = "gaming_mode_disable_navbar";
 
     private PackageListPreference mGamingPrefList;
+    private SwitchPreference mUseMenuSwitch;
+    private Preference mDanmaku;
+    private Preference mQapps;
+    private SystemSettingSeekBarPreference mOpacity;
 
     private SystemSettingSwitchPreference mHardwareKeysDisable;
     private SystemSettingSwitchPreference mNavbarDisable;
@@ -66,6 +75,20 @@ public class GamingModeSettings extends SettingsPreferenceFragment {
             prefScreen.removePreference(perfCat);
         }
 
+        mUseMenuSwitch = (SwitchPreference) findPreference("gaming_mode_use_overlay_menu");
+        mDanmaku = (Preference) findPreference("gaming_mode_notification_danmaku");
+        mQapps = (Preference) findPreference("gaming_mode_quick_start_apps");
+        mOpacity = (SystemSettingSeekBarPreference) findPreference("gaming_mode_menu_opacity");
+
+        boolean menuEnabled = Settings.System.getInt(getContentResolver(),
+                            Settings.System.GAMING_MODE_USE_OVERLAY_MENU, 1) == 1;
+        mUseMenuSwitch.setChecked(menuEnabled);
+        mUseMenuSwitch.setOnPreferenceChangeListener(this);
+
+        mDanmaku.setEnabled(menuEnabled);
+        mQapps.setEnabled(menuEnabled);
+        mOpacity.setEnabled(menuEnabled);
+
         mGamingPrefList = (PackageListPreference) findPreference("gaming_mode_app_list");
         mGamingPrefList.setRemovedListKey(Settings.System.GAMING_MODE_REMOVED_APP_LIST);
 
@@ -83,6 +106,21 @@ public class GamingModeSettings extends SettingsPreferenceFragment {
         boolean defaultToNavigationBar = NadUtils.deviceSupportNavigationBar(getActivity());
         return Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.FORCE_SHOW_NAVBAR, defaultToNavigationBar ? 1 : 0) == 1;
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mUseMenuSwitch) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver, Settings.System.GAMING_MODE_USE_OVERLAY_MENU,
+                    value ? 1 : 0);
+            mDanmaku.setEnabled(value);
+            mQapps.setEnabled(value);
+            mOpacity.setEnabled(value);
+            return true;
+        }
+        return false;
     }
 
     @Override
