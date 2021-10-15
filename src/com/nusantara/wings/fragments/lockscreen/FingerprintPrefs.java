@@ -30,8 +30,6 @@ import androidx.preference.PreferenceScreen;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.widget.LockPatternUtils;
 
-import com.android.internal.util.nad.NadUtils;
-
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.SettingsPreferenceFragment;
@@ -47,84 +45,20 @@ import java.util.List;
 public class FingerprintPrefs extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-    private static final String FP_KEYSTORE = "fp_unlock_keystore";
-    private static final String FOD_ANIMATION_CATEGORY = "fod_animations";
-    private static final String FOD_ICON = "fod_icon";
-    private static final String FINGERPRINT_POWER_BUTTON_PRESS = "fingerprint_power_button_press";
-
-    private SystemSettingSwitchPreference mFingerprintUnlock;
-    private SecureSettingSwitchPreference mFingerprintPowerButtonPress;
-    private PreferenceCategory mFodIcon;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.nad_fingerprint_prefs);
+
         final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
-
-        mFingerprintUnlock = (SystemSettingSwitchPreference) findPreference(FP_KEYSTORE);
-
-        if (mFingerprintUnlock != null) {
-           if (LockPatternUtils.isDeviceEncryptionEnabled()) {
-               mFingerprintUnlock.setEnabled(false);
-               mFingerprintUnlock.setSummary(R.string.fp_encrypt_warning);
-            } else {
-               mFingerprintUnlock.setEnabled(true);
-               mFingerprintUnlock.setSummary(R.string.fp_unlock_keystore_summary);
-            }
-        }
-
-
-        mFodIcon = findPreference(FOD_ICON);
-        if (mFodIcon != null
-                && !getResources().getBoolean(com.android.internal.R.bool.config_supportsInDisplayFingerprint)) {
-            prefScreen.removePreference(mFodIcon);
-        }
-
-        final PreferenceCategory fodCat = (PreferenceCategory) prefScreen
-                .findPreference(FOD_ANIMATION_CATEGORY);
-        final boolean isFodAnimationResources = NadUtils.isPackageInstalled(getContext(),
-                      getResources().getString(com.android.internal.R.string.config_fodAnimationPackage));
-        if (!isFodAnimationResources) {
-            prefScreen.removePreference(fodCat);
-        }
-
-        mFingerprintPowerButtonPress = (SecureSettingSwitchPreference) findPreference(FINGERPRINT_POWER_BUTTON_PRESS);
-        mFingerprintPowerButtonPress.setChecked((Settings.Secure.getIntForUser(resolver,
-                Settings.Secure.FINGERPRINT_POWER_BUTTON_PRESS, 0, UserHandle.USER_CURRENT) == 1));
-        mFingerprintPowerButtonPress.setOnPreferenceChangeListener(this);
-
-        if (mFingerprintPowerButtonPress != null
-                && !getResources().getBoolean(com.android.internal.R.bool.config_powerButtonFingerprint)) {
-            mFingerprintPowerButtonPress.setVisible(false);
-        }
-        updateFpSummary();
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mFingerprintPowerButtonPress) {
-            boolean value = (Boolean) newValue;
-            Settings.Secure.putIntForUser(getContext().getContentResolver(),
-                    FINGERPRINT_POWER_BUTTON_PRESS, value ? 1 : 0, UserHandle.USER_CURRENT);
-            updateFpSummary();
-            return true;
-        }
+        final ContentResolver resolver = getActivity().getContentResolver();
         return false;
     }
-
-    private void updateFpSummary() {
-        boolean fp = Settings.Secure.getIntForUser(getContentResolver(),
-                Settings.Secure.FINGERPRINT_POWER_BUTTON_PRESS, 0,
-                UserHandle.USER_CURRENT) == 1;
-        if (!fp) {
-            mFingerprintPowerButtonPress.setSummary(R.string.fingerprint_power_button_press_off_summary);
-        } else {
-            mFingerprintPowerButtonPress.setSummary(R.string.fingerprint_power_button_press_on_summary);
-        }
-    }
-
 
     @Override
     public int getMetricsCategory() {

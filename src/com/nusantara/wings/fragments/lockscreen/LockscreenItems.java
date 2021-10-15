@@ -44,9 +44,6 @@ import com.nusantara.support.preferences.SystemSettingSeekBarPreference;
 public class LockscreenItems extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-    private static final String KEY_LOCKSCREEN_BLUR = "lockscreen_blur";
-    private SystemSettingSeekBarPreference mLockscreenBlur;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,15 +51,11 @@ public class LockscreenItems extends SettingsPreferenceFragment
 
         final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
-
-        mLockscreenBlur = (SystemSettingSeekBarPreference) findPreference(KEY_LOCKSCREEN_BLUR);
-        if (!UtilsNad.isBlurSupported()) {
-            mLockscreenBlur.setVisible(false);
-        }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        final ContentResolver resolver = getActivity().getContentResolver();
         return false;
     }
 
@@ -88,9 +81,6 @@ public class LockscreenItems extends SettingsPreferenceFragment
                 @Override
                 public List<String> getNonIndexableKeys(Context context) {
                     List<String> keys = super.getNonIndexableKeys(context);
-                    if (!UtilsNad.isBlurSupported()) {
-                        keys.add(KEY_LOCKSCREEN_BLUR);
-                    }
                     return keys;
         }
     };

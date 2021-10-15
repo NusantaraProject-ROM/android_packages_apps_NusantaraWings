@@ -44,13 +44,6 @@ import java.util.List;
 public class IconManager extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-    private static final String KEY_STATUS_BAR_LOGO = "status_bar_logo";
-    private static final String KEY_USE_OLD_MOBILETYPE = "use_old_mobiletype";
-
-    private SwitchPreference mShowNadLogo;
-    private SwitchPreference mUseOldMobileType;
-    private ListPreference mLogoStyle;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,48 +51,11 @@ public class IconManager extends SettingsPreferenceFragment
 
         final PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
-
-        mShowNadLogo = (SwitchPreference) findPreference(KEY_STATUS_BAR_LOGO);
-        mShowNadLogo.setChecked((Settings.System.getInt(getContentResolver(),
-             Settings.System.STATUS_BAR_LOGO, 0) == 1));
-        mShowNadLogo.setOnPreferenceChangeListener(this);
-
-        mLogoStyle = (ListPreference) findPreference("status_bar_logo_style");
-        int logoStyle = Settings.System.getIntForUser(getContentResolver(),
-                Settings.System.STATUS_BAR_LOGO_STYLE,
-                0, UserHandle.USER_CURRENT);
-        mLogoStyle.setValue(String.valueOf(logoStyle));
-        mLogoStyle.setSummary(mLogoStyle.getEntry());
-        mLogoStyle.setOnPreferenceChangeListener(this);
-
-        mUseOldMobileType = (SwitchPreference) findPreference(KEY_USE_OLD_MOBILETYPE);
-        mUseOldMobileType.setChecked((Settings.System.getInt(resolver,
-                Settings.System.USE_OLD_MOBILETYPE, 0) == 1));
-        mUseOldMobileType.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final ContentResolver resolver = getActivity().getContentResolver();
-        if  (preference == mShowNadLogo) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(resolver,
-                    Settings.System.STATUS_BAR_LOGO, value ? 1 : 0);
-            return true;
-        } else if (preference.equals(mLogoStyle)) {
-            int logoStyle = Integer.parseInt(((String) newValue).toString());
-            Settings.System.putIntForUser(getContentResolver(),
-                    Settings.System.STATUS_BAR_LOGO_STYLE, logoStyle, UserHandle.USER_CURRENT);
-            int index = mLogoStyle.findIndexOfValue((String) newValue);
-            mLogoStyle.setSummary(
-                    mLogoStyle.getEntries()[index]);
-            return true;
-        } else if (preference == mUseOldMobileType) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.USE_OLD_MOBILETYPE, value ? 1 : 0);
-            return true;
-        }
         return false;
     }
 

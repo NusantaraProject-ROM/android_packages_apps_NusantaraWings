@@ -33,8 +33,6 @@ import java.util.Objects;
 
 import com.android.settings.R;
 
-import com.android.internal.util.nad.NadUtils;
-
 public class UtilsThemes {
 
     public static int getThemeAccentColor(final Context context) {
@@ -64,15 +62,5 @@ public class UtilsThemes {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static boolean threeButtonNavbarEnabled(Context context) {
-        boolean defaultToNavigationBar = NadUtils.deviceSupportNavigationBar(context);
-        boolean navigationBar = Settings.System.getInt(context.getContentResolver(),
-                Settings.System.FORCE_SHOW_NAVBAR, defaultToNavigationBar ? 1 : 0) == 1;
-        boolean hasNavbar = (context.getResources().getInteger(
-                com.android.internal.R.integer.config_navBarInteractionMode) == 0)
-                && navigationBar;
-        return hasNavbar;
     }
 }

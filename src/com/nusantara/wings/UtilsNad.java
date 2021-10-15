@@ -34,11 +34,6 @@ import com.android.settings.R;
 
 public class UtilsNad {
 
-    private static boolean isUiBlurAvailable = false;
-
-    private static boolean mBlurDisabledSysProp = SystemProperties
-            .getBoolean("persist.sys.sf.disable_blurs", false);
-
     public static void showSystemUiRestartDialog(Context context) {
         new AlertDialog.Builder(context)
                 .setTitle(R.string.systemui_restart_title)
@@ -149,12 +144,5 @@ public class UtilsNad {
             }
             return null;
         }
-    }
-
-    public static boolean isBlurSupported() {
-            try {
-                 isUiBlurAvailable = ActivityManager.getService().isUiBackgroundBlurAvailable();
-            } catch (RemoteException e) { }
-        return !mBlurDisabledSysProp && ActivityManager.isHighEndGfx() && isUiBlurAvailable;
     }
 }

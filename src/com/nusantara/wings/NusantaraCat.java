@@ -75,10 +75,10 @@ public class NusantaraCat extends SettingsPreferenceFragment {
         Preference FingerprintPrefs = findPreference(FINGERPRINT_PREFS_CATEGORY);
         if (!getResources().getBoolean(R.bool.has_fingerprint_prefs)) {
             getPreferenceScreen().removePreference(FingerprintPrefs);
-        } else {
+        /*} else {
             if (!NadUtils.hasFingerprintSupport(getContext())) {
                 getPreferenceScreen().removePreference(FingerprintPrefs);
-            }
+            }*/
         }
 
         Preference BatteryOptions = findPreference(BATTERY_CATEGORY);

@@ -15,7 +15,6 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bottom_sheet_background">
@@ -24,14 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.factor.bouncy.BouncyRecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listView"
-            app:recyclerview_fling_animation_size=".7"
-            app:recyclerview_overscroll_animation_size=".7"
-            app:recyclerview_damping_ratio="DAMPING_RATIO_LOW_BOUNCY"
-            app:recyclerview_stiffness="STIFFNESS_MEDIUM"
-            app:allow_drag_reorder="true"
-            app:allow_item_swipe="false" 
             android:layout_width="wrap_content"
             android:layout_height="@dimen/team_recycler_height"/>
 

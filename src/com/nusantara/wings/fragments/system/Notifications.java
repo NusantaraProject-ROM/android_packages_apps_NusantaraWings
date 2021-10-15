@@ -40,28 +40,11 @@ import com.android.settingslib.search.SearchIndexable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nusantara.support.preferences.SystemSettingSwitchPreference;
-import com.nusantara.support.preferences.GlobalSettingMasterSwitchPreference;
-import com.nusantara.support.preferences.SystemSettingMasterSwitchPreference;
-
 import com.nusantara.wings.UtilsNad;
-import com.android.internal.util.nad.NadUtils; 
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class Notifications extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
-
-    private static final String NOTIFICATION_HEADER = "notification_headers";
-    private static final String CENTER_NOTIFICATION_HEADER = "center_notification_headers";
-    private static final String HEADS_UP_NOTIFICATIONS_ENABLED = "heads_up_notifications_enabled";
-    private static final String NOTIFICATION_PULSE = "pulse_ambient_light";
-    private static final String STATUS_BAR_SHOW_TICKER = "status_bar_show_ticker";
-
-    private GlobalSettingMasterSwitchPreference mHeadsUpEnabled;
-    private SystemSettingSwitchPreference mNotificationHeader;
-    private SystemSettingSwitchPreference mCenterNotificationHeader;
-    private SystemSettingMasterSwitchPreference mEdgeLightEnabled;
-    private SystemSettingMasterSwitchPreference mTickerEnabled;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,70 +52,11 @@ public class Notifications extends SettingsPreferenceFragment
         addPreferencesFromResource(R.xml.nad_notifications);
         final PreferenceScreen prefScreen = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
-
-        mNotificationHeader = (SystemSettingSwitchPreference) findPreference(NOTIFICATION_HEADER);
-        mNotificationHeader.setChecked((Settings.System.getInt(resolver,
-                Settings.System.NOTIFICATION_HEADERS, 1) == 1));
-        mNotificationHeader.setOnPreferenceChangeListener(this);
-
-        mCenterNotificationHeader = (SystemSettingSwitchPreference) findPreference(CENTER_NOTIFICATION_HEADER);
-        mCenterNotificationHeader.setChecked((Settings.System.getInt(resolver,
-                Settings.System.CENTER_NOTIFICATION_HEADERS, 0) == 1));
-        mCenterNotificationHeader.setOnPreferenceChangeListener(this);
-
-        mHeadsUpEnabled = (GlobalSettingMasterSwitchPreference) findPreference(HEADS_UP_NOTIFICATIONS_ENABLED);
-        mHeadsUpEnabled.setOnPreferenceChangeListener(this);
-        int headsUpEnabled = Settings.Global.getInt(getContentResolver(),
-                HEADS_UP_NOTIFICATIONS_ENABLED, 1);
-        mHeadsUpEnabled.setChecked(headsUpEnabled != 0);
-
-        mEdgeLightEnabled = (SystemSettingMasterSwitchPreference) findPreference(NOTIFICATION_PULSE);
-        mEdgeLightEnabled.setOnPreferenceChangeListener(this);
-        int edgeLightEnabled = Settings.System.getInt(getContentResolver(),
-                NOTIFICATION_PULSE, 0);
-        mEdgeLightEnabled.setChecked(edgeLightEnabled != 0);
-
-        mTickerEnabled = (SystemSettingMasterSwitchPreference) findPreference(STATUS_BAR_SHOW_TICKER);
-        mTickerEnabled.setOnPreferenceChangeListener(this);
-        int tickerEnabled = Settings.System.getInt(getContentResolver(),
-                STATUS_BAR_SHOW_TICKER, 0);
-        mTickerEnabled.setChecked(tickerEnabled != 0);
-
-        if (NadUtils.hasNotch(getActivity())) {
-            mTickerEnabled.setVisible(false);
-        }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mNotificationHeader) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(resolver,
-                    Settings.System.NOTIFICATION_HEADERS, value ? 1 : 0);
-            return true;
-        } else if (preference == mCenterNotificationHeader) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(resolver,
-                    Settings.System.CENTER_NOTIFICATION_HEADERS, value ? 0 : 1);
-            UtilsNad.showSystemUiRestartDialog(getContext());
-            return true;
-        } else if (preference == mHeadsUpEnabled) {
-            boolean value = (Boolean) newValue;
-            Settings.Global.putInt(getContentResolver(),
-                    HEADS_UP_NOTIFICATIONS_ENABLED, value ? 1 : 0);
-            return true;
-        } else if (preference == mEdgeLightEnabled) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(getContentResolver(),
-                    NOTIFICATION_PULSE, value ? 1 : 0);
-            return true;
-        } else if (preference == mTickerEnabled) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(getContentResolver(),
-                    STATUS_BAR_SHOW_TICKER, value ? 1 : 0);
-            return true;
-        }
         return false;
     }
 
