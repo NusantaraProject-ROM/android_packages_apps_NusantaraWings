@@ -385,6 +385,9 @@
     <string name="location_privacy_indicator_summary">Reboot to take effect</string>
 
     <!-- QuickSettings haptic feedback -->
+    <string name="qs_tile_vibration_title">Tile Vibration</string>
     <string name="quick_settings_vibrate_title">Vibrate on touch</string>
     <string name="quick_settings_vibrate_summary">Vibrate when touching QS tiles</string>
+    <string name="quick_settings_vibrate_duration_title">Vibration duration</string>
+    <string name="quick_settings_vibrate_duration_summary">How many milliseconds to vibrate</string>
 </resources>
