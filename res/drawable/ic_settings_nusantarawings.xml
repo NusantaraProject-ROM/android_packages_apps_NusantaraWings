@@ -1,33 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright (C) 2018 The Android Open Source Project
+    Copyright (C) 2020 Nusantara Android Development
 
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+         http://www.apache.org/licenses/LICENSE-2.0
 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item>
-        <com.android.settingslib.widget.AdaptiveIconShapeDrawable
-            android:width="@dimen/dashboard_tile_image_size"
-            android:height="@dimen/dashboard_tile_image_size"
-            android:color="@color/homepage_du_background" />
-    </item>
-
-    <item
-        android:width="@dimen/dashboard_tile_foreground_image_size"
-        android:height="@dimen/dashboard_tile_foreground_image_size"
-        android:start="@dimen/dashboard_tile_foreground_image_inset"
-        android:top="@dimen/dashboard_tile_foreground_image_inset"
-        android:drawable="@drawable/ic_settings_du_logo" />
-</layer-list>
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="24dp"
+        android:height="24dp"
+        android:viewportWidth="200.0"
+        android:viewportHeight="200.0">
+    <path
+        android:pathData="M 97.456 33.427 L 110.013 53.642 L 121.704 47.554 L 121.704 64.929 L 131.49 59.835 L 131.49 83.021 L 144.038 102.584 L 123.526 102.584 L 130.17 113.289 L 97.456 113.289 L 112.695 137.821 L 126.744 137.821 L 144.602 166.573 L 175 166.573 L 162.923 147.131 L 162.923 33.427 L 97.456 33.427 Z M 37.077 166.573 L 102.72 166.573 L 77.288 125.631 L 67.968 125.631 L 60.301 113.289 L 46.694 113.289 L 39.907 116.849 L 39.907 106.523 L 59.354 96.398 L 59.354 81.072 L 95.294 62.439 L 77.289 33.427 L 25 33.427 L 37.077 52.869 L 37.077 94.203 L 26.13 99.903 L 26.13 137.81 L 37.077 132.109 L 37.077 166.573 Z M 50.907 127.119 L 52.611 127.119 L 60.277 139.461 L 69.597 139.461 L 77.847 152.741 L 50.907 152.741 L 50.907 127.119 Z M 149.093 147.589 L 136.377 127.119 L 149.093 127.119 L 149.093 147.589 Z M 149.093 84.847 L 145.32 78.966 L 145.32 47.259 L 149.093 47.259 L 149.093 84.847 Z M 75.663 57.037 L 50.907 69.872 L 50.907 48.923 L 49.873 47.259 L 69.594 47.259 L 75.663 57.037 Z"
+        android:fillType="evenOdd"
+        android:fillColor="?android:attr/colorPrimary"/>
+</vector>

@@ -32,7 +32,7 @@
     <dimen name="nad_dashboard_tile_foreground_image_inset">6.0dip</dimen>
     <dimen name="nad_dashboard_tile_foreground_image_size">36.0dip</dimen>
 
-    <dimen name="default_corner_radii">8dp</dimen>
+    <dimen name="default_corner_radii">28dp</dimen>
     <dimen name="default_nav_item_padding">10dp</dimen>
     <dimen name="default_nav_item_text_size">11sp</dimen>
     <dimen name="default_nav_item_text_padding">8dp</dimen>

@@ -18,7 +18,7 @@
 
     <com.nusantara.wings.preferences.CategoryPreference
         android:key="nusantara_parts_category"
-        android:icon="@drawable/dt_nusantara_parts_bg"
+        android:icon="@drawable/dt_nusantara_parts"
         android:title="@string/nad_parts_title"
         android:summary="@string/nad_parts_summary" >
         <intent android:action="com.android.settings.action.EXTRA_SETTINGS"
@@ -28,21 +28,21 @@
 
     <com.nusantara.wings.preferences.CategoryPreference
         android:key="themes_category"
-        android:icon="@drawable/dt_themes_bg"
+        android:icon="@drawable/dt_themes"
         android:title="@string/themes_title"
         android:summary="@string/themes_summary"
         android:fragment="com.nusantara.wings.fragments.system.Themes" />
 
     <com.nusantara.wings.preferences.CategoryPreference
         android:key="notifications_category"
-        android:icon="@drawable/dt_notifications_bg"
+        android:icon="@drawable/dt_notifications"
         android:title="@string/notifications_title"
         android:summary="@string/notifications_summary"
         android:fragment="com.nusantara.wings.fragments.system.Notifications" />
 
     <com.nusantara.wings.preferences.CategoryPreference
         android:key="miscellaneous_category"
-        android:icon="@drawable/dt_miscellaneous_bg"
+        android:icon="@drawable/dt_miscellaneous"
         android:title="@string/miscellaneous_title"
         android:summary="@string/miscellaneous_summary"
         android:fragment="com.nusantara.wings.fragments.system.Miscellaneous" />

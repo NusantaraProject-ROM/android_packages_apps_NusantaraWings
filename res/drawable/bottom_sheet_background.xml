@@ -16,7 +16,7 @@
 <shape
     xmlns:android="http://schemas.android.com/apk/res/android">
     <solid
-        android:color="?android:attr/colorBackground">
+        android:color="@android:color/system_accent1_100">
     </solid>
     <corners
         android:topLeftRadius="@*android:dimen/config_dialogCornerRadius"

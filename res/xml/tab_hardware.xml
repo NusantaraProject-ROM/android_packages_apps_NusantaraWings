@@ -18,21 +18,21 @@
 
     <com.nusantara.wings.preferences.CategoryPreference
         android:key="buttons_category"
-        android:icon="@drawable/dt_buttons_bg"
+        android:icon="@drawable/dt_buttons"
         android:title="@string/buttons_title"
         android:summary="@string/buttons_summary"
         android:fragment="com.nusantara.wings.fragments.hardware.Buttons" />
 
     <com.nusantara.wings.preferences.CategoryPreference
         android:key="navigation_category"
-        android:icon="@drawable/dt_navigationbar_bg"
+        android:icon="@drawable/dt_navigationbar"
         android:title="@string/navigation_options_title"
         android:summary="@string/navigation_options_summary"
         android:fragment="com.nusantara.wings.fragments.hardware.NavigationOptions" />
 
     <com.nusantara.wings.preferences.CategoryPreference
         android:key="powermenu_category"
-        android:icon="@drawable/dt_powermenu_bg"
+        android:icon="@drawable/dt_powermenu"
         android:title="@string/powermenu_title"
         android:summary="@string/powermenu_summary"
         android:fragment="com.nusantara.wings.fragments.hardware.PowerMenu" />

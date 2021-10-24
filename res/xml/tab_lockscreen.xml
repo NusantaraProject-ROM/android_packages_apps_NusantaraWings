@@ -18,14 +18,14 @@
 
     <com.nusantara.wings.preferences.CategoryPreference
         android:key="lockscreen_items_category"
-        android:icon="@drawable/dt_lockscreen_items_bg"
+        android:icon="@drawable/dt_lockscreen_items"
         android:title="@string/lockscreen_items_title"
         android:summary="@string/lockscreen_items_summary"
         android:fragment="com.nusantara.wings.fragments.lockscreen.LockscreenItems" />
 
     <com.nusantara.wings.preferences.CategoryPreference
         android:key="fingerprint_prefs_category"
-        android:icon="@drawable/dt_fingerprint_prefs_bg"
+        android:icon="@drawable/dt_fingerprint_prefs"
         android:title="@string/fingerprint_prefs_title"
         android:summary="@string/fingerprint_prefs_summary"
         android:fragment="com.nusantara.wings.fragments.lockscreen.FingerprintPrefs" />
