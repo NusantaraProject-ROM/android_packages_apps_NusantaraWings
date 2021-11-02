@@ -32,4 +32,9 @@
         android:targetClass="com.android.systemui.tuner.TunerActivity" />
     </Preference>
 
+    <com.nusantara.support.preferences.SecureSettingSwitchPreference
+        android:key="hide_qs_call_strength"
+        android:title="@string/show_qs_call_strength_icon_title"
+        android:summary="@string/show_qs_call_strength_icon_summary"
+        android:defaultValue="true" />
 </PreferenceScreen>
