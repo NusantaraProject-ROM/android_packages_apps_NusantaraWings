@@ -19,6 +19,7 @@ package com.nusantara.wings.fragments.system;
 import android.app.Dialog;
 import android.app.UiModeManager;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.SharedPreferences;
 import android.content.om.IOverlayManager;
 import android.graphics.Color;
@@ -58,15 +59,37 @@ import static com.nusantara.wings.UtilsThemes.handleOverlays;
 public class Themes extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
+    private String MONET_ENGINE_COLOR_OVERRIDE = "monet_engine_color_override";
+
+    private ColorPickerPreference mMonetColor;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.nad_themes);
         final PreferenceScreen prefScreen = getPreferenceScreen();
+        final ContentResolver resolver = getActivity().getContentResolver();
+
+        mMonetColor = (ColorPickerPreference) prefScreen.findPreference(MONET_ENGINE_COLOR_OVERRIDE);
+        int intColor = Settings.Secure.getInt(resolver, MONET_ENGINE_COLOR_OVERRIDE, Color.WHITE);
+        String hexColor = String.format("#%08x", (0xffffff & intColor));
+        mMonetColor.setNewPreviewColor(intColor);
+        mMonetColor.setSummary(hexColor);
+        mMonetColor.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mMonetColor) {
+            String hex = ColorPickerPreference.convertToARGB(Integer
+                .parseInt(String.valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.Secure.putInt(resolver,
+                MONET_ENGINE_COLOR_OVERRIDE, intHex);
+            return true;
+        }
         return false;
     }
 
