@@ -33,10 +33,12 @@
 
     <!-- The Team -->
     <string name="dialog_team_title">The team</string>
+    <string name="projectmanager_title">Project Manager</string>
+    <string name="designer_title">Designer</string>
     <string name="developer_title">Developer</string>
     <string name="maintainer_title">Maintainer</string>
     <string name="contributor_title">Contributor</string>
-    <string name="designer_title">Designer</string>
+    <string name="veteran_title">Veteran</string>
 
     <!-- Bottom navigation -->
     <string name="bottom_nav_system_title">System</string>
