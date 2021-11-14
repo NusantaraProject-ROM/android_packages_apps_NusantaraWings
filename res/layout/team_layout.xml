@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2020 The Dirty Unicorns Project
+     Copyright (C) 2021 Nusantara Android Development
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,87 +14,93 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="5dp"
     android:paddingBottom="5dp">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="12dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/devName"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="12dp">
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/devName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="bold"
-                android:textColor="?android:attr/textColorPrimary" />
+        <TextView
+            android:id="@+id/githubName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/devName"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorPrimary" />
 
-            <TextView
-                android:id="@+id/githubName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/devName"
-                android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="?android:attr/textColorPrimary" />
+        <TextView
+            android:id="@+id/devTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/devName"
+            android:layout_alignStart="@+id/devName"
+            android:layout_marginEnd="100dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/devTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/githubName"
-                android:layout_alignStart="@+id/devName"
-                android:layout_marginEnd="100dp"
-                android:textStyle="bold"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@*android:color/accent_device_default_light" />
+        <ImageView
+            android:id="@+id/devGithub"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:tint="@android:color/system_accent1_300"
+            android:backgroundTint="@android:color/system_neutral1_700"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/nad_icon_bg"
+            android:padding="10dp"
+            android:src="@drawable/github" />
 
-            <ImageView
-                android:id="@+id/devGithub"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="10dp"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/github" />
-
-            <ImageView
-                android:id="@+id/devTelegram"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="20dp"
-                android:layout_toStartOf="@+id/devGithub"
-                android:src="@drawable/telegram" />
-
-            <TextView
-                android:id="@+id/telegramName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"/>
-
-        </RelativeLayout>
-
-        <com.nusantara.support.helpers.CircularImageView
-            android:id="@+id/devImage"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center|start"
-            android:layout_marginStart="10dp"
+        <ImageView
+            android:id="@+id/devTelegram"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:tint="@android:color/system_accent1_300"
+            android:backgroundTint="@android:color/system_neutral1_700"
             android:layout_marginEnd="20dp"
-            app:civ_border_color="@*android:color/accent_device_default_light"
-            app:civ_border="true"
-            app:civ_border_width="2dp" />
+            android:layout_toStartOf="@+id/devGithub"
+            android:background="@drawable/nad_icon_bg"
+            android:padding="10dp"
+            android:src="@drawable/telegram" />
 
-    </FrameLayout>
+        <TextView
+            android:id="@+id/telegramName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+    <com.nusantara.support.helpers.CircularImageView
+        android:id="@+id/devImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center|start"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="20dp"
+        app:civ_border="true"
+        app:civ_border_color="@*android:color/accent_device_default_light"
+        app:civ_border_width="0dp" />
+
+
+</FrameLayout>

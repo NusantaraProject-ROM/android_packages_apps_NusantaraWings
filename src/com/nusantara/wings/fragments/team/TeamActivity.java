@@ -19,16 +19,19 @@ package com.nusantara.wings.fragments.team;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AbsListView;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.settings.R;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.android.settings.R;
 
 public class TeamActivity extends Activity {
 
@@ -38,16 +41,50 @@ public class TeamActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.team_recyclerview);
-
+        
         initTeam();
-
         Window window = getWindow();
         window.setGravity(Gravity.BOTTOM);
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT);
+        WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
+        layoutParams.dimAmount = 0.75f;
+        window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        window.setAttributes(layoutParams);
     }
     private void initTeam(){
         RecyclerView mRecycleview = findViewById(R.id.listView);
+        mRecycleview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0) {
+                    // Scrolling up
+                    TextView tv = findViewById(R.id.title_dev);
+                    tv.setVisibility(View.GONE);
+                } else {
+                    // Scrolling down
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
+                    // Do something
+                    TextView tv = findViewById(R.id.title_dev);
+                    tv.setVisibility(View.VISIBLE);
+                } else if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    // Do something
+                    TextView tv = findViewById(R.id.title_dev);
+                    //tv.setVisibility(View.GONE);
+                } else {
+                    // Do something
+                }
+            }
+        });
 
         // Project Manager
         setTeamMember("Aoihara", getString(R.string.projectmanager_title)

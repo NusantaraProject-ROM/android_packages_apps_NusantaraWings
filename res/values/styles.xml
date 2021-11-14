@@ -18,6 +18,10 @@
 
     <style name="TeamDialog" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorPrimary">@android:color/system_neutral2_10</item>
+        <item name="android:textColorPrimary">@android:color/system_accent1_10</item>
+        <item name="android:textColorSecondary">@android:color/system_accent2_400</item>
         <item name="android:windowAnimationStyle">@style/TeamAnimation.Window</item>
     </style>
 

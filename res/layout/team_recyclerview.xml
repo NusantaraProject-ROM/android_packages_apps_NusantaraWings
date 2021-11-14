@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2020 The Dirty Unicorns Project
+     Copyright (C) 2021 Nusantara Android Development
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-
           http://www.apache.org/licenses/LICENSE-2.0
-
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,20 +13,36 @@
      limitations under the License.
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bottom_sheet_background">
+    app:cardBackgroundColor="?android:attr/colorPrimary"
+    android:layout_marginBottom="-28dp"
+    app:cardCornerRadius="28dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/team_recycler_height"
+        android:orientation="vertical"
+        android:padding="15.0dp">
+
+        <TextView
+            android:id="@+id/title_dev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="Developer"
+            android:textAppearance="@style/CollapsingToolbarTitle.Expanded"
+            android:textSize="32dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/team_recycler_height"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>

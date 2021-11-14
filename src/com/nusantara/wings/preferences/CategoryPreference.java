@@ -17,7 +17,7 @@
 package com.nusantara.wings.preferences;
 
 import android.content.Context;
-import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import androidx.core.content.res.TypedArrayUtils;
@@ -31,19 +31,8 @@ public class CategoryPreference extends Preference {
 
     private final View.OnClickListener mClickListener = this::performClick;
 
-    private boolean mAllowDividerAbove;
-    private boolean mAllowDividerBelow;
-
     public CategoryPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Preference);
-
-        mAllowDividerAbove = TypedArrayUtils.getBoolean(a, R.styleable.Preference_allowDividerAbove,
-                R.styleable.Preference_allowDividerAbove, false);
-        mAllowDividerBelow = TypedArrayUtils.getBoolean(a, R.styleable.Preference_allowDividerBelow,
-                R.styleable.Preference_allowDividerBelow, false);
-        a.recycle();
         setLayoutResource(R.layout.category_preference);
     }
 
@@ -55,7 +44,8 @@ public class CategoryPreference extends Preference {
         final boolean selectable = isSelectable();
         holder.itemView.setFocusable(selectable);
         holder.itemView.setClickable(selectable);
-        holder.setDividerAllowedAbove(mAllowDividerAbove);
-        holder.setDividerAllowedBelow(mAllowDividerBelow);
+        holder.setDividerAllowedAbove(false);
+        holder.setDividerAllowedBelow(false);
+        holder.itemView.setBackgroundColor(Color.TRANSPARENT);
     }
 }
