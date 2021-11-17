@@ -41,6 +41,12 @@
         android:entryValues="@array/battery_percent_values"
         android:defaultValue="0" />
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="qs_show_battery_estimate"
+        android:title="@string/battery_estimate_title"
+        android:summary="@string/battery_estimate_summary"
+        android:defaultValue="true"/>
+
     <PreferenceCategory
         android:key="battery_light_category"
         android:title="@string/battery_light_category">

@@ -521,4 +521,7 @@
     <string name="nusantara_clear_theme_title">Nusantara clear theme</string>
     <string name="nusantara_clear_theme_summary">Use nusantara clear as base of theme</string>
 
+    <!-- Battery estimate -->
+    <string name="battery_estimate_title">Battery estimate</string>
+    <string name="battery_estimate_summary">Display estimated remaining battery life when available</string>
 </resources>
