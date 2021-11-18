@@ -57,4 +57,17 @@
         android:title="@string/traffic_title"
         android:summary="@string/traffic_summary"
         android:fragment="com.nusantara.wings.fragments.statusbar.TrafficIndicators" />
+       	<PreferenceCategory
+        android:title="@string/statusbar_gesture_title">
+
+  
+   <com.nusantara.wings.preferences.CategoryPreference
+            android:key="double_tap_sleep_gesture"
+            android:title="@string/double_tap_to_sleep_statusbar_title"
+            android:summary="@string/double_tap_to_sleep_statusbar_summary"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+
 </PreferenceScreen>
