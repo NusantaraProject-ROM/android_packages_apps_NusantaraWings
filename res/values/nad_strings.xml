@@ -220,5 +220,9 @@
     <string name="qs_running_services_title">Running services icon</string>
     <string name="qs_running_services_summary">Enable the running services icon in the footer</string>
 
+	<!-- Double Tap Statusbar to Sleep -->
+    <string name="statusbar_gesture_title">Gestures</string>
+    <string name="double_tap_to_sleep_statusbar_title">Double tap to sleep</string>
+    <string name="double_tap_to_sleep_statusbar_summary">Double tap on statusbar to put the device to sleep</string>
 
 </resources>
