@@ -263,7 +263,10 @@
     <string name="clock_date_left">Left of time</string>
     <string name="clock_date_position">Date position</string>
 
-	<!-- Nusantara logo -->
+    <!-- Nusantara logo -->
     <string name="nad_logo_title">Nusantara logo</string>
     <string name="nad_logo_summary">Let everyone know that you\'re using Nusantara when they see your screen</string>
+
+    <!-- Screenshot shutter -->
+    <string name="screenshot_shutter_sound_title">Screenshot sound</string>
 </resources>
