@@ -41,7 +41,13 @@
             android:title="@string/nad_logo_title"
             android:summary="@string/nad_logo_summary"
             android:defaultValue="false" />
-        
+
+        <com.nusantara.support.preferences.SecureSettingSwitchPreference
+            android:key="show_combined_status_bar_signal_icons"
+            android:title="@string/combined_status_bar_signal_icons"
+            android:summary="@string/combined_status_bar_signal_icons_summary"
+            android:defaultValue="false" />
+
         <com.nusantara.support.preferences.SystemSettingSwitchPreference
             android:key="show_fourg_icon"
             android:title="@string/show_fourg_icon_title"
