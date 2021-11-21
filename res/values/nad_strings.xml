@@ -85,6 +85,8 @@
     <!-- Navigation -->
     <string name="buttons_title">Buttons</string>
     <string name="buttons_summary">Customize the button options</string>
+    <string name="volume_button_music_control_title">Playback control</string>
+    <string name="volume_button_music_control_summary">When the screen is off, long-pressing the volume keys will skip music tracks</string>
     <string name="navigation_options_title">Navigation</string>
     <string name="navigation_options_summary">Customize the navigation options</string>
 
