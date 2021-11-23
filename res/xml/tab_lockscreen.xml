@@ -30,4 +30,12 @@
         android:summary="@string/fingerprint_prefs_summary"
         android:fragment="com.nusantara.wings.fragments.lockscreen.FingerprintPrefs" />
 
+    <com.nusantara.wings.preferences.CategoryPreference
+        android:key="lockscreen_battery_info"
+        android:title="@string/lockscreen_battery_info_title"
+        android:summary="@string/lockscreen_battery_info_summary"
+        android:defaultValue="true" />
+
+
+
 </PreferenceScreen>
