@@ -78,6 +78,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     // Edge gesture action
     private static final String KEY_LONG_BACK_SWIPE_TIMEOUT = "long_back_swipe_timeout";
     private static final String KEY_BACK_SWIPE_EXTENDED = "back_swipe_extended";
+    private static final String KEY_BACK_GESTURE_HAPTIC = "back_gesture_haptic";
     private static final String KEY_LEFT_SWIPE_ACTIONS = "left_swipe_actions";
     private static final String KEY_RIGHT_SWIPE_ACTIONS = "right_swipe_actions";
     private static final String KEY_LEFT_SWIPE_APP_ACTION = "left_swipe_app_action";
@@ -127,6 +128,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
     private SystemSettingSwitchPreference mSwapHardwareKeys;
     private SystemSettingSwitchPreference mNavigationArrowKeys;
     private SystemSettingSwitchPreference mExtendedSwipe;
+    private SystemSettingSwitchPreference mBackGesture;
 
     private PreferenceCategory homeCategory;
     private PreferenceCategory backCategory;
@@ -219,6 +221,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
         mGestureSystemNavigation = (Preference) findPreference(KEY_GESTURE_SYSTEM);
 
         mSwapHardwareKeys = (SystemSettingSwitchPreference) findPreference(KEY_SWAP_NAVIGATION_KEYS);
+        mBackGesture = (SystemSettingSwitchPreference) findPreference(KEY_BACK_GESTURE_HAPTIC);
 
         mLayoutSettings = (Preference) findPreference(KEY_LAYOUT_SETTINGS);
         if (NadUtils.isGestureNavbar()) {
@@ -767,6 +770,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
         if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.threebutton")) {
             mTimeout.setVisible(false);
             mExtendedSwipe.setVisible(false);
+            mBackGesture.setVisible(false);
             leftSwipeCategory.setVisible(false);
             rightSwipeCategory.setVisible(false);
             leftVerticalSwipeCategory.setVisible(false);
@@ -774,6 +778,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
         } else if (NadUtils.isThemeEnabled("com.android.internal.systemui.navbar.twobutton")) {
             mTimeout.setVisible(false);
             mExtendedSwipe.setVisible(false);
+            mBackGesture.setVisible(false);
             leftSwipeCategory.setVisible(false);
             rightSwipeCategory.setVisible(false);
             leftVerticalSwipeCategory.setVisible(false);
@@ -781,6 +786,7 @@ public class NavigationOptions extends SettingsPreferenceFragment
         } else if (NadUtils.isGestureNavbar()) {
             mTimeout.setVisible(true);
             mExtendedSwipe.setVisible(true);
+            mBackGesture.setVisible(true);
             leftSwipeCategory.setVisible(true);
             rightSwipeCategory.setVisible(true);
             if (!extendedSwipe) {
