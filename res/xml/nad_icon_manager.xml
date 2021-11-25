@@ -42,17 +42,26 @@
             android:summary="@string/nad_logo_summary"
             android:defaultValue="false" />
         
-         <com.nusantara.support.preferences.SystemSettingSwitchPreference
-             android:key="show_fourg_icon"
-             android:title="@string/show_fourg_icon_title"
-             android:summary="@string/show_fourg_icon_summary"
-             android:defaultValue="false"/>
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="show_fourg_icon"
+            android:title="@string/show_fourg_icon_title"
+            android:summary="@string/show_fourg_icon_summary"
+            android:defaultValue="false"/>
 
-         <com.nusantara.support.preferences.SystemSettingSwitchPreference
-             android:key="volte_icon"
-             android:title="@string/volte_icon_title"
-             android:summary="@string/volte_icon_summary"
-             android:defaultValue="true"/>
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="show_volte_icon"
+            android:title="@string/volte_icon_title"
+            android:summary="@string/volte_icon_summary"
+            android:defaultValue="true"/>
+
+        <com.nusantara.support.preferences.SystemSettingListPreference
+            android:key="volte_icon_style"
+            android:title="@string/volte_icon_style_title"
+            android:entries="@array/volte_icon_type_entries"
+            android:entryValues="@array/volte_icon_type_values"
+            android:summary="%s"
+            android:defaultValue="0"
+            android:dependency="show_volte_icon"/>
 
     </PreferenceCategory>
 </PreferenceScreen>
