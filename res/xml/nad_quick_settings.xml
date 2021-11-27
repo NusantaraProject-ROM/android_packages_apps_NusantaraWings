@@ -49,6 +49,12 @@
             android:defaultValue="false"
             android:dependency="qs_show_brightness" />
 
+       <com.nusantara.support.preferences.SecureSettingSwitchPreference
+            android:key="qs_running_services_toggle"
+            android:title="@string/qs_running_services_title"
+            android:summary="@string/qs_running_services_summary"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
     
 </PreferenceScreen>
