@@ -17,11 +17,7 @@
 package com.nusantara.wings.preferences;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.os.UserHandle;
-import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import androidx.core.content.res.TypedArrayUtils;
@@ -29,10 +25,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
 import android.widget.ImageView;
 
-import com.android.settingslib.Utils;
 import com.android.settings.R;
-
-import java.util.Random;
 
 public class CategoryPreference extends Preference {
 
@@ -40,15 +33,9 @@ public class CategoryPreference extends Preference {
 
     private boolean mAllowDividerAbove;
     private boolean mAllowDividerBelow;
-    private int mColorRandom;
-    private ImageView mBG;
-    private int mCatStyle;
 
     public CategoryPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        mCatStyle = Settings.System.getIntForUser(context.getContentResolver(),
-                Settings.System.CATEGORY_NUSANTARA, 0, UserHandle.USER_CURRENT);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Preference);
 
@@ -57,57 +44,18 @@ public class CategoryPreference extends Preference {
         mAllowDividerBelow = TypedArrayUtils.getBoolean(a, R.styleable.Preference_allowDividerBelow,
                 R.styleable.Preference_allowDividerBelow, false);
         a.recycle();
-
-        if (mCatStyle == 0) {
-            setLayoutResource(R.layout.category_preference);
-        } else if (mCatStyle == 1) {
-            setLayoutResource(R.layout.category_preference);
-        } else {
-            setLayoutResource(R.layout.tab_preference);
-        }
+        setLayoutResource(R.layout.category_preference);
     }
 
     @Override
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
         holder.itemView.setOnClickListener(mClickListener);
-        final Context context = getContext();
 
         final boolean selectable = isSelectable();
         holder.itemView.setFocusable(selectable);
         holder.itemView.setClickable(selectable);
         holder.setDividerAllowedAbove(mAllowDividerAbove);
         holder.setDividerAllowedBelow(mAllowDividerBelow);
-        mColorRandom = randomColor();
-        mBG = (ImageView) holder.findViewById(R.id.card);
-        setStyleColor(context);
-    }
-
-    private void setStyleColor(Context context) {
-        int nadStyle = Settings.System.getIntForUser(context.getContentResolver(),
-                    Settings.System.NUSANTARA_WINGS_STYLE, 0, UserHandle.USER_CURRENT);
-
-        if (nadStyle == 0) {
-            mBG.setImageResource(R.drawable.ios_card_bg);
-        } else if (nadStyle == 1) {
-            mBG.setColorFilter(Color.TRANSPARENT);
-        } else if (nadStyle == 2) {
-            mBG.setColorFilter(mColorRandom);
-            mBG.setImageTintList(ColorStateList.valueOf(Color.parseColor("#80ffffff")));
-            mBG.setImageResource(R.drawable.card_bg);
-        } else {
-            mBG.setColorFilter(Utils.getColorAttrDefaultColor(context, android.R.attr.colorAccent));
-            mBG.setImageResource(R.drawable.card_bg);
-            mBG.setImageTintList(ColorStateList.valueOf(Color.parseColor("#80ffffff")));
-        }
-    }
-
-    public int randomColor() {
-        Random r = new Random();
-        float hsl[] = new float[3];
-        hsl[0] = r.nextInt(360);
-        hsl[1] = r.nextFloat() * 0.5f;
-        hsl[2] = r.nextFloat() * 0.6f;
-        return com.android.internal.graphics.ColorUtils.HSLToColor(hsl);
     }
 }

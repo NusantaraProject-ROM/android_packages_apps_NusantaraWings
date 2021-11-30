@@ -16,34 +16,6 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Nusantara style -->
-    <string-array name="nad_style_color_entries" translatable="false">
-        <item>@string/nad_color_ios</item>
-        <item>@string/nad_color_transparent</item>
-        <item>@string/nad_color_random</item>
-        <item>@string/nad_color_accent</item>
-    </string-array>
-
-    <string-array name="nad_style_color_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <!-- Nusantara style -->
-    <string-array name="nad_style_cat_entries" translatable="false">
-        <item>@string/nad_cat_navbar</item>
-        <item>@string/nad_cat_withoutnavbar</item>
-        <item>@string/nad_cat_tabbed</item>
-    </string-array>
-
-    <string-array name="nad_style_cat_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-
     <!-- Buttons -->
     <string-array name="action_entries" translatable="false">
         <item>@string/action_nothing</item>

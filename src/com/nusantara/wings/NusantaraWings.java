@@ -20,8 +20,6 @@ import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.UserHandle;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -49,69 +47,40 @@ import com.nusantara.wings.bottomnav.BubbleNavigationChangeListener;
 
 public class NusantaraWings extends SettingsPreferenceFragment {
 
-    protected Context mContext;
-    private View view;
-    private int mCatStyle;
-    ViewGroup mContainer;
-    LayoutInflater mInflater;
-    ViewPager mViewPager;
-    PagerAdapter mPagerAdapter;
+    Context mContext;
+    View view;
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        mContainer = container;
-        mInflater = inflater;
-        mContext = getActivity();
-        createNavLayout();
-        setHasOptionsMenu(true);
-        return view;
-    }
-
-    public void createNavLayout() {
-
-        int mCatStyle = Settings.System.getIntForUser(getActivity().getContentResolver(),
-                Settings.System.CATEGORY_NUSANTARA, 0, UserHandle.USER_CURRENT);
-
-        view = mInflater.inflate(R.layout.nusantarawings, mContainer, false);
-
+        View view = inflater.inflate(R.layout.nusantarawings, container, false);
         ActionBar actionBar = getActivity().getActionBar();
+        mContext = getActivity();
         if (actionBar != null) {
             actionBar.setTitle(R.string.nusantarawings_title);
         }
 
         BubbleNavigationConstraintView bubbleNavigationConstraintView =  (BubbleNavigationConstraintView) view.findViewById(R.id.bottom_navigation_view_constraint);
-        mViewPager = view.findViewById(R.id.viewpager);
-        mPagerAdapter = new PagerAdapter(getFragmentManager());
-        mViewPager.setAdapter(mPagerAdapter);
-
-        if (mCatStyle == 0) {
-            bubbleNavigationConstraintView.setVisibility(View.VISIBLE);
-        } else if (mCatStyle == 1) {
-            bubbleNavigationConstraintView.setVisibility(View.GONE);
-        } else {
-            bubbleNavigationConstraintView.setVisibility(View.VISIBLE);
-        }
+        ViewPager viewPager = view.findViewById(R.id.viewpager);
+        PagerAdapter mPagerAdapter = new PagerAdapter(getFragmentManager());
+        viewPager.setAdapter(mPagerAdapter);
 
         bubbleNavigationConstraintView.setNavigationChangeListener(new BubbleNavigationChangeListener() {
             @Override
             public void onNavigationChanged(View view, int position) {
             int id = view.getId();
                if (id == R.id.system) {
-                   mViewPager.setCurrentItem(0);
-
+                   viewPager.setCurrentItem(0);
                } else if (id == R.id.lockscreen) {
-                   mViewPager.setCurrentItem(1);
-
+                   viewPager.setCurrentItem(1);
                } else if (id == R.id.statusbar) {
-                   mViewPager.setCurrentItem(2);
-
+                   viewPager.setCurrentItem(2);
                } else if (id == R.id.hardware) {
-                   mViewPager.setCurrentItem(3);
+                   viewPager.setCurrentItem(3);
                }
            }
        });
 
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
             }
@@ -126,32 +95,20 @@ public class NusantaraWings extends SettingsPreferenceFragment {
             }
         });
         setHasOptionsMenu(true);
+        return view;
     }
 
     class PagerAdapter extends FragmentPagerAdapter {
-
-        int mCatStyle = Settings.System.getIntForUser(getActivity().getContentResolver(),
-                Settings.System.CATEGORY_NUSANTARA, 0, UserHandle.USER_CURRENT);
 
         String titles[] = getTitles();
         private Fragment frags[] = new Fragment[titles.length];
 
         PagerAdapter(FragmentManager fm) {
             super(fm);
-
-        	if (mCatStyle == 0) {
-                frags[0] = new System();
-                frags[1] = new Lockscreen();
-                frags[2] = new Statusbar();
-                frags[3] = new Hardware();
-        	  } else if (mCatStyle == 1)  {
-                frags[0] = new NusantaraCat();
-        	  } else {
-                frags[0] = new System();
-                frags[1] = new Lockscreen();
-                frags[2] = new Statusbar();
-                frags[3] = new Hardware();
-            }
+            frags[0] = new System();
+            frags[1] = new Lockscreen();
+            frags[2] = new Statusbar();
+            frags[3] = new Hardware();
         }
 
         @Override
@@ -171,36 +128,13 @@ public class NusantaraWings extends SettingsPreferenceFragment {
     }
 
     private String[] getTitles() {
-        int mCatStyle = Settings.System.getIntForUser(getActivity().getContentResolver(),
-                Settings.System.CATEGORY_NUSANTARA, 0, UserHandle.USER_CURRENT);
         String titleString[];
-        if (mCatStyle == 0) {
         titleString = new String[]{
-                getString(R.string.bottom_nav_system_title),
-                getString(R.string.bottom_nav_lockscreen_title),
-                getString(R.string.bottom_nav_statusbar_title),
-                getString(R.string.bottom_nav_hardware_title)};
-        	} else if (mCatStyle == 1) {
-                titleString = new String[]{
-                getString(R.string.nusantarawings_title)};
-        	} else {
-                titleString = new String[]{
-                getString(R.string.bottom_nav_system_title),
-                getString(R.string.bottom_nav_lockscreen_title),
-                getString(R.string.bottom_nav_statusbar_title),
-                getString(R.string.bottom_nav_hardware_title)};
-          }
+            getString(R.string.bottom_nav_system_title),
+            getString(R.string.bottom_nav_lockscreen_title),
+            getString(R.string.bottom_nav_statusbar_title),
+            getString(R.string.bottom_nav_hardware_title)};
         return titleString;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle saveState) {
-        super.onSaveInstanceState(saveState);
     }
 
     @Override
