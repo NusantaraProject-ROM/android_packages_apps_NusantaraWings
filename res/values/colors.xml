@@ -38,7 +38,7 @@
     <color name="dt_battery_options_color">@color/blue_active</color>
     <color name="dt_carrier_label_color">@color/red_active</color>
     <color name="dt_clock_options_color">@color/pink_active</color>
-    <color name="dt_nusantara_parts_color">@color/green_active</color>
+    <color name="dt_game_space_color">@color/green_active</color>
     <color name="dt_icon_manager_color">@color/orange_active</color>
     <color name="dt_quicksettings_color">@color/amber_active</color>
     <color name="dt_traffic_color">@color/magenta_active</color>

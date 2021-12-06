@@ -17,13 +17,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.nusantara.wings.preferences.CategoryPreference
-        android:key="nusantara_parts_category"
-        android:icon="@drawable/dt_nusantara_parts"
-        android:title="@string/nad_parts_title"
-        android:summary="@string/nad_parts_summary" >
+        android:key="game_space_category"
+        android:icon="@drawable/dt_game_space"
+        android:title="@string/game_space_title"
+        android:summary="@string/game_space_summary" >
         <intent android:action="com.android.settings.action.EXTRA_SETTINGS"
-            android:targetPackage="org.nusantara.project.parts"
-            android:targetClass="org.nusantara.project.parts.DeviceSettingsActivity" />
+            android:targetPackage="io.chaldeaprjkt.gamespace"
+            android:targetClass="io.chaldeaprjkt.gamespace.settings.SettingsActivity" />
     </com.nusantara.wings.preferences.CategoryPreference>
 
     <com.nusantara.wings.preferences.CategoryPreference

@@ -38,8 +38,8 @@
 
     <!-- Categories -->
     <!-- System -->
-    <string name="nad_parts_title">Nusantara Parts</string>
-    <string name="nad_parts_summary">Device specific customization</string>
+    <string name="game_space_title">Game Space</string>
+    <string name="game_space_summary">Manage your gaming setup</string>
     <string name="themes_title">Themes</string>
     <string name="themes_summary">Customize the themes</string>
     <string name="miscellaneous_title">Miscellaneous</string>

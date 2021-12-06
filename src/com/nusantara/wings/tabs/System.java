@@ -29,7 +29,7 @@ public class System extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
 
-    private static final String NUSANTARA_PARTS_CATEGORY = "nusantara_parts_category";
+    private static final String GAME_SPACE_CATEGORY = "game_space_category";
     private static final String NOTIFICATIONS_CATEGORY = "notifications_category";
     private static final String MISC_CATEGORY = "miscellaneous_category";
     private static final String THEMES_CATEGORY = "themes_category";
@@ -39,9 +39,9 @@ public class System extends SettingsPreferenceFragment
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.tab_system);
 
-        Preference NusantaraParts = findPreference(NUSANTARA_PARTS_CATEGORY);
-        if (!getResources().getBoolean(R.bool.has_nusantara_parts_available)) {
-            getPreferenceScreen().removePreference(NusantaraParts);
+        Preference GameSpace = findPreference(GAME_SPACE_CATEGORY);
+        if (!getResources().getBoolean(R.bool.has_game_space_available)) {
+            getPreferenceScreen().removePreference(GameSpace);
         }
 
         Preference Notifications = findPreference(NOTIFICATIONS_CATEGORY);

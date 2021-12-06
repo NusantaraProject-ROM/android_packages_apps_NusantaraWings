@@ -16,12 +16,12 @@
         <com.android.settingslib.widget.AdaptiveIconShapeDrawable
             android:width="@dimen/nad_dashboard_tile_image_size"
             android:height="@dimen/nad_dashboard_tile_image_size"
-            android:color="@color/dt_nusantara_parts_color"/>
+            android:color="@color/dt_game_space_color"/>
     </item>
     <item
         android:width="@dimen/nad_dashboard_tile_foreground_image_size"
         android:height="@dimen/nad_dashboard_tile_foreground_image_size"
         android:start="@dimen/nad_dashboard_tile_foreground_image_inset"
         android:top="@dimen/nad_dashboard_tile_foreground_image_inset"
-        android:drawable="@drawable/dt_nusantara_parts"/>
+        android:drawable="@drawable/dt_game_space"/>
 </layer-list>

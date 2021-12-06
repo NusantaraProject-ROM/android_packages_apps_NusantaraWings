@@ -58,6 +58,6 @@
     <!-- Whether to display themes category -->
     <bool name="has_themes">true</bool>
 
-    <!-- Whether to display nusantara parts -->
-    <bool name="has_nusantara_parts_available">false</bool>
+    <!-- Whether to display Game space -->
+    <bool name="has_game_space_available">false</bool>
 </resources>
