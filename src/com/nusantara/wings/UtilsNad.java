@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.RemoteException;
 import android.os.SystemProperties;
+import android.telephony.TelephonyManager;
 import android.content.Intent;
 import android.content.ComponentName;
 
@@ -33,6 +34,15 @@ import java.util.Objects;
 import com.android.settings.R;
 
 public class UtilsNad {
+
+    /**
+     * Returns whether the device is voice-capable (meaning, it is also a phone).
+     */
+    public static boolean isVoiceCapable(Context context) {
+        TelephonyManager telephony =
+                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        return telephony != null && telephony.isVoiceCapable();
+    }
 
     public static void showSystemUiRestartDialog(Context context) {
         new AlertDialog.Builder(context)
