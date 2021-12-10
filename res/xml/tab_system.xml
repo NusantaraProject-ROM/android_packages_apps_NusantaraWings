@@ -23,7 +23,11 @@
         android:summary="@string/game_space_summary" >
         <intent android:action="com.android.settings.action.EXTRA_SETTINGS"
             android:targetPackage="io.chaldeaprjkt.gamespace"
-            android:targetClass="io.chaldeaprjkt.gamespace.settings.SettingsActivity" />
+            android:targetClass="io.chaldeaprjkt.gamespace.settings.SettingsActivity" >
+        <extra
+            android:name="referer"
+            android:value="com.nusantara.wings" />
+        </intent>
     </com.nusantara.wings.preferences.CategoryPreference>
 
     <com.nusantara.wings.preferences.CategoryPreference
