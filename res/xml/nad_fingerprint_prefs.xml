@@ -30,5 +30,11 @@
         android:summary="@string/fprint_error_vib_summary"
         android:persistent="true" />
 
+     <com.nusantara.support.preferences.SystemSettingSwitchPreference
+          android:key="screen_off_fod"
+          android:title="@string/screen_off_fod_title"
+          android:summary="@string/screen_off_fod_summary"
+          android:defaultValue="true" />
+
 </PreferenceScreen>
 
