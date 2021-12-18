@@ -27,12 +27,6 @@
         android:key="gestures_category"
         android:title="@string/gesture_cat_title" >
 
-        <com.nusantara.support.preferences.SystemSettingSwitchPreference 
-            android:key="three_finger_gesture" 
-            android:title="@string/three_finger_gesture" 
-            android:summary="@string/three_finger_gesture_summary" 
-            android:defaultValue="false" /> 
-
         <com.nusantara.support.preferences.SystemSettingSwitchPreference
             android:key="double_tap_sleep_gesture"
             android:title="@string/double_tap_sleep_gesture_title"
@@ -45,5 +39,4 @@
             android:summary="@string/double_tap_to_sleep_lockscreen_summary"
             android:defaultValue="false" />
     </PreferenceCategory>
-
 </PreferenceScreen>
