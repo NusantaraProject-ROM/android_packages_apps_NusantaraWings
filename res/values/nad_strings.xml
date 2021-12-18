@@ -381,6 +381,7 @@
     <string name="ambient_notification_color_mode_title">Color mode</string>
     <string name="ambient_notification_color_mode_accent">Accent color</string>
     <string name="ambient_notification_color_mode_wall">Wallpaper dominant color</string>
+    <string name="ambient_notification_color_mode_random">Random Color</string>
     <string name="ambient_notification_color_mode_notification">Notification icon color</string>
     <string name="ambient_notification_color_mode_custom">@string/ambient_notification_light_color_title</string>
     <string name="ambient_notification_light_color_title">Custom color</string>
