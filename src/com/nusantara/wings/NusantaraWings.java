@@ -149,13 +149,18 @@ public class NusantaraWings extends SettingsPreferenceFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.add(0, 0, 0, R.string.dialog_team_title);
+        inflater.inflate(R.menu.menu_option, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == 0) {
+        if (item.getItemId() == R.id.team) {
             Intent intent = new Intent(mContext, TeamActivity.class);
+            mContext.startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.changelog) {
+            Intent intent = new Intent(mContext, ChangelogActivity.class);
             mContext.startActivity(intent);
             return true;
         }
