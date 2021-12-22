@@ -589,4 +589,8 @@
     <string name="heads_up_snooze_25min">25 minutes</string>
     <string name="heads_up_snooze_30min">30 minutes</string>
     <string name="heads_up_snooze_1h">1 hour</string>
+
+    <!-- Activity indicators -->
+    <string name="status_bar_activity_indicators_title">Show activity indicators</string>
+    <string name="status_bar_activity_indicators_summary">Show up and down icons on mobile and wifi icons when data is used</string>
 </resources>
