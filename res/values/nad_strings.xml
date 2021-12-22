@@ -379,4 +379,8 @@
     <string name="statusbar_network_traffic_threshold_rx_title">Auto hide threshold for download</string>
     <string name="statusbar_network_traffic_unit_text_size_title">Network traffic unit text size</string>
     <string name="statusbar_network_traffic_rate_text_scale_factor_title">Network traffic rate text scale factor</string>
+
+    <!-- Location privacy indicator -->
+    <string name="location_privacy_indicator_title">Show privacy indicator for location</string>
+    <string name="location_privacy_indicator_summary">Reboot to take effect</string>
 </resources>
