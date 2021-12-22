@@ -19,4 +19,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="network_traffic_enabled"
+        android:title="@string/network_traffic_state_title"
+        android:summary="@string/network_traffic_state_summary"
+        android:defaultValue="false" />
+
+    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+        android:key="network_traffic_auto_hide_threshold_tx"
+        android:title="@string/statusbar_network_traffic_threshold_tx_title"
+        android:defaultValue="0"
+        android:max="1024"
+        settings:min="0"
+        settings:interval="128" 
+        android:dependency="network_traffic_enabled" />
+
+    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+        android:key="network_traffic_auto_hide_threshold_rx"
+        android:title="@string/statusbar_network_traffic_threshold_rx_title"
+        android:defaultValue="0"
+        android:max="1024"
+        settings:min="0"
+        settings:interval="128"
+        android:dependency="network_traffic_enabled" />
+
+    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+        android:key="network_traffic_unit_text_size"
+        android:title="@string/statusbar_network_traffic_unit_text_size_title"
+        android:defaultValue="21"
+        android:max="25"
+        settings:min="15"
+        android:dependency="network_traffic_enabled" />
+
+    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+        android:key="network_traffic_rate_text_scale_factor"
+        android:title="@string/statusbar_network_traffic_rate_text_scale_factor_title"
+        android:defaultValue="15"
+        android:max="20"
+        settings:min="10"
+        android:dependency="network_traffic_enabled" />
 </PreferenceScreen>

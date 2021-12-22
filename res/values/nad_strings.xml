@@ -371,4 +371,12 @@
     <!-- Three finger ss -->
     <string name="three_finger_screenshot_title">Swipe to screenshot</string>
     <string name="three_finger_screenshot_summary">Swipe down with three fingers to take a screenshot</string>
+
+    <!-- Network traffic -->
+    <string name="network_traffic_state_title">Network traffic</string>
+    <string name="network_traffic_state_summary">Display the network traffic</string>
+    <string name="statusbar_network_traffic_threshold_tx_title">Auto hide threshold for upload</string>
+    <string name="statusbar_network_traffic_threshold_rx_title">Auto hide threshold for download</string>
+    <string name="statusbar_network_traffic_unit_text_size_title">Network traffic unit text size</string>
+    <string name="statusbar_network_traffic_rate_text_scale_factor_title">Network traffic rate text scale factor</string>
 </resources>
