@@ -42,6 +42,8 @@ import com.android.settingslib.search.SearchIndexable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.nusantara.wings.UtilsNad;
+
 import com.nusantara.support.preferences.SecureSettingSwitchPreference;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
@@ -113,12 +115,14 @@ public class IconManager extends SettingsPreferenceFragment
             boolean enabled = (boolean) newValue;
             Settings.Secure.putInt(resolver,
                     COBINED_STATUSBAR_ICONS, enabled ? 1 : 0);
+            UtilsNad.showSystemUiRestartDialog(getContext());
             return true;
         } else if (preference == mLocationPrivacy) {
             boolean enabled = (boolean) newValue;
             Settings.Secure.putIntForUser(resolver,
                     Settings.Secure.ENABLE_LOCATION_PRIVACY_INDICATOR,
             enabled ? 1 : 0, UserHandle.USER_CURRENT);
+            UtilsNad.showSystemUiRestartDialog(getContext());
             return true;
         }
         return false;
