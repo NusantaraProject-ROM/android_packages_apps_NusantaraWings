@@ -38,6 +38,8 @@
         <item>@string/action_ringer_modes</item>
         <item>@string/kill_app</item>
         <item>@string/partial_screenshot</item>
+        <item>@string/skip_song</item>
+        <item>@string/prev_song</item>
     </string-array>
 
     <string-array name="action_values" translatable="false">
@@ -61,6 +63,8 @@
         <item>17</item>
         <item>18</item>
         <item>19</item>
+        <item>20</item>
+        <item>21</item>
     </string-array>
 
     <!-- Battery percent -->
@@ -244,6 +248,8 @@
         <item>@string/action_ringer_modes</item>
         <item>@string/kill_app</item>
         <item>@string/partial_screenshot</item>
+        <item>@string/skip_song</item>
+        <item>@string/prev_song</item>
     </string-array>
 
     <string-array name="back_swipe_actions_values" translatable="false">
@@ -259,6 +265,8 @@
         <item>9</item>
         <item>10</item>
         <item>11</item>
+        <item>12</item>
+        <item>13</item>
     </string-array>
 
     <string-array name="long_back_swipe_timeout_entries">
