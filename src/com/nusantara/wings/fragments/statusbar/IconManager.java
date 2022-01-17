@@ -54,9 +54,12 @@ public class IconManager extends SettingsPreferenceFragment
     private static final String CONFIG_RESOURCE_NAME = "flag_combined_status_bar_signal_icons";
     private static final String KEY_STATUS_BAR_LOGO = "status_bar_logo";
     private static final String COBINED_STATUSBAR_ICONS = "show_combined_status_bar_signal_icons";
+    private static final String CAMERA_DEVICE_CONFIG = "camera_indicators_enabled";
+    private static final String CAMERA_INDICATOR = "enable_camera_privacy_indicator";
 
     private SwitchPreference mShowNadLogo;
     private SecureSettingSwitchPreference mCombinedIcons;
+    private SecureSettingSwitchPreference mCamIndicator;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,6 +94,13 @@ public class IconManager extends SettingsPreferenceFragment
                 COBINED_STATUSBAR_ICONS, def ? 1 : 0) == 1;
         mCombinedIcons.setChecked(enabled);
         mCombinedIcons.setOnPreferenceChangeListener(this);
+
+        mCamIndicator = (SecureSettingSwitchPreference) findPreference(CAMERA_INDICATOR);
+        boolean camIndicator = DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_PRIVACY,
+                CAMERA_DEVICE_CONFIG, false);
+        mCamIndicator.setDefaultValue(camIndicator);
+        mCamIndicator.setChecked(Settings.Secure.getInt(resolver,
+                CAMERA_INDICATOR, camIndicator ? 1 : 0) == 1);
     }
 
     @Override

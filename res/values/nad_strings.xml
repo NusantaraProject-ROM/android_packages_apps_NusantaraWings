@@ -391,7 +391,13 @@
 
     <!-- Location privacy indicator -->
     <string name="location_privacy_indicator_title">Show privacy indicator for location</string>
-    <string name="location_privacy_indicator_summary">Reboot to take effect</string>
+    <string name="location_privacy_indicator_summary_on">Show location in the privacy chip</string>
+    <string name="location_privacy_indicator_summary_off">Show location in status bar icons</string>
+
+    <!-- Camera/Mic privacy indicator -->
+    <string name="camera_privacy_indicator_title">Camera/Mic access indicator</string>
+    <string name="camera_privacy_indicator_summary_on">Show camera/mic in the privacy chip</string>
+    <string name="camera_privacy_indicator_summary_off">Show camera/mic in status bar icons</string>
 
     <!-- QuickSettings haptic feedback -->
     <string name="qs_tile_vibration_title">Tile Vibration</string>
