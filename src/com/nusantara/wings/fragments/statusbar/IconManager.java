@@ -54,10 +54,8 @@ public class IconManager extends SettingsPreferenceFragment
     private static final String CONFIG_RESOURCE_NAME = "flag_combined_status_bar_signal_icons";
     private static final String KEY_STATUS_BAR_LOGO = "status_bar_logo";
     private static final String COBINED_STATUSBAR_ICONS = "show_combined_status_bar_signal_icons";
-    private static final String KEY_LOCATION_INDICATOR = "enable_location_privacy_indicator";
 
     private SwitchPreference mShowNadLogo;
-    private SecureSettingSwitchPreference mLocationPrivacy;
     private SecureSettingSwitchPreference mCombinedIcons;
     
     @Override
@@ -93,14 +91,6 @@ public class IconManager extends SettingsPreferenceFragment
                 COBINED_STATUSBAR_ICONS, def ? 1 : 0) == 1;
         mCombinedIcons.setChecked(enabled);
         mCombinedIcons.setOnPreferenceChangeListener(this);
-
-        mLocationPrivacy = (SecureSettingSwitchPreference) findPreference(KEY_LOCATION_INDICATOR);
-        enabled = DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_PRIVACY,
-                "location_indicators_enabled", def);
-        mLocationPrivacy.setChecked((Settings.Secure.getIntForUser(resolver,
-             Settings.Secure.ENABLE_LOCATION_PRIVACY_INDICATOR, enabled ? 1 : 0, 
-             UserHandle.USER_CURRENT) == 1));
-        mLocationPrivacy.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -115,13 +105,6 @@ public class IconManager extends SettingsPreferenceFragment
             boolean enabled = (boolean) newValue;
             Settings.Secure.putInt(resolver,
                     COBINED_STATUSBAR_ICONS, enabled ? 1 : 0);
-            UtilsNad.showSystemUiRestartDialog(getContext());
-            return true;
-        } else if (preference == mLocationPrivacy) {
-            boolean enabled = (boolean) newValue;
-            Settings.Secure.putIntForUser(resolver,
-                    Settings.Secure.ENABLE_LOCATION_PRIVACY_INDICATOR,
-            enabled ? 1 : 0, UserHandle.USER_CURRENT);
             UtilsNad.showSystemUiRestartDialog(getContext());
             return true;
         }
