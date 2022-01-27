@@ -26,12 +26,12 @@
         android:targetClass="com.android.systemui.tuner.TunerActivity" />
     </Preference>
 
-    <com.nusantara.support.preferences.SecureSettingSwitchPreference
-        android:key="hide_qs_call_strength"
-        android:title="@string/show_qs_call_strength_icon_title"
-        android:summary="@string/show_qs_call_strength_icon_summary"
-        android:defaultValue="true" />
-    
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="statusbar_colored_icons"
+        android:title="@string/statusbar_colored_icons_title"
+        android:summary="@string/statusbar_colored_icons_summary"
+        android:defaultValue="false" />
+
     <PreferenceCategory
         android:key="sb_icon_category"
         android:title="@string/sb_icon_category">
@@ -51,13 +51,20 @@
         <com.nusantara.support.preferences.SecureSettingSwitchPreference
             android:key="enable_location_privacy_indicator"
             android:title="@string/location_privacy_indicator_title"
-            android:summary="@string/location_privacy_indicator_summary"  />
+            android:summary="@string/location_privacy_indicator_summary"
+            android:defaultValue="false" />
 
         <com.nusantara.support.preferences.SystemSettingSwitchPreference
             android:key="show_fourg_icon"
             android:title="@string/show_fourg_icon_title"
             android:summary="@string/show_fourg_icon_summary"
             android:defaultValue="false"/>
+
+        <com.nusantara.support.preferences.SecureSettingSwitchPreference
+            android:key="hide_qs_call_strength"
+            android:title="@string/show_qs_call_strength_icon_title"
+            android:summary="@string/show_qs_call_strength_icon_summary"
+            android:defaultValue="true" />
 
         <com.nusantara.support.preferences.SystemSettingSwitchPreference
             android:key="show_volte_icon"
