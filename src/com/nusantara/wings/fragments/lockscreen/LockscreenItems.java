@@ -38,11 +38,15 @@ import java.util.List;
 
 import com.nusantara.wings.UtilsNad;
 
-import com.nusantara.support.preferences.SystemSettingSeekBarPreference;
+import com.nusantara.support.preferences.SystemSettingSwitchPreference;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class LockscreenItems extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
+
+    private static final String KEY_RIPPLE_EFFECT = "enable_ripple_effect";
+
+    private SystemSettingSwitchPreference mRippleEffect;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,11 +55,22 @@ public class LockscreenItems extends SettingsPreferenceFragment
 
         final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
+
+        mRippleEffect = findPreference(KEY_RIPPLE_EFFECT);
+        mRippleEffect.setChecked((Settings.System.getInt(resolver,
+                Settings.System.ENABLE_RIPPLE_EFFECT, 1) == 1));
+        mRippleEffect.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mRippleEffect) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.ENABLE_RIPPLE_EFFECT, value ? 1 : 0);
+            return true;
+        }
         return false;
     }
 
