@@ -26,15 +26,17 @@
     <com.nusantara.support.preferences.SystemSettingSeekBarPreference
         android:key="statusbar_left_padding"
         android:title="@string/statusbar_left_padding"
-        android:max="50"
+        android:max="30"
         android:min="-5"
+        settings:units="dp"
         android:defaultValue="0"/>
 
     <com.nusantara.support.preferences.SystemSettingSeekBarPreference
         android:key="statusbar_right_padding"
         android:title="@string/statusbar_right_padding"
-        android:max="50"
+        android:max="30"
         android:min="-5"
+        settings:units="dp"
         android:defaultValue="0"/>
 
     <PreferenceCategory
