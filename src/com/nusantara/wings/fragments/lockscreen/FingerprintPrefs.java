@@ -62,7 +62,6 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
 
         final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
-    
 
         mFingerprintSuccessVib = findPreference(FINGERPRINT_SUCCESS_VIB);
         mFingerprintSuccessVib.setChecked((Settings.System.getInt(getContentResolver(),
@@ -77,7 +76,7 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
 
         mUdfpsCategory = findPreference(UDFPS_CATEGORY);
         if (mUdfpsCategory != null && !UdfpsUtils.hasUdfpsSupport(getContext())) {
-            prefSet.removePreference(mUdfpsCategory);
+            prefScreen.removePreference(mUdfpsCategory);
         }
     }
 
