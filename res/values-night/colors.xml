@@ -17,4 +17,6 @@
     <color name="ios_card_bg">#10ffffff</color>
     <color name="fod_item_background_stroke_color">#555555</color>
     <color name="nad_gaming_background">@*android:color/accent_device_default_dark</color>
+    
+    <color name="dev_name_color">@android:color/system_accent1_300</color>
 </resources>
