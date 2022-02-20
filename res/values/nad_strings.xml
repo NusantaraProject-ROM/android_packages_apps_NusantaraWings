@@ -487,4 +487,8 @@
     <string name="use_photos_spoof_title">Unlimited Google photo storage</string>
     <string name="use_photos_spoof_summary">Your device will be identified as a Pixel XL to get unlimited Google photo storage at original quality</string>
     <string name="photos_spoof_toast">Restart the Photos app for it to take effect</string>
+
+    <!-- Applications fragment -->
+    <string name="search">Search</string>
+    <string name="search_apps">Search apps</string>
 </resources>
