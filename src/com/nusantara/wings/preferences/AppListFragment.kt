@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.nusantara.wings.preferences;
+package com.nusantara.wings.preferences
 
 import android.content.Context
 import android.content.pm.PackageInfo
