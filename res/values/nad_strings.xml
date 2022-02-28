@@ -482,4 +482,9 @@
     <!-- Volume Panel on Left -->
     <string name="volume_panel_on_left_title">Volume Panel on Left</string>
     <string name="volume_panel_on_left_summary">Change volume panel from right side to left side</string>
+
+    <!-- Unlimited g00gle ph0t0s st0rage -->
+    <string name="use_photos_spoof_title">Unlimited Google photo storage</string>
+    <string name="use_photos_spoof_summary">Your device will be identified as a Pixel XL to get unlimited Google photo storage at original quality</string>
+    <string name="photos_spoof_toast">Restart the Photos app for it to take effect</string>
 </resources>

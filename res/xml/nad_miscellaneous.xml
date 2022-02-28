@@ -31,6 +31,12 @@
         android:summary="%s"
         android:defaultValue="0" />
 
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="use_photos_spoof"
+        android:title="@string/use_photos_spoof_title"
+        android:summary="@string/use_photos_spoof_summary"
+        android:persistent="false" />
+
     <PreferenceCategory
         android:key="gestures_category"
         android:title="@string/gesture_cat_title" >

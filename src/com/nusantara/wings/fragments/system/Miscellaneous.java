@@ -22,13 +22,16 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.os.SystemProperties;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.text.format.DateFormat;
+import android.widget.Toast;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceScreen;
+import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
 
@@ -44,6 +47,11 @@ import java.util.List;
 public class Miscellaneous extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
+    private static final String KEY_SPOOF = "use_photos_spoof";
+    private static final String SYS_SPOOF = "persist.sys.photo";
+
+    private SwitchPreference mSpoof;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +59,24 @@ public class Miscellaneous extends SettingsPreferenceFragment
 
         final PreferenceScreen prefScreen = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
+
+        final String useSpoof = SystemProperties.get(SYS_SPOOF, "1");
+        mSpoof = (SwitchPreference) findPreference(KEY_SPOOF);
+        mSpoof.setChecked("1".equals(useSpoof));
+        mSpoof.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mSpoof) {
+            String value = ((Boolean) newValue) ? "1" : "0";
+            SystemProperties.set(SYS_SPOOF, value);
+            Toast.makeText(getActivity(),
+                    (R.string.photos_spoof_toast),
+                    Toast.LENGTH_LONG).show();
+            return true;
+        }
         return false;
     }
 
