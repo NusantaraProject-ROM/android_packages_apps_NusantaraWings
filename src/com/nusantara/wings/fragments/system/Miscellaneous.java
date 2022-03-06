@@ -48,7 +48,7 @@ public class Miscellaneous extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String KEY_SPOOF = "use_photos_spoof";
-    private static final String SYS_SPOOF = "persist.sys.photo";
+    private static final String SYS_SPOOF = "persist.sys.pixelprops.gphotos";
 
     private SwitchPreference mSpoof;
 
@@ -60,9 +60,8 @@ public class Miscellaneous extends SettingsPreferenceFragment
         final PreferenceScreen prefScreen = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
 
-        final String useSpoof = SystemProperties.get(SYS_SPOOF, "1");
         mSpoof = (SwitchPreference) findPreference(KEY_SPOOF);
-        mSpoof.setChecked("1".equals(useSpoof));
+        mSpoof.setChecked(SystemProperties.getBoolean(SYS_SPOOF, true));
         mSpoof.setOnPreferenceChangeListener(this);
     }
 
