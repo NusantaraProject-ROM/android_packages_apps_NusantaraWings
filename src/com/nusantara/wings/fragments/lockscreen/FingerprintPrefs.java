@@ -49,11 +49,9 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
 
     private static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
     private static final String FINGERPRINT_ERROR_VIB = "fingerprint_error_vib";
-    private static final String UDFPS_CATEGORY = "udfps_category";
 
     private SystemSettingSwitchPreference mFingerprintSuccessVib;
     private SystemSettingSwitchPreference mFingerprintErrorVib;
-    private PreferenceCategory mUdfpsCategory;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,12 +70,6 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
         mFingerprintErrorVib.setChecked((Settings.System.getInt(getContentResolver(),
                         Settings.System.FP_ERROR_VIBRATE, 1) == 1));
         mFingerprintErrorVib.setOnPreferenceChangeListener(this);
-    
-
-        mUdfpsCategory = findPreference(UDFPS_CATEGORY);
-        if (mUdfpsCategory != null && !UdfpsUtils.hasUdfpsSupport(getContext())) {
-            prefScreen.removePreference(mUdfpsCategory);
-        }
     }
 
     @Override

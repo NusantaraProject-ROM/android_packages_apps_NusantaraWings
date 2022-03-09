@@ -50,16 +50,9 @@ import com.nusantara.support.preferences.SecureSettingSwitchPreference;
 public class IconManager extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-    private static final String SYSTEMUI_PACKAGE = "com.android.systemui";
-    private static final String CONFIG_RESOURCE_NAME = "flag_combined_status_bar_signal_icons";
     private static final String KEY_STATUS_BAR_LOGO = "status_bar_logo";
-    private static final String COBINED_STATUSBAR_ICONS = "show_combined_status_bar_signal_icons";
-    private static final String CAMERA_DEVICE_CONFIG = "camera_indicators_enabled";
-    private static final String CAMERA_INDICATOR = "enable_camera_privacy_indicator";
 
     private SwitchPreference mShowNadLogo;
-    private SecureSettingSwitchPreference mCombinedIcons;
-    private SecureSettingSwitchPreference mCamIndicator;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,34 +66,6 @@ public class IconManager extends SettingsPreferenceFragment
         mShowNadLogo.setChecked((Settings.System.getInt(getContentResolver(),
              Settings.System.STATUS_BAR_LOGO, 0) == 1));
         mShowNadLogo.setOnPreferenceChangeListener(this);
-    
-        mCombinedIcons = (SecureSettingSwitchPreference)
-                findPreference(COBINED_STATUSBAR_ICONS);
-        Resources sysUIRes = null;
-        boolean def = false;
-        int resId = 0;
-        try {
-            sysUIRes = getActivity().getPackageManager()
-                    .getResourcesForApplication(SYSTEMUI_PACKAGE);
-        } catch (Exception ignored) {
-            // If you don't have system UI you have bigger issues
-        }
-        if (sysUIRes != null) {
-            resId = sysUIRes.getIdentifier(
-                    CONFIG_RESOURCE_NAME, "bool", SYSTEMUI_PACKAGE);
-            if (resId != 0) def = sysUIRes.getBoolean(resId);
-        }
-        boolean enabled = Settings.Secure.getInt(resolver,
-                COBINED_STATUSBAR_ICONS, def ? 1 : 0) == 1;
-        mCombinedIcons.setChecked(enabled);
-        mCombinedIcons.setOnPreferenceChangeListener(this);
-
-        mCamIndicator = (SecureSettingSwitchPreference) findPreference(CAMERA_INDICATOR);
-        boolean camIndicator = DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_PRIVACY,
-                CAMERA_DEVICE_CONFIG, false);
-        mCamIndicator.setDefaultValue(camIndicator);
-        mCamIndicator.setChecked(Settings.Secure.getInt(resolver,
-                CAMERA_INDICATOR, camIndicator ? 1 : 0) == 1);
     }
 
     @Override
@@ -110,12 +75,6 @@ public class IconManager extends SettingsPreferenceFragment
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.STATUS_BAR_LOGO, value ? 1 : 0);
-            return true;
-        } else if (preference == mCombinedIcons) {
-            boolean enabled = (boolean) newValue;
-            Settings.Secure.putInt(resolver,
-                    COBINED_STATUSBAR_ICONS, enabled ? 1 : 0);
-            UtilsNad.showSystemUiRestartDialog(getContext());
             return true;
         }
         return false;

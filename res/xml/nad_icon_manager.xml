@@ -43,23 +43,10 @@
             android:defaultValue="false" />
 
         <com.nusantara.support.preferences.SecureSettingSwitchPreference
-            android:key="show_combined_status_bar_signal_icons"
-            android:title="@string/combined_status_bar_signal_icons"
-            android:summary="@string/combined_status_bar_signal_icons_summary"
-            android:defaultValue="false" />
-
-        <com.nusantara.support.preferences.SecureSettingSwitchPreference
             android:key="enable_location_privacy_indicator"
             android:title="@string/location_privacy_indicator_title"
             android:summaryOn="@string/location_privacy_indicator_summary_on"
             android:summaryOff="@string/location_privacy_indicator_summary_off"
-            android:defaultValue="false" />
-
-        <com.nusantara.support.preferences.SecureSettingSwitchPreference
-            android:key="enable_camera_privacy_indicator"
-            android:title="@string/camera_privacy_indicator_title"
-            android:summaryOn="@string/camera_privacy_indicator_summary_on"
-            android:summaryOff="@string/camera_privacy_indicator_summary_off"
             android:defaultValue="false" />
 
         <com.nusantara.support.preferences.SystemSettingSwitchPreference
@@ -67,21 +54,6 @@
             android:title="@string/show_fourg_icon_title"
             android:summary="@string/show_fourg_icon_summary"
             android:defaultValue="false"/>
-
-        <com.nusantara.support.preferences.SystemSettingSwitchPreference
-            android:key="show_volte_icon"
-            android:title="@string/volte_icon_title"
-            android:summary="@string/volte_icon_summary"
-            android:defaultValue="true"/>
-
-        <com.nusantara.support.preferences.SystemSettingListPreference
-            android:key="volte_icon_style"
-            android:title="@string/volte_icon_style_title"
-            android:entries="@array/volte_icon_type_entries"
-            android:entryValues="@array/volte_icon_type_values"
-            android:summary="%s"
-            android:defaultValue="0"
-            android:dependency="show_volte_icon"/>
 
     </PreferenceCategory>
 </PreferenceScreen>
