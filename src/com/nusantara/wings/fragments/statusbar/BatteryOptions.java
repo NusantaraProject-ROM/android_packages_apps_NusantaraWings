@@ -53,8 +53,6 @@ public class BatteryOptions extends SettingsPreferenceFragment
     private static final int BATTERY_STYLE_TEXT = 6;
     private static final int BATTERY_STYLE_HIDDEN = 7;
     private static final int BATTERY_PERCENT_HIDDEN = 0;
-    //private static final int BATTERY_PERCENT_SHOW_INSIDE = 1;
-    //private static final int BATTERY_PERCENT_SHOW_OUTSIDE = 2;
 
     private PreferenceCategory mLedsCategory;
     private Preference mChargingLeds;
