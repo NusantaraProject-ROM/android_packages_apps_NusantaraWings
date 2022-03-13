@@ -475,9 +475,9 @@
     <string name="battery_light_full_color">Almost full battery</string>
     <string name="battery_light_reallyfull_color">Full (100) battery</string>
 
-    <!-- Locksreen small clock -->
-    <string name="lockscreen_small_clock_title">Always show small clock</string>
-    <string name="lockscreen_small_clock_summary">Do not change clock style based on notifications</string>
+    <!-- Keyguard force small clock -->
+    <string name="lockscreen_small_clock_title">Force small clock</string>
+    <string name="lockscreen_small_clock_summary">Don\'t switch to the big clock when there are no notifications</string>
 
     <!-- Volume Panel on Left -->
     <string name="volume_panel_on_left_title">Volume Panel on Left</string>

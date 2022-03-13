@@ -55,6 +55,12 @@
             android:dependency="qs_footer_text_show"
             android:defaultValue="#Nusantara Project" />
 
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="qs_footer_services_show"
+            android:title="@string/qs_footer_running_services_title"
+            android:summary="@string/qs_footer_running_services_summary"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
     
 </PreferenceScreen>
