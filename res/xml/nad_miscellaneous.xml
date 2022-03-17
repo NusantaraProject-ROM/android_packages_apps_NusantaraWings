@@ -45,7 +45,7 @@
             android:key="three_finger_gesture"
             android:title="@string/three_finger_screenshot_title"
             android:summary="@string/three_finger_screenshot_summary"
-            android:defaultValue="0" />
+            android:defaultValue="false" />
 
         <com.nusantara.support.preferences.SystemSettingSwitchPreference
             android:key="click_partial_screenshot"
