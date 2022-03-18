@@ -54,8 +54,8 @@ public class BatteryOptions extends SettingsPreferenceFragment
     private static final int BATTERY_STYLE_HIDDEN = 7;
     private static final int BATTERY_PERCENT_HIDDEN = 0;
 
-    private PreferenceCategory mLedsCategory;
     private Preference mChargingLeds;
+    private PreferenceCategory mLedsCategory;
 
     private ListPreference mBatteryPercent;
     private ListPreference mBatteryStyle;
@@ -92,7 +92,7 @@ public class BatteryOptions extends SettingsPreferenceFragment
         mBatteryPercent.setEnabled(
                 batterystyle != BATTERY_STYLE_TEXT && batterystyle != BATTERY_STYLE_HIDDEN);
 
-        mLedsCategory = (PreferenceCategory) findPreference("light_category");
+        mLedsCategory = (PreferenceCategory) findPreference("battery_light_category");
         mChargingLeds = (Preference) findPreference("battery_charging_light");
         if (mChargingLeds == null
                 || !getResources().getBoolean(

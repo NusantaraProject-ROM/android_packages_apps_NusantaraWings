@@ -468,6 +468,7 @@
     <string name="system_black_theme_summary">Force black background colors</string>
 
     <!-- Battery light -->
+    <string name="battery_light_category">Battery lights</string>
     <string name="battery_light_settings">Battery charging light</string>
     <string name="battery_light_enable">Battery light</string>
     <string name="battery_light_allow_on_dnd_title">Battery light in Do Not Disturb mode</string>
