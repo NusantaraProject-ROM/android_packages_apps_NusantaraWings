@@ -39,10 +39,13 @@ import com.android.settingslib.search.SearchIndexable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.android.internal.util.nad.NadUtils;
 
 @SearchIndexable(forTarget = SearchIndexable.ALL & ~SearchIndexable.ARC)
 public class Themes extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
+
+    private Preference mNavbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,11 @@ public class Themes extends SettingsPreferenceFragment
         addPreferencesFromResource(R.xml.nad_themes);
         final PreferenceScreen prefScreen = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
+
+        mNavbar = (Preference) findPreference("android.theme.customization.navbar");
+        if (NadUtils.isGestureNavbar()) {
+            mNavbar.setEnabled(false);
+        }
     }
 
     @Override
