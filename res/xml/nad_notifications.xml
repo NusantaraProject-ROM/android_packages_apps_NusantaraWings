@@ -73,6 +73,12 @@
             android:title="@string/artwork_media_background_title"
             android:summary="@string/artwork_media_background_summary"
             android:defaultValue="true" />
+            
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="artwork_media_force_expand"
+            android:title="@string/artwork_media_force_expand_title"
+            android:summary="@string/artwork_media_force_expand_summary"
+            android:defaultValue="true" />
 
         <com.nusantara.support.preferences.SystemSettingSeekBarPreference
             android:key="artwork_media_fade_level"

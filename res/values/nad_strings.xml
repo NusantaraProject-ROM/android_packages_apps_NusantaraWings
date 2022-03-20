@@ -510,4 +510,7 @@
     <string name="artwork_media_fade_level_title">Artwork fade level</string>
     <string name="artwork_media_fade_level_summary">Fading the media artwork image</string>
 
+    <string name="artwork_media_force_expand_title">Force expand</string>
+    <string name="artwork_media_force_expand_summary">Set Qs media player expanded</string>
+
 </resources>
