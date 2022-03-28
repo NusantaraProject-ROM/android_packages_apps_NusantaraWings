@@ -57,10 +57,13 @@ public class Notifications extends SettingsPreferenceFragment
     private static final String PREF_FLASH_ON_CALL_RATE = "flashlight_on_call_rate";
     private static final String KEY_EDGE_LIGHTNING = "pulse_ambient_light";
 
+    private static final String MEDIA_ARTWORK = "artwork_media_force_expand";
+
     private SystemSettingListPreference mFlashOnCall;
     private SystemSettingSwitchPreference mFlashOnCallIgnoreDND;
     private CustomSeekBarPreference mFlashOnCallRate;
     private SystemSettingMasterSwitchPreference mEdgeLightning;
+    private SystemSettingSwitchPreference mArtwork;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,6 +101,11 @@ public class Notifications extends SettingsPreferenceFragment
                 KEY_EDGE_LIGHTNING, 0, UserHandle.USER_CURRENT) == 1;
         mEdgeLightning.setChecked(enabled);
         mEdgeLightning.setOnPreferenceChangeListener(this);
+
+        mArtwork = (SystemSettingSwitchPreference) findPreference(MEDIA_ARTWORK);
+        mArtwork.setChecked((Settings.System.getInt(resolver,
+                Settings.System.ARTWORK_MEDIA_FORCE_EXPAND, 0) == 1));
+        mArtwork.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -119,6 +127,12 @@ public class Notifications extends SettingsPreferenceFragment
             boolean value = (Boolean) newValue;
             Settings.System.putIntForUser(resolver, KEY_EDGE_LIGHTNING,
                     value ? 1 : 0, UserHandle.USER_CURRENT);
+            return true;
+        } else if (preference == mArtwork) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.ARTWORK_MEDIA_FORCE_EXPAND, value ? 0 : 1);
+            UtilsNad.showSystemUiRestartDialog(getContext());
             return true;
         }
         return false;
