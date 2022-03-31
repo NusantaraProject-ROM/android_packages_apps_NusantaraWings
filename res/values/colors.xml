@@ -80,4 +80,6 @@
     <color name="option_border_default">#5f6368</color>
     
     <color name="dev_name_color">@android:color/system_accent1_500</color>
+    
+    <color name="nav_bg">#ff000000</color>
 </resources>

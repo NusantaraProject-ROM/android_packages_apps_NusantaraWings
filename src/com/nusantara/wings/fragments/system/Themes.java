@@ -30,6 +30,8 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
 
+import com.nusantara.support.preferences.SecureSettingSwitchPreference;
+
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -46,6 +48,8 @@ public class Themes extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private Preference mNavbar;
+    private SecureSettingSwitchPreference mBlackTheme, mNusantaraClearTheme;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,17 @@ public class Themes extends SettingsPreferenceFragment
         mNavbar = (Preference) findPreference("android.theme.customization.navbar");
         if (NadUtils.isGestureNavbar()) {
             mNavbar.setEnabled(false);
+        }
+        
+        mBlackTheme = (SecureSettingSwitchPreference) findPreference("system_black_theme");
+        mNusantaraClearTheme = (SecureSettingSwitchPreference) findPreference("nusantara_clear_theme");
+        if (mBlackTheme.isChecked()) {
+            mNusantaraClearTheme.setEnabled(false);
+        } else if (mNusantaraClearTheme.isChecked()) {
+        	mBlackTheme.setEnabled(false);
+        } else {
+        	mNusantaraClearTheme.setEnabled(true);
+            mBlackTheme.setEnabled(true);
         }
     }
 

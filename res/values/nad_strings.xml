@@ -513,4 +513,8 @@
     <string name="artwork_media_force_expand_title">Force expand</string>
     <string name="artwork_media_force_expand_summary">Set Qs media player expanded</string>
 
+    <!-- Nusantara Clear theme -->
+    <string name="nusantara_clear_theme_title">Nusantara clear theme</string>
+    <string name="nusantara_clear_theme_summary">Use nusantara clear as base of theme</string>
+
 </resources>
