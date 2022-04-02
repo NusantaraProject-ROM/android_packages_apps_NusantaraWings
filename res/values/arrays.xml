@@ -81,8 +81,12 @@
     <!-- Battery -->
     <string-array name="status_bar_battery_style_entries" translatable="false">
         <item>@string/status_bar_battery_style_icon_portrait</item>
-        <item>@string/status_bar_battery_style_icon_rlandscape</item>
-        <item>@string/status_bar_battery_style_icon_landscape</item> 
+        <item>@string/status_bar_battery_style_icon_rlandscape_style_a</item>
+        <item>@string/status_bar_battery_style_icon_rlandscape_style_b</item>
+        <item>@string/status_bar_battery_style_icon_rlandscape_style_c</item>
+        <item>@string/status_bar_battery_style_icon_landscape_style_a</item> 
+        <item>@string/status_bar_battery_style_icon_landscape_style_b</item>
+        <item>@string/status_bar_battery_style_icon_landscape_style_c</item>
         <item>@string/status_bar_battery_style_circle</item>
         <item>@string/status_bar_battery_style_dotted_circle</item>
         <item>@string/status_bar_battery_style_filled_circle</item>
@@ -92,12 +96,16 @@
     <string-array name="status_bar_battery_style_values" translatable="false">
         <item>0</item>
         <item>1</item>
-        <item>2</item>
         <item>3</item>
-        <item>4</item>
         <item>5</item>
+        <item>2</item>
+        <item>4</item>
         <item>6</item>
         <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
     </string-array>
 
     <!-- Status bar clock and date options -->
