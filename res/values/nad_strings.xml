@@ -524,4 +524,6 @@
     <!-- Battery estimate -->
     <string name="battery_estimate_title">Battery estimate</string>
     <string name="battery_estimate_summary">Display estimated remaining battery life when available</string>
+    <string name="battery_show_percent_estimate_title">Battery percent &amp; estimate</string>
+    <string name="battery_show_percent_estimate_summary">Enable battery percent &amp; estimate together</string>
 </resources>

@@ -48,6 +48,7 @@ public class BatteryOptions extends SettingsPreferenceFragment
     private static final String PREF_STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String PREF_STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
     private static final String LEFT_BATTERY_TEXT = "do_left_battery_text";
+    private static final String BATTERY_ESTIMATE_TOGETHER = "qs_show_battery_percent_estimate";
 
     private static final int BATTERY_STYLE_PORTRAIT = 0;
     private static final int BATTERY_STYLE_TEXT = 10;
@@ -59,7 +60,7 @@ public class BatteryOptions extends SettingsPreferenceFragment
 
     private ListPreference mBatteryPercent;
     private ListPreference mBatteryStyle;
-    private SystemSettingSwitchPreference mLeftBatteryText;
+    private SystemSettingSwitchPreference mLeftBatteryText, mBatteryEstimateTogether;
     private int mBatteryPercentValue;
 
     @Override
@@ -99,6 +100,12 @@ public class BatteryOptions extends SettingsPreferenceFragment
                         com.android.internal.R.bool.config_intrusiveBatteryLed)) {
             prefSet.removePreference(mLedsCategory);
         }
+
+        mBatteryEstimateTogether = (SystemSettingSwitchPreference) findPreference(BATTERY_ESTIMATE_TOGETHER);
+        mBatteryEstimateTogether.setChecked((Settings.System.getInt(resolver,
+                Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE , 0) == 1));
+        mBatteryEstimateTogether.setOnPreferenceChangeListener(this);
+        isEstimate();
     }
 
     @Override
@@ -129,8 +136,24 @@ public class BatteryOptions extends SettingsPreferenceFragment
             Settings.System.putInt(resolver,
                     Settings.System.DO_LEFT_BATTERY_TEXT, value ? 1 : 0);
             return true;
+        } else if (preference == mBatteryEstimateTogether) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE, value ? 1 : 0);
+            isEstimate();
+            return true;
         }
         return false;
+    }
+
+    private void isEstimate() {
+        boolean batteryEstimate = Settings.System.getInt(getContentResolver(),
+                Settings.System.QS_SHOW_BATTERY_ESTIMATE, 1) == 1;
+        if (batteryEstimate) {
+             mBatteryEstimateTogether.setEnabled(true);
+        } else {
+             mBatteryEstimateTogether.setEnabled(false);
+        }
     }
 
     @Override
