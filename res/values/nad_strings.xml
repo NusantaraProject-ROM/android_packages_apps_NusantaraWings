@@ -458,10 +458,6 @@
     <!-- Udfps category -->
     <string name="udfps_category_title">Udfps customization</string>
 
-    <!-- Fingerprint Ripple Effect -->
-    <string name="enable_fingerprint_ripple_effect_title">Ripple effect</string>
-    <string name="enable_fingerprint_ripple_effect_summary">Show ripple effect on unlock with fingerprint</string>
-
     <!-- Black theme -->
     <string name="system_black_theme_title">Black theme</string>
     <string name="system_black_theme_summary">Force black background colors</string>
@@ -593,4 +589,8 @@
     <!-- Activity indicators -->
     <string name="status_bar_activity_indicators_title">Show activity indicators</string>
     <string name="status_bar_activity_indicators_summary">Show up and down icons on mobile and wifi icons when data is used</string>
+
+    <!-- Fingerprint Ripple Effect -->
+    <string name="enable_fingerprint_ripple_effect_title">Ripple effect</string>
+    <string name="enable_fingerprint_ripple_effect_summary">Show ripple effect on unlock with fingerprint</string>
 </resources>
