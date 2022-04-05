@@ -37,6 +37,14 @@
         android:summary="@string/use_photos_spoof_summary"
         android:persistent="false" />
 
+    <!-- Hidden apps -->
+    <Preference
+        android:key="hidden_apps"
+        android:title="@string/hidden_apps_title"
+        android:summary="@string/hidden_apps_summary"
+        android:persistent="false"
+        android:fragment="com.nusantara.wings.fragments.system.HiddenAppSettingsFragment" />
+
     <PreferenceCategory
         android:key="gestures_category"
         android:title="@string/gesture_cat_title" >
