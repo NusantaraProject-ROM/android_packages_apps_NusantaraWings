@@ -49,6 +49,7 @@ public class BatteryOptions extends SettingsPreferenceFragment
     private static final String PREF_STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
     private static final String LEFT_BATTERY_TEXT = "do_left_battery_text";
     private static final String BATTERY_ESTIMATE_TOGETHER = "qs_show_battery_percent_estimate";
+    private static final String BATTERY_ESTIMATE = "qs_show_battery_estimate";
 
     private static final int BATTERY_STYLE_PORTRAIT = 0;
     private static final int BATTERY_STYLE_TEXT = 10;
@@ -60,7 +61,9 @@ public class BatteryOptions extends SettingsPreferenceFragment
 
     private ListPreference mBatteryPercent;
     private ListPreference mBatteryStyle;
-    private SystemSettingSwitchPreference mLeftBatteryText, mBatteryEstimateTogether;
+    private SystemSettingSwitchPreference mLeftBatteryText;
+    private SystemSettingSwitchPreference mBatteryEstimateTogether;
+    private SystemSettingSwitchPreference mBatteryEstimate;
     private int mBatteryPercentValue;
 
     @Override
@@ -101,6 +104,11 @@ public class BatteryOptions extends SettingsPreferenceFragment
             prefSet.removePreference(mLedsCategory);
         }
 
+        mBatteryEstimate = (SystemSettingSwitchPreference) findPreference(BATTERY_ESTIMATE);
+        mBatteryEstimate.setChecked((Settings.System.getInt(resolver,
+                Settings.System.QS_SHOW_BATTERY_ESTIMATE  , 1) == 1));
+        mBatteryEstimate.setOnPreferenceChangeListener(this);
+
         mBatteryEstimateTogether = (SystemSettingSwitchPreference) findPreference(BATTERY_ESTIMATE_TOGETHER);
         mBatteryEstimateTogether.setChecked((Settings.System.getInt(resolver,
                 Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE , 0) == 1));
@@ -136,10 +144,16 @@ public class BatteryOptions extends SettingsPreferenceFragment
             Settings.System.putInt(resolver,
                     Settings.System.DO_LEFT_BATTERY_TEXT, value ? 1 : 0);
             return true;
+        } else if (preference == mBatteryEstimate) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.QS_SHOW_BATTERY_ESTIMATE, value ? 0 : 1);
+            isEstimate();
+            return true;
         } else if (preference == mBatteryEstimateTogether) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
-                    Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE, value ? 1 : 0);
+                    Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE, value ? 0 : 1);
             isEstimate();
             return true;
         }
@@ -148,11 +162,11 @@ public class BatteryOptions extends SettingsPreferenceFragment
 
     private void isEstimate() {
         boolean batteryEstimate = Settings.System.getInt(getContentResolver(),
-                Settings.System.QS_SHOW_BATTERY_ESTIMATE, 1) == 1;
+                Settings.System.QS_SHOW_BATTERY_ESTIMATE, 0) == 1;
         if (batteryEstimate) {
-             mBatteryEstimateTogether.setEnabled(true);
-        } else {
              mBatteryEstimateTogether.setEnabled(false);
+        } else {
+             mBatteryEstimateTogether.setEnabled(true);
         }
     }
 
