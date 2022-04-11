@@ -17,6 +17,13 @@
             xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
             android:title="@string/themes_title" >
 
+    <!-- DSB -->
+    <Preference
+        android:key="dynamic_system_bars"
+        android:title="@string/dynamic_system_bars_category_title"
+        android:summary="@string/dynamic_system_bars_category_summary"
+        android:fragment="com.nusantara.wings.fragments.system.DsbSettings" />
+
     <!-- Font style -->
     <Preference
         android:key="android.theme.customization.fonts"
