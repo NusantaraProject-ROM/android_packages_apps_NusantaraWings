@@ -239,7 +239,24 @@ public class StatusbarIcons extends SettingsPreferenceFragment {
         mApplyingOverlays.set(true);
         mExecutor.execute(() -> {
             mThemeUtils.setOverlayEnabled(mCategory, mPkgs.get(position), "android");
+            String pattern = "android".equals(mPkgs.get(position)) ? ""
+                    : mPkgs.get(position).split("\\.")[4];
+            for (Map.Entry<String, String> entry : overlayMap.entrySet()) {
+                enableOverlay(entry.getValue(), entry.getKey(), pattern);
+            }
             mHandler.post(() -> mApplyingOverlays.set(false));
         });
+    }
+
+    public void enableOverlay(String category, String target, String pattern) {
+        if (pattern.isEmpty()) {
+            mThemeUtils.setOverlayEnabled(category, "android", "android");
+            return;
+        }
+        for (String pkg: mThemeUtils.getOverlayPackagesForCategory(category, target)) {
+            if (pkg.contains(pattern)) {
+                mThemeUtils.setOverlayEnabled(category, pkg, target);
+            }
+        }
     }
 }
