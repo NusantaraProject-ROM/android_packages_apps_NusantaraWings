@@ -30,7 +30,7 @@ import androidx.preference.PreferenceScreen;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.widget.LockPatternUtils;
 
-import com.android.internal.util.nad.udfps.UdfpsUtils;
+import com.android.internal.util.nad.NadUtils;
 
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
@@ -49,9 +49,11 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
 
     private static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
     private static final String FINGERPRINT_ERROR_VIB = "fingerprint_error_vib";
+    private static final String UDFPS_CATEGORY = "udfps_category";
 
     private SystemSettingSwitchPreference mFingerprintSuccessVib;
     private SystemSettingSwitchPreference mFingerprintErrorVib;
+    private PreferenceCategory mUdfpsCategory;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,14 @@ public class FingerprintPrefs extends SettingsPreferenceFragment
         mFingerprintErrorVib.setChecked((Settings.System.getInt(getContentResolver(),
                         Settings.System.FP_ERROR_VIBRATE, 1) == 1));
         mFingerprintErrorVib.setOnPreferenceChangeListener(this);
+
+        boolean udfpsResPkgInstalled = NadUtils.isPackageInstalled(getContext(),
+            "com.nusantara.udfps.resources");
+
+        mUdfpsCategory = findPreference(UDFPS_CATEGORY);
+        if (!udfpsResPkgInstalled) {
+            prefScreen.removePreference(mUdfpsCategory);
+        }
     }
 
     @Override
