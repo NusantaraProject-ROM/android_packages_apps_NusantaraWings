@@ -440,10 +440,6 @@
     <string name="udfps_haptic_feedback_title">FOD haptic feedback</string>
     <string name="udfps_haptic_feedback_summary">Vibrate when touching FOD icon</string>
 
-     <!-- Nightlight Fod -->
-    <string name="fod_night_light_title">Disable Night Light when showing FOD</string>
-    <string name="fod_night_light_summary">Disable Night Light on lock screen if FOD is active. Disabling this option might affect your fingerprint accuracy with Night Light on.</string>
-
     <!-- Udfps animations -->
     <string name="udfps_category">Udfps</string>
     <string name="udfps_recog_animation">Udfps animation</string>
