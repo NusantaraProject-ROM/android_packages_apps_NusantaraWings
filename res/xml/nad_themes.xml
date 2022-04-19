@@ -24,6 +24,13 @@
         android:summary="@string/dynamic_system_bars_category_summary"
         android:fragment="com.nusantara.wings.fragments.system.DsbSettings" />
 
+    <!-- Blur Style -->
+    <Preference
+        android:key="blur_style"
+        android:title="@string/blur_style_category_title"
+        android:summary="@string/blur_style_category_summary"
+        android:fragment="com.nusantara.wings.fragments.system.BlurredSettings" />
+
     <!-- Font style -->
     <Preference
         android:key="android.theme.customization.fonts"
@@ -63,7 +70,7 @@
         android:title="@string/system_black_theme_title"
         android:summary="@string/system_black_theme_summary"
         android:defaultValue="false" />
-        
+
     <com.nusantara.support.preferences.SecureSettingSwitchPreference
         android:key="nusantara_clear_theme"
         android:title="@string/nusantara_clear_theme_title"

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2022 The Nusantara Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<PreferenceScreen android:title="@string/blur_style_category_title"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:settings="http://schemas.android.com/apk/res-auto">
+
+
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:title="@string/blur_style_title"
+        android:key="blur_style"
+        android:summaryOn="@string/blur_style_summary_on"
+        android:summaryOff="@string/blur_style_summary_off" />
+
+    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+        android:title="@string/blur_radius_title"
+        android:key="blur_radius"
+        android:defaultValue="5"
+        android:min="1"
+        android:max="25"/>
+
+    <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+        android:title="@string/blur_scale_title"
+        android:key="blur_scale"
+        android:defaultValue="10"
+        android:min="1"
+        android:max="25" />
+
+    <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:title="@string/combined_blur_title"
+        android:key="combined_blur"
+        android:summary="@string/combined_blur_summary" />
+
+</PreferenceScreen>
