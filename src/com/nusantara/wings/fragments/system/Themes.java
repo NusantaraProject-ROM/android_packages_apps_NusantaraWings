@@ -64,7 +64,7 @@ public class Themes extends SettingsPreferenceFragment
         }
         
         mBlackTheme = (SecureSettingSwitchPreference) findPreference("system_black_theme");
-        mNusantaraClearTheme = (SecureSettingSwitchPreference) findPreference("nusantara_clear_theme");
+        mNusantaraClearTheme = (SecureSettingSwitchPreference) findPreference("system_nusantara_theme");
         if (mBlackTheme.isChecked()) {
             mNusantaraClearTheme.setEnabled(false);
         } else if (mNusantaraClearTheme.isChecked()) {

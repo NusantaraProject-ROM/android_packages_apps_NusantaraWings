@@ -72,7 +72,7 @@
         android:defaultValue="false" />
 
     <com.nusantara.support.preferences.SecureSettingSwitchPreference
-        android:key="nusantara_clear_theme"
+        android:key="system_nusantara_theme"
         android:title="@string/nusantara_clear_theme_title"
         android:summary="@string/nusantara_clear_theme_summary"
         android:defaultValue="false" />
