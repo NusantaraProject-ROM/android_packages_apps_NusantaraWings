@@ -81,7 +81,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/qs_brightness_slider_category">
+        android:title="@string/qs_brightness_customization_category">
 
         <com.nusantara.support.preferences.SystemSettingListPreference
             android:key="brightness_slider_position"
@@ -102,5 +102,11 @@
             android:title="@string/qs_brightness_icon_title"
             android:summary="@string/qs_brightness_icon_summary"
             android:defaultValue="true" />
+
+        <com.nusantara.support.preferences.SystemSettingSwitchPreference
+            android:key="status_bar_brightness_control"
+            android:title="@string/status_bar_brightness_control_title"
+            android:summary="@string/status_bar_brightness_control_summary"
+            android:defaultValue="false" />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -167,7 +167,7 @@
     <string name="navigation_bar_layout_summary">Customize the layout of the navigation bar</string>
 
     <!-- Quick Settings brightness slider -->
-    <string name="qs_brightness_slider_category">Brightness slider</string>
+    <string name="qs_brightness_customization_category">Brightness customization</string>
     <string name="qs_brightness_slider_position_title">Brightness slider position</string>
     <string name="qs_brightness_icon_title">Adaptive brightness button</string>
     <string name="qs_brightness_icon_summary">Show adaptive brightness button</string>
@@ -175,7 +175,11 @@
     <string name="qqs_brightness_slider_summary">Show a brightness slider in the quick qs panel</string>
     <string name="top">Top</string>
     <string name="bottom">Bottom</string>
-    
+
+    <!-- Brightness control -->
+    <string name="status_bar_brightness_control_title">Brightness control</string>
+    <string name="status_bar_brightness_control_summary">Adjust brightness by sliding across the status bar</string>
+
     <!-- Battery Styles -->
     <string name="battery_percent_title">Battery percent</string>
 
