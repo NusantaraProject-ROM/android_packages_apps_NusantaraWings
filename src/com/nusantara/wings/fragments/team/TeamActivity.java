@@ -160,7 +160,21 @@ public class TeamActivity extends Activity {
         setTeamMember("Rohman Urip", getString(R.string.maintainer_title),
                 "Rohmanurip", "haru_sama", R.drawable.rohman);
         setTeamMember("Harshhaa Reddy", getString(R.string.maintainer_title),
-		"Harshhaa", "NotHarshhaa", R.drawable.harshhaa);
+                "Harshhaa", "NotHarshhaa", R.drawable.harshhaa);
+        setTeamMember("Arif JeNong", getString(R.string.maintainer_title),
+                "ariffjenong", "Arifjenong46", R.drawable.arifjenong);
+        setTeamMember("Fraschze97", getString(R.string.maintainer_title),
+                "AIV-97", "noob_permanently", R.drawable.fraschze97);
+        setTeamMember("Frost", getString(R.string.maintainer_title),
+                "frostg-012", "frostg-012", R.drawable.frost);
+        setTeamMember("Glassy", getString(R.string.maintainer_title),
+                "MatchaKoi", "whdbfl", R.drawable.glassy);
+        setTeamMember("Galang Saputra", getString(R.string.maintainer_title),
+                "mgs28-mh", "hand08", R.drawable.hand08);
+        setTeamMember("Mikazuuu07", getString(R.string.maintainer_title),
+                "Mikazuuu07", "Mikazuuu07", R.drawable.mikazuuu);
+        setTeamMember("A. Dzaky", getString(R.string.maintainer_title),
+                "zkyzzz", "zkyzzz", R.drawable.zkyzzz);
         // Contributors
         setTeamMember("Andra Ramadan", getString(R.string.contributor_title)
                 + " / " + getString(R.string.maintainer_title), 
