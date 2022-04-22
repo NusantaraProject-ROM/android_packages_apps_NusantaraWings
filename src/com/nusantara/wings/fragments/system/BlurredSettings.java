@@ -51,7 +51,7 @@ implements Preference.OnPreferenceChangeListener {
     private static final String KEY_BLUR_SCALE_PREFERENCE = "blur_scale";
     private static final String KEY_BLUR_COMBINED = "combined_blur";
 
-    private SystemSettingSwitchPreference mBlurStatusBarExpanded;
+    private SystemSettingSwitchPreference mBlurStyle;
     private SystemSettingSeekBarPreference mBlurRadius;
     private SystemSettingSeekBarPreference mBlurScale;
     private SystemSettingSwitchPreference mCombinedBlur;
@@ -68,28 +68,28 @@ implements Preference.OnPreferenceChangeListener {
 
         ContentResolver resolver = ctx.getContentResolver();
 
-        SystemSettingSwitchPreference blurStatusBarExpanded = mBlurStatusBarExpanded = prefSet.findPreference(KEY_BLUR_STYLE);
-        blurStatusBarExpanded.setOnPreferenceChangeListener(this);
-        boolean blurStatusBarExpandedEnable  =  Settings.System.getIntForUser(resolver, KEY_BLUR_STYLE, 0, UserHandle.USER_CURRENT) != 0;
-        blurStatusBarExpanded.setChecked(blurStatusBarExpandedEnable);
+        SystemSettingSwitchPreference blurStyle = mBlurStyle = prefSet.findPreference(KEY_BLUR_STYLE);
+        blurStyle.setOnPreferenceChangeListener(this);
+        boolean blurStyleEnable  =  Settings.System.getIntForUser(resolver, KEY_BLUR_STYLE, 0, UserHandle.USER_CURRENT) != 0;
+        blurStyle.setChecked(blurStyleEnable);
 
         SystemSettingSeekBarPreference blurRadius = mBlurRadius = prefSet.findPreference(KEY_BLUR_RADIUS);
         blurRadius.setOnPreferenceChangeListener(this);
         int blurRadiusValue  =  Settings.System.getInt(resolver, KEY_BLUR_RADIUS, 5);
         blurRadius.setValue(blurRadiusValue);
-        blurRadius.setEnabled(blurStatusBarExpandedEnable);
+        blurRadius.setEnabled(blurStyleEnable);
 
         SystemSettingSeekBarPreference blurScale = mBlurScale = prefSet.findPreference(KEY_BLUR_SCALE_PREFERENCE);
         blurScale.setOnPreferenceChangeListener(this);
         int blurScaleValue  =  Settings.System.getInt(resolver, KEY_BLUR_SCALE_PREFERENCE, 10);
         blurScale.setValue(blurScaleValue);
-        blurScale.setEnabled(blurStatusBarExpandedEnable);
+        blurScale.setEnabled(blurStyleEnable);
 
         SystemSettingSwitchPreference combinedBlur = mCombinedBlur = prefSet.findPreference(KEY_BLUR_COMBINED);
         combinedBlur.setOnPreferenceChangeListener(this);
         boolean combinedBlurEnable  =  Settings.System.getIntForUser(resolver, KEY_BLUR_COMBINED, 0, UserHandle.USER_CURRENT) != 0;
         combinedBlur.setChecked(combinedBlurEnable);
-        combinedBlur.setEnabled(blurStatusBarExpandedEnable);
+        combinedBlur.setEnabled(blurStyleEnable);
 
         updatePrefAll();
     }
@@ -108,7 +108,7 @@ implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getContext().getContentResolver();
-        if (preference == mBlurStatusBarExpanded) {
+        if (preference == mBlurStyle) {
             boolean value = (Boolean) newValue;
             Settings.System.putIntForUser(resolver,
                 KEY_BLUR_STYLE, value ? 1 : 0, UserHandle.USER_CURRENT);
@@ -131,6 +131,7 @@ implements Preference.OnPreferenceChangeListener {
             boolean value = (Boolean) newValue;
             Settings.System.putIntForUser(resolver,
                 KEY_BLUR_COMBINED, value ? 1 : 0, UserHandle.USER_CURRENT);
+            UtilsNad.showSettingsRestartDialog(getContext());
             updatePrefAll();
             return true;
         }
