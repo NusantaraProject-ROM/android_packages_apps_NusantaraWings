@@ -105,14 +105,18 @@ public class BatteryOptions extends SettingsPreferenceFragment
         }
 
         mBatteryEstimate = (SystemSettingSwitchPreference) findPreference(BATTERY_ESTIMATE);
-        mBatteryEstimate.setChecked((Settings.System.getInt(resolver,
-                Settings.System.QS_SHOW_BATTERY_ESTIMATE  , 1) == 1));
+        boolean batteryEstimate = Settings.System.getInt(resolver,
+                Settings.System.QS_SHOW_BATTERY_ESTIMATE  , 0) == 1;
+        mBatteryEstimate.setChecked(batteryEstimate);
         mBatteryEstimate.setOnPreferenceChangeListener(this);
 
         mBatteryEstimateTogether = (SystemSettingSwitchPreference) findPreference(BATTERY_ESTIMATE_TOGETHER);
-        mBatteryEstimateTogether.setChecked((Settings.System.getInt(resolver,
-                Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE , 0) == 1));
+        boolean batteryEstimateTogether = Settings.System.getInt(resolver,
+                Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE , 0) == 1;
+        mBatteryEstimateTogether.setChecked(batteryEstimateTogether);
         mBatteryEstimateTogether.setOnPreferenceChangeListener(this);
+        mBatteryEstimateTogether.setEnabled(batteryEstimate);
+
         isEstimate();
     }
 
@@ -146,14 +150,19 @@ public class BatteryOptions extends SettingsPreferenceFragment
             return true;
         } else if (preference == mBatteryEstimate) {
             boolean value = (Boolean) newValue;
+            boolean batteryEstimateEnable = mBatteryEstimate.isChecked();
             Settings.System.putInt(resolver,
-                    Settings.System.QS_SHOW_BATTERY_ESTIMATE, value ? 0 : 1);
+                    Settings.System.QS_SHOW_BATTERY_ESTIMATE, value ? 1 : 0);
+            if (!batteryEstimateEnable) {
+            Settings.System.putInt(resolver,
+                    Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE, 0);
+            }
             isEstimate();
             return true;
         } else if (preference == mBatteryEstimateTogether) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
-                    Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE, value ? 0 : 1);
+                    Settings.System.QS_SHOW_BATTERY_PERCENT_ESTIMATE, value ? 1 : 0);
             isEstimate();
             return true;
         }
@@ -163,11 +172,8 @@ public class BatteryOptions extends SettingsPreferenceFragment
     private void isEstimate() {
         boolean batteryEstimate = Settings.System.getInt(getContentResolver(),
                 Settings.System.QS_SHOW_BATTERY_ESTIMATE, 0) == 1;
-        if (batteryEstimate) {
-             mBatteryEstimateTogether.setEnabled(false);
-        } else {
-             mBatteryEstimateTogether.setEnabled(true);
-        }
+
+        mBatteryEstimateTogether.setEnabled(batteryEstimate);
     }
 
     @Override
