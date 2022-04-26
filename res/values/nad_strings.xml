@@ -115,9 +115,7 @@
     <string name="action_app_switch">Recents</string>
     <string name="action_search">Assistant</string>
     <string name="action_voice_search">Voice search</string>
-    <string name="action_launch_camera">Camera</string>
     <string name="action_last_app">Last app</string>
-    <string name="action_splitscreen">Split screen</string>
     <string name="action_flashlight">Flashlight</string>
     <string name="action_clear_notifications">Clear notifications</string>
     <string name="action_volume_panel">Volume panel</string>  
