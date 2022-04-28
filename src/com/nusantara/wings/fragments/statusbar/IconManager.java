@@ -53,7 +53,7 @@ public class IconManager extends SettingsPreferenceFragment
     private static final String SYSTEMUI_PACKAGE = "com.android.systemui";
     private static final String CONFIG_RESOURCE_NAME = "flag_combined_status_bar_signal_icons";
     private static final String KEY_STATUS_BAR_LOGO = "status_bar_logo";
-    private static final String COBINED_STATUSBAR_ICONS = "show_combined_status_bar_signal_icons";
+    private static final String COMBINED_STATUSBAR_ICONS = "show_combined_status_bar_signal_icons";
 
     private SwitchPreference mShowNadLogo;
     private SecureSettingSwitchPreference mCombinedIcons;
@@ -68,11 +68,11 @@ public class IconManager extends SettingsPreferenceFragment
 
         mShowNadLogo = (SwitchPreference) findPreference(KEY_STATUS_BAR_LOGO);
         mShowNadLogo.setChecked((Settings.System.getInt(getContentResolver(),
-             Settings.System.STATUS_BAR_LOGO, 0) == 1));
+             Settings.System.STATUS_BAR_LOGO, 1) == 1));
         mShowNadLogo.setOnPreferenceChangeListener(this);
 
         mCombinedIcons = (SecureSettingSwitchPreference)
-                findPreference(COBINED_STATUSBAR_ICONS);
+                findPreference(COMBINED_STATUSBAR_ICONS);
         Resources sysUIRes = null;
         boolean def = false;
         int resId = 0;
@@ -88,7 +88,7 @@ public class IconManager extends SettingsPreferenceFragment
             if (resId != 0) def = sysUIRes.getBoolean(resId);
         }
         boolean enabled = Settings.Secure.getInt(resolver,
-                COBINED_STATUSBAR_ICONS, def ? 1 : 0) == 1;
+                COMBINED_STATUSBAR_ICONS, def ? 1 : 0) == 1;
         mCombinedIcons.setChecked(enabled);
         mCombinedIcons.setOnPreferenceChangeListener(this);
     }
@@ -104,7 +104,7 @@ public class IconManager extends SettingsPreferenceFragment
         } else if (preference == mCombinedIcons) {
             boolean enabled = (boolean) newValue;
             Settings.Secure.putInt(resolver,
-                    COBINED_STATUSBAR_ICONS, enabled ? 1 : 0);
+                    COMBINED_STATUSBAR_ICONS, enabled ? 1 : 0);
             UtilsNad.showSystemUiRestartDialog(getContext());
             return true;
         }
