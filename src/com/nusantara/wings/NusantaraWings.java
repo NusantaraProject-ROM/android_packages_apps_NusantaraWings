@@ -24,6 +24,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.LayoutInflater;
+import android.content.ContentResolver;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.viewpager.widget.ViewPager;
@@ -34,6 +37,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import android.provider.Settings;
 
 import com.android.internal.logging.nano.MetricsProto;
 
@@ -58,11 +62,33 @@ public class NusantaraWings extends SettingsPreferenceFragment {
         if (actionBar != null) {
             actionBar.setTitle(R.string.nusantarawings_title);
         }
-
+        
+        ContentResolver resolver = getContext().getContentResolver();
+        boolean blurEnabled = Settings.System.getIntForUser(resolver, Settings.System.BLUR_STYLE_PREFERENCE_KEY, 0, -2) == 1;
+        boolean clearEnabled = Settings.Secure.getInt(resolver, Settings.Secure.SYSTEM_NUSANTARA_THEME, 0) == 1;
+        
+        int colorSurface = com.android.settingslib.Utils.getColorAttr(getContext(),
+                com.android.internal.R.attr.colorSurfaceHeader).getDefaultColor();
+        int colorPrimary = com.android.settingslib.Utils.getColorAttr(getContext(),
+                com.android.internal.R.attr.colorPrimary).getDefaultColor();
+        int color = getContext().getResources().getColor(R.color.settingslib_colorSurfaceHeader);
+        GradientDrawable gd = new GradientDrawable();
+        gd.setCornerRadius(32);
+        gd.setAlpha(blurEnabled || clearEnabled || blurEnabled && clearEnabled ? 125  :  225);
+        gd.setColor(blurEnabled || clearEnabled || blurEnabled && clearEnabled ? colorSurface :  colorPrimary);
+        
         BubbleNavigationConstraintView bubbleNavigationConstraintView =  (BubbleNavigationConstraintView) view.findViewById(R.id.bottom_navigation_view_constraint);
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         PagerAdapter mPagerAdapter = new PagerAdapter(getFragmentManager());
         viewPager.setAdapter(mPagerAdapter);
+        
+        View headerBg = view.findViewById(R.id.nad_nav);
+        View mView7 = view.findViewById(R.id.view7);
+        
+        bubbleNavigationConstraintView.setBackgroundColor(blurEnabled || clearEnabled || blurEnabled && clearEnabled ? Color.TRANSPARENT : colorSurface);
+        headerBg.setBackground(blurEnabled || clearEnabled || blurEnabled && clearEnabled ? null :  getContext().getResources().getDrawable(R.drawable.nad_bg_gaydient));
+        mView7.setVisibility(blurEnabled || clearEnabled || blurEnabled && clearEnabled ? View.GONE : View.VISIBLE);
+        
 
         bubbleNavigationConstraintView.setNavigationChangeListener(new BubbleNavigationChangeListener() {
             @Override

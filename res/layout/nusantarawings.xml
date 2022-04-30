@@ -33,7 +33,9 @@
         android:id="@+id/nad_nav"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:background="@drawable/nad_bg_gaydient"
+        android:backgroundTint="?androidprv:attr/colorSurfaceHeader"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <com.nusantara.wings.bottomnav.BubbleNavigationConstraintView
@@ -41,10 +43,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:backgroundTint="?androidprv:attr/colorSurfaceHeader"
             android:elevation="0.0dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal"
+            android:paddingTop="10dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             app:nad_mode="spread">
@@ -98,5 +100,16 @@
                 app:nad_title="@string/bottom_nav_hardware_title"
                 app:nad_titlePadding="4dp" />
         </com.nusantara.wings.bottomnav.BubbleNavigationConstraintView>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20.0dip"
+            android:id="@+id/view7"
+            android:layout_marginBottom="-30dp"
+            android:background="@drawable/nad_round_top"
+            android:backgroundTint="?android:attr/colorPrimary"
+            android:gravity="bottom"
+            android:rotation="180" />
+
     </LinearLayout>
 </RelativeLayout>
