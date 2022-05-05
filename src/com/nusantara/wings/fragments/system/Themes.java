@@ -16,6 +16,7 @@
 
 package com.nusantara.wings.fragments.system;
 
+import android.app.UiModeManager;
 import android.content.Context;
 import android.content.ContentResolver;
 import android.os.Bundle;
@@ -49,6 +50,7 @@ public class Themes extends SettingsPreferenceFragment
 
     private Preference mNavbar;
     private SecureSettingSwitchPreference mBlackTheme, mNusantaraClearTheme;
+    private UiModeManager mUiModeManager;
 
 
     @Override
@@ -65,10 +67,13 @@ public class Themes extends SettingsPreferenceFragment
         
         mBlackTheme = (SecureSettingSwitchPreference) findPreference("system_black_theme");
         mNusantaraClearTheme = (SecureSettingSwitchPreference) findPreference("system_nusantara_theme");
+        mUiModeManager = getContext().getSystemService(UiModeManager.class);
         if (mBlackTheme.isChecked()) {
             mNusantaraClearTheme.setEnabled(false);
+            mUiModeManager.setNightModeActivated(true);
         } else if (mNusantaraClearTheme.isChecked()) {
         	mBlackTheme.setEnabled(false);
+            mUiModeManager.setNightModeActivated(true);
         } else {
         	mNusantaraClearTheme.setEnabled(true);
             mBlackTheme.setEnabled(true);
