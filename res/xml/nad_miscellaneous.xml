@@ -35,6 +35,12 @@
         android:key="use_photos_spoof"
         android:title="@string/use_photos_spoof_title"
         android:summary="@string/use_photos_spoof_summary"
+        android:persistent="true" />
+
+   <com.nusantara.support.preferences.SystemSettingSwitchPreference
+        android:key="use_games_spoof"
+        android:title="@string/use_games_spoof_title"
+        android:summary="@string/use_games_spoof_summary"
         android:persistent="false" />
 
     <!-- Hidden apps -->

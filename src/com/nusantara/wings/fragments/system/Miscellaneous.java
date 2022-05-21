@@ -47,10 +47,13 @@ import java.util.List;
 public class Miscellaneous extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-    private static final String KEY_SPOOF = "use_photos_spoof";
-    private static final String SYS_SPOOF = "persist.sys.pixelprops.gphotos";
+    private static final String KEY_SPOOF_PHOTOS = "use_photos_spoof";
+    private static final String KEY_SPOOF_GAMES = "use_games_spoof";
+    private static final String SYS_SPOOF_PHOTOS = "persist.sys.pixelprops.gphotos";
+    private static final String SYS_SPOOF_GAMES = "persist.sys.pixelprops.games";
 
-    private SwitchPreference mSpoof;
+    private SwitchPreference mSpoofPhotos;
+    private SwitchPreference mSpoofGames;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,19 +63,30 @@ public class Miscellaneous extends SettingsPreferenceFragment
         final PreferenceScreen prefScreen = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
 
-        mSpoof = (SwitchPreference) findPreference(KEY_SPOOF);
-        mSpoof.setChecked(SystemProperties.getBoolean(SYS_SPOOF, true));
-        mSpoof.setOnPreferenceChangeListener(this);
+        mSpoofPhotos = (SwitchPreference) findPreference(KEY_SPOOF_PHOTOS);
+        mSpoofPhotos.setChecked(SystemProperties.getBoolean(SYS_SPOOF_PHOTOS, true));
+        mSpoofPhotos.setOnPreferenceChangeListener(this);
+
+        mSpoofGames = (SwitchPreference) findPreference(KEY_SPOOF_GAMES);
+        mSpoofGames.setChecked(SystemProperties.getBoolean(SYS_SPOOF_GAMES, false));
+        mSpoofGames.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         final ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mSpoof) {
+        if (preference == mSpoofPhotos) {
             String value = ((Boolean) newValue) ? "1" : "0";
-            SystemProperties.set(SYS_SPOOF, value);
+            SystemProperties.set(SYS_SPOOF_PHOTOS, value);
             Toast.makeText(getActivity(),
                     (R.string.photos_spoof_toast),
+                    Toast.LENGTH_LONG).show();
+            return true;
+        } else if (preference == mSpoofGames) {
+            String value = ((Boolean) newValue) ? "1" : "0";
+            SystemProperties.set(SYS_SPOOF_GAMES, value);
+            Toast.makeText(getActivity(),
+                    (R.string.games_spoof_toast),
                     Toast.LENGTH_LONG).show();
             return true;
         }

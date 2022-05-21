@@ -640,4 +640,9 @@
     <!-- OOS clear all button -->
     <string name="enable_clear_all_button">Clear all notification button</string>
     <string name="enable_clear_all_button_summary">Show clear all notifications button in quick settings instead of default text one</string>
+
+    <!-- Unlock FPS for specific games -->
+    <string name="use_games_spoof_title">Unlock higher FPS in games</string>
+    <string name="use_games_spoof_summary">Spoof your device as different model for specific games to unlock higher FPS</string>
+    <string name="games_spoof_toast">Restart the App for it to take effect</string>
 </resources>
