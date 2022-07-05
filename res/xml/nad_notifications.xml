@@ -146,6 +146,13 @@
             android:max="255"
             settings:min="0" />
 
+        <com.nusantara.support.preferences.SystemSettingSeekBarPreference
+            android:key="artwork_media_background_fade_percent"
+            android:title="@string/artwork_media_background_fade_filter_title"
+            android:dependency="artwork_media_background"
+            android:defaultValue="30"
+            android:max="50"
+            settings:min="1" />
     </PreferenceCategory>
 
     <PreferenceCategory

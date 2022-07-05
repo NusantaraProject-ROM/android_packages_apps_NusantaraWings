@@ -509,6 +509,7 @@
     <string name="artwork_media_background_enable_blur_title">Blur media media artwork background</string>
     <string name="artwork_media_background_blur_radius_title">Blur amount for media artwork</string>
     <string name="artwork_media_background_alpha_title">Transparency of media artwork</string>
+    <string name="artwork_media_background_fade_filter_title">Fade amount for media artwork</string>
     <string name="artwork_media_force_expand_title">Force expand</string>
     <string name="artwork_media_force_expand_summary">Set Qs media player expanded</string>
 
