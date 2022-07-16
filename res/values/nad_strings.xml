@@ -504,14 +504,13 @@
 
     <!-- Media artwork -->
     <string name="media_category">Media artwork</string>
-    <string name="artwork_media_background_title">Artwork media background</string>
-    <string name="artwork_media_background_summary">Set media artwork as the notification media background</string>
-    <string name="artwork_media_background_enable_blur_title">Blur media media artwork background</string>
-    <string name="artwork_media_background_blur_radius_title">Blur amount for media artwork</string>
-    <string name="artwork_media_background_alpha_title">Transparency of media artwork</string>
-    <string name="artwork_media_background_fade_filter_title">Fade amount for media artwork</string>
-    <string name="artwork_media_force_expand_title">Force expand</string>
-    <string name="artwork_media_force_expand_summary">Set Qs media player expanded</string>
+    <string name="media_artwork_enabled_title">Artwork media background</string>
+    <string name="media_artwork_enabled_summary">Use media artwork as the media notification background</string>
+    <string name="media_artwork_blur_enabled_title">Blur media artwork background</string>
+    <string name="media_artwork_blur_radius_title">Blur amount for media artwork</string>
+    <string name="media_artwork_fade_percent_title">Fade amount for media artwork</string>
+    <string name="media_artwork_force_expand_title">Force expand</string>
+    <string name="media_artwork_force_expand_summary">Set QS media player expanded</string>
 
     <!-- Nusantara Clear theme -->
     <string name="nusantara_clear_theme_title">Nusantara clear theme</string>

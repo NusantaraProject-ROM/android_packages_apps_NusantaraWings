@@ -104,7 +104,7 @@ public class Notifications extends SettingsPreferenceFragment
 
         mArtwork = (SystemSettingSwitchPreference) findPreference(MEDIA_ARTWORK);
         mArtwork.setChecked((Settings.System.getInt(resolver,
-                Settings.System.ARTWORK_MEDIA_FORCE_EXPAND, 0) == 1));
+                Settings.System.MEDIA_ARTWORK_FORCE_EXPAND, 0) == 1));
         mArtwork.setOnPreferenceChangeListener(this);
     }
 
@@ -131,7 +131,7 @@ public class Notifications extends SettingsPreferenceFragment
         } else if (preference == mArtwork) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
-                    Settings.System.ARTWORK_MEDIA_FORCE_EXPAND, value ? 0 : 1);
+                    Settings.System.MEDIA_ARTWORK_FORCE_EXPAND, value ? 0 : 1);
             UtilsNad.showSystemUiRestartDialog(getContext());
             return true;
         }
