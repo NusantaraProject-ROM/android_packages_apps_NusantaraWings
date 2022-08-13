@@ -34,9 +34,9 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settingslib.search.SearchIndexable;
 
 import com.nusantara.support.preferences.SystemSettingEditTextPreference;
-import com.nusantara.support.preferences.SystemSettingMasterSwitchPreference;
-import com.nusantara.support.preferences.SystemSettingListPreference;
 import com.nusantara.support.preferences.SystemSettingSwitchPreference;
+
+import com.nusantara.wings.UtilsNad;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +46,10 @@ public class QuickSettings extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String QS_FOOTER_TEXT_STRING = "qs_footer_text_string";
+    private static final String MEDIA_ARTWORK = "media_artwork_force_expand";
 
     private SystemSettingEditTextPreference mFooterString;
+    private SystemSettingSwitchPreference mArtwork;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,13 +61,18 @@ public class QuickSettings extends SettingsPreferenceFragment
         mFooterString.setOnPreferenceChangeListener(this);
         String footerString = Settings.System.getString(getContentResolver(),
                 QS_FOOTER_TEXT_STRING);
-        if (footerString != null && footerString != "")
+        if (footerString != null && footerString != "") {
             mFooterString.setText(footerString);
-        else {
+        } else {
             mFooterString.setText("#Nusantara Project");
             Settings.System.putString(resolver,
                     Settings.System.QS_FOOTER_TEXT_STRING, "#Nusantara Project");
         }
+
+        mArtwork = (SystemSettingSwitchPreference) findPreference(MEDIA_ARTWORK);
+        mArtwork.setChecked((Settings.System.getInt(resolver,
+                Settings.System.MEDIA_ARTWORK_FORCE_EXPAND, 0) == 1));
+        mArtwork.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -73,14 +80,20 @@ public class QuickSettings extends SettingsPreferenceFragment
         final ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mFooterString) {
             String value = (String) newValue;
-            if (value != "" && value != null)
+            if (value != "" && value != null) {
                 Settings.System.putString(resolver,
                         Settings.System.QS_FOOTER_TEXT_STRING, value);
-            else {
+            } else {
                 mFooterString.setText("#Nusantara Project");
                 Settings.System.putString(resolver,
                         Settings.System.QS_FOOTER_TEXT_STRING, "#Nusantara Project");
             }
+            return true;
+        } else if (preference == mArtwork) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.MEDIA_ARTWORK_FORCE_EXPAND, value ? 0 : 1);
+            UtilsNad.showSystemUiRestartDialog(getContext());
             return true;
         }
         return false;
